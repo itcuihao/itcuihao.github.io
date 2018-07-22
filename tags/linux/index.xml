@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>haoc7</title>
-    <link>https://itcuihao.github.io/</link>
-    <description>Recent content on haoc7</description>
+    <title>Linux on haoc7</title>
+    <link>https://itcuihao.github.io/tags/linux/</link>
+    <description>Recent content in Linux on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 22 Jul 2018 19:10:51 +0800</lastBuildDate>
     
-	<atom:link href="https://itcuihao.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://itcuihao.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -45,17 +45,6 @@ vim ~/.bash_profile alais chproxy=&amp;quot;export http_proxy=http://127.</descr
  公司现在开发、测试、运维渐渐地有规模了，因此各个环境也应该相对独立。开发提交代码到develop分支后，发布开发环境，查看修改效果，确认无误，然后提交PR。运维拉取测试分支，发布测试环境，专供测试组使用。
  现在分成三个脚本，大致目录结构如下:
  root@ubuntu:/home/xg# tree -L 2 . ├── deploy.sh ├── release.sh ├── start.sh ├── tmp │ ├── static │ └── web ├── qddx │ ├── conf │ ├── qddx_out.log │ ├── qddx_web │ └── static ├── qdlg │ ├── conf │ ├── qdlg_out.log │ ├── qdlg_web │ └── static ├── tyxy │ ├── conf │ ├── tyxy_out.log │ ├── tyxy_web │ └── static └── xg_code ├── bin ├── pkg └── src   deploy.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://itcuihao.github.io/about/</link>
-      <pubDate>Sun, 22 Jul 2018 14:16:54 +0800</pubDate>
-      
-      <guid>https://itcuihao.github.io/about/</guid>
-      <description>对好奇保持兴趣！
- github
- </description>
     </item>
     
   </channel>

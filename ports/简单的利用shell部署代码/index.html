@@ -1,0 +1,338 @@
+<!doctype html>
+<html>
+<head>
+    <base href="/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="我的名字叫浩仔丶">
+
+<meta name="description" content="">
+
+<title>简单的利用shell部署代码</title>
+<meta name="generator" content="Hugo 0.31.1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+<link  href="https://itcuihao.github.io//css/theme.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="page-container container-fluid">
+<div class="col-md-3 menu">
+    <nav class="col-md-3">
+    <h3 class="home-link"><a href="https://itcuihao.github.io/">Root</a></h3>
+    <div id="last-posts" class="open">
+        <h3 data-open="last-posts">haoc7 - Most recent posts</h3>
+        <ul>
+            
+            <li><a href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/">利用Privoxy设置终端http代理</a></li>
+            
+            <li><a href="https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/">简单的利用shell部署代码</a></li>
+            
+            <li><a href="https://itcuihao.github.io/about/">About</a></li>
+            
+        </ul>
+    </div>
+
+    
+    <div id="tags" class="open">
+        <h3 data-open="tags">Tags</h3>
+        <ul class="tags">
+            
+            <li><a href="/tags/linux">linux</a></li>
+            
+        </ul>
+    </div>
+    
+
+    
+</nav>
+
+</div>
+<div class="col-md-9 content">
+
+<h1>简单的利用shell部署代码</h1>
+<h4>Published 07-22-2018 18:22:23</h4>
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="kendo5731"></a>
+<script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + '://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, 'script', 'twitter-wjs');</script>
+
+<div class="fb-share-button" data-href="https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/" data-layout="button"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en-US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<article>
+    <p>（一）介绍</p>
+
+<blockquote>
+<p>公司现在开发、测试、运维渐渐地有规模了，因此各个环境也应该相对独立。开发提交代码到develop分支后，发布开发环境，查看修改效果，确认无误，然后提交PR。运维拉取测试分支，发布测试环境，专供测试组使用。</p>
+</blockquote>
+
+<p>现在分成三个脚本，大致目录结构如下:</p>
+
+<pre><code>
+root@ubuntu:/home/xg# tree -L 2
+.
+├── deploy.sh
+├── release.sh
+├── start.sh
+├── tmp
+│   ├── static
+│   └── web
+├── qddx
+│   ├── conf
+│   ├── qddx_out.log
+│   ├── qddx_web
+│   └── static
+├── qdlg
+│   ├── conf
+│   ├── qdlg_out.log
+│   ├── qdlg_web
+│   └── static
+├── tyxy
+│   ├── conf
+│   ├── tyxy_out.log
+│   ├── tyxy_web
+│   └── static
+└── xg_code
+    ├── bin
+    ├── pkg
+    └── src
+</code></pre>
+
+<ol>
+<li>deploy.sh 从码云拉取代码，前端代码拷贝到 tmp/static 目录下；后端代码在 xg_code 中，编译到 tmp/ 下，命名为 web；</li>
+<li>release.sh 选择需要部署的文件夹名称，qddx/qdlg/tyxy 根据文件夹名称，将前后端文件拷贝到目录下;</li>
+<li>start.sh 输入需要启动的选项的文件夹名称启动对应的项目;</li>
+</ol>
+
+<p>（二）脚本详细</p>
+
+<p>1.DEPLOY.SH</p>
+
+<pre><code>#!/bin/bash
+echo -e &quot;\033[45;37m 部署测试学工系统\033[0m&quot;
+xg=&quot;/home/xg/tmp&quot;
+code_path=&quot;/home/xg/xg_code/src&quot;
+echo -e &quot;\033[33m 拉取代码ing ...\033[0m&quot;
+cd $code_path/AntLinkCampus
+git pull origin develop
+echo -e &quot;\033[33m 拷贝前端文件\033[&quot;
+echo -e &quot;\033[31m 拷贝ing... \033[0m&quot;
+rm -rf $xg/static/*
+cp -a $code_path/AntLinkCampus/CampusUI/static $xg
+cd $xg
+echo -e &quot;\033[33m 编译后端文件 \033[0m&quot;
+echo -e &quot;\033[31m 编译ing ... \033[0m&quot;
+go build -i -v -ldflags &quot;-w -s&quot; -o $xg/web AntLinkCampus/CampusServer/apps/web
+echo -e &quot;\033[32m 编译完成 \033[0m&quot;
+echo -e &quot;\033[32m 运行 release.sh 运行程序\033[0m&quot;
+</code></pre>
+
+<p>2.RELEASE.SH</p>
+
+<pre><code>#!/bin/bash
+echo -e &quot;\033[45;37m 发布测试学工系统\033[0m&quot;
+echo -e &quot;\033[34;42m 请选择学校（输入大学首字母）：\033[0m&quot;
+echo -e &quot;\033[33;44m 青岛大学：qddx \033[0m&quot;
+echo -e &quot;\033[33;44m 体育学院：tyxy\033[0m&quot;
+echo -e &quot;\033[33;44m 青岛理工大学：qdlg\033[0m&quot;
+read -p &quot;输入：&quot; school
+if [ &quot;$school&quot;x = &quot;qddx&quot;x ]
+then
+    echo -e &quot;\033[32m开始部署青岛大学\033[0m&quot;
+elif [ &quot;$school&quot;x = &quot;tyxy&quot;x ]
+then
+    echo -e &quot;\033[32m开始部署体育学院\033[0m&quot;
+elif [ &quot;$school&quot;x = &quot;qdlg&quot;x ]
+then
+    echo -e &quot;\033[32m开始部署青岛理工大学\033[0m&quot;
+else
+    echo -e &quot;\033[41;37m没有此学校\033[0m&quot;
+    exit
+fi
+xg=&quot;/home/xg/&quot;$school
+tmp=&quot;/home/xg/tmp&quot;
+echo -e &quot;\033[33m 拷贝前端文件\033[0m&quot;
+echo -e &quot;\033[31m 拷贝ing... \033[0m&quot;
+rm -rf $xg/static/*
+cp -a $tmp/static $xg
+echo -e &quot;\033[33m 拷贝后端文件\033[0m&quot;
+echo -e &quot;\033[31m 拷贝ing... \033[0m&quot;
+web_pid=$(pgrep -f ${school}_web)
+echo -e &quot;\033[41;37m PID: ${web_pid} \033[0m&quot;
+if [ &quot;$web_pid&quot;x = x ]
+then
+    echo -e &quot;\033[33m 移动后端文件\033[0m&quot;
+    cp $tmp/web $xg/${school}_web
+    echo -e &quot;\033[41;37m 请执行 start.sh 运行程序\033[0m&quot;
+else
+echo -e &quot;\033[33m 拷贝后端文件\033[0m&quot;
+    kill -9 $web_pid
+    sleep 2s
+    cp $tmp/web $xg/${school}_web
+    echo -e &quot;\033[41;37m 请执行 start.sh 运行程序\033[0m&quot;
+fi
+</code></pre>
+
+<p>3.START.SH</p>
+
+<pre><code>#!/bin/bash
+echo -e &quot;\033[45;37m 启动测试学工系统\033[0m&quot;
+echo -e &quot;\033[34;42m 请选择学校（输入大学首字母）：\033[0m&quot;
+echo -e &quot;\033[33;44m 青岛大学：qddx \033[0m&quot;
+echo -e &quot;\033[33;44m 体育学院：tyxy\033[0m&quot;
+echo -e &quot;\033[33;44m 青岛理工大学：qdlg\033[0m&quot;
+xg=&quot;/home/xg&quot;
+read -p &quot;输入：&quot; school
+nohupweb(){
+    cd $xg/$school
+    nohup ./${school}_web &gt; &quot;${school}_out.log&quot; 2&gt;&amp;1 &amp;
+    echo -e &quot;\033[42;37m启动完成\033[0m&quot;
+}
+if [ &quot;$school&quot;x = &quot;qddx&quot;x ]
+then
+    echo -e &quot;\033[32m开始启动青岛大学\033[0m&quot;
+    nohupweb
+elif [ &quot;$school&quot;x = &quot;tyxy&quot;x ]
+then
+    echo -e &quot;\033[32m开始启动体育学院\033[0m&quot;
+    nohupweb
+elif [ &quot;$school&quot;x = &quot;qdlg&quot;x ]
+then
+    echo -e &quot;\033[32m开始启动青岛理工大学\033[0m&quot;
+    nohupweb
+else
+    echo -e &quot;\033[41;37m没有此学校\033[0m&quot;
+    exit
+fi
+</code></pre>
+
+<p>(三)Nginx代理</p>
+
+<pre><code class="language-nginx">#青岛大学学工系统代理配置
+   server {
+       #全局域
+       listen       8088;
+       server_name  localhost;
+       #charset koi8-r;
+       #access_log  logs/host.access.log  main;
+       location /nginx {
+           root   html;
+           index  index.html index.htm;
+       }
+       #后台服务
+       location /web {
+          proxy_pass    http://127.0.0.1:8086;
+       }
+       location /api {
+          proxy_pass    http://127.0.0.1:8086;
+       }
+       #前端web应用
+       location / {
+          root /home/xg/qddx/static;
+          index login.html index.html index.htm;
+       }
+       #error_page  404              /404.html;
+       # redirect server error pages to the static page /50x.html
+       #
+       error_page   500 502 503 504  /50x.html;
+       location = /50x.html {
+           root   html;
+       }
+   }
+#体育学院学工系统代理配置
+   server {
+       #全局域
+       listen       8089;
+       server_name  localhost;
+       #charset koi8-r;
+       #access_log  logs/host.access.log  main;
+       location /nginx {
+           root   html;
+           index  index.html index.htm;
+       }
+       #后台服务
+       location /web {
+          proxy_pass    http://127.0.0.1:8087;
+       }
+       location /api {
+          proxy_pass    http://127.0.0.1:8087;
+       }
+       #前端web应用
+       location / {
+          root /home/xg/tyxy/static;
+          index login.html index.html index.htm;
+       }
+       #error_page  404              /404.html;
+       # redirect server error pages to the static page /50x.html
+       #
+       error_page   500 502 503 504  /50x.html;
+       location = /50x.html {
+           root   html;
+       }
+   }
+#青岛理工大学学工系统代理配置
+   server {
+       #全局域
+       listen       8084;
+       server_name  localhost;
+       #charset koi8-r;
+       #access_log  logs/host.access.log  main;
+       location /nginx {
+           root   html;
+           index  index.html index.htm;
+       }
+       #后台服务
+       location /web {
+          proxy_pass    http://127.0.0.1:8082;
+       }
+       location /api {
+          proxy_pass    http://127.0.0.1:8082;
+       }
+       #前端web应用
+       location / {
+          root /home/xg/qdlg/static;
+          index login.html index.html index.htm;
+       }
+       #error_page  404              /404.html;
+       # redirect server error pages to the static page /50x.html
+       #
+       error_page   500 502 503 504  /50x.html;
+       location = /50x.html {
+           root   html;
+       }
+   }
+</code></pre>
+
+<blockquote>
+<p>现在项目已经可以启动了，这次对环境是如何部署的有了初步了解，也学习了 Shell的编写，nohup后台启动</p>
+</blockquote>
+
+</article>
+
+
+
+</div>
+</div>
+<script src="https://itcuihao.github.io//js/theme.min.js" type="text/javascript"></script>
+
+
+</body>
+</html>
+

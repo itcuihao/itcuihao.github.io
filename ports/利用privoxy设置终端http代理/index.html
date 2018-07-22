@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+    <base href="/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="我的名字叫浩仔丶">
+
+<meta name="description" content="">
+
+<title>利用Privoxy设置终端http代理</title>
+<meta name="generator" content="Hugo 0.31.1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+<link  href="https://itcuihao.github.io//css/theme.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="page-container container-fluid">
+<div class="col-md-3 menu">
+    <nav class="col-md-3">
+    <h3 class="home-link"><a href="https://itcuihao.github.io/">Root</a></h3>
+    <div id="last-posts" class="open">
+        <h3 data-open="last-posts">haoc7 - Most recent posts</h3>
+        <ul>
+            
+            <li><a href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/">利用Privoxy设置终端http代理</a></li>
+            
+            <li><a href="https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/">简单的利用shell部署代码</a></li>
+            
+            <li><a href="https://itcuihao.github.io/about/">About</a></li>
+            
+        </ul>
+    </div>
+
+    
+    <div id="tags" class="open">
+        <h3 data-open="tags">Tags</h3>
+        <ul class="tags">
+            
+            <li><a href="/tags/linux">linux</a></li>
+            
+        </ul>
+    </div>
+    
+
+    
+</nav>
+
+</div>
+<div class="col-md-9 content">
+
+<h1>利用Privoxy设置终端http代理</h1>
+<h4>Published 07-22-2018 19:10:51</h4>
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="kendo5731"></a>
+<script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + '://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, 'script', 'twitter-wjs');</script>
+
+<div class="fb-share-button" data-href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/" data-layout="button"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en-US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<article>
+    <blockquote>
+<p>使用 <a href="http://www.privoxy.org/">Privoxy</a> 将sock5代理映射为http代理</p>
+</blockquote>
+
+<p>1.安装Privoxy</p>
+
+<pre><code>sudo apt-get update
+sudo apt-get install privoxy
+</code></pre>
+
+<p>2.配置Privoxy</p>
+
+<p><code>vim /etc/privoxy/config</code></p>
+
+<blockquote>
+<p>查找 listen-address,注释掉(vim 查找 /listen-address)</p>
+</blockquote>
+
+<pre><code>#listen-address  127.0.0.1:8118
+#listen-address  [::1]:8118
+在最后一行后边加上
+forward-socks5 / 127.0.0.1:1080 .
+listen-address 127.0.0.1:1081
+</code></pre>
+
+<p>3.重启Privoxy</p>
+
+<p>根据系统不同使用不同命令</p>
+
+<pre><code>sudo service privoxy restart
+或者
+sudo systemctl restart privoxy
+</code></pre>
+
+<p>4.终端设置</p>
+
+<p>这样就完成了sock5到http代理的映射,然后就可以配置终端代理</p>
+
+<p>对当前终端有效</p>
+
+<pre><code>export http_proxy=http://127.0.0.1:1081
+export https_proxy=http://127.0.0.1:1081
+</code></pre>
+
+<p>测试是否生效</p>
+
+<p><code>curl www.google.com</code></p>
+
+<p>看是否有数据</p>
+
+<p>取消设置</p>
+
+<pre><code>unset http_proxy
+unset https_proxy
+</code></pre>
+
+<p>可以加入 .bash_profile，添加别名，方便使用</p>
+
+<pre><code>vim ~/.bash_profile
+alais chproxy=&quot;export http_proxy=http://127.0.0.1:1081 &amp;&amp; export https_proxy=http://127.0.0.1:1081&quot;
+alais unchproxy=&quot;unset http_proxy &amp;&amp; unset https_proxy&quot;
+source ~/.bash_profile
+</code></pre>
+
+<p>5.卸载</p>
+
+<p><code>sudo apt-get remove privoxy</code></p>
+
+<p>⇲带飞</p>
+
+<p>别人想访问 Google，利用SwitchyOmega</p>
+
+<p>provixy配置：</p>
+
+<pre><code>vim /etc/privoxy/config
+listen-address 0.0.0.0:1081
+sudo systemctl restart privoxy
+</code></pre>
+
+<p>然后让他利用 SwitchyOmega 与我连接同一网络，
+新建情景模式</p>
+
+<pre><code>参数 | 值
+---|---
+代理规则 | http
+代理地址| ifconfig查看
+代理端口| 1081
+</code></pre>
+
+</article>
+
+
+
+</div>
+</div>
+<script src="https://itcuihao.github.io//js/theme.min.js" type="text/javascript"></script>
+
+
+</body>
+</html>
+
