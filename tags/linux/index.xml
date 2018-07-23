@@ -5,7 +5,7 @@
     <link>https://itcuihao.github.io/tags/linux/</link>
     <description>Recent content in Linux on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
     <lastBuildDate>Sun, 22 Jul 2018 19:10:51 +0800</lastBuildDate>
     
@@ -18,22 +18,7 @@
       <pubDate>Sun, 22 Jul 2018 19:10:51 +0800</pubDate>
       
       <guid>https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/</guid>
-      <description>使用 Privoxy 将sock5代理映射为http代理
- 1.安装Privoxy
-sudo apt-get update sudo apt-get install privoxy  2.配置Privoxy
-vim /etc/privoxy/config
- 查找 listen-address,注释掉(vim 查找 /listen-address)
- #listen-address 127.0.0.1:8118 #listen-address [::1]:8118 在最后一行后边加上 forward-socks5 / 127.0.0.1:1080 . listen-address 127.0.0.1:1081  3.重启Privoxy
-根据系统不同使用不同命令
-sudo service privoxy restart 或者 sudo systemctl restart privoxy  4.终端设置
-这样就完成了sock5到http代理的映射,然后就可以配置终端代理
-对当前终端有效
-export http_proxy=http://127.0.0.1:1081 export https_proxy=http://127.0.0.1:1081  测试是否生效
-curl www.google.com
-看是否有数据
-取消设置
-unset http_proxy unset https_proxy  可以加入 .bash_profile，添加别名，方便使用
-vim ~/.bash_profile alais chproxy=&amp;quot;export http_proxy=http://127.</description>
+      <description>使用 Privoxy 将sock5代理映射为http代理 1.安装Privoxy sudo apt-get update sudo apt-get install privoxy 2.配置Privoxy vim /etc/privoxy/config 查找 listen-address,注释掉(vim 查找 /listen-address) #listen-address 127.0.0.1:8118</description>
     </item>
     
     <item>
@@ -42,10 +27,7 @@ vim ~/.bash_profile alais chproxy=&amp;quot;export http_proxy=http://127.</descr
       <pubDate>Sun, 22 Jul 2018 18:22:23 +0800</pubDate>
       
       <guid>https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</guid>
-      <description>（一）介绍
- 公司现在开发、测试、运维渐渐地有规模了，因此各个环境也应该相对独立。开发提交代码到develop分支后，发布开发环境，查看修改效果，确认无误，然后提交PR。运维拉取测试分支，发布测试环境，专供测试组使用。
- 现在分成三个脚本，大致目录结构如下:
- root@ubuntu:/home/xg# tree -L 2 . ├── deploy.sh ├── release.sh ├── start.sh ├── tmp │ ├── static │ └── web ├── qddx │ ├── conf │ ├── qddx_out.log │ ├── qddx_web │ └── static ├── qdlg │ ├── conf │ ├── qdlg_out.log │ ├── qdlg_web │ └── static ├── tyxy │ ├── conf │ ├── tyxy_out.log │ ├── tyxy_web │ └── static └── xg_code ├── bin ├── pkg └── src   deploy.</description>
+      <description>（一）介绍 公司现在开发、测试、运维渐渐地有规模了，因此各个环境也应该相对独立。开发提交代码到develop分支后，发布开发环境，查看修改效果，确认无误，然后提交</description>
     </item>
     
   </channel>
