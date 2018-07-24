@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>haoc7</title>
-    <link>https://itcuihao.github.io/</link>
-    <description>Recent content on haoc7</description>
+    <title>Linux on haoc7</title>
+    <link>https://itcuihao.github.io/categories/linux/</link>
+    <description>Recent content in Linux on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 23 Jul 2018 22:52:41 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jul 2018 19:10:51 +0800</lastBuildDate>
     
-	<atom:link href="https://itcuihao.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://itcuihao.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>14 高性能数据库集群：读写分离</title>
-      <link>https://itcuihao.github.io/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</link>
-      <pubDate>Mon, 23 Jul 2018 22:52:41 +0800</pubDate>
-      
-      <guid>https://itcuihao.github.io/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</guid>
-      <description>&amp;ldquo;从0开始学架构&amp;rdquo;专栏已经更新了13期，从各个方面阐述了架构设计相关的理论和流程，包括架构设计起源、架构设计的目的、常见架构的复杂度分析</description>
-    </item>
     
     <item>
       <title>利用Privoxy设置终端http代理🚀</title>
@@ -37,15 +28,6 @@
       
       <guid>https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</guid>
       <description>（一）介绍 公司现在开发、测试、运维渐渐地有规模了，因此各个环境也应该相对独立。开发提交代码到develop分支后，发布开发环境，查看修改效果，确认无误，然后提交</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://itcuihao.github.io/about/</link>
-      <pubDate>Sun, 22 Jul 2018 14:16:54 +0800</pubDate>
-      
-      <guid>https://itcuihao.github.io/about/</guid>
-      <description>我的名字叫浩仔丶 在网络上常用的昵称“我的名字叫浩仔丶”、“haoc7”,喜欢动漫，喜欢健身，梦想有朝一日变身大牛，正在努力。不断经历挫折，不断怀疑自己，思考过后</description>
     </item>
     
   </channel>

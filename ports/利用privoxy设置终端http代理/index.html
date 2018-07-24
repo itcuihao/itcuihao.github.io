@@ -42,9 +42,15 @@
         <h3 data-open="tags">Tags</h3>
         <ul class="tags">
             
-            <li><a href="https://itcuihao.github.io/tags/linux">linux</a></li>
+            <li><a href="https://itcuihao.github.io/tags/shell">shell</a></li>
             
-            <li><a href="https://itcuihao.github.io/tags/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84">从0开始学架构</a></li>
+            <li><a href="https://itcuihao.github.io/tags/%E4%BB%A3%E7%90%86">代理</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E6%9E%B6%E6%9E%84">架构</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E9%9B%86%E7%BE%A4">集群</a></li>
             
         </ul>
     </div>
@@ -55,7 +61,9 @@
         <h3 data-open="categories">Categories</h3>
         <ul class="categories">
             
-            <li><a href="https://itcuihao.github.io/categories/coding">coding</a></li>
+            <li><a href="https://itcuihao.github.io/categories/linux">linux</a></li>
+            
+            <li><a href="https://itcuihao.github.io/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84">从0开始学架构</a></li>
             
         </ul>
     </div>
@@ -136,9 +144,9 @@ export https_proxy=http://127.0.0.1:1081
 
 <p>测试是否生效</p>
 
-<p><code>curl www.google.com</code></p>
-
-<p>看是否有数据</p>
+<pre><code>curl www.google.com
+看是否有数据返回
+</code></pre>
 
 <p>取消设置</p>
 
@@ -169,7 +177,7 @@ listen-address 0.0.0.0:1081
 sudo systemctl restart privoxy
 </code></pre>
 
-<p>然后让他利用 SwitchyOmega 与我连接同一网络，
+<p>然后让别人利用 SwitchyOmega 与我连接同一网络，
 新建情景模式</p>
 
 <pre><code>参数 | 值
@@ -177,6 +185,12 @@ sudo systemctl restart privoxy
 代理规则 | http
 代理地址| ifconfig查看
 代理端口| 1081
+</code></pre>
+
+<p>如果别人想终端走你的代理</p>
+
+<pre><code>那么两人需要连接同一网络，查看自己的IP，让他在终端执行
+export http_proxy=http://ip:1081 &amp;&amp; export https_proxy=http://ip:1081
 </code></pre>
 
 </article>
