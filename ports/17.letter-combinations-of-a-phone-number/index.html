@@ -8,7 +8,7 @@
 
 <meta name="description" content="">
 
-<title>利用Privoxy设置终端http代理🚀</title>
+<title>17.letter Combinations of a Phone Number</title>
 <meta name="generator" content="Hugo 0.31.1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
@@ -83,8 +83,8 @@
 </div>
 <div class="col-md-9 content">
 
-<h1>利用Privoxy设置终端http代理🚀</h1>
-<h4>Published 2018-07-22 19:10:51</h4>
+<h1>17.letter Combinations of a Phone Number</h1>
+<h4>Published 2018-07-26 00:17:05</h4>
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="kendo5731"></a>
 <script>!function (d, s, id) {
@@ -97,7 +97,7 @@
     }
 }(document, 'script', 'twitter-wjs');</script>
 
-<div class="fb-share-button" data-href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/" data-layout="button"></div>
+<div class="fb-share-button" data-href="https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/" data-layout="button"></div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -108,99 +108,106 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <article>
-    <blockquote>
-<p>使用 <a href="http://www.privoxy.org/">Privoxy</a> 将sock5代理映射为http代理</p>
-</blockquote>
+    
 
-<p>1.安装Privoxy</p>
+<h2 id="题目">题目</h2>
 
-<pre><code>sudo apt-get update
-sudo apt-get install privoxy
+<p>Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.</p>
+
+<p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。</p>
+
+<p>A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.</p>
+
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+
+<p align="center">
+<img src=http://on64lz47x.bkt.clouddn.com/leetcode17.png>
+</p>
+
+<p>Example:</p>
+
+<pre><code>Input: &quot;23&quot;
+Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].
 </code></pre>
 
-<p>2.配置Privoxy</p>
+<p>Note:</p>
 
-<p><code>vim /etc/privoxy/config</code></p>
+<p>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
 
-<blockquote>
-<p>查找 listen-address,注释掉(vim 查找 /listen-address)</p>
-</blockquote>
+<p>尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p>
 
-<pre><code>#listen-address  127.0.0.1:8118
-#listen-address  [::1]:8118
-在最后一行后边加上
-forward-socks5 / 127.0.0.1:1080 .
-listen-address 127.0.0.1:1081
+<h2 id="分析">分析</h2>
+
+<p align="center">
+<img src=http://on64lz47x.bkt.clouddn.com/leetcode17-analy.jpg>
+</p>
+<p align="center">
+<a href="https://www.youtube.com/watch?v=fLy8t33M1qQ">图片来自花花酱</a>
+</p>
+
+<p>对于结果可以通过深度优先或者广度优先来处理。</p>
+
+<ul>
+<li>DFS</li>
+</ul>
+
+<pre><code>func letterCombinationsDFS(digits string) []string {
+	var jp = []string{&quot;&quot;, &quot;&quot;, &quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;, &quot;jkl&quot;, &quot;mno&quot;, &quot;pqrs&quot;, &quot;tuv&quot;, &quot;wxyz&quot;}
+	cur := make([]rune, len(digits))
+	ans = dfs(digits, jp, 0, cur)
+	return ans
+}
+
+var (
+	ans []string
+)
+
+func dfs(digits string, jp []string, l int, cur []rune) []string {
+
+	if l == len(digits) {
+		if l &gt; 0 {
+			ans = append(ans, string(cur))
+		}
+		return ans
+	}
+	s := jp[digits[l]-'0']
+	for _, v := range s {
+		cur[l] = v
+		fmt.Println(&quot;cur:&quot;, string(cur))
+		ans = dfs(digits, jp, l+1, cur)
+	}
+	return ans
+}
+
 </code></pre>
 
-<p>3.重启Privoxy</p>
+<ul>
+<li>BFS</li>
+</ul>
 
-<p>根据系统不同使用不同命令</p>
-
-<pre><code>sudo service privoxy restart
-或者
-sudo systemctl restart privoxy
-</code></pre>
-
-<p>4.终端设置</p>
-
-<p>这样就完成了sock5到http代理的映射,然后就可以配置终端代理</p>
-
-<p>对当前终端有效</p>
-
-<pre><code>export http_proxy=http://127.0.0.1:1081
-export https_proxy=http://127.0.0.1:1081
-</code></pre>
-
-<p>测试是否生效</p>
-
-<pre><code>curl www.google.com
-看是否有数据返回
-</code></pre>
-
-<p>取消设置</p>
-
-<pre><code>unset http_proxy
-unset https_proxy
-</code></pre>
-
-<p>可以加入 .bash_profile，添加别名，方便使用</p>
-
-<pre><code>vim ~/.bash_profile
-alais chproxy=&quot;export http_proxy=http://127.0.0.1:1081 &amp;&amp; export https_proxy=http://127.0.0.1:1081&quot;
-alais unchproxy=&quot;unset http_proxy &amp;&amp; unset https_proxy&quot;
-source ~/.bash_profile
-</code></pre>
-
-<p>5.卸载</p>
-
-<p><code>sudo apt-get remove privoxy</code></p>
-
-<p>⇲带飞</p>
-
-<p>别人想访问 Google，利用SwitchyOmega</p>
-
-<p>provixy配置：</p>
-
-<pre><code>vim /etc/privoxy/config
-listen-address 0.0.0.0:1081
-sudo systemctl restart privoxy
-</code></pre>
-
-<p>然后让别人利用 SwitchyOmega 与我连接同一网络，
-新建情景模式</p>
-
-<pre><code>参数 | 值
----|---
-代理规则 | http
-代理地址| ifconfig查看
-代理端口| 1081
-</code></pre>
-
-<p>如果别人想终端走你的代理</p>
-
-<pre><code>那么两人需要连接同一网络，查看自己的IP，让他在终端执行
-export http_proxy=http://ip:1081 &amp;&amp; export https_proxy=http://ip:1081
+<pre><code>func letterCombinations(digits string) []string {
+	var jp = []string{&quot;&quot;, &quot;&quot;, &quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;, &quot;jkl&quot;, &quot;mno&quot;, &quot;pqrs&quot;, &quot;tuv&quot;, &quot;wxyz&quot;}
+	ld := len(digits)
+	// 初始化
+	r := []string{}
+	if ld == 0 {
+		return r
+	}
+	r = []string{&quot;&quot;}
+	for i := 0; i &lt; ld; i++ {
+		var tmp []string
+		// 获取jp对应的下标
+		index := digits[i] - '0'
+		for _, k := range r {
+			for _, j := range jp[index] {
+				tmp = append(tmp, k+string(j))
+			}
+		}
+		// 重新给r赋值
+		r = tmp
+	}
+	return r
+}
 </code></pre>
 
 </article>

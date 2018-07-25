@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 23 Jul 2018 22:52:41 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Jul 2018 00:17:05 +0800</lastBuildDate>
     
 	<atom:link href="https://itcuihao.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>17.letter Combinations of a Phone Number</title>
+      <link>https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/</link>
+      <pubDate>Thu, 26 Jul 2018 00:17:05 +0800</pubDate>
+      
+      <guid>https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/</guid>
+      <description>题目 Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters. 给出数字到字母</description>
+    </item>
     
     <item>
       <title>14 高性能数据库集群：读写分离</title>
