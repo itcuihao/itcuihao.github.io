@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+    <base href="https://itcuihao.github.io/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="">
+
+<meta name="description" content="">
+
+<title>Eric Raymond&#39;s 17 Unix Rules</title>
+<meta name="generator" content="Hugo 0.31.1" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="http://fonts.useso.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface" rel="stylesheet" type="text/css">
+<link  href="https://itcuihao.github.io//css/theme.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="page-container container-fluid">
+<div class="col-md-3 menu">
+    <nav class="col-md-3">
+    <h3 class="home-link"><a href="https://itcuihao.github.io/">Root</a></h3>
+    <div id="last-posts" class="open">
+        <h3 data-open="last-posts">haoc7 - Most recent posts</h3>
+        <ul>
+            
+            <li><a href="https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/">Eric Raymond&#39;s 17 Unix Rules</a></li>
+            
+            <li><a href="https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/">17.letter Combinations of a Phone Number</a></li>
+            
+            <li><a href="https://itcuihao.github.io/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">14 高性能数据库集群：读写分离</a></li>
+            
+            <li><a href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/">利用Privoxy设置终端http代理🚀</a></li>
+            
+            <li><a href="https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/">简单的利用shell部署代码💻</a></li>
+            
+            <li><a href="https://itcuihao.github.io/about/">About</a></li>
+            
+        </ul>
+    </div>
+
+    
+    <div id="tags" class="open">
+        <h3 data-open="tags">Tags</h3>
+        <ul class="tags">
+            
+            <li><a href="https://itcuihao.github.io/tags/bfs">bfs</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/dfs">dfs</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/leetcode">leetcode</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/shell">shell</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/unix">unix</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E4%BB%A3%E7%90%86">代理</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E6%96%B9%E6%B3%95%E8%AE%BA">方法论</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E6%9E%B6%E6%9E%84">架构</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E9%9B%86%E7%BE%A4">集群</a></li>
+            
+        </ul>
+    </div>
+    
+
+    
+    <div id="categories" class="open">
+        <h3 data-open="categories">Categories</h3>
+        <ul class="categories">
+            
+            <li><a href="https://itcuihao.github.io/categories/algorithms">algorithms</a></li>
+            
+            <li><a href="https://itcuihao.github.io/categories/linux">linux</a></li>
+            
+            <li><a href="https://itcuihao.github.io/categories/unix">unix</a></li>
+            
+            <li><a href="https://itcuihao.github.io/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84">从0开始学架构</a></li>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+</div>
+<div class="col-md-9 content">
+
+<h1>Eric Raymond&#39;s 17 Unix Rules</h1>
+<h4>Published 2018-07-27 01:04:33</h4>
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="HaoC_it"></a>
+<script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + '://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, 'script', 'twitter-wjs');</script>
+
+<div class="fb-share-button" data-href="https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/" data-layout="button"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en-US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<article>
+    
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Eric Raymond’s 17 Unix Rules</a></p>
+
+<hr />
+
+<p>In his book <a href="https://en.wikipedia.org/wiki/The_Art_of_Unix_Programming">The Art of Unix Programming</a> that was first published in 2003,[11] <a href="https://en.wikipedia.org/wiki/Eric_S._Raymond">Eric S. Raymond</a>, an American programmer and open source advocate, summarizes the Unix philosophy as <a href="https://en.wikipedia.org/wiki/KISS_Principle">KISS Principle</a> of &ldquo;Keep it Simple, Stupid.&rdquo;[12] He provides a series of design rules:[1]</p>
+
+<h4 id="rule-of-modularity">Rule of Modularity</h4>
+
+<blockquote>
+<p>Developers should build a program out of simple parts connected by well defined interfaces, so problems are local, and parts of the program can be replaced in future versions to support new features. This rule aims to save time on debugging code that is complex, long, and unreadable.</p>
+</blockquote>
+
+<h4 id="rule-of-clarity">Rule of Clarity</h4>
+
+<blockquote>
+<p>Developers should write programs as if the most important communication is to the developer who will read and maintain the program, rather than the computer. This rule aims to make code as readable and comprehensible as possible for whoever works on the code in the future.</p>
+</blockquote>
+
+<h4 id="rule-of-composition">Rule of Composition</h4>
+
+<blockquote>
+<p>Developers should write programs that can communicate easily with other programs. This rule aims to allow developers to break down projects into small, simple programs rather than overly complex monolithic programs.</p>
+</blockquote>
+
+<h4 id="rule-of-separation">Rule of Separation</h4>
+
+<blockquote>
+<p>Developers should separate the mechanisms of the programs from the policies of the programs; one method is to divide a program into a front-end interface and a back-end engine with which that interface communicates. This rule aims to prevent bug introduction by allowing policies to be changed with minimum likelihood of destabilizing operational mechanisms.</p>
+</blockquote>
+
+<h4 id="rule-of-simplicity">Rule of Simplicity</h4>
+
+<blockquote>
+<p>Developers should design for simplicity by looking for ways to break up program systems into small, straightforward cooperating pieces. This rule aims to discourage developers’ affection for writing “intricate and beautiful complexities” that are in reality bug prone programs.</p>
+</blockquote>
+
+<h4 id="rule-of-parsimony">Rule of Parsimony</h4>
+
+<blockquote>
+<p>Developers should avoid writing big programs. This rule aims to prevent overinvestment of development time in failed or suboptimal approaches caused by the owners of the program’s reluctance to throw away visibly large pieces of work. Smaller programs are not only easier to write, optimize, and maintain; they are easier to delete when deprecated.</p>
+</blockquote>
+
+<h4 id="rule-of-transparency">Rule of Transparency</h4>
+
+<blockquote>
+<p>Developers should design for visibility and discoverability by writing in a way that their thought process can lucidly be seen by future developers working on the project and using input and output formats that make it easy to identify valid input and correct output. This rule aims to reduce debugging time and extend the lifespan of programs.</p>
+</blockquote>
+
+<h4 id="rule-of-robustness">Rule of Robustness</h4>
+
+<blockquote>
+<p>Developers should design robust programs by designing for transparency and discoverability, because code that is easy to understand is easier to stress test for unexpected conditions that may not be foreseeable in complex programs. This rule aims to help developers build robust, reliable products.</p>
+</blockquote>
+
+<h4 id="rule-of-representation">Rule of Representation</h4>
+
+<blockquote>
+<p>Developers should choose to make data more complicated rather than the procedural logic of the program when faced with the choice, because it is easier for humans to understand complex data compared with complex logic. This rule aims to make programs more readable for any developer working on the project, which allows the program to be maintained.</p>
+</blockquote>
+
+<h4 id="rule-of-least-surprise">Rule of Least Surprise</h4>
+
+<blockquote>
+<p>Developers should design programs that build on top of the potential users&rsquo; expected knowledge; for example, ‘+’ in a calculator program should always mean &lsquo;addition&rsquo;. This rule aims to encourage developers to build intuitive products that are easy to use.</p>
+</blockquote>
+
+<h4 id="rule-of-silence">Rule of Silence</h4>
+
+<blockquote>
+<p>Developers should design programs so that they do not print unnecessary output. This rule aims to allow other programs and developers to pick out the information they need from a program&rsquo;s output without having to parse verbosity.</p>
+</blockquote>
+
+<h4 id="rule-of-repair">Rule of Repair</h4>
+
+<blockquote>
+<p>Developers should design programs that fail in a manner that is easy to localize and diagnose or in other words “fail noisily”. This rule aims to prevent incorrect output from a program from becoming an input and corrupting the output of other code undetected.</p>
+</blockquote>
+
+<h4 id="rule-of-economy">Rule of Economy</h4>
+
+<blockquote>
+<p>Developers should value developer time over machine time, because machine cycles today are relatively inexpensive compared to prices in the 1970s. This rule aims to reduce development costs of projects.</p>
+</blockquote>
+
+<h4 id="rule-of-generation">Rule of Generation</h4>
+
+<blockquote>
+<p>Developers should avoid writing code by hand and instead write abstract high-level programs that generate code. This rule aims to reduce human errors and save time.</p>
+</blockquote>
+
+<h4 id="rule-of-optimization">Rule of Optimization</h4>
+
+<blockquote>
+<p>Developers should prototype software before polishing it. This rule aims to prevent developers from spending too much time for marginal gains.</p>
+</blockquote>
+
+<h4 id="rule-of-diversity">Rule of Diversity</h4>
+
+<blockquote>
+<p>Developers should design their programs to be flexible and open. This rule aims to make programs flexible, allowing them to be used in ways other than those their developers intended.</p>
+</blockquote>
+
+<h4 id="rule-of-extensibility">Rule of Extensibility</h4>
+
+<blockquote>
+<p>Developers should design for the future by making their protocols extensible, allowing for easy plugins without modification to the program&rsquo;s architecture by other developers, noting the version of the program, and more. This rule aims to extend the lifespan and enhance the utility of the code the developer writes.</p>
+</blockquote>
+
+</article>
+
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "haoc7" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+</div>
+<script src="https://itcuihao.github.io//js/theme.min.js" type="text/javascript"></script>
+
+
+</body>
+</html>
+
+
