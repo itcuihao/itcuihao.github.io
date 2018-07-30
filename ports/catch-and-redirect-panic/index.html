@@ -8,7 +8,7 @@
 
 <meta name="description" content="">
 
-<title>利用Privoxy设置终端http代理🚀</title>
+<title>Catch and Redirect Panic</title>
 <meta name="generator" content="Hugo 0.31.1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
@@ -102,8 +102,8 @@
 </div>
 <div class="col-md-9 content">
 
-<h1>利用Privoxy设置终端http代理🚀</h1>
-<h4>Published 2018-07-22 19:10:51</h4>
+<h1>Catch and Redirect Panic</h1>
+<h4>Published 2018-07-30 22:11:59</h4>
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="HaoC_it"></a>
 <script>!function (d, s, id) {
@@ -116,7 +116,7 @@
     }
 }(document, 'script', 'twitter-wjs');</script>
 
-<div class="fb-share-button" data-href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/" data-layout="button"></div>
+<div class="fb-share-button" data-href="https://itcuihao.github.io/ports/catch-and-redirect-panic/" data-layout="button"></div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -128,99 +128,66 @@
 
 <article>
     <blockquote>
-<p>使用 <a href="http://www.privoxy.org/">Privoxy</a> 将sock5代理映射为http代理</p>
+<p>面试的时候，面试官问程序panic了该怎么办；那就recover呀；后来想了下是不是守护进程呀。</p>
 </blockquote>
 
-<p>1.安装Privoxy</p>
+<p>那panic之后一般log会随着后台log一起打印，这样就不方便定位排查了。
+将panic信息重定向输出到单独的文件，就方便啦。</p>
 
-<pre><code>sudo apt-get update
-sudo apt-get install privoxy
+<p>由于Linux与Windows的差异导致syscall方法也不一致，代码如下：</p>
+
+<ul>
+<li>Linux</li>
+</ul>
+
+<pre><code>func Catch(path string) error {
+	// Linux Uncomment
+	file, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	globalf = file
+	if err != nil {
+		return err
+	}
+
+	t := fmt.Sprintf(&quot;panic time: %s&quot;, time.Now().Format(&quot;2006-01-02 15:04:05&quot;))
+	file.Write([]byte(t))
+	file.Write([]byte(&quot;\n&quot;))
+
+	if err = syscall.Dup2(int(file.Fd()), int(os.Stderr.Fd())); err != nil {
+		return err
+	}
+	return nil
+}
 </code></pre>
 
-<p>2.配置Privoxy</p>
+<ul>
+<li>Windows</li>
+</ul>
 
-<p><code>vim /etc/privoxy/config</code></p>
+<pre><code>func Catch(path string) error {
+	// windows uncomment
+	file, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
+	globalf = file
+	if err != nil {
+		return err
+	}
 
-<blockquote>
-<p>查找 listen-address,注释掉(vim 查找 /listen-address)</p>
-</blockquote>
+	t := fmt.Sprintf(&quot;panic time: %s&quot;, time.Now().Format(&quot;2006-01-02 15:04:05&quot;))
+	file.Write([]byte(t))
+	file.Write([]byte(&quot;\r\n&quot;))
 
-<pre><code>#listen-address  127.0.0.1:8118
-#listen-address  [::1]:8118
-在最后一行后边加上
-forward-socks5 / 127.0.0.1:1080 .
-listen-address 127.0.0.1:1081
+	lp := syscall.NewLazyDLL(kdll).NewProc(ssh)
+
+	seh := syscall.STD_ERROR_HANDLE
+	v, _, err := lp.Call(uintptr(seh), uintptr(file.Fd()))
+	if v == 0 {
+		return err
+	}
+	return nil
+}
 </code></pre>
 
-<p>3.重启Privoxy</p>
-
-<p>根据系统不同使用不同命令</p>
-
-<pre><code>sudo service privoxy restart
-或者
-sudo systemctl restart privoxy
-</code></pre>
-
-<p>4.终端设置</p>
-
-<p>这样就完成了sock5到http代理的映射,然后就可以配置终端代理</p>
-
-<p>对当前终端有效</p>
-
-<pre><code>export http_proxy=http://127.0.0.1:1081
-export https_proxy=http://127.0.0.1:1081
-</code></pre>
-
-<p>测试是否生效</p>
-
-<pre><code>curl www.google.com
-看是否有数据返回
-</code></pre>
-
-<p>取消设置</p>
-
-<pre><code>unset http_proxy
-unset https_proxy
-</code></pre>
-
-<p>可以加入 .bash_profile，添加别名，方便使用</p>
-
-<pre><code>vim ~/.bash_profile
-alais chproxy=&quot;export http_proxy=http://127.0.0.1:1081 &amp;&amp; export https_proxy=http://127.0.0.1:1081&quot;
-alais unchproxy=&quot;unset http_proxy &amp;&amp; unset https_proxy&quot;
-source ~/.bash_profile
-</code></pre>
-
-<p>5.卸载</p>
-
-<p><code>sudo apt-get remove privoxy</code></p>
-
-<p>⇲带飞</p>
-
-<p>别人想访问 Google，利用SwitchyOmega</p>
-
-<p>provixy配置：</p>
-
-<pre><code>vim /etc/privoxy/config
-listen-address 0.0.0.0:1081
-sudo systemctl restart privoxy
-</code></pre>
-
-<p>然后让别人利用 SwitchyOmega 与我连接同一网络，
-新建情景模式</p>
-
-<pre><code>参数 | 值
----|---
-代理规则 | http
-代理地址| ifconfig查看
-代理端口| 1081
-</code></pre>
-
-<p>如果别人想终端走你的代理</p>
-
-<pre><code>那么两人需要连接同一网络，查看自己的IP，让他在终端执行
-export http_proxy=http://ip:1081 &amp;&amp; export https_proxy=http://ip:1081
-</code></pre>
+<p>没有想到好办法，在使用时屏蔽掉其他系统的代码即可。
+<a href="https://github.com/itcuihao/gcrash">项目地址</a></p>
 
 </article>
 

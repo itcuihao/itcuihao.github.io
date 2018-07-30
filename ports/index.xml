@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 27 Jul 2018 01:04:33 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 30 Jul 2018 22:11:59 +0800</lastBuildDate>
     
 	<atom:link href="https://itcuihao.github.io/ports/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Catch and Redirect Panic</title>
+      <link>https://itcuihao.github.io/ports/catch-and-redirect-panic/</link>
+      <pubDate>Mon, 30 Jul 2018 22:11:59 +0800</pubDate>
+      
+      <guid>https://itcuihao.github.io/ports/catch-and-redirect-panic/</guid>
+      <description>面试的时候，面试官问程序panic了该怎么办；那就recover呀；后来想了下是不是守护进程呀。 那panic之后一般log会随着后台log一起打印，这样就不方便</description>
+    </item>
     
     <item>
       <title>Eric Raymond&#39;s 17 Unix Rules</title>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on haoc7</title>
+    <link>https://itcuihao.github.io/categories/go/</link>
+    <description>Recent content in Go on haoc7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn-zh</language>
+    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 30 Jul 2018 22:11:59 +0800</lastBuildDate>
+    
+	<atom:link href="https://itcuihao.github.io/categories/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Catch and Redirect Panic</title>
+      <link>https://itcuihao.github.io/ports/catch-and-redirect-panic/</link>
+      <pubDate>Mon, 30 Jul 2018 22:11:59 +0800</pubDate>
+      
+      <guid>https://itcuihao.github.io/ports/catch-and-redirect-panic/</guid>
+      <description>面试的时候，面试官问程序panic了该怎么办；那就recover呀；后来想了下是不是守护进程呀。 那panic之后一般log会随着后台log一起打印，这样就不方便</description>
+    </item>
+    
+  </channel>
+</rss>
