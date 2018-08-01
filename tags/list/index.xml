@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Algorithms on haoc7</title>
-    <link>https://itcuihao.github.io/categories/algorithms/</link>
-    <description>Recent content in Algorithms on haoc7</description>
+    <title>List on haoc7</title>
+    <link>https://itcuihao.github.io/tags/list/</link>
+    <description>Recent content in List on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
     <lastBuildDate>Wed, 01 Aug 2018 22:53:23 +0800</lastBuildDate>
     
-	<atom:link href="https://itcuihao.github.io/categories/algorithms/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://itcuihao.github.io/tags/list/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       
       <guid>https://itcuihao.github.io/ports/19.remove-nth-node-from-end-of-list/</guid>
       <description>Leetcode地址 Github地址 题干 Given a linked list, remove the n-th node from the end of list and return its head. 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 Example: Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2. After removing the</description>
-    </item>
-    
-    <item>
-      <title>17.letter Combinations of a Phone Number</title>
-      <link>https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/</link>
-      <pubDate>Thu, 26 Jul 2018 00:17:05 +0800</pubDate>
-      
-      <guid>https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/</guid>
-      <description>题目 Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters. 给出数字到字母</description>
     </item>
     
   </channel>
