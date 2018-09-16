@@ -35,6 +35,8 @@
             
             <li><a href="https://itcuihao.github.io/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/">买房记</a></li>
             
+            <li><a href="https://itcuihao.github.io/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/">Go的位操作四则运算实现</a></li>
+            
             <li><a href="https://itcuihao.github.io/ports/19.remove-nth-node-from-end-of-list/">19.remove Nth Node From End of List</a></li>
             
             <li><a href="https://itcuihao.github.io/ports/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a></li>
@@ -48,8 +50,6 @@
             <li><a href="https://itcuihao.github.io/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">14 高性能数据库集群：读写分离</a></li>
             
             <li><a href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/">利用Privoxy设置终端http代理🚀</a></li>
-            
-            <li><a href="https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/">简单的利用shell部署代码💻</a></li>
             
         </ul>
     </div>
@@ -66,6 +66,8 @@
             <li><a href="https://itcuihao.github.io/tags/leetcode">leetcode</a></li>
             
             <li><a href="https://itcuihao.github.io/tags/linked-list">linked-list</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/mathematics">mathematics</a></li>
             
             <li><a href="https://itcuihao.github.io/tags/panic">panic</a></li>
             
@@ -132,13 +134,18 @@
     </article>
     
     <article>
+        <h3><a href="https://itcuihao.github.io/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/">Go的位操作四则运算实现</a> - 2018-08-02 00:26:55</h3>
+        package main import &quot;fmt&quot; func main() { a := 2 b := 2 fmt.Println(add(a, b)) fmt.Println(sub(a, b)) fmt.Println(mul(a, b)) fmt.Println(div(a, b)) } func add(a, b int) int { if b == 0 { return a } tmp := 0 for b != 0 { tmp = (a &amp; b) &lt;&lt; 1 a = a ^ b b = tmp } return a } func addr(a, b int) int { if b == 0 { return a } tmp := (a &amp; b) &lt;&lt; 1 a = a ^ b return addr(a, tmp) } func sub(a, b int) int { return add(a, add(^b, 1)) } func mul(a, b int) int { ans := 0 for b !
+    </article>
+    
+    <article>
         <h3><a href="https://itcuihao.github.io/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/">买房记</a> - 2018-08-15 00:02:39</h3>
         从去年（2017年）开始就和家人商量着买房，当时还在济南工作，就看济南的房子，首付都挺高的（大概35w），以我当时在济南的收入，工资正好抵月供，虽然领导承诺给涨
     </article>
     
     <article>
         <h3><a href="https://itcuihao.github.io/ports/%E6%89%BE%E6%88%BF%E8%AE%B0/">找房记</a> - 2018-08-26 22:26:36</h3>
-        从北京的北面，搬到北京的南面。从五号线的天通苑北，搬到宋家庄附近。 大北京~
+        2018-08-26 从北京的北面，搬到北京的南面。从五号线的天通苑北，搬到宋家庄附近。 大北京~ 2018-09-16 更新 搬来若久，说说体会 好的： 周末能够看到美美的夕阳； 可以做饭吃； 有个给力的洗衣机；
     </article>
     
 </div>
