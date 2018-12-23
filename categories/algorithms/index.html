@@ -31,6 +31,8 @@
         <h3 data-open="last-posts">haoc7 - Most recent posts</h3>
         <ul>
             
+            <li><a href="https://itcuihao.github.io/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">三向切分的快速排序</a></li>
+            
             <li><a href="https://itcuihao.github.io/ports/%E6%89%BE%E6%88%BF%E8%AE%B0/">找房记</a></li>
             
             <li><a href="https://itcuihao.github.io/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/">买房记</a></li>
@@ -48,8 +50,6 @@
             <li><a href="https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/">17.letter Combinations of a Phone Number</a></li>
             
             <li><a href="https://itcuihao.github.io/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">14 高性能数据库集群：读写分离</a></li>
-            
-            <li><a href="https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/">利用Privoxy设置终端http代理🚀</a></li>
             
         </ul>
     </div>
@@ -76,6 +76,8 @@
             <li><a href="https://itcuihao.github.io/tags/unix">unix</a></li>
             
             <li><a href="https://itcuihao.github.io/tags/%E4%BB%A3%E7%90%86">代理</a></li>
+            
+            <li><a href="https://itcuihao.github.io/tags/%E6%8E%92%E5%BA%8F">排序</a></li>
             
             <li><a href="https://itcuihao.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a></li>
             
@@ -136,6 +138,11 @@
     <article>
         <h3><a href="https://itcuihao.github.io/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/">Go的位操作四则运算实现</a> - 2018-08-02 00:26:55</h3>
         package main import &quot;fmt&quot; func main() { a := 2 b := 2 fmt.Println(add(a, b)) fmt.Println(sub(a, b)) fmt.Println(mul(a, b)) fmt.Println(div(a, b)) } func add(a, b int) int { if b == 0 { return a } tmp := 0 for b != 0 { tmp = (a &amp; b) &lt;&lt; 1 a = a ^ b b = tmp } return a } func addr(a, b int) int { if b == 0 { return a } tmp := (a &amp; b) &lt;&lt; 1 a = a ^ b return addr(a, tmp) } func sub(a, b int) int { return add(a, add(^b, 1)) } func mul(a, b int) int { ans := 0 for b !
+    </article>
+    
+    <article>
+        <h3><a href="https://itcuihao.github.io/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">三向切分的快速排序</a> - 2018-12-23 23:02:56</h3>
+        面试过程中，经常会遇到“快排”的这个题目，平时只是写出来了，但是一旦问到如何优化，就没有思路了。 今天看到《Algorithms Fourth Edition》中记录的“三向切
     </article>
     
 </div>
