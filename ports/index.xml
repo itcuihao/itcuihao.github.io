@@ -54,7 +54,7 @@
       <pubDate>Thu, 02 Aug 2018 00:26:55 +0800</pubDate>
       
       <guid>https://itcuihao.github.io/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/</guid>
-      <description>package main import &amp;quot;fmt&amp;quot; func main() { a := 2 b := 2 fmt.Println(add(a, b)) fmt.Println(sub(a, b)) fmt.Println(mul(a, b)) fmt.Println(div(a, b)) } func add(a, b int) int { if b == 0 { return a } tmp := 0 for b != 0 { tmp = (a &amp;amp; b) &amp;lt;&amp;lt; 1 a = a ^ b b = tmp } return a } func addr(a, b int) int { if b == 0 { return a } tmp := (a &amp;amp; b) &amp;lt;&amp;lt; 1 a = a ^ b return addr(a, tmp) } func sub(a, b int) int { return add(a, add(^b, 1)) } func mul(a, b int) int { ans := 0 for b !</description>
+      <description>package main import &amp;quot;fmt&amp;quot; func main() { a := 2 b := 2 fmt.Println(add(a, b)) fmt.Println(sub(a, b)) fmt.Println(mul(a, b)) fmt.Println(div(a, b)) } func add(a, b int) int { if b == 0 { return a } tmp := 0 for b != 0 { tmp = (a &amp;amp; b) &amp;lt;&amp;lt; 1 a = a ^ b b = tmp } return a } func addr(a, b int) int { if b == 0 { return a } tmp := (a</description>
     </item>
     
     <item>
@@ -90,9 +90,7 @@
       <pubDate>Fri, 27 Jul 2018 01:04:33 +0800</pubDate>
       
       <guid>https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/</guid>
-      <description>Eric Raymond’s 17 Unix Rules
-In his book The Art of Unix Programming that was first published in 2003,[11] Eric S. Raymond, an American programmer and open source advocate, summarizes the Unix philosophy as KISS Principle of &amp;ldquo;Keep it Simple, Stupid.&amp;rdquo;[12] He provides a series of design rules:[1]
-Rule of Modularity  Developers should build a program out of simple parts connected by well defined interfaces, so problems are local, and parts of the program can be replaced in future versions to support new features.</description>
+      <description>Eric Raymond’s 17 Unix Rules In his book The Art of Unix Programming that was first published in 2003,[11] Eric S. Raymond, an American programmer and open source advocate, summarizes the Unix philosophy as KISS Principle of &amp;ldquo;Keep it Simple, Stupid.&amp;rdquo;[12] He provides a series of design rules:[1] Rule of Modularity Developers should build a program out of simple parts connected by well defined interfaces, so problems are local, and parts of</description>
     </item>
     
     <item>

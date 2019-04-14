@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bfs on haoc7</title>
+    <title>BFS on haoc7</title>
     <link>https://itcuihao.github.io/tags/bfs/</link>
-    <description>Recent content in Bfs on haoc7</description>
+    <description>Recent content in BFS on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>

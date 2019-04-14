@@ -18,9 +18,7 @@
       <pubDate>Fri, 27 Jul 2018 01:04:33 +0800</pubDate>
       
       <guid>https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/</guid>
-      <description>Eric Raymond’s 17 Unix Rules
-In his book The Art of Unix Programming that was first published in 2003,[11] Eric S. Raymond, an American programmer and open source advocate, summarizes the Unix philosophy as KISS Principle of &amp;ldquo;Keep it Simple, Stupid.&amp;rdquo;[12] He provides a series of design rules:[1]
-Rule of Modularity  Developers should build a program out of simple parts connected by well defined interfaces, so problems are local, and parts of the program can be replaced in future versions to support new features.</description>
+      <description>Eric Raymond’s 17 Unix Rules In his book The Art of Unix Programming that was first published in 2003,[11] Eric S. Raymond, an American programmer and open source advocate, summarizes the Unix philosophy as KISS Principle of &amp;ldquo;Keep it Simple, Stupid.&amp;rdquo;[12] He provides a series of design rules:[1] Rule of Modularity Developers should build a program out of simple parts connected by well defined interfaces, so problems are local, and parts of</description>
     </item>
     
   </channel>
