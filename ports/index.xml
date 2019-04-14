@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 05 Jan 2019 10:05:37 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Apr 2019 10:47:50 +0800</lastBuildDate>
     
 	<atom:link href="https://itcuihao.github.io/ports/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Win10 Install Hugo</title>
+      <link>https://itcuihao.github.io/ports/win10-install-hugo/</link>
+      <pubDate>Sun, 14 Apr 2019 10:47:50 +0800</pubDate>
+      
+      <guid>https://itcuihao.github.io/ports/win10-install-hugo/</guid>
+      <description>install choco 打开PowerShell，粘贴下面的命令，回车。 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;)) 参考链接 install hugo choco install hugo -confirm 参考链接</description>
+    </item>
     
     <item>
       <title>2018年总结</title>
