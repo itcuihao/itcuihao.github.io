@@ -2,85 +2,85 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on haoc7</title>
-    <link>https://itcuihao.github.io/categories/</link>
+    <link>http://cuihao.fun/categories/</link>
     <description>Recent content in Categories on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
     <lastBuildDate>Sun, 14 Apr 2019 10:47:50 +0800</lastBuildDate>
     
-	<atom:link href="https://itcuihao.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://cuihao.fun/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>随记</title>
-      <link>https://itcuihao.github.io/categories/%E9%9A%8F%E8%AE%B0/</link>
+      <link>http://cuihao.fun/categories/%E9%9A%8F%E8%AE%B0/</link>
       <pubDate>Sun, 14 Apr 2019 10:47:50 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/%E9%9A%8F%E8%AE%B0/</guid>
+      <guid>http://cuihao.fun/categories/%E9%9A%8F%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>日常</title>
-      <link>https://itcuihao.github.io/categories/%E6%97%A5%E5%B8%B8/</link>
+      <link>http://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</link>
       <pubDate>Sat, 05 Jan 2019 10:05:37 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/%E6%97%A5%E5%B8%B8/</guid>
+      <guid>http://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Algorithms</title>
-      <link>https://itcuihao.github.io/categories/algorithms/</link>
+      <link>http://cuihao.fun/categories/algorithms/</link>
       <pubDate>Sun, 23 Dec 2018 23:02:56 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/algorithms/</guid>
+      <guid>http://cuihao.fun/categories/algorithms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>https://itcuihao.github.io/categories/go/</link>
+      <link>http://cuihao.fun/categories/go/</link>
       <pubDate>Thu, 02 Aug 2018 00:26:55 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/go/</guid>
+      <guid>http://cuihao.fun/categories/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>碎碎念</title>
-      <link>https://itcuihao.github.io/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
+      <link>http://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
       <pubDate>Mon, 30 Jul 2018 23:24:19 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
+      <guid>http://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Unix</title>
-      <link>https://itcuihao.github.io/categories/unix/</link>
+      <link>http://cuihao.fun/categories/unix/</link>
       <pubDate>Fri, 27 Jul 2018 01:04:33 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/unix/</guid>
+      <guid>http://cuihao.fun/categories/unix/</guid>
       <description></description>
     </item>
     
     <item>
       <title>从0开始学架构</title>
-      <link>https://itcuihao.github.io/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</link>
+      <link>http://cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</link>
       <pubDate>Mon, 23 Jul 2018 22:52:41 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</guid>
+      <guid>http://cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://itcuihao.github.io/categories/linux/</link>
+      <link>http://cuihao.fun/categories/linux/</link>
       <pubDate>Sun, 22 Jul 2018 19:10:51 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/categories/linux/</guid>
+      <guid>http://cuihao.fun/categories/linux/</guid>
       <description></description>
     </item>
     

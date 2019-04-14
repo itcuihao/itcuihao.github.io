@@ -2,148 +2,148 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>haoc7</title>
-    <link>https://itcuihao.github.io/</link>
+    <link>http://cuihao.fun/</link>
     <description>Recent content on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
     <lastBuildDate>Sun, 14 Apr 2019 10:47:50 +0800</lastBuildDate>
     
-	<atom:link href="https://itcuihao.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://cuihao.fun/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Win10 Install Hugo</title>
-      <link>https://itcuihao.github.io/ports/win10-install-hugo/</link>
+      <link>http://cuihao.fun/ports/win10-install-hugo/</link>
       <pubDate>Sun, 14 Apr 2019 10:47:50 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/win10-install-hugo/</guid>
+      <guid>http://cuihao.fun/ports/win10-install-hugo/</guid>
       <description>install choco 打开PowerShell，粘贴下面的命令，回车。 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;)) 参考链接 install hugo choco install hugo -confirm 参考链接</description>
     </item>
     
     <item>
       <title>2018年总结</title>
-      <link>https://itcuihao.github.io/ports/2018%E5%B9%B4%E6%80%BB%E7%BB%93/</link>
+      <link>http://cuihao.fun/ports/2018%E5%B9%B4%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sat, 05 Jan 2019 10:05:37 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/2018%E5%B9%B4%E6%80%BB%E7%BB%93/</guid>
+      <guid>http://cuihao.fun/ports/2018%E5%B9%B4%E6%80%BB%E7%BB%93/</guid>
       <description>2018年已经过去了，又到了一年一度的人类日常总结大会。我也拣在这一年中的一些事情陈述下，好在多年之后回头看，能回味这改变人生的一年。 回顾: 2018年春节过后的</description>
     </item>
     
     <item>
       <title>三向切分的快速排序</title>
-      <link>https://itcuihao.github.io/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</link>
+      <link>http://cuihao.fun/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</link>
       <pubDate>Sun, 23 Dec 2018 23:02:56 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</guid>
+      <guid>http://cuihao.fun/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</guid>
       <description>面试过程中，经常会遇到“快排”的这个题目，平时只是写出来了，但是一旦问到如何优化，就没有思路了。 今天看到《Algorithms Fourth Edition》中记录的“三向切</description>
     </item>
     
     <item>
       <title>找房记</title>
-      <link>https://itcuihao.github.io/ports/%E6%89%BE%E6%88%BF%E8%AE%B0/</link>
+      <link>http://cuihao.fun/ports/%E6%89%BE%E6%88%BF%E8%AE%B0/</link>
       <pubDate>Sun, 26 Aug 2018 22:26:36 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/%E6%89%BE%E6%88%BF%E8%AE%B0/</guid>
+      <guid>http://cuihao.fun/ports/%E6%89%BE%E6%88%BF%E8%AE%B0/</guid>
       <description>2018-08-26 从北京的北面，搬到北京的南面。从五号线的天通苑北，搬到宋家庄附近。 大北京~ 2018-09-16 更新 搬来若久，说说体会 好的： 周末能够看到美美的夕阳； 可以做饭吃； 有个给力的洗衣机；</description>
     </item>
     
     <item>
       <title>买房记</title>
-      <link>https://itcuihao.github.io/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/</link>
+      <link>http://cuihao.fun/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/</link>
       <pubDate>Wed, 15 Aug 2018 00:02:39 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/</guid>
+      <guid>http://cuihao.fun/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/</guid>
       <description>从去年（2017年）开始就和家人商量着买房，当时还在济南工作，就看济南的房子，首付都挺高的（大概35w），以我当时在济南的收入，工资正好抵月供，虽然领导承诺给涨</description>
     </item>
     
     <item>
       <title>Go的位操作四则运算实现</title>
-      <link>https://itcuihao.github.io/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/</link>
+      <link>http://cuihao.fun/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Thu, 02 Aug 2018 00:26:55 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>http://cuihao.fun/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/</guid>
       <description>package main import &amp;quot;fmt&amp;quot; func main() { a := 2 b := 2 fmt.Println(add(a, b)) fmt.Println(sub(a, b)) fmt.Println(mul(a, b)) fmt.Println(div(a, b)) } func add(a, b int) int { if b == 0 { return a } tmp := 0 for b != 0 { tmp = (a &amp;amp; b) &amp;lt;&amp;lt; 1 a = a ^ b b = tmp } return a } func addr(a, b int) int { if b == 0 { return a } tmp := (a</description>
     </item>
     
     <item>
       <title>19.remove Nth Node From End of List</title>
-      <link>https://itcuihao.github.io/ports/19.remove-nth-node-from-end-of-list/</link>
+      <link>http://cuihao.fun/ports/19.remove-nth-node-from-end-of-list/</link>
       <pubDate>Wed, 01 Aug 2018 22:53:23 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/19.remove-nth-node-from-end-of-list/</guid>
+      <guid>http://cuihao.fun/ports/19.remove-nth-node-from-end-of-list/</guid>
       <description>Leetcode地址 Github地址 题干 Given a linked list, remove the n-th node from the end of list and return its head. 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 Example: Given linked list: 1-&amp;gt;2-&amp;gt;3-&amp;gt;4-&amp;gt;5, and n = 2. After removing the</description>
     </item>
     
     <item>
       <title>碎碎念</title>
-      <link>https://itcuihao.github.io/ports/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
+      <link>http://cuihao.fun/ports/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
       <pubDate>Mon, 30 Jul 2018 23:24:19 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
+      <guid>http://cuihao.fun/ports/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
       <description>Disqus 都支持哪些 HTML 标签呢？ &amp;lt;br&amp;gt; 换行， &amp;lt;p&amp;gt; 分段， &amp;lt;a&amp;gt; 写超链接， &amp;lt;blockquote&amp;gt; 引用别人的话， &amp;lt;s&amp;gt; 加删除线， &amp;lt;u&amp;gt; 加下划线， &amp;lt;strong&amp;gt; 加粗， &amp;lt;pre&amp;gt;&amp;lt;code&amp;gt; 给代码加上高亮特技！</description>
     </item>
     
     <item>
       <title>Catch and Redirect Panic</title>
-      <link>https://itcuihao.github.io/ports/catch-and-redirect-panic/</link>
+      <link>http://cuihao.fun/ports/catch-and-redirect-panic/</link>
       <pubDate>Mon, 30 Jul 2018 22:11:59 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/catch-and-redirect-panic/</guid>
+      <guid>http://cuihao.fun/ports/catch-and-redirect-panic/</guid>
       <description>面试的时候，面试官问程序panic了该怎么办；那就recover呀；后来想了下是不是守护进程呀。 那panic之后一般log会随着后台log一起打印，这样就不方便</description>
     </item>
     
     <item>
       <title>Eric Raymond&#39;s 17 Unix Rules</title>
-      <link>https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/</link>
+      <link>http://cuihao.fun/ports/eric-raymonds-17-unix-rules/</link>
       <pubDate>Fri, 27 Jul 2018 01:04:33 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/</guid>
+      <guid>http://cuihao.fun/ports/eric-raymonds-17-unix-rules/</guid>
       <description>Eric Raymond’s 17 Unix Rules In his book The Art of Unix Programming that was first published in 2003,[11] Eric S. Raymond, an American programmer and open source advocate, summarizes the Unix philosophy as KISS Principle of &amp;ldquo;Keep it Simple, Stupid.&amp;rdquo;[12] He provides a series of design rules:[1] Rule of Modularity Developers should build a program out of simple parts connected by well defined interfaces, so problems are local, and parts of</description>
     </item>
     
     <item>
       <title>17.letter Combinations of a Phone Number</title>
-      <link>https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/</link>
+      <link>http://cuihao.fun/ports/17.letter-combinations-of-a-phone-number/</link>
       <pubDate>Thu, 26 Jul 2018 00:17:05 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/17.letter-combinations-of-a-phone-number/</guid>
+      <guid>http://cuihao.fun/ports/17.letter-combinations-of-a-phone-number/</guid>
       <description>题目 Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters. 给出数字到字母</description>
     </item>
     
     <item>
       <title>14 高性能数据库集群：读写分离</title>
-      <link>https://itcuihao.github.io/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</link>
+      <link>http://cuihao.fun/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</link>
       <pubDate>Mon, 23 Jul 2018 22:52:41 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</guid>
+      <guid>http://cuihao.fun/ports/14-%E9%AB%98%E6%80%A7%E8%83%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9B%86%E7%BE%A4%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</guid>
       <description>&amp;ldquo;从0开始学架构&amp;rdquo;专栏已经更新了13期，从各个方面阐述了架构设计相关的理论和流程，包括架构设计起源、架构设计的目的、常见架构的复杂度分析</description>
     </item>
     
     <item>
       <title>利用Privoxy设置终端http代理🚀</title>
-      <link>https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/</link>
+      <link>http://cuihao.fun/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/</link>
       <pubDate>Sun, 22 Jul 2018 19:10:51 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/</guid>
+      <guid>http://cuihao.fun/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/</guid>
       <description>使用 Privoxy 将sock5代理映射为http代理 1.安装Privoxy sudo apt-get update sudo apt-get install privoxy 2.配置Privoxy vim /etc/privoxy/config 查找 listen-address,注释掉(vim 查找 /listen-address) #listen-address 127.0.0.1:8118</description>
     </item>
     
     <item>
       <title>简单的利用shell部署代码💻</title>
-      <link>https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</link>
+      <link>http://cuihao.fun/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</link>
       <pubDate>Sun, 22 Jul 2018 18:22:23 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</guid>
+      <guid>http://cuihao.fun/ports/%E7%AE%80%E5%8D%95%E7%9A%84%E5%88%A9%E7%94%A8shell%E9%83%A8%E7%BD%B2%E4%BB%A3%E7%A0%81/</guid>
       <description>（一）介绍 公司现在开发、测试、运维渐渐地有规模了，因此各个环境也应该相对独立。开发提交代码到develop分支后，发布开发环境，查看修改效果，确认无误，然后提交</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://itcuihao.github.io/about/</link>
+      <link>http://cuihao.fun/about/</link>
       <pubDate>Sun, 22 Jul 2018 14:16:54 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/about/</guid>
+      <guid>http://cuihao.fun/about/</guid>
       <description>我的名字叫浩仔丶 在网络上常用的昵称“我的名字叫浩仔丶”、“haoc7”,喜欢动漫，喜欢健身，梦想有朝一日变身大牛，正在努力。不断经历挫折，不断怀疑自己，思考过后</description>
     </item>
     

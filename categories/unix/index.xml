@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unix on haoc7</title>
-    <link>https://itcuihao.github.io/categories/unix/</link>
+    <link>http://cuihao.fun/categories/unix/</link>
     <description>Recent content in Unix on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
     <lastBuildDate>Fri, 27 Jul 2018 01:04:33 +0800</lastBuildDate>
     
-	<atom:link href="https://itcuihao.github.io/categories/unix/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://cuihao.fun/categories/unix/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Eric Raymond&#39;s 17 Unix Rules</title>
-      <link>https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/</link>
+      <link>http://cuihao.fun/ports/eric-raymonds-17-unix-rules/</link>
       <pubDate>Fri, 27 Jul 2018 01:04:33 +0800</pubDate>
       
-      <guid>https://itcuihao.github.io/ports/eric-raymonds-17-unix-rules/</guid>
+      <guid>http://cuihao.fun/ports/eric-raymonds-17-unix-rules/</guid>
       <description>Eric Raymond’s 17 Unix Rules In his book The Art of Unix Programming that was first published in 2003,[11] Eric S. Raymond, an American programmer and open source advocate, summarizes the Unix philosophy as KISS Principle of &amp;ldquo;Keep it Simple, Stupid.&amp;rdquo;[12] He provides a series of design rules:[1] Rule of Modularity Developers should build a program out of simple parts connected by well defined interfaces, so problems are local, and parts of</description>
     </item>
     
