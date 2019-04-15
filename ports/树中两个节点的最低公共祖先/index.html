@@ -245,7 +245,9 @@
 		}
 	}
 	for headA != nil &amp;&amp; headB != nil {
-	if headA.Val == headB.Val { 
+		if headA.Val == headB.Val {
+			return headA
+		}
 		headA = headA.Next
 		headB = headB.Next
 	}
