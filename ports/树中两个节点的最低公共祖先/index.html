@@ -8,7 +8,7 @@
 
 <meta name="description" content="">
 
-<title>haoc7</title>
+<title>树中两个节点的最低公共祖先</title>
 <meta name="generator" content="Hugo 0.55.1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
@@ -128,76 +128,152 @@
 </div>
 <div class="col-md-9 content">
 
+<h1>树中两个节点的最低公共祖先</h1>
+<h4>Published 2019-04-15 07:45:14</h4>
 
-<div class="articles-list">
-    
-    <article>
-        <h3><a href="http://cuihao.fun/ports/win10-install-hugo/">Win10 Install Hugo</a> - 2019-04-14 10:47:50</h3>
-        install choco 打开PowerShell，粘贴下面的命令，回车。 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 参考链接 install hugo choco install hugo -confirm 参考链接
-    </article>
-    
-    <article>
-        <h3><a href="http://cuihao.fun/ports/%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E4%BD%8E%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">树中两个节点的最低公共祖先</a> - 2019-04-15 07:45:14</h3>
-        在《剑指Offer》7.2 章中，面试案例：树中两个节点的最低公共祖先，记录了如下面试流程： 面试官：让我们做一个编程题目吧。输入树的两个节点，求他们的最低公共祖先
-    </article>
-    
-</div>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="HaoC_it"></a>
+<script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + '://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, 'script', 'twitter-wjs');</script>
+
+<div class="fb-share-button" data-href="http://cuihao.fun/ports/%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E4%BD%8E%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/" data-layout="button"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en-US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<article>
+    <p>在《剑指Offer》7.2 章中，面试案例：树中两个节点的最低公共祖先，记录了如下面试流程：</p>
+
+<pre><code class="language-Chinese">面试官：让我们做一个编程题目吧。输入树的两个节点，求他们的最低公共祖先。
+面试者：这树是不是二叉树呢？
+面试官：是又怎么样，不是又怎么样？
+应聘者：如果是二叉树，并且是二叉搜索树，是可以找到公共节点的。
+面试官：那假如就是二叉搜索树，你怎么查找呢？
+</code></pre>
+
+<p><em>二叉搜索树的查找:</em></p>
+
+<pre><code>func lowestCommonAncestor(root, p, q *structure.TreeNode) *structure.TreeNode {
+	if root == nil || p == nil || q == nil {
+		return nil
+	}
+
+	switch {
+	case q.Val &lt; root.Val &amp;&amp; p.Val &lt; root.Val:
+		return lowestCommonAncestor(root.Left, q, p)
+	case q.Val &gt; root.Val &amp;&amp; p.Val &gt; root.Val:
+		return lowestCommonAncestor(root.Right, q, p)
+	}
+
+	return root
+}
+</code></pre>
+
+<pre><code class="language-Chinese">面试官：看来你对这个题目很熟悉呢。
+应聘者：这个碰巧。
+面试官：那咱们稍微换一下，如果这棵树不是二叉搜索树，只是二叉树，又该怎么办？（此处我做了稍微的改动，原题为普通树）
+</code></pre>
+
+<p><em>二叉树：</em></p>
+
+<pre><code>func lowestCommonAncestor(root, p, q *structure.TreeNode) *structure.TreeNode {
+	if root == nil {
+		return nil
+	}
+	if root.Val == p.Val || root.Val == q.Val {
+		return root
+	}
+
+	left := lowestCommonAncestor(root.Left, p, q)
+	right := lowestCommonAncestor(root.Right, p, q)
+
+	switch {
+	case left == nil:
+		return right
+	case right == nil:
+		return left
+	}
+
+	return root
+}
+</code></pre>
+
+<pre><code class="language-Chinese">面试官：小伙汁，可以呀，那咱们在稍微改一下，如果这只是一颗普通的树呢？
+应聘者：树的节点中有没有指向父节点的指针呢？
+面试官：为什么需要指向父节点的指针？
+应聘者：如果存在指向父节点的指针，这个问题可以转换成求两个链表的第一个公共节点。
+……
+</code></pre>
+
+<p><em>链表</em></p>
+
+<pre><code>func getIntersectionNode(headA, headB *structure.ListNode) *structure.ListNode {
+	if headA == nil || headB == nil {
+		return nil
+	}
+	a, b := headA, headB
+	la, lb := 0, 0
+	for a != nil {
+		a = a.Next
+		la++
+	}
+	for b != nil {
+		b = b.Next
+		lb++
+	}
+
+	if la &gt; lb {
+		abs := la - lb
+		for ; abs &gt; 0; abs-- {
+			headA = headA.Next
+		}
+	} else {
+		abs := lb - la
+		for ; abs &gt; 0; abs-- {
+			headB = headB.Next
+		}
+	}
+	for headA != nil &amp;&amp; headB != nil {
+	if headA.Val == headB.Val { 
+		headA = headA.Next
+		headB = headB.Next
+	}
+	return nil
+}
+</code></pre>
+
+<pre><code class="language-Chinese">面试官：那如果这就是颗普通的树，而且没有指向父节点的指针，你改如何处理？
+应聘者：我们可以遍历整棵树，需找输入的两个节点p、q，将root节点到p、q的路径存储到两个链表，
+这样就可以转换为上面的问题了，求两个链表的最近公共祖先。
+……
+</code></pre>
+
+<hr />
+
+<p><strong>参考资料</strong></p>
+
+<p><a href="https://book.douban.com/subject/6966465/">剑指Offer</a></p>
+
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0160.intersection-of-two-linked-lists">leetcode 160</a></p>
+
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0235.lowest-common-ancestor-of-a-binary-search-tree">leetcode 235</a></p>
+
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0236.lowest-common-ancestor-of-a-binary-tree">leetcode 236</a></p>
+
+</article>
 
 
-<ul class="pagination">
-    
-    <li class="page-item">
-        <a href="http://cuihao.fun/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-    <a href="http://cuihao.fun/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="http://cuihao.fun/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="http://cuihao.fun/page/2/">2</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="http://cuihao.fun/page/3/">3</a></li>
-    
-    
-    <li class="page-item disabled">
-    <a href="" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="http://cuihao.fun/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
-</ul>
 
 </div>
 </div>
@@ -221,4 +297,5 @@ if (!doNotTrack) {
 
 </body>
 </html>
+
 

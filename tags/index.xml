@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 14 Apr 2019 10:47:50 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 15 Apr 2019 07:45:14 +0800</lastBuildDate>
     
 	<atom:link href="http://cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>tree</title>
+      <link>http://cuihao.fun/tags/tree/</link>
+      <pubDate>Mon, 15 Apr 2019 07:45:14 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/tags/tree/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>hugo</title>
