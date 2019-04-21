@@ -8,7 +8,7 @@
 
 <meta name="description" content="">
 
-<title>利用Privoxy设置终端http代理🚀</title>
+<title>BinaryTree的遍历</title>
 <meta name="generator" content="Hugo 0.55.1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
@@ -128,8 +128,8 @@
 </div>
 <div class="col-md-9 content">
 
-<h1>利用Privoxy设置终端http代理🚀</h1>
-<h4>Published 2018-07-22 19:10:51</h4>
+<h1>BinaryTree的遍历</h1>
+<h4>Published 2019-04-21 19:35:37</h4>
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="HaoC_it"></a>
 <script>!function (d, s, id) {
@@ -142,7 +142,7 @@
     }
 }(document, 'script', 'twitter-wjs');</script>
 
-<div class="fb-share-button" data-href="http://cuihao.fun/ports/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/" data-layout="button"></div>
+<div class="fb-share-button" data-href="http://cuihao.fun/ports/binarytree%E7%9A%84%E9%81%8D%E5%8E%86/" data-layout="button"></div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -153,100 +153,162 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <article>
-    <blockquote>
-<p>使用 <a href="http://www.privoxy.org/">Privoxy</a> 将sock5代理映射为http代理</p>
-</blockquote>
+    <p>在二叉树中有各种各样的遍历算法，下面然我们来看看它们是怎么实现的。</p>
 
-<p>1.安装Privoxy</p>
+<p>二叉树的结构：</p>
 
-<pre><code>sudo apt-get update
-sudo apt-get install privoxy
+<pre><code>type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 </code></pre>
 
-<p>2.配置Privoxy</p>
+<p><strong>递归</strong></p>
 
-<p><code>vim /etc/privoxy/config</code></p>
+<p><em>前序遍历</em></p>
 
-<blockquote>
-<p>查找 listen-address,注释掉(vim 查找 /listen-address)</p>
-</blockquote>
+<pre><code>func preorderTraversal(root *TreeNode) []int {
+	var l []int
+	if root == nil {
+		return l
+	}
 
-<pre><code>#listen-address  127.0.0.1:8118
-#listen-address  [::1]:8118
-在最后一行后边加上
-forward-socks5 / 127.0.0.1:1080 .
-listen-address 127.0.0.1:1081
+	l = append(l, root.Val)
+	l = append(l, preorderTraversal(root.Left)...)
+	l = append(l, preorderTraversal(root.Right)...)
+
+	return l
+}
 </code></pre>
 
-<p>3.重启Privoxy</p>
+<p><em>中序遍历</em></p>
 
-<p>根据系统不同使用不同命令</p>
+<pre><code>func inorderTraversal(root *TreeNode) []int {
+	var l []int
+	if root == nil {
+		return l
+	}
 
-<pre><code>sudo service privoxy restart
-或者
-sudo systemctl restart privoxy
+	l = append(l, inorderTraversal(root.Left)...)
+	l = append(l, root.Val)
+	l = append(l, inorderTraversal(root.Right)...)
+
+	return l
+}
 </code></pre>
 
-<p>4.终端设置</p>
+<p><em>后序遍历</em></p>
 
-<p>这样就完成了sock5到http代理的映射,然后就可以配置终端代理</p>
+<pre><code>func postorderTraversal(root *TreeNode) []int {
+	l := []int{}
+	if root == nil {
+		return l
+	}
 
-<p>对当前终端有效</p>
+	l = append(l, postorderTraversal(root.Left)...)
+	l = append(l, postorderTraversal(root.Right)...)
+	l = append(l, root.Val)
 
-<pre><code>export http_proxy=http://127.0.0.1:1081
-export https_proxy=http://127.0.0.1:1081
+	return l
+}
 </code></pre>
 
-<p>测试是否生效</p>
+<p><strong>非递归</strong></p>
 
-<pre><code>curl www.google.com
-看是否有数据返回
+<p><em>前序遍历</em></p>
+
+<pre><code>func preorderFor(root *TreeNode) []int {
+	var (
+		l         []int
+		tempStack []*TreeNode
+	)
+
+	for root != nil || len(tempStack) &gt; 0 {
+		l = append(l, root.Val)
+
+		if root.Left != nil {
+			if root.Right != nil {
+				tempStack = append(tempStack, root.Right)
+			}
+			root = root.Left
+		} else if root.Right != nil {
+			root = root.Right
+		} else {
+
+			if len(tempStack) == 0 {
+				break
+			}
+
+			root = tempStack[len(tempStack)-1]
+			tempStack = tempStack[:len(tempStack)-1]
+		}
+	}
+
+	return l
+}
 </code></pre>
 
-<p>取消设置</p>
+<p><em>中序遍历</em></p>
 
-<pre><code>unset http_proxy
-unset https_proxy
+<pre><code>func inorder(root *TreeNode) []int {
+	var res []int
+	if root == nil {
+		return res
+	}
+	var stack []*TreeNode
+
+	cur := root
+	for cur != nil || len(stack) &gt; 0 {
+		for cur != nil {
+			stack = append(stack, cur)
+			cur = cur.Left
+		}
+		cur = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		res = append(res, cur.Val)
+		cur = cur.Right
+	}
+	return res
+}
 </code></pre>
 
-<p>可以加入 .bash_profile，添加别名，方便使用</p>
+<p><strong>后序遍历</strong></p>
 
-<pre><code>vim ~/.bash_profile
-alais chproxy=&quot;export http_proxy=http://127.0.0.1:1081 &amp;&amp; export https_proxy=http://127.0.0.1:1081&quot;
-alais unchproxy=&quot;unset http_proxy &amp;&amp; unset https_proxy&quot;
-source ~/.bash_profile
+<pre><code>
+func portorder(root *TreeNode) []int {
+	l := []int{}
+	tempStack := []*TreeNode{}
+
+	for root != nil || len(tempStack) &gt; 0 {
+		if root != nil {
+			tempStack = append(tempStack, root)
+			l = append(l, root.Val)
+			root = root.Right
+		} else {
+			root = tempStack[len(tempStack)-1]
+			tempStack = tempStack[:len(tempStack)-1]
+			root = root.Left
+		}
+	}
+	lt := len(l)
+	for i := 0; i &lt; lt/2; i++ {
+		l[i], l[lt-i-1] = l[lt-i-1], l[i]
+	}
+	return l
+}
+
 </code></pre>
 
-<p>5.卸载</p>
+<hr />
 
-<p><code>sudo apt-get remove privoxy</code></p>
+<p><strong>源码地址</strong></p>
 
-<p>⇲带飞</p>
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0094.binary-tree-inorder-traversal">leetcode94</a></p>
 
-<p>别人想访问 Google，利用SwitchyOmega</p>
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0144.binary-tree-preorder-traversal">leetcode144</a></p>
 
-<p>provixy配置：</p>
-
-<pre><code>vim /etc/privoxy/config
-listen-address 0.0.0.0:1081
-sudo systemctl restart privoxy
-</code></pre>
-
-<p>然后让别人利用 SwitchyOmega 与我连接同一网络，
-新建情景模式</p>
-
-<pre><code>参数 | 值
----|---
-代理规则 | http
-代理地址| ifconfig查看
-代理端口| 1081
-</code></pre>
-
-<p>如果别人想终端走你的代理</p>
-
-<pre><code>那么两人需要连接同一网络，查看自己的IP，让他在终端执行
-export http_proxy=http://ip:1081 &amp;&amp; export https_proxy=http://ip:1081
-</code></pre>
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0145.binary-tree-postorder-traversal">leetcode145</a></p>
 
 </article>
 
