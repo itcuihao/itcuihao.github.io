@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Mon, 15 Apr 2019 07:45:14 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Apr 2019 19:35:37 +0800</lastBuildDate>
     
 	<atom:link href="http://cuihao.fun/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BinaryTreee的遍历</title>
+      <link>http://cuihao.fun/ports/binarytreee%E7%9A%84%E9%81%8D%E5%8E%86/</link>
+      <pubDate>Sun, 21 Apr 2019 19:35:37 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/ports/binarytreee%E7%9A%84%E9%81%8D%E5%8E%86/</guid>
+      <description>在二叉树中有各种各样的遍历算法，下面然我们来看看它们是怎么实现的。 二叉树的结构： type TreeNode struct { Val int Left *TreeNode Right *TreeNode } 递归 前序遍历 func preorderTraversal(root *TreeNode) []int { var l []int if root == nil { return l } l = append(l, root.Val) l = append(l,</description>
+    </item>
     
     <item>
       <title>树中两个节点的最低公共祖先</title>

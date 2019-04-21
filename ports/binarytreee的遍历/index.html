@@ -8,7 +8,7 @@
 
 <meta name="description" content="">
 
-<title>排序</title>
+<title>BinaryTreee的遍历</title>
 <meta name="generator" content="Hugo 0.55.1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
@@ -128,15 +128,190 @@
 </div>
 <div class="col-md-9 content">
 
+<h1>BinaryTreee的遍历</h1>
+<h4>Published 2019-04-21 19:35:37</h4>
 
-<div class="articles-list">
-    
-    <article>
-        <h3><a href="http://cuihao.fun/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">三向切分的快速排序</a> - 2018-12-23 23:02:56</h3>
-        面试过程中，经常会遇到“快排”的这个题目，平时只是写出来了，但是一旦问到如何优化，就没有思路了。 今天看到《Algorithms Fourth Edition》中记录的“三向切
-    </article>
-    
-</div>
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="HaoC_it"></a>
+<script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + '://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, 'script', 'twitter-wjs');</script>
+
+<div class="fb-share-button" data-href="http://cuihao.fun/ports/binarytreee%E7%9A%84%E9%81%8D%E5%8E%86/" data-layout="button"></div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en-US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<article>
+    <p>在二叉树中有各种各样的遍历算法，下面然我们来看看它们是怎么实现的。</p>
+
+<p>二叉树的结构：</p>
+
+<pre><code>type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+</code></pre>
+
+<p><strong>递归</strong></p>
+
+<p><em>前序遍历</em></p>
+
+<pre><code>func preorderTraversal(root *TreeNode) []int {
+	var l []int
+	if root == nil {
+		return l
+	}
+
+	l = append(l, root.Val)
+	l = append(l, preorderTraversal(root.Left)...)
+	l = append(l, preorderTraversal(root.Right)...)
+
+	return l
+}
+</code></pre>
+
+<p><em>中序遍历</em></p>
+
+<pre><code>func inorderTraversal(root *TreeNode) []int {
+	var l []int
+	if root == nil {
+		return l
+	}
+
+	l = append(l, inorderTraversal(root.Left)...)
+	l = append(l, root.Val)
+	l = append(l, inorderTraversal(root.Right)...)
+
+	return l
+}
+</code></pre>
+
+<p><em>后序遍历</em></p>
+
+<pre><code>func postorderTraversal(root *TreeNode) []int {
+	l := []int{}
+	if root == nil {
+		return l
+	}
+
+	l = append(l, postorderTraversal(root.Left)...)
+	l = append(l, postorderTraversal(root.Right)...)
+	l = append(l, root.Val)
+
+	return l
+}
+</code></pre>
+
+<p><strong>非递归</strong></p>
+
+<p><em>前序遍历</em></p>
+
+<pre><code>func preorderFor(root *TreeNode) []int {
+	var (
+		l         []int
+		tempStack []*TreeNode
+	)
+
+	for root != nil || len(tempStack) &gt; 0 {
+		l = append(l, root.Val)
+
+		if root.Left != nil {
+			if root.Right != nil {
+				tempStack = append(tempStack, root.Right)
+			}
+			root = root.Left
+		} else if root.Right != nil {
+			root = root.Right
+		} else {
+
+			if len(tempStack) == 0 {
+				break
+			}
+
+			root = tempStack[len(tempStack)-1]
+			tempStack = tempStack[:len(tempStack)-1]
+		}
+	}
+
+	return l
+}
+</code></pre>
+
+<p><em>中序遍历</em></p>
+
+<pre><code>func inorder(root *TreeNode) []int {
+	var res []int
+	if root == nil {
+		return res
+	}
+	var stack []*TreeNode
+
+	cur := root
+	for cur != nil || len(stack) &gt; 0 {
+		for cur != nil {
+			stack = append(stack, cur)
+			cur = cur.Left
+		}
+		cur = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		res = append(res, cur.Val)
+		cur = cur.Right
+	}
+	return res
+}
+</code></pre>
+
+<p><strong>后序遍历</strong></p>
+
+<pre><code>
+func portorder(root *TreeNode) []int {
+	l := []int{}
+	tempStack := []*TreeNode{}
+
+	for root != nil || len(tempStack) &gt; 0 {
+		if root != nil {
+			tempStack = append(tempStack, root)
+			l = append(l, root.Val)
+			root = root.Right
+		} else {
+			root = tempStack[len(tempStack)-1]
+			tempStack = tempStack[:len(tempStack)-1]
+			root = root.Left
+		}
+	}
+	lt := len(l)
+	for i := 0; i &lt; lt/2; i++ {
+		l[i], l[lt-i-1] = l[lt-i-1], l[i]
+	}
+	return l
+}
+
+</code></pre>
+
+<hr />
+
+<p><strong>源码地址</strong></p>
+
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0094.binary-tree-inorder-traversal">leetcode94</a></p>
+
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0144.binary-tree-preorder-traversal">leetcode144</a></p>
+
+<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0145.binary-tree-postorder-traversal">leetcode145</a></p>
+
+</article>
+
 
 
 </div>
@@ -161,4 +336,5 @@ if (!doNotTrack) {
 
 </body>
 </html>
+
 
