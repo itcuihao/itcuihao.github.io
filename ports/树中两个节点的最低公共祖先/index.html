@@ -171,9 +171,9 @@
 
 	switch {
 	case q.Val &lt; root.Val &amp;&amp; p.Val &lt; root.Val:
-		return lowestCommonAncestor(root.Left, q, p)
+		return lowestCommonAncestor(root.Left, p, q)
 	case q.Val &gt; root.Val &amp;&amp; p.Val &gt; root.Val:
-		return lowestCommonAncestor(root.Right, q, p)
+		return lowestCommonAncestor(root.Right, p, q)
 	}
 
 	return root
