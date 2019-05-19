@@ -8,7 +8,7 @@
 
 <meta name="description" content="">
 
-<title>19.remove Nth Node From End of List</title>
+<title>2019年书单</title>
 <meta name="generator" content="Hugo 0.55.1" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/pojoaque.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
@@ -132,8 +132,8 @@
 </div>
 <div class="col-md-9 content">
 
-<h1>19.remove Nth Node From End of List</h1>
-<h4>Published 2018-08-01 22:53:23</h4>
+<h1>2019年书单</h1>
+<h4>Published 2019-05-19 21:18:57</h4>
 
 <a href="https://twitter.com/share" class="twitter-share-button" data-via="HaoC_it"></a>
 <script>!function (d, s, id) {
@@ -146,7 +146,7 @@
     }
 }(document, 'script', 'twitter-wjs');</script>
 
-<div class="fb-share-button" data-href="http://cuihao.fun/ports/19.remove-nth-node-from-end-of-list/" data-layout="button"></div>
+<div class="fb-share-button" data-href="http://cuihao.fun/ports/2019%E5%B9%B4%E4%B9%A6%E5%8D%95/" data-layout="button"></div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -157,76 +157,26 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <article>
-    
-
-<blockquote>
-<p><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">Leetcode地址</a></p>
-
-<p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0019.remove-nth-node-from-end-of-list">Github地址</a></p>
-</blockquote>
-
-<h1 id="题干">题干</h1>
-
-<p>Given a linked list, remove the n-th node from the end of list and return its head.</p>
-
-<p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
-
-<h2 id="example">Example:</h2>
-
-<pre><code>Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.
-
-After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.
-</code></pre>
-
-<h2 id="note">Note:</h2>
-
-<p>Given n will always be valid.</p>
-
-<p>给定的 n 保证是有效的。</p>
-
-<h2 id="follow-up">Follow up:</h2>
-
-<p>Could you do this in one pass?</p>
-
-<p>你能尝试使用一趟扫描实现吗？</p>
-
-<h2 id="思路">思路</h2>
-
-<ul>
-<li><p>利用快慢指针，设置空链表的下一个节点为list</p></li>
-
-<li><p>第一个指针先走n步</p></li>
-
-<li><p>第一个指针走到最后，第二个指针跟着走</p></li>
-
-<li><p>第二个指针走到的位置就是要删除的位置</p></li>
-
-<li><p>p.next=p.next.next</p></li>
-</ul>
-
-<h2 id="代码">代码</h2>
-
-<pre><code>type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	p := &amp;ListNode{}
-	s := p
-	e := p
-	p.Next = head
-	for i := 0; i &lt;= n; i++ {
-		s = s.Next
-	}
-	for s != nil {
-		s = s.Next
-		e = e.Next
-	}
-	e.Next = e.Next.Next
-	return p.Next
-}
-</code></pre>
+    <div class='table'>
+    书名 | 作者 | 进度<br />
+&ndash; | &ndash; | &ndash;<br />
+《SQL查询的艺术》 | 张权 郭天娇 | over<br />
+《程序是怎样跑起来的》 | 矢泽久雄 | start<br />
+《算法图解》 | 巴尔加瓦 | start<br />
+《编程之美》 | 《编程之美》小组 | start<br />
+《网络是怎样连接的》 | 户根勤 | start<br />
+《MySQL技术内幕：InnoDB存储引擎》 | 姜承尧 | over<br />
+《剑指Offer》 | 何海涛 | over<br />
+《人类简史：从动物到上帝》 | 尤瓦尔·赫拉利 | over<br />
+《认知天性：让学习轻而易举的心理学规律》 | 彼得·C·布朗 | over<br />
+《谁动了我的奶酪》 | 斯宾塞·约翰逊 | over<br />
+《你今天真好看》 | 莉兹·克里莫 | over<br />
+《非暴力沟通》 | 马歇尔·卢森堡 | over<br />
+《图解HTTP》 | 上野宣 | over<br />
+《很冷很冷的冷门知识》 | 尹霞 | over<br />
+《如何阅读一本书》 | 轻阅读编写组 | start<br />
+《淘宝技术这十年》 | 子柳 | start
+</div>
 
 </article>
 

@@ -31,6 +31,8 @@
         <h3 data-open="last-posts">haoc7 - Most recent posts</h3>
         <ul>
             
+            <li><a href="http://cuihao.fun/ports/2019%E5%B9%B4%E4%B9%A6%E5%8D%95/">2019年书单</a></li>
+            
             <li><a href="http://cuihao.fun/ports/binarytree%E7%9A%84%E9%81%8D%E5%8E%86/">BinaryTree的遍历</a></li>
             
             <li><a href="http://cuihao.fun/ports/%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E4%BD%8E%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">树中两个节点的最低公共祖先</a></li>
@@ -48,8 +50,6 @@
             <li><a href="http://cuihao.fun/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/">Go的位操作四则运算实现</a></li>
             
             <li><a href="http://cuihao.fun/ports/19.remove-nth-node-from-end-of-list/">19.remove Nth Node From End of List</a></li>
-            
-            <li><a href="http://cuihao.fun/ports/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a></li>
             
         </ul>
     </div>
@@ -78,6 +78,8 @@
             <li><a href="http://cuihao.fun/tags/tree">tree</a></li>
             
             <li><a href="http://cuihao.fun/tags/unix">unix</a></li>
+            
+            <li><a href="http://cuihao.fun/tags/%E4%B9%A6%E5%8D%95">书单</a></li>
             
             <li><a href="http://cuihao.fun/tags/%E4%BB%A3%E7%90%86">代理</a></li>
             
@@ -111,6 +113,8 @@
             <li><a href="http://cuihao.fun/categories/linux">linux</a></li>
             
             <li><a href="http://cuihao.fun/categories/unix">unix</a></li>
+            
+            <li><a href="http://cuihao.fun/categories/%E4%B9%A6%E7%B1%8D">书籍</a></li>
             
             <li><a href="http://cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84">从0开始学架构</a></li>
             
@@ -157,13 +161,14 @@
 <p>面试的时候，面试官问程序panic了该怎么办；那就recover呀；后来想了下是不是守护进程呀。</p>
 </blockquote>
 
-<p>那panic之后一般log会随着后台log一起打印，这样就不方便定位排查了。
+<p>那panic之后一般log会随着后台log一起打印，这样就不方便定位排查了。<br />
 将panic信息重定向输出到单独的文件，就方便啦。</p>
 
 <p>由于Linux与Windows的差异导致syscall方法也不一致，代码如下：</p>
 
 <ul>
-<li>Linux</li>
+<li>Linux<br />
+<br /></li>
 </ul>
 
 <pre><code>func Catch(path string) error {
@@ -186,7 +191,8 @@
 </code></pre>
 
 <ul>
-<li>Windows</li>
+<li>Windows<br />
+<br /></li>
 </ul>
 
 <pre><code>func Catch(path string) error {
@@ -212,7 +218,7 @@
 }
 </code></pre>
 
-<p>没有想到好办法，在使用时屏蔽掉其他系统的代码即可。
+<p>没有想到好办法，在使用时屏蔽掉其他系统的代码即可。<br />
 <a href="https://github.com/itcuihao/gcrash">项目地址</a></p>
 
 </article>

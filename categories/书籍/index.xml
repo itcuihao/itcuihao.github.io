@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>书籍 on haoc7</title>
+    <link>http://cuihao.fun/categories/%E4%B9%A6%E7%B1%8D/</link>
+    <description>Recent content in 书籍 on haoc7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn-zh</language>
+    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 19 May 2019 21:18:57 +0800</lastBuildDate>
+    
+	<atom:link href="http://cuihao.fun/categories/%E4%B9%A6%E7%B1%8D/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2019年书单</title>
+      <link>http://cuihao.fun/ports/2019%E5%B9%B4%E4%B9%A6%E5%8D%95/</link>
+      <pubDate>Sun, 19 May 2019 21:18:57 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/ports/2019%E5%B9%B4%E4%B9%A6%E5%8D%95/</guid>
+      <description>书名 | 作者 | 进度 &amp;ndash; | &amp;ndash; | &amp;ndash; 《SQL查询的艺术》 | 张权 郭天娇 | over 《程序是怎样跑起来的》 | 矢泽久雄 | start 《算法图解》 | 巴尔加瓦 | start 《编程之美》 | 《编程之美》小组 | start 《</description>
+    </item>
+    
+  </channel>
+</rss>
