@@ -165,32 +165,32 @@
 <p><a href="https://github.com/itcuihao/leetcode-go/tree/master/problems/0019.remove-nth-node-from-end-of-list">Github地址</a></p>
 </blockquote>
 
-<h1 id="题干">题干</h1>
+<h1 id="题干:efde5129461e44cb1ccba70eb77410d0">题干</h1>
 
 <p>Given a linked list, remove the n-th node from the end of list and return its head.</p>
 
 <p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
 
-<h2 id="example">Example:</h2>
+<h2 id="example:efde5129461e44cb1ccba70eb77410d0">Example:</h2>
 
 <pre><code>Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2.
 
 After removing the second node from the end, the linked list becomes 1-&gt;2-&gt;3-&gt;5.
 </code></pre>
 
-<h2 id="note">Note:</h2>
+<h2 id="note:efde5129461e44cb1ccba70eb77410d0">Note:</h2>
 
 <p>Given n will always be valid.</p>
 
 <p>给定的 n 保证是有效的。</p>
 
-<h2 id="follow-up">Follow up:</h2>
+<h2 id="follow-up:efde5129461e44cb1ccba70eb77410d0">Follow up:</h2>
 
 <p>Could you do this in one pass?</p>
 
 <p>你能尝试使用一趟扫描实现吗？</p>
 
-<h2 id="思路">思路</h2>
+<h2 id="思路:efde5129461e44cb1ccba70eb77410d0">思路</h2>
 
 <ul>
 <li><p>利用快慢指针，设置空链表的下一个节点为list</p></li>
@@ -204,7 +204,7 @@ After removing the second node from the end, the linked list becomes 1-&gt;2-&gt
 <li><p>p.next=p.next.next</p></li>
 </ul>
 
-<h2 id="代码">代码</h2>
+<h2 id="代码:efde5129461e44cb1ccba70eb77410d0">代码</h2>
 
 <pre><code>type ListNode struct {
 	Val  int
