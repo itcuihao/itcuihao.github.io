@@ -3,32 +3,49 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://cuihao.fun/ports/2019%E5%B9%B4%E4%B9%A6%E5%8D%95/</loc>
-    <lastmod>2019-05-19T21:18:57+08:00</lastmod>
+    <loc>http://cuihao.fun/categories/</loc>
+    <lastmod>2019-09-24T07:40:49+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/</loc>
-    <lastmod>2019-05-19T21:18:57+08:00</lastmod>
+    <loc>http://cuihao.fun/categories/go/</loc>
+    <lastmod>2019-09-24T07:40:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://cuihao.fun/ports/</loc>
-    <lastmod>2019-05-19T21:18:57+08:00</lastmod>
+    <lastmod>2019-09-24T07:40:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://cuihao.fun/tags/</loc>
-    <lastmod>2019-05-19T21:18:57+08:00</lastmod>
+    <lastmod>2019-09-24T07:40:49+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/tags/config/</loc>
+    <lastmod>2019-09-24T07:40:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://cuihao.fun/</loc>
-    <lastmod>2019-05-19T21:18:57+08:00</lastmod>
+    <lastmod>2019-09-24T07:40:49+08:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/ports/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%83%AD%E6%9B%B4%E6%96%B0/</loc>
+    <lastmod>2019-09-24T07:40:49+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/ports/2019%E5%B9%B4%E4%B9%A6%E5%8D%95/</loc>
+    <lastmod>2019-05-19T21:18:57+08:00</lastmod>
   </url>
   
   <url>
@@ -124,12 +141,6 @@
   <url>
     <loc>http://cuihao.fun/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/</loc>
     <lastmod>2018-08-15T00:02:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cuihao.fun/categories/go/</loc>
-    <lastmod>2018-08-02T00:26:55+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
