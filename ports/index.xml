@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 24 Sep 2019 07:40:49 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 01 Dec 2019 19:05:30 +0800</lastBuildDate>
     
 	<atom:link href="http://cuihao.fun/ports/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>20191201</title>
+      <link>http://cuihao.fun/ports/20191201/</link>
+      <pubDate>Sun, 01 Dec 2019 19:05:30 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/ports/20191201/</guid>
+      <description>可能是我抗压能力体力啥的不够吧，最近一直9:00出门，晚上22:40到家，感觉好累啊，胸口发闷。可能是一直这种状态，太累人，今天出去打了羽毛球和乒乓球，感觉舒服</description>
+    </item>
     
     <item>
       <title>配置文件热更新</title>
