@@ -1,0 +1,26 @@
+baseURL = "http://cuihao.fun"
+languageCode = "cn-zh"
+title = "haoc7"
+theme = "editor-theme"
+copyright = "Copyright (c) 2018 -, haoc7; all rights reserved."
+canonifyurls = true
+paginate = 7
+
+#限制摘要长度
+summarylength = 80
+hasCJKLanguage = true
+
+#paginate = 5 # 限制页数
+
+googleAnalytics = "UA-123164534-1"
+
+[author]
+    name = "我的名字叫浩仔丶"
+[params]
+    disqusShortname = "haoc7"
+
+[blackfriday]
+  angledQuotes = true
+  fractions = false
+  plainIDAnchors = false
+  extensions = ["hardLineBreak", "tables"]
