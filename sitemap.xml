@@ -3,8 +3,49 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://cuihao.fun/ports/01-matrix/</loc>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/categories/algorithms/</loc>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/tags/bfs/</loc>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://cuihao.fun/categories/</loc>
-    <lastmod>2020-03-05T11:48:10+08:00</lastmod>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/tags/leetcode/</loc>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/ports/</loc>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/tags/</loc>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://cuihao.fun/</loc>
+    <lastmod>2020-04-19T19:40:53+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -21,25 +62,7 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/ports/</loc>
-    <lastmod>2020-03-05T11:48:10+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://cuihao.fun/tags/</loc>
-    <lastmod>2020-03-05T11:48:10+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://cuihao.fun/tags/etcd/</loc>
-    <lastmod>2020-03-05T11:48:10+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://cuihao.fun/</loc>
     <lastmod>2020-03-05T11:48:10+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -55,13 +78,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/life/</loc>
+    <loc>http://cuihao.fun/tags/life/</loc>
     <lastmod>2019-12-01T19:05:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/life/</loc>
+    <loc>http://cuihao.fun/categories/life/</loc>
     <lastmod>2019-12-01T19:05:30+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -101,20 +124,8 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/algorithms/</loc>
-    <lastmod>2019-04-21T19:35:37+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://cuihao.fun/ports/binarytree%E7%9A%84%E9%81%8D%E5%8E%86/</loc>
     <lastmod>2019-04-21T19:35:37+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cuihao.fun/tags/leetcode/</loc>
-    <lastmod>2019-04-21T19:35:37+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -151,13 +162,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <loc>http://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2019-01-05T10:05:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</loc>
+    <loc>http://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2019-01-05T10:05:37+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -206,13 +217,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
+    <loc>http://cuihao.fun/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
     <lastmod>2018-07-30T23:24:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
+    <loc>http://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
     <lastmod>2018-07-30T23:24:19+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -239,13 +250,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/unix/</loc>
+    <loc>http://cuihao.fun/tags/unix/</loc>
     <lastmod>2018-07-27T01:04:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/unix/</loc>
+    <loc>http://cuihao.fun/categories/unix/</loc>
     <lastmod>2018-07-27T01:04:33+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -259,12 +270,6 @@
   <url>
     <loc>http://cuihao.fun/ports/17.letter-combinations-of-a-phone-number/</loc>
     <lastmod>2018-07-26T00:17:05+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://cuihao.fun/tags/bfs/</loc>
-    <lastmod>2018-07-26T00:17:05+08:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
