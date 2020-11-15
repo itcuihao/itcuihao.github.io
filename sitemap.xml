@@ -78,13 +78,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/life/</loc>
+    <loc>http://cuihao.fun/categories/life/</loc>
     <lastmod>2019-12-01T19:05:30+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/life/</loc>
+    <loc>http://cuihao.fun/tags/life/</loc>
     <lastmod>2019-12-01T19:05:30+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -162,13 +162,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</loc>
+    <loc>http://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2019-01-05T10:05:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <loc>http://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</loc>
     <lastmod>2019-01-05T10:05:37+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -217,13 +217,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
+    <loc>http://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
     <lastmod>2018-07-30T23:24:19+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
+    <loc>http://cuihao.fun/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</loc>
     <lastmod>2018-07-30T23:24:19+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -250,13 +250,13 @@
   </url>
   
   <url>
-    <loc>http://cuihao.fun/tags/unix/</loc>
+    <loc>http://cuihao.fun/categories/unix/</loc>
     <lastmod>2018-07-27T01:04:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://cuihao.fun/categories/unix/</loc>
+    <loc>http://cuihao.fun/tags/unix/</loc>
     <lastmod>2018-07-27T01:04:33+08:00</lastmod>
     <priority>0</priority>
   </url>
