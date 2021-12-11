@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 24 Sep 2019 07:40:49 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 11 Dec 2021 21:59:22 +0800</lastBuildDate>
     
 	<atom:link href="http://cuihao.fun/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go Timer</title>
+      <link>http://cuihao.fun/ports/go-timer/</link>
+      <pubDate>Sat, 11 Dec 2021 21:59:22 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/ports/go-timer/</guid>
+      <description>假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;quot;context&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;runtime/debug&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt</description>
+    </item>
     
     <item>
       <title>配置文件热更新</title>

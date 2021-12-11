@@ -22,14 +22,14 @@
 <div class="col-md-3 menu">
     
 <nav class="col-md-3">
-    <div class="home-link">
-        <embed wmode="transparent" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.swf" quality="high" bgcolor="#4c1a2a" width="300" height="70" name="haoc7" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
-    </div>
+    
 
     <h3 class="home-link"><a href="http://cuihao.fun">Root</a></h3>
     <div id="last-posts" class="open">
         <h3 data-open="last-posts">haoc7 - Most recent posts</h3>
         <ul>
+            
+            <li><a href="http://cuihao.fun/ports/go-timer/">Go Timer</a></li>
             
             <li><a href="http://cuihao.fun/ports/01-matrix/">01 Matrix</a></li>
             
@@ -48,8 +48,6 @@
             <li><a href="http://cuihao.fun/ports/win10-install-hugo/">Win10 Install Hugo</a></li>
             
             <li><a href="http://cuihao.fun/ports/2018%E5%B9%B4%E6%80%BB%E7%BB%93/">2018年总结</a></li>
-            
-            <li><a href="http://cuihao.fun/ports/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">三向切分的快速排序</a></li>
             
         </ul>
     </div>
@@ -82,6 +80,8 @@
             <li><a href="http://cuihao.fun/tags/panic">panic</a></li>
             
             <li><a href="http://cuihao.fun/tags/shell">shell</a></li>
+            
+            <li><a href="http://cuihao.fun/tags/timer">timer</a></li>
             
             <li><a href="http://cuihao.fun/tags/tree">tree</a></li>
             
@@ -148,6 +148,11 @@
 <div class="articles-list">
     
     <article>
+        <h3><a href="http://cuihao.fun/ports/%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E4%BD%8E%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">树中两个节点的最低公共祖先</a> - 2019-04-15 07:45:14</h3>
+        在《剑指Offer》7.2 章中，面试案例：树中两个节点的最低公共祖先，记录了如下面试流程： 面试官：让我们做一个编程题目吧。输入树的两个节点，求他们的最低公共祖先
+    </article>
+    
+    <article>
         <h3><a href="http://cuihao.fun/ports/win10-install-hugo/">Win10 Install Hugo</a> - 2019-04-14 10:47:50</h3>
         install choco 打开PowerShell，粘贴下面的命令，回车。 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) 参考链接 install hugo choco install hugo -confirm 参考链接
     </article>
@@ -164,7 +169,7 @@
     
     <article>
         <h3><a href="http://cuihao.fun/ports/%E6%89%BE%E6%88%BF%E8%AE%B0/">找房记</a> - 2018-08-26 22:26:36</h3>
-        2020-11-15 2018-08-26 从北京的北面，搬到北京的南面。从五号线的天通苑北，搬到宋家庄附近。 大北京~ 2018-09-16 更新 搬来若久，说说体会 好的： 周末能够看到美美的夕阳； 可以做饭吃； 有个给力的洗衣机
+        2020-11-15 我又从南三环搬到北四环啦，上班距离由26公里缩短到8公里，对于自己的身体而言真是可喜可贺啊。 对于这次找房子，由于有和北京小强相处的两年经验，深知小强的藏身之处
     </article>
     
     <article>
@@ -175,11 +180,6 @@
     <article>
         <h3><a href="http://cuihao.fun/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/">Go的位操作四则运算实现</a> - 2018-08-02 00:26:55</h3>
         package main import &quot;fmt&quot; func main() { a := 2 b := 2 fmt.Println(add(a, b)) fmt.Println(sub(a, b)) fmt.Println(mul(a, b)) fmt.Println(div(a, b)) } func add(a, b int) int { if b == 0 { return a } tmp := 0 for b != 0 { tmp = (a &amp; b) &lt;&lt; 1 a = a ^ b b = tmp } return a } func addr(a, b int) int { if b == 0 { return a } tmp := (a
-    </article>
-    
-    <article>
-        <h3><a href="http://cuihao.fun/ports/19.remove-nth-node-from-end-of-list/">19.remove Nth Node From End of List</a> - 2018-08-01 22:53:23</h3>
-        Leetcode地址 Github地址 题干 Given a linked list, remove the n-th node from the end of list and return its head. 给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。 Example: Given linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5, and n = 2. After removing the
     </article>
     
 </div>
@@ -230,12 +230,23 @@
     <li class="page-item"><a class="page-link" href="http://cuihao.fun/ports/page/3/">3</a></li>
     
     
+    
+    
+    
+    
+        
+        
+    
+    
+    <li class="page-item"><a class="page-link" href="http://cuihao.fun/ports/page/4/">4</a></li>
+    
+    
     <li class="page-item">
     <a href="http://cuihao.fun/ports/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
     </li>
     
     <li class="page-item">
-        <a href="http://cuihao.fun/ports/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="http://cuihao.fun/ports/page/4/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
     </li>
     
 </ul>
