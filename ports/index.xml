@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 11 Dec 2021 21:59:22 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 19 Dec 2021 23:16:12 +0800</lastBuildDate>
     
 	<atom:link href="http://cuihao.fun/ports/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go Build</title>
+      <link>http://cuihao.fun/ports/go-build/</link>
+      <pubDate>Sun, 19 Dec 2021 23:16:12 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/ports/go-build/</guid>
+      <description>在Go中利用此命令进行编译打包 go build [-o output] [build flags] [packages] 利用build编译时，会忽略_test.go结尾的文件； build时会默认使用文件名作为编译后的名字，如果是wind</description>
+    </item>
     
     <item>
       <title>Go Timer</title>

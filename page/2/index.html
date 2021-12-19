@@ -29,6 +29,8 @@
         <h3 data-open="last-posts">haoc7 - Most recent posts</h3>
         <ul>
             
+            <li><a href="http://cuihao.fun/ports/go-build/">Go Build</a></li>
+            
             <li><a href="http://cuihao.fun/ports/go-timer/">Go Timer</a></li>
             
             <li><a href="http://cuihao.fun/ports/01-matrix/">01 Matrix</a></li>
@@ -47,8 +49,6 @@
             
             <li><a href="http://cuihao.fun/ports/win10-install-hugo/">Win10 Install Hugo</a></li>
             
-            <li><a href="http://cuihao.fun/ports/2018%E5%B9%B4%E6%80%BB%E7%BB%93/">2018年总结</a></li>
-            
         </ul>
     </div>
 
@@ -58,6 +58,8 @@
         <ul class="tags">
             
             <li><a href="http://cuihao.fun/tags/bfs">bfs</a></li>
+            
+            <li><a href="http://cuihao.fun/tags/command">command</a></li>
             
             <li><a href="http://cuihao.fun/tags/config">config</a></li>
             
@@ -148,6 +150,11 @@
 <div class="articles-list">
     
     <article>
+        <h3><a href="http://cuihao.fun/ports/binarytree%E7%9A%84%E9%81%8D%E5%8E%86/">BinaryTree的遍历</a> - 2019-04-21 19:35:37</h3>
+        在二叉树中有各种各样的遍历算法，下面然我们来看看它们是怎么实现的。 二叉树的结构： type TreeNode struct { Val int Left *TreeNode Right *TreeNode } 递归 前序遍历 func preorderTraversal(root *TreeNode) []int { var l []int if root == nil { return l } l = append(l, root.Val) l = append(l,
+    </article>
+    
+    <article>
         <h3><a href="http://cuihao.fun/ports/%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E4%BD%8E%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/">树中两个节点的最低公共祖先</a> - 2019-04-15 07:45:14</h3>
         在《剑指Offer》7.2 章中，面试案例：树中两个节点的最低公共祖先，记录了如下面试流程： 面试官：让我们做一个编程题目吧。输入树的两个节点，求他们的最低公共祖先
     </article>
@@ -175,11 +182,6 @@
     <article>
         <h3><a href="http://cuihao.fun/ports/%E4%B9%B0%E6%88%BF%E8%AE%B0/">买房记</a> - 2018-08-15 00:02:39</h3>
         从去年（2017年）开始就和家人商量着买房，当时还在济南工作，就看济南的房子，首付都挺高的（大概35w），以我当时在济南的收入，工资正好抵月供，虽然领导承诺给涨
-    </article>
-    
-    <article>
-        <h3><a href="http://cuihao.fun/ports/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/">Go的位操作四则运算实现</a> - 2018-08-02 00:26:55</h3>
-        package main import &quot;fmt&quot; func main() { a := 2 b := 2 fmt.Println(add(a, b)) fmt.Println(sub(a, b)) fmt.Println(mul(a, b)) fmt.Println(div(a, b)) } func add(a, b int) int { if b == 0 { return a } tmp := 0 for b != 0 { tmp = (a &amp; b) &lt;&lt; 1 a = a ^ b b = tmp } return a } func addr(a, b int) int { if b == 0 { return a } tmp := (a
     </article>
     
 </div>
