@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>command on haoc7</title>
+    <link>http://cuihao.fun/tags/command/</link>
+    <description>Recent content in command on haoc7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn-zh</language>
+    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 19 Dec 2021 23:16:12 +0800</lastBuildDate><atom:link href="http://cuihao.fun/tags/command/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Build</title>
+      <link>http://cuihao.fun/post/go-build/</link>
+      <pubDate>Sun, 19 Dec 2021 23:16:12 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/post/go-build/</guid>
+      <description>在Go中利用此命令进行编译打包 go build [-o output] [build flags] [packages] 利用build编译时，会忽略_test.go结尾的文件； build时会默认使用文件名作为编译后的名字，如果是wind</description>
+    </item>
+    
+  </channel>
+</rss>

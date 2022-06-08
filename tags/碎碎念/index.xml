@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>碎碎念 on haoc7</title>
+    <link>http://cuihao.fun/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
+    <description>Recent content in 碎碎念 on haoc7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn-zh</language>
+    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Mon, 30 Jul 2018 23:24:19 +0800</lastBuildDate><atom:link href="http://cuihao.fun/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>碎碎念</title>
+      <link>http://cuihao.fun/post/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
+      <pubDate>Mon, 30 Jul 2018 23:24:19 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/post/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
+      <description>Disqus 都支持哪些 HTML 标签呢？ &amp;lt;br&amp;gt; 换行， &amp;lt;p&amp;gt; 分段， &amp;lt;a&amp;gt; 写超链接， &amp;lt;blockquote&amp;gt; 引用别人的话， &amp;lt;s&amp;gt; 加删除线， &amp;lt;u&amp;gt; 加下划线， &amp;lt;strong&amp;gt; 加粗， &amp;lt;pre&amp;gt;&amp;lt;code&amp;gt; 给代码加上高亮特技！</description>
+    </item>
+    
+  </channel>
+</rss>
