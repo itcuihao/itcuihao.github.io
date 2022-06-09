@@ -337,7 +337,7 @@ CGO_ENABLE=0 GOOS=linux GOARCH=amd64 go build -ldflags=&quot;-w -s&quot; -o main
     repo: 'blog',
     owner: 'itcuihao',
     admin: ['itcuihao'],
-    id: md5("location.pathname"), 
+    id: hex_md5("location.pathname"), 
     distractionFreeMode: false 
   });
   (function() {

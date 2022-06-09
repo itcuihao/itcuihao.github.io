@@ -282,7 +282,7 @@ export http_proxy=http://ip:1081 &amp;&amp; export https_proxy=http://ip:1081
     repo: 'blog',
     owner: 'itcuihao',
     admin: ['itcuihao'],
-    id: md5("location.pathname"), 
+    id: hex_md5("location.pathname"), 
     distractionFreeMode: false 
   });
   (function() {

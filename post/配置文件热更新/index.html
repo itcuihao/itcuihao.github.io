@@ -382,7 +382,7 @@ func (c *Config) write() {
     repo: 'blog',
     owner: 'itcuihao',
     admin: ['itcuihao'],
-    id: md5("location.pathname"), 
+    id: hex_md5("location.pathname"), 
     distractionFreeMode: false 
   });
   (function() {
