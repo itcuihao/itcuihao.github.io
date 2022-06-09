@@ -357,6 +357,7 @@ func portorder(root *TreeNode) []int {
 <div id="gitalk-container" class="gitalk-container"></div>
 <link rel="stylesheet" href='http://cuihao.fun/css/gitalk.css'>
 <script src='http://cuihao.fun/js/gitalk.min.js'></script>
+<script src="https://rawgit.com/qhh0205/78e9e0b1f3114db6737f3ed8cdd51d3a/raw/3894c5be5aa2378336b1f5ee0f296fa0b22d06e9/md5.min.js"></script>
 <script>
   const gitalk = new Gitalk({
     clientID: '1c44abb0d95290f10a13',
@@ -364,7 +365,7 @@ func portorder(root *TreeNode) []int {
     repo: 'blog',
     owner: 'itcuihao',
     admin: ['itcuihao'],
-    id: hex_md5("location.pathname"), 
+    id: md5(location.pathname), 
     distractionFreeMode: false 
   });
   (function() {
