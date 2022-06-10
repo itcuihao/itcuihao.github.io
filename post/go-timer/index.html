@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;quot;context&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;runtime/debug&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt" />
+  content="假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;#34;context&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;runtime/debug&amp;#34; &amp;#34;sync&amp;#34; &amp;#34;time&amp;#34; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt" />
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
@@ -28,7 +28,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Go Timer - haoc7" />
 <meta name="twitter:description"
-  content="假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;quot;context&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;runtime/debug&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt" />
+  content="假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;#34;context&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;runtime/debug&amp;#34; &amp;#34;sync&amp;#34; &amp;#34;time&amp;#34; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt" />
 <meta name="twitter:site" content="http://cuihao.fun" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -38,7 +38,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Go Timer - haoc7">
 <meta property="og:description"
-  content="假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;quot;context&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;runtime/debug&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt" />
+  content="假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;#34;context&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;runtime/debug&amp;#34; &amp;#34;sync&amp;#34; &amp;#34;time&amp;#34; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt" />
 <meta property="og:url" content="http://cuihao.fun/post/go-timer/" />
 <meta property="og:site_name" content="Go Timer" />
 <meta property="og:image"
@@ -150,9 +150,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 03 Apr 2022 23:01:29 &#43;0800"
+                  Modified <relative-time datetime="Fri, 10 Jun 2022 10:21:49 &#43;0800"
                     class="no-wrap">
-                    Sun, 03 Apr 2022 23:01:29 &#43;0800</relative-time>
+                    Fri, 10 Jun 2022 10:21:49 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -207,81 +207,81 @@
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。</p>
 <p>Go Timer 主动停止</p>
-<pre tabindex="0"><code>package main
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-   &quot;context&quot;
-   &quot;fmt&quot;
-   &quot;runtime/debug&quot;
-   &quot;sync&quot;
-   &quot;time&quot;
+<span style="color:#f92672">import</span> (
+   <span style="color:#e6db74">&#34;context&#34;</span>
+   <span style="color:#e6db74">&#34;fmt&#34;</span>
+   <span style="color:#e6db74">&#34;runtime/debug&#34;</span>
+   <span style="color:#e6db74">&#34;sync&#34;</span>
+   <span style="color:#e6db74">&#34;time&#34;</span>
 )
 
-func main() {
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-   mt := timerTest()
-   time.Sleep(time.Second * 30)
-   for i, tt := range mt.c {
-      fmt.Printf(&quot;k: %v, ti: %#v\n&quot;, i, tt)
+   <span style="color:#a6e22e">mt</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">timerTest</span>()
+   <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">30</span>)
+   <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">tt</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">mt</span>.<span style="color:#a6e22e">c</span> {
+      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;k: %v, ti: %#v\n&#34;</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">tt</span>)
    }
-   fmt.Printf(&quot;k: %v, ti: %#v\n&quot;, &quot;all&quot;, mt)
+   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;k: %v, ti: %#v\n&#34;</span>, <span style="color:#e6db74">&#34;all&#34;</span>, <span style="color:#a6e22e">mt</span>)
 }
 
-type mtimer struct {
-   c  map[int]*context.CancelFunc
-   rw sync.RWMutex
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">mtimer</span> <span style="color:#66d9ef">struct</span> {
+   <span style="color:#a6e22e">c</span>  <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">CancelFunc</span>
+   <span style="color:#a6e22e">rw</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">RWMutex</span>
 }
 
-func timerC(mt *mtimer, i int) {
-   defer func() {
-      if err := recover(); err != nil {
-         fmt.Println(&quot;i am recover&quot; + string(debug.Stack()))
-         fmt.Println(err)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">timerC</span>(<span style="color:#a6e22e">mt</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">mtimer</span>, <span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>) {
+   <span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>() {
+      <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> recover(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+         <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i am recover&#34;</span> <span style="color:#f92672">+</span> string(<span style="color:#a6e22e">debug</span>.<span style="color:#a6e22e">Stack</span>()))
+         <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
       }
    }()
-   t := time.NewTimer(time.Duration(i) * time.Second)
-   ctx, cancel := context.WithCancel(context.Background())
-   mt.rw.Lock()
-   mt.c[i] = &amp;cancel
-   mt.rw.Unlock()
-   select {
-   case &lt;-t.C:
-      fmt.Printf(&quot;print: %d timer\n&quot;, i)
-   case &lt;-ctx.Done():
-      fmt.Printf(&quot;print: %d stop\n&quot;, i)
-      t.Stop()
-      fmt.Printf(&quot;print: %d cancel\n&quot;, i)
-      return
+   <span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTimer</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Duration</span>(<span style="color:#a6e22e">i</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+   <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
+   <span style="color:#a6e22e">mt</span>.<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Lock</span>()
+   <span style="color:#a6e22e">mt</span>.<span style="color:#a6e22e">c</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">cancel</span>
+   <span style="color:#a6e22e">mt</span>.<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Unlock</span>()
+   <span style="color:#66d9ef">select</span> {
+   <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">C</span>:
+      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;print: %d timer\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+   <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>():
+      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;print: %d stop\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+      <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Stop</span>()
+      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;print: %d cancel\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+      <span style="color:#66d9ef">return</span>
    }
 }
 
-//timerTest
-func timerTest() mtimer {
-   defer func() {
-      if err := recover(); err != nil {
-         fmt.Println(&quot;i am recover&quot; + string(debug.Stack()))
-         fmt.Println(err)
+<span style="color:#75715e">//timerTest
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">timerTest</span>() <span style="color:#a6e22e">mtimer</span> {
+   <span style="color:#66d9ef">defer</span> <span style="color:#66d9ef">func</span>() {
+      <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> recover(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+         <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;i am recover&#34;</span> <span style="color:#f92672">+</span> string(<span style="color:#a6e22e">debug</span>.<span style="color:#a6e22e">Stack</span>()))
+         <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
       }
    }()
-   mt := mtimer{
-      c: make(map[int]*context.CancelFunc),
+   <span style="color:#a6e22e">mt</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">mtimer</span>{
+      <span style="color:#a6e22e">c</span>: make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">CancelFunc</span>),
    }
 
-   for i := 1; i &lt;= 5; i++ {
-      go func(i int) {
-         fmt.Printf(&quot;timer start: %v\n&quot;, i)
-         timerC(&amp;mt, i)
-      }(i)
+   <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+      <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>) {
+         <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;timer start: %v\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+         <span style="color:#a6e22e">timerC</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">mt</span>, <span style="color:#a6e22e">i</span>)
+      }(<span style="color:#a6e22e">i</span>)
    }
-   time.Sleep(time.Second * 1)
-   i := 3
-   fmt.Printf(&quot;start stop: %d\n&quot;, i)
-   cancel := *mt.c[i]
-   cancel()
-   fmt.Printf(&quot;stop: %d\n&quot;, i)
-   return mt
+   <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1</span>)
+   <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">3</span>
+   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;start stop: %d\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+   <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">mt</span>.<span style="color:#a6e22e">c</span>[<span style="color:#a6e22e">i</span>]
+   <span style="color:#a6e22e">cancel</span>()
+   <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;stop: %d\n&#34;</span>, <span style="color:#a6e22e">i</span>)
+   <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">mt</span>
 }
-</code></pre></article>
+</code></pre></div></article>
               </div>
             </div>
           </div>

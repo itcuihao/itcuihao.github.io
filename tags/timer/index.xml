@@ -14,7 +14,7 @@
       <pubDate>Sat, 11 Dec 2021 21:59:22 +0800</pubDate>
       
       <guid>http://cuihao.fun/post/go-timer/</guid>
-      <description>假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;quot;context&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;runtime/debug&amp;quot; &amp;quot;sync&amp;quot; &amp;quot;time&amp;quot; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt</description>
+      <description>假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;#34;context&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;runtime/debug&amp;#34; &amp;#34;sync&amp;#34; &amp;#34;time&amp;#34; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt</description>
     </item>
     
   </channel>
