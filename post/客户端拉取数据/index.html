@@ -123,6 +123,7 @@
   </header>
 </div>
   
+
 <div>
   <main>
     <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
@@ -214,7 +215,13 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>手机端需要不断得到服务端数据，暂定使用轮询的方式。</p>
+                <article class="markdown-body entry-content container-lg">
+                  <aside>
+                    <header>
+                    <h1>客户端拉取数据</h1>
+                    </header>
+                    <nav id="TableOfContents"></nav>
+                  </aside><p>手机端需要不断得到服务端数据，暂定使用轮询的方式。</p>
 <p>想到采用API接口的方式拉取数据，后台有push接口创建数据，客户端pull接口数据。</p>
 <!-- raw HTML omitted -->
 <p>这样虽然实现简单，但是也存在问题，当客户端拉取数据后如果没有执行，想要重新获取就没办法了。</p>

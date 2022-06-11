@@ -123,6 +123,7 @@
   </header>
 </div>
   
+
 <div>
   <main>
     <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
@@ -205,7 +206,13 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><blockquote>
+                <article class="markdown-body entry-content container-lg">
+                  <aside>
+                    <header>
+                    <h1>Catch and Redirect Panic</h1>
+                    </header>
+                    <nav id="TableOfContents"></nav>
+                  </aside><blockquote>
 <p>面试的时候，面试官问程序panic了该怎么办；那就recover呀；后来想了下是不是守护进程呀。</p>
 </blockquote>
 <p>那panic之后一般log会随着后台log一起打印，这样就不方便定位排查了。
