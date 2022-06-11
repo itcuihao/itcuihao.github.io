@@ -39,7 +39,7 @@
       <pubDate>Sun, 19 Dec 2021 23:16:12 +0800</pubDate>
       
       <guid>http://cuihao.fun/post/go-build/</guid>
-      <description>在Go中利用此命令进行编译打包 go build [-o output] [build flags] [packages] 利用build编译时，会忽略_test.go结尾的文件； build时会默认使用文件名作为编译后的名字，如果是wind</description>
+      <description>Go常利用此命令进行编译打包</description>
     </item>
     
     <item>
@@ -48,7 +48,7 @@
       <pubDate>Sat, 11 Dec 2021 21:59:22 +0800</pubDate>
       
       <guid>http://cuihao.fun/post/go-timer/</guid>
-      <description>假如有需求需要定时执行某一程序，会用到定时器，不过在设置定时器后想主动取消，就需要借助下context。 Go Timer 主动停止 package main import ( &amp;#34;context&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;runtime/debug&amp;#34; &amp;#34;sync&amp;#34; &amp;#34;time&amp;#34; ) func main() { mt := timerTest() time.Sleep(time.Second * 30) for i, tt</description>
+      <description>定时器是经常使用的</description>
     </item>
     
     <item>
@@ -57,7 +57,7 @@
       <pubDate>Sun, 19 Apr 2020 19:40:53 +0800</pubDate>
       
       <guid>http://cuihao.fun/post/01-matrix/</guid>
-      <description>给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。 两个相邻元素间的距离为 1 。 示例 1: 输入: 0 0 0 0 1 0 0 0 0 输出: 0 0 0 0 1 0 0 0 0 示例 2: 输入: 0 0 0 0 1</description>
+      <description>leetcode 542</description>
     </item>
     
     <item>

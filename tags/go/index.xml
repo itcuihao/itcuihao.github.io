@@ -17,5 +17,23 @@
       <description>本页收集了审核Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</description>
     </item>
     
+    <item>
+      <title>Go Build</title>
+      <link>http://cuihao.fun/post/go-build/</link>
+      <pubDate>Sun, 19 Dec 2021 23:16:12 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/post/go-build/</guid>
+      <description>Go常利用此命令进行编译打包</description>
+    </item>
+    
+    <item>
+      <title>Go Timer</title>
+      <link>http://cuihao.fun/post/go-timer/</link>
+      <pubDate>Sat, 11 Dec 2021 21:59:22 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/post/go-timer/</guid>
+      <description>定时器是经常使用的</description>
+    </item>
+    
   </channel>
 </rss>

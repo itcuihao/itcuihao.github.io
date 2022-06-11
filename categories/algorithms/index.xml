@@ -14,7 +14,7 @@
       <pubDate>Sun, 19 Apr 2020 19:40:53 +0800</pubDate>
       
       <guid>http://cuihao.fun/post/01-matrix/</guid>
-      <description>给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。 两个相邻元素间的距离为 1 。 示例 1: 输入: 0 0 0 0 1 0 0 0 0 输出: 0 0 0 0 1 0 0 0 0 示例 2: 输入: 0 0 0 0 1</description>
+      <description>leetcode 542</description>
     </item>
     
     <item>

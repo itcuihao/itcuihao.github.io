@@ -14,7 +14,7 @@
       <pubDate>Sun, 19 Dec 2021 23:16:12 +0800</pubDate>
       
       <guid>http://cuihao.fun/post/go-build/</guid>
-      <description>在Go中利用此命令进行编译打包 go build [-o output] [build flags] [packages] 利用build编译时，会忽略_test.go结尾的文件； build时会默认使用文件名作为编译后的名字，如果是wind</description>
+      <description>Go常利用此命令进行编译打包</description>
     </item>
     
   </channel>
