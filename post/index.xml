@@ -7,14 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 11 Jun 2022 09:49:33 +0800</lastBuildDate><atom:link href="http://cuihao.fun/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 12:44:51 +0800</lastBuildDate><atom:link href="http://cuihao.fun/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>[译]Go代码审核解释</title>
+      <title>[译]Go并发代码审查</title>
+      <link>http://cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/</link>
+      <pubDate>Sat, 11 Jun 2022 12:44:51 +0800</pubDate>
+      
+      <guid>http://cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/</guid>
+      <description>本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。</description>
+    </item>
+    
+    <item>
+      <title>[译]Go代码审查意见</title>
       <link>http://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/</link>
       <pubDate>Sat, 11 Jun 2022 09:49:33 +0800</pubDate>
       
       <guid>http://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/</guid>
-      <description>本页收集了审核Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</description>
+      <description>本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</description>
     </item>
     
     <item>

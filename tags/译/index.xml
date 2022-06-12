@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on haoc7</title>
-    <link>http://cuihao.fun/tags/go/</link>
-    <description>Recent content in Go on haoc7</description>
+    <title>译 on haoc7</title>
+    <link>http://cuihao.fun/tags/%E8%AF%91/</link>
+    <description>Recent content in 译 on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 11 Jun 2022 12:44:51 +0800</lastBuildDate><atom:link href="http://cuihao.fun/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Jun 2022 12:44:51 +0800</lastBuildDate><atom:link href="http://cuihao.fun/tags/%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>[译]Go并发代码审查</title>
       <link>http://cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/</link>
@@ -24,24 +24,6 @@
       
       <guid>http://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/</guid>
       <description>本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</description>
-    </item>
-    
-    <item>
-      <title>Go Build</title>
-      <link>http://cuihao.fun/post/go-build/</link>
-      <pubDate>Sun, 19 Dec 2021 23:16:12 +0800</pubDate>
-      
-      <guid>http://cuihao.fun/post/go-build/</guid>
-      <description>Go常利用此命令进行编译打包</description>
-    </item>
-    
-    <item>
-      <title>Go Timer</title>
-      <link>http://cuihao.fun/post/go-timer/</link>
-      <pubDate>Sat, 11 Dec 2021 21:59:22 +0800</pubDate>
-      
-      <guid>http://cuihao.fun/post/go-timer/</guid>
-      <description>定时器是经常使用的</description>
     </item>
     
   </channel>

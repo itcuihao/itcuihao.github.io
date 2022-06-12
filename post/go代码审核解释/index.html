@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='http://cuihao.fun/css/light.css' />
     <link rel="stylesheet" href='http://cuihao.fun/css/dark.css' />
     <link rel="stylesheet" href='http://cuihao.fun/css/syntax.css' />
-    <title>[译]Go代码审核解释 - haoc7</title>
+    <title>[译]Go代码审查意见 - haoc7</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="本页收集了审核Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
+  content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
@@ -26,9 +26,9 @@
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="[译]Go代码审核解释 - haoc7" />
+<meta name="twitter:title" content="[译]Go代码审查意见 - haoc7" />
 <meta name="twitter:description"
-  content="本页收集了审核Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
+  content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
 <meta name="twitter:site" content="http://cuihao.fun" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -36,11 +36,11 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="[译]Go代码审核解释 - haoc7">
+<meta property="og:title" content="[译]Go代码审查意见 - haoc7">
 <meta property="og:description"
-  content="本页收集了审核Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
+  content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
 <meta property="og:url" content="http://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/" />
-<meta property="og:site_name" content="[译]Go代码审核解释" />
+<meta property="og:site_name" content="[译]Go代码审查意见" />
 <meta property="og:image"
   content="http://cuihao.fun">
 <meta property="og:image:width" content="2048">
@@ -142,7 +142,7 @@
                   <span class="author">
                     <a href="http://cuihao.fun"></a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="http://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/">[译]Go代码审核解释</a></strong>
+                      href="http://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/">[译]Go代码审查意见</a></strong>
                 </h1>
                 <div class="note m-0">
                   Created <relative-time datetime="Sat, 11 Jun 2022 09:49:33 &#43;0800"
@@ -151,9 +151,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 11 Jun 2022 11:38:50 &#43;0800"
+                  Modified <relative-time datetime="Sun, 12 Jun 2022 23:07:11 &#43;0800"
                     class="no-wrap">
-                    Sat, 11 Jun 2022 11:38:50 &#43;0800</relative-time>
+                    Sun, 12 Jun 2022 23:07:11 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -199,15 +199,6 @@
                       Go
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/%E7%BF%BB%E8%AF%91">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      翻译
-                    </a>
-                    
                     <a class="muted-link mr-3" href="/tags/wiki">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
@@ -215,6 +206,15 @@
                         </path>
                       </svg>
                       wiki
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/%E8%AF%91">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      译
                     </a>
                     
                     
@@ -227,7 +227,7 @@
                 <article class="markdown-body entry-content container-lg">
                   <aside>
                     <header>
-                    <h1>[译]Go代码审核解释</h1>
+                    <h1>[译]Go代码审查意见</h1>
                     </header>
                     <nav id="TableOfContents">
   <ul>
@@ -268,7 +268,7 @@
 <blockquote>
 <p>自己水平有限，仅供参考，如有错误，请指正。联系方式可评论，或者邮件 <a href="mailto:itcuihao@gmail.com">itcuihao@gmail.com</a></p>
 </blockquote>
-<p>本页收集了审核Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</p>
+<p>本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</p>
 <p>你可以把它看作是<a href="https://go.dev/doc/effective_go">Effective Go</a>的一个补充。</p>
 <p>与测试有关的其他评论可在<a href="https://github.com/golang/go/wiki/TestComments">Go Test Comments</a>找到。</p>
 <p>在编辑这个页面之前，请<a href="https://go.dev/issue/new?title=wiki%3A+CodeReviewComments+change&amp;body=&amp;labels=Documentation">讨论修改</a>，即使是小的修改。许多人都有意见，这里不是编辑战争的地方。</p>
