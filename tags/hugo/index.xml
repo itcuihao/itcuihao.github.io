@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>hugo on haoc7</title>
-    <link>http://cuihao.fun/tags/hugo/</link>
+    <link>https://cuihao.fun/tags/hugo/</link>
     <description>Recent content in hugo on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 14 Apr 2019 10:47:50 +0800</lastBuildDate><atom:link href="http://cuihao.fun/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Apr 2019 10:47:50 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Win10 Install Hugo</title>
-      <link>http://cuihao.fun/post/win10-install-hugo/</link>
+      <link>https://cuihao.fun/post/win10-install-hugo/</link>
       <pubDate>Sun, 14 Apr 2019 10:47:50 +0800</pubDate>
       
-      <guid>http://cuihao.fun/post/win10-install-hugo/</guid>
+      <guid>https://cuihao.fun/post/win10-install-hugo/</guid>
       <description>install choco 打开PowerShell，粘贴下面的命令，回车。 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;)) 参考链接 install hugo choco install hugo -confirm 参考链接</description>
     </item>
     
