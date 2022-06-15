@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://cuihao.fun/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://cuihao.fun/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://cuihao.fun/css/github.min.css' />
+    <link rel="stylesheet" href='https://cuihao.fun/css/github-style.css' />
+    <link rel="stylesheet" href='https://cuihao.fun/css/light.css' />
+    <link rel="stylesheet" href='https://cuihao.fun/css/dark.css' />
+    <link rel="stylesheet" href='https://cuihao.fun/css/syntax.css' />
+    <title>[译]Go数据结构 - haoc7</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。—— Russ Cox" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://cuihao.fun/post/go-data-structures/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="[译]Go数据结构 - haoc7" />
+<meta name="twitter:description"
+  content="在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。—— Russ Cox" />
+<meta name="twitter:site" content="https://cuihao.fun" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://cuihao.fun">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="[译]Go数据结构 - haoc7">
+<meta property="og:description"
+  content="在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。—— Russ Cox" />
+<meta property="og:url" content="https://cuihao.fun/post/go-data-structures/" />
+<meta property="og:site_name" content="[译]Go数据结构" />
+<meta property="og:image"
+  content="https://cuihao.fun">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2022-06-14 18:44:59 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://cuihao.fun">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://cuihao.fun">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://cuihao.fun">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://cuihao.fun">
+                  <img class=" avatar-user"
+                    src="https://cuihao.fun/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://cuihao.fun"></a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://cuihao.fun/post/go-data-structures/">[译]Go数据结构</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Tue, 14 Jun 2022 18:44:59 &#43;0800"
+                    class="no-wrap">
+                    Tue, 14 Jun 2022 18:44:59 &#43;0800</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Wed, 15 Jun 2022 23:54:48 &#43;0800"
+                    class="no-wrap">
+                    Wed, 15 Jun 2022 23:54:48 &#43;0800</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1645 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/go">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Go
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/%E8%AF%91">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      译
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg">
+                  <aside>
+                    <header>
+                    <h1>[译]Go数据结构</h1>
+                    </header>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本类型">基本类型</a></li>
+    <li><a href="#结构和指针">结构和指针</a></li>
+    <li><a href="#字符串">字符串</a></li>
+    <li><a href="#切片">切片</a></li>
+  </ul>
+</nav>
+                  </aside><hr>
+<p>在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。这篇文章是关于基本类型、结构、数组和切片的。</p>
+<h2 id="基本类型">基本类型</h2>
+<p>让我们从一些简单的例子开始：</p>
+<p><img src="/images/go/godata1.png" alt="basic-type"></p>
+<p>变量i的类型为int，在内存中表示为一个32位的字。(所有这些图片显示的是32位的内存布局；在目前的实现中，只有指针在64位机器上会变大&ndash;int仍然是32位&ndash;尽管一个实现可以选择使用64位来代替）。</p>
+<p>变量j的类型是int32，因为有明确的转换。尽管i和j有相同的内存布局，但它们有不同的类型：赋值i = j是一个类型错误，必须用显式转换来编写：i = int(j)。</p>
+<p>变量f的类型是float，目前的实现将其表示为32位浮点值。它的内存占用与int32相同，但内部布局不同。</p>
+<h2 id="结构和指针">结构和指针</h2>
+<p>现在事情开始有了起色。变量bytes的类型为[5]byte，是一个5字节的数组。它的内存表示就是这5个字节，一个接一个，就像C语言的数组。同样地，primes是一个4个字节的数组。</p>
+<p>Go与C语言一样，但与Java不同，它让程序员控制什么是指针，什么不是指针。例如，这个类型定义。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Point</span> <span style="color:#66d9ef">struct</span> { <span style="color:#a6e22e">X</span>, <span style="color:#a6e22e">Y</span> <span style="color:#66d9ef">int</span> }
+</code></pre></div><p>定义了一个名为<code>Point</code>的简单结构类型，在内存中表示为两个相邻的<code>Int</code>。</p>
+<p><img src="/images/go/godata1a.png" alt="point-type"></p>
+<p>这<a href="http://golang.org/doc/go_spec.html#Composite_literals">复合字面语法</a><code>Point{10, 20}</code>表示一个初始化的<code>Point</code>。以复合字面的地址表示一个指向新分配和初始化的<code>Point</code>的指针。前者是内存中的两个字；后者是一个指向内存中两个字的指针。</p>
+<p>结构中的字段在内存中是并排排列。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Rect1</span> <span style="color:#66d9ef">struct</span> { <span style="color:#a6e22e">Min</span>, <span style="color:#a6e22e">Max</span> <span style="color:#a6e22e">Point</span> }
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Rect2</span> <span style="color:#66d9ef">struct</span> { <span style="color:#a6e22e">Min</span>, <span style="color:#a6e22e">Max</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Point</span> }
+</code></pre></div><p><img src="/images/go/godata1b.png" alt="point2-type"></p>
+<p><code>Rect1</code>是一个有两个<code>Point</code>字段的结构，由两个P<code>owers</code>&ndash;四个<code>ints</code>&ndash;组成的一行表示。<code>Rect2</code>是一个有两个<code>*Point</code>字段的结构，由两个<code>*Points</code>表示。</p>
+<p>使用过C语言的程序员可能不会对<code>Point</code>字段和<code>*Point</code>字段之间的区别感到惊讶，而只使用过Java或Python（或&hellip;&hellip;）的程序员可能会对必须做出这种决定感到惊讶。通过让程序员控制基本的内存布局，Go提供了控制特定数据结构集合的总大小、分配数量和内存访问模式的能力，所有这些对于构建性能良好的系统都很重要。</p>
+<h2 id="字符串">字符串</h2>
+<p>有了这些初步的认识，我们就可以转向更有趣的数据类型。</p>
+<p><img src="/images/go/godata2.png" alt="string-type"></p>
+<p>(灰色箭头表示在实现中存在的指针，但在程序中不直接可见)。</p>
+<p>一个字符串在内存中被表示为一个<code>2个字</code>的结构，包含一个指向字符串数据的指针和一个长度。因为字符串是不可改变的，所以多个字符串共享同一个存储空间是安全的，所以<a href="http://www.blogger.com/post-edit.g?blogID=8082954141980125536&amp;postID=65253524121904390">切分</a>s的结果是一个新的<code>2个字</code>结构，它的指针和长度可能不同，但仍然指向同一个字节序列。这意味着切分可以在不分配或复制的情况下进行，使字符串切分和传递显式索引一样有效。</p>
+<p>(另外，在Java和其他语言中，有一个<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4513622">众所周知的问题</a>，当你切开一个字符串以保存一小部分时，对原始字符串的引用会将整个原始字符串保留在内存中，尽管只有一小部分仍然需要。Go也有这个问题。我们曾尝试过另一种方法，但被<a href="http://code.google.com/p/go/source/detail?r=70fa38e5a5bb">拒绝</a>了，那就是让字符串切分变得如此昂贵&ndash;一次分配和一次复制&ndash;以至于大多数程序都会避免这样做）。</p>
+<h2 id="切片">切片</h2>
+<p><img src="/images/go/godata3.png" alt="slice-type"></p>
+<p>一个<a href="http://golang.org/doc/effective_go.html#slices">切片</a>是对一个数组的一个部分的引用。在内存中，它是一个3个字的结构，包括第一个元素的指针，分片的长度和容量。长度是索引操作的上限，如x[i]，而容量是切片操作的上限，如x[i:j]。</p>
+<p>和切分字符串一样，切分数组并不产生副本：它只是创建一个新的结构，持有不同的指针、长度和容量。在这个例子中，评估复合字面<code>[]int{2, 3, 5, 7, 11}</code>会创建一个包含五个值的新数组，然后设置切片x的字段来描述该数组。切片表达式x[1:3]并没有分配更多的数据：它只是写了一个新的切片结构的字段来引用相同的后备存储。在这个例子中，长度是2-y[0]和y[1]是唯一有效的索引-但是容量是4-y[0:4]是一个有效的分片表达式。(关于长度和容量以及如何使用分片的更多信息，请参见<a href="http://golang.org/doc/effective_go.html#slices">Effective Go</a>）。</p>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://cuihao.fun/js/toc.js'></script>
+<link rel="stylesheet" href='https://cuihao.fun/css/toc.css' />
+
+<div id="gitalk-container" class="gitalk-container"></div>
+<link rel="stylesheet" href='https://cuihao.fun/css/gitalk.css'>
+<script src='https://cuihao.fun/js/gitalk.min.js'></script>
+<script src='https://cuihao.fun/js/md5.min.js'></script>
+
+<script>
+  const gitalk = new Gitalk({
+    clientID: '1c44abb0d95290f10a13',
+    clientSecret: 'ed009342e7b26963fe38493f1d9a1091fb0054bc',
+    repo: 'blog',
+    owner: 'itcuihao',
+    admin: ['itcuihao'],
+    id: md5(location.pathname), 
+    distractionFreeMode: false 
+  });
+  (function() {
+    gitalk.render('gitalk-container');
+  })();
+</script>
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://cuihao.fun">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Copyright (c) 2018 -, haoc7; all rights reserved.</li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://cuihao.fun/js/github-style.js"></script>
+
+
+
+</html>
