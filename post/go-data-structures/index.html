@@ -151,9 +151,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 15 Jun 2022 23:54:48 &#43;0800"
+                  Modified <relative-time datetime="Wed, 15 Jun 2022 23:55:59 &#43;0800"
                     class="no-wrap">
-                    Wed, 15 Jun 2022 23:54:48 &#43;0800</relative-time>
+                    Wed, 15 Jun 2022 23:55:59 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -258,7 +258,7 @@
 <h2 id="切片">切片</h2>
 <p><img src="/images/go/godata3.png" alt="slice-type"></p>
 <p>一个<a href="http://golang.org/doc/effective_go.html#slices">切片</a>是对一个数组的一个部分的引用。在内存中，它是一个3个字的结构，包括第一个元素的指针，分片的长度和容量。长度是索引操作的上限，如x[i]，而容量是切片操作的上限，如x[i:j]。</p>
-<p>和切分字符串一样，切分数组并不产生副本：它只是创建一个新的结构，持有不同的指针、长度和容量。在这个例子中，评估复合字面<code>[]int{2, 3, 5, 7, 11}</code>会创建一个包含五个值的新数组，然后设置切片x的字段来描述该数组。切片表达式x[1:3]并没有分配更多的数据：它只是写了一个新的切片结构的字段来引用相同的后备存储。在这个例子中，长度是2-y[0]和y[1]是唯一有效的索引-但是容量是4-y[0:4]是一个有效的分片表达式。(关于长度和容量以及如何使用分片的更多信息，请参见<a href="http://golang.org/doc/effective_go.html#slices">Effective Go</a>）。</p>
+<p>和切分字符串一样，切分数组并不产生副本：它只是创建一个新的结构，持有不同的指针、长度和容量。在这个例子中，评估复合字面<code>[]int{2, 3, 5, 7, 11}</code>会创建一个包含五个值的新数组，然后设置切片x的字段来描述该数组。切片表达式x[1:3]并没有分配更多的数据：它只是写了一个新的切片结构的字段来引用相同的后备存储。在这个例子中，长度是2-y[0]和y[1]是唯一有效的索引-但是容量是4-y[0:4]是一个有效的切片表达式。(关于长度和容量以及如何使用切片的更多信息，请参见<a href="http://golang.org/doc/effective_go.html#slices">Effective Go</a>）。</p>
 </article>
               </div>
             </div>
