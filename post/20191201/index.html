@@ -228,25 +228,18 @@
 <script type="application/javascript" src='https://cuihao.fun/js/toc.js'></script>
 <link rel="stylesheet" href='https://cuihao.fun/css/toc.css' />
 
-<div id="gitalk-container" class="gitalk-container"></div>
-<link rel="stylesheet" href='https://cuihao.fun/css/gitalk.css'>
-<script src='https://cuihao.fun/js/gitalk.min.js'></script>
-<script src='https://cuihao.fun/js/md5.min.js'></script>
 
-<script>
-  const gitalk = new Gitalk({
-    clientID: '1c44abb0d95290f10a13',
-    clientSecret: 'ed009342e7b26963fe38493f1d9a1091fb0054bc',
-    repo: 'blog',
-    owner: 'itcuihao',
-    admin: ['itcuihao'],
-    id: md5(location.pathname), 
-    distractionFreeMode: false 
-  });
-  (function() {
-    gitalk.render('gitalk-container');
-  })();
+<script src="https://utteranc.es/client.js"
+        repo="itcuihao/blog",
+        issue-term="title"
+        label="💬"
+        theme="icy-dark",
+        crossorigin="anonymous"
+        async>
 </script>
+<noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+
 
 
   <div class="footer container-xl width-full p-responsive">

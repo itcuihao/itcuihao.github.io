@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://cuihao.fun/css/light.css' />
     <link rel="stylesheet" href='https://cuihao.fun/css/dark.css' />
     <link rel="stylesheet" href='https://cuihao.fun/css/syntax.css' />
-    <title>01 Matrix - haoc7</title>
+    <title>[译]Go数据结构 - haoc7</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
     
@@ -18,17 +18,17 @@
 
     
     <meta name="description"
-  content="leetcode 542" />
+  content="在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。—— Russ Cox" />
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://cuihao.fun/post/01-matrix/" />
+<link rel="canonical" href="https://cuihao.fun/post/go-data-structures/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="01 Matrix - haoc7" />
+<meta name="twitter:title" content="[译]Go数据结构 - haoc7" />
 <meta name="twitter:description"
-  content="leetcode 542" />
+  content="在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。—— Russ Cox" />
 <meta name="twitter:site" content="https://cuihao.fun" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -36,17 +36,17 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="01 Matrix - haoc7">
+<meta property="og:title" content="[译]Go数据结构 - haoc7">
 <meta property="og:description"
-  content="leetcode 542" />
-<meta property="og:url" content="https://cuihao.fun/post/01-matrix/" />
-<meta property="og:site_name" content="01 Matrix" />
+  content="在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。—— Russ Cox" />
+<meta property="og:url" content="https://cuihao.fun/post/go-data-structures/" />
+<meta property="og:site_name" content="[译]Go数据结构" />
 <meta property="og:image"
   content="https://cuihao.fun">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2020-04-19 19:40:53 &#43;0800 CST" />
+<meta property="article:published_time" content="2022-06-14 18:44:59 &#43;0800 CST" />
 
 
 
@@ -142,18 +142,18 @@
                   <span class="author">
                     <a href="https://cuihao.fun"></a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://cuihao.fun/post/01-matrix/">01 Matrix</a></strong>
+                      href="https://cuihao.fun/post/go-data-structures/">[译]Go数据结构</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sun, 19 Apr 2020 19:40:53 &#43;0800"
+                  Created <relative-time datetime="Tue, 14 Jun 2022 18:44:59 &#43;0800"
                     class="no-wrap">
-                    Sun, 19 Apr 2020 19:40:53 &#43;0800</relative-time>
+                    Tue, 14 Jun 2022 18:44:59 &#43;0800</relative-time>
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 11 Jun 2022 11:44:26 &#43;0800"
+                  Modified <relative-time datetime="Thu, 16 Jun 2022 00:25:06 &#43;0800"
                     class="no-wrap">
-                    Sat, 11 Jun 2022 11:44:26 &#43;0800</relative-time>
+                    Thu, 16 Jun 2022 00:25:06 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -183,29 +183,29 @@
                         </div>
                       </div>
                     </details-menu>
-                      965 Words
+                      2290 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/leetcode">
+                    <a class="muted-link mr-3" href="/tags/go">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      Leetcode
+                      Go
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/bfs">
+                    <a class="muted-link mr-3" href="/tags/%E8%AF%91">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      BFS
+                      译
                     </a>
                     
                     
@@ -218,190 +218,66 @@
                 <article class="markdown-body entry-content container-lg">
                   <aside>
                     <header>
-                    <h1>01 Matrix</h1>
+                    <h1>[译]Go数据结构</h1>
                     </header>
-                    <nav id="TableOfContents"></nav>
-                  </aside><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。
-
-两个相邻元素间的距离为 1 。
-
-示例 1:
-输入:
-
-0 0 0
-0 1 0
-0 0 0
-输出:
-
-0 0 0
-0 1 0
-0 0 0
-示例 2:
-输入:
-
-0 0 0
-0 1 0
-1 1 1
-输出:
-
-0 0 0
-0 1 0
-1 2 1
-注意:
-
-给定矩阵的元素个数不超过 10000。
-给定矩阵中至少有一个元素是 0。
-矩阵中的元素只在四个方向上相邻: 上、下、左、右。
-
-来源：力扣（LeetCode）
-链接：https://leetcode-cn.com/problems/01-matrix
-著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
-</code></pre></div><p>先找出为0的元素位置，入队列，然后标记其他元素为-1，用-1来表示元素是否访问过。
-对于队列中的坐标，对上下左右没有访问过的元素，进行距离+1的操作。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">matrix</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-)
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">updateMatrix</span>(<span style="color:#a6e22e">matrix</span> [][]<span style="color:#66d9ef">int</span>) [][]<span style="color:#66d9ef">int</span> {
-	<span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">matrix</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
-	}
-	<span style="color:#a6e22e">maxRow</span>, <span style="color:#a6e22e">maxCel</span> <span style="color:#f92672">:=</span> len(<span style="color:#a6e22e">matrix</span>), len(<span style="color:#a6e22e">matrix</span>[<span style="color:#ae81ff">0</span>])
-	<span style="color:#a6e22e">zero</span> <span style="color:#f92672">:=</span> make([][]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">0</span>)
-	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">maxRow</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
-		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">j</span> &lt; <span style="color:#a6e22e">maxCel</span>; <span style="color:#a6e22e">j</span><span style="color:#f92672">++</span> {
-			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">matrix</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
-				<span style="color:#a6e22e">zero</span> = append(<span style="color:#a6e22e">zero</span>, []<span style="color:#66d9ef">int</span>{<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>})
-			} <span style="color:#66d9ef">else</span> {
-				<span style="color:#a6e22e">matrix</span>[<span style="color:#a6e22e">i</span>][<span style="color:#a6e22e">j</span>] = <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
-			}
-		}
-	}
-
-	<span style="color:#a6e22e">around</span> <span style="color:#f92672">:=</span> [][]<span style="color:#66d9ef">int</span>{{<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>}, {<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>}, {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>}, {<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>}}
-
-	<span style="color:#66d9ef">for</span> len(<span style="color:#a6e22e">zero</span>) &gt; <span style="color:#ae81ff">0</span> {
-		<span style="color:#a6e22e">item</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">zero</span>[<span style="color:#ae81ff">0</span>]
-		<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">item</span>[<span style="color:#ae81ff">0</span>]
-		<span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">item</span>[<span style="color:#ae81ff">1</span>]
-		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;queue: &#34;</span>, <span style="color:#a6e22e">zero</span>)
-		<span style="color:#a6e22e">zero</span> = <span style="color:#a6e22e">zero</span>[<span style="color:#ae81ff">1</span>:]
-
-		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">around</span> {
-			<span style="color:#a6e22e">ax</span>, <span style="color:#a6e22e">ay</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">x</span><span style="color:#f92672">+</span><span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">y</span><span style="color:#f92672">+</span><span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>]
-			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;new:&#34;</span>, <span style="color:#a6e22e">ax</span>, <span style="color:#a6e22e">ay</span>)
-			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ax</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">ax</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">maxRow</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">ay</span> &lt; <span style="color:#ae81ff">0</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">ay</span> <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">maxCel</span> {
-				<span style="color:#66d9ef">continue</span>
-			}
-			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;res:&#34;</span>, <span style="color:#a6e22e">matrix</span>[<span style="color:#a6e22e">ax</span>][<span style="color:#a6e22e">ay</span>], <span style="color:#a6e22e">matrix</span>[<span style="color:#a6e22e">x</span>][<span style="color:#a6e22e">y</span>]<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)
-
-			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">matrix</span>[<span style="color:#a6e22e">ax</span>][<span style="color:#a6e22e">ay</span>] <span style="color:#f92672">==</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
-				<span style="color:#a6e22e">matrix</span>[<span style="color:#a6e22e">ax</span>][<span style="color:#a6e22e">ay</span>] = <span style="color:#a6e22e">matrix</span>[<span style="color:#a6e22e">x</span>][<span style="color:#a6e22e">y</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
-				<span style="color:#a6e22e">zero</span> = append(<span style="color:#a6e22e">zero</span>, []<span style="color:#66d9ef">int</span>{<span style="color:#a6e22e">ax</span>, <span style="color:#a6e22e">ay</span>})
-			}
-			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;matrix: &#34;</span>, <span style="color:#a6e22e">matrix</span>)
-
-		}
-	}
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">matrix</span>
-}
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">queue:  [[0 0] [0 1] [0 2] [1 0] [1 2]]
-new: 0 1
-res: 0 1
-matrix:  [[0 0 0] [0 -1 0] [-1 -1 -1]]
-new: 0 -1
-new: 1 0
-res: 0 1
-matrix:  [[0 0 0] [0 -1 0] [-1 -1 -1]]
-new: -1 0
-queue:  [[0 1] [0 2] [1 0] [1 2]]
-new: 0 2
-res: 0 1
-matrix:  [[0 0 0] [0 -1 0] [-1 -1 -1]]
-new: 0 0
-res: 0 1
-matrix:  [[0 0 0] [0 -1 0] [-1 -1 -1]]
-new: 1 1
-res: -1 1
-matrix:  [[0 0 0] [0 1 0] [-1 -1 -1]]
-new: -1 1
-queue:  [[0 2] [1 0] [1 2] [1 1]]
-new: 0 3
-new: 0 1
-res: 0 1
-matrix:  [[0 0 0] [0 1 0] [-1 -1 -1]]
-new: 1 2
-res: 0 1
-matrix:  [[0 0 0] [0 1 0] [-1 -1 -1]]
-new: -1 2
-queue:  [[1 0] [1 2] [1 1]]
-new: 1 1
-res: 1 1
-matrix:  [[0 0 0] [0 1 0] [-1 -1 -1]]
-new: 1 -1
-new: 2 0
-res: -1 1
-matrix:  [[0 0 0] [0 1 0] [1 -1 -1]]
-new: 0 0
-res: 0 1
-matrix:  [[0 0 0] [0 1 0] [1 -1 -1]]
-queue:  [[1 2] [1 1] [2 0]]
-new: 1 3
-new: 1 1
-res: 1 1
-matrix:  [[0 0 0] [0 1 0] [1 -1 -1]]
-new: 2 2
-res: -1 1
-matrix:  [[0 0 0] [0 1 0] [1 -1 1]]
-new: 0 2
-res: 0 1
-matrix:  [[0 0 0] [0 1 0] [1 -1 1]]
-queue:  [[1 1] [2 0] [2 2]]
-new: 1 2
-res: 0 2
-matrix:  [[0 0 0] [0 1 0] [1 -1 1]]
-new: 1 0
-res: 0 2
-matrix:  [[0 0 0] [0 1 0] [1 -1 1]]
-new: 2 1
-res: -1 2
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-new: 0 1
-res: 0 2
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-queue:  [[2 0] [2 2] [2 1]]
-new: 2 1
-res: 2 2
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-new: 2 -1
-new: 3 0
-new: 1 0
-res: 0 2
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-queue:  [[2 2] [2 1]]
-new: 2 3
-new: 2 1
-res: 2 2
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-new: 3 2
-new: 1 2
-res: 0 2
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-queue:  [[2 1]]
-new: 2 2
-res: 1 3
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-new: 2 0
-res: 1 3
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-new: 3 1
-new: 1 1
-res: 1 3
-matrix:  [[0 0 0] [0 1 0] [1 2 1]]
-
-</code></pre></div></article>
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本类型">基本类型</a></li>
+    <li><a href="#结构和指针">结构和指针</a></li>
+    <li><a href="#字符串">字符串</a></li>
+    <li><a href="#切片">切片</a></li>
+    <li><a href="#new-与-make">New 与 Make</a></li>
+    <li><a href="#即将到来">即将到来&hellip;</a></li>
+  </ul>
+</nav>
+                  </aside><hr>
+<blockquote>
+<p>原文：<a href="https://research.swtch.com/godata">Go Data Structures</a></p>
+</blockquote>
+<blockquote>
+<p>自己水平有限，仅供参考，如有错误，请指正。联系方式可评论，或者邮件 <a href="mailto:itcuihao@gmail.com">itcuihao@gmail.com</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://swtch.com/~rsc/">Russ Cox</a>亲自解惑，值得学习。</p>
+</blockquote>
+<p>在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。这篇文章是关于基本类型、结构、数组和切片的。</p>
+<h2 id="基本类型">基本类型</h2>
+<p>让我们从一些简单的例子开始：</p>
+<p><img src="/images/go/godata1.png" alt="basic-type"></p>
+<p>变量i的类型为int，在内存中表示为一个32位的字。(所有这些图片显示的是32位的内存布局；在目前的实现中，只有指针在64位机器上会变大&ndash;int仍然是32位&ndash;尽管一个实现可以选择使用64位来代替）。</p>
+<p>变量j的类型是int32，因为有明确的转换。尽管i和j有相同的内存布局，但它们有不同的类型：赋值i = j是一个类型错误，必须用显式转换来编写：i = int(j)。</p>
+<p>变量f的类型是float，目前的实现将其表示为32位浮点值。它的内存占用与int32相同，但内部布局不同。</p>
+<h2 id="结构和指针">结构和指针</h2>
+<p>现在事情开始有了起色。变量bytes的类型为[5]byte，是一个5字节的数组。它的内存表示就是这5个字节，一个接一个，就像C语言的数组。同样地，primes是一个4个字节的数组。</p>
+<p>Go与C语言一样，但与Java不同，它让程序员控制什么是指针，什么不是指针。例如，这个类型定义。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Point</span> <span style="color:#66d9ef">struct</span> { <span style="color:#a6e22e">X</span>, <span style="color:#a6e22e">Y</span> <span style="color:#66d9ef">int</span> }
+</code></pre></div><p>定义了一个名为<code>Point</code>的简单结构类型，在内存中表示为两个相邻的<code>Int</code>。</p>
+<p><img src="/images/go/godata1a.png" alt="point-type"></p>
+<p>这<a href="http://golang.org/doc/go_spec.html#Composite_literals">复合字面语法</a><code>Point{10, 20}</code>表示一个初始化的<code>Point</code>。以复合字面的地址表示一个指向新分配和初始化的<code>Point</code>的指针。前者是内存中的两个字；后者是一个指向内存中两个字的指针。</p>
+<p>结构中的字段在内存中是并排排列。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Rect1</span> <span style="color:#66d9ef">struct</span> { <span style="color:#a6e22e">Min</span>, <span style="color:#a6e22e">Max</span> <span style="color:#a6e22e">Point</span> }
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Rect2</span> <span style="color:#66d9ef">struct</span> { <span style="color:#a6e22e">Min</span>, <span style="color:#a6e22e">Max</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Point</span> }
+</code></pre></div><p><img src="/images/go/godata1b.png" alt="point2-type"></p>
+<p><code>Rect1</code>是一个有两个<code>Point</code>字段的结构，由两个P<code>owers</code>&ndash;四个<code>ints</code>&ndash;组成的一行表示。<code>Rect2</code>是一个有两个<code>*Point</code>字段的结构，由两个<code>*Points</code>表示。</p>
+<p>使用过C语言的程序员可能不会对<code>Point</code>字段和<code>*Point</code>字段之间的区别感到惊讶，而只使用过Java或Python（或&hellip;&hellip;）的程序员可能会对必须做出这种决定感到惊讶。通过让程序员控制基本的内存布局，Go提供了控制特定数据结构集合的总大小、分配数量和内存访问模式的能力，所有这些对于构建性能良好的系统都很重要。</p>
+<h2 id="字符串">字符串</h2>
+<p>有了这些初步的认识，我们就可以转向更有趣的数据类型。</p>
+<p><img src="/images/go/godata2.png" alt="string-type"></p>
+<p>(灰色箭头表示在实现中存在的指针，但在程序中不直接可见)。</p>
+<p>一个字符串在内存中被表示为一个<code>2个字</code>的结构，包含一个指向字符串数据的指针和一个长度。因为字符串是不可改变的，所以多个字符串共享同一个存储空间是安全的，所以<a href="http://www.blogger.com/post-edit.g?blogID=8082954141980125536&amp;postID=65253524121904390">切分</a>s的结果是一个新的<code>2个字</code>结构，它的指针和长度可能不同，但仍然指向同一个字节序列。这意味着切分可以在不分配或复制的情况下进行，使字符串切分和传递显式索引一样有效。</p>
+<p>(另外，在Java和其他语言中，有一个<a href="http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4513622">众所周知的问题</a>，当你切开一个字符串以保存一小部分时，对原始字符串的引用会将整个原始字符串保留在内存中，尽管只有一小部分仍然需要。Go也有这个问题。我们曾尝试过另一种方法，但被<a href="http://code.google.com/p/go/source/detail?r=70fa38e5a5bb">拒绝</a>了，那就是让字符串切分变得如此昂贵&ndash;一次分配和一次复制&ndash;以至于大多数程序都会避免这样做）。</p>
+<h2 id="切片">切片</h2>
+<p><img src="/images/go/godata3.png" alt="slice-type"></p>
+<p>一个<a href="http://golang.org/doc/effective_go.html#slices">切片</a>是对一个数组的一个部分的引用。在内存中，它是一个3个字的结构，包括第一个元素的指针，分片的长度和容量。长度是索引操作的上限，如x[i]，而容量是切片操作的上限，如x[i:j]。</p>
+<p>和切分字符串一样，切分数组并不产生副本：它只是创建一个新的结构，持有不同的指针、长度和容量。在这个例子中，评估复合字面<code>[]int{2, 3, 5, 7, 11}</code>会创建一个包含五个值的新数组，然后设置切片x的字段来描述该数组。切片表达式x[1:3]并没有分配更多的数据：它只是写了一个新的切片结构的字段来引用相同的后备存储。在这个例子中，长度是2-y[0]和y[1]是唯一有效的索引-但是容量是4-y[0:4]是一个有效的切片表达式。(关于长度和容量以及如何使用切片的更多信息，请参见<a href="http://golang.org/doc/effective_go.html#slices">Effective Go</a>）。</p>
+<p>因为切片是多字结构，而不是指针，所以切片操作不需要分配内存，甚至不需要分配切片头，切片头通常可以保留在堆栈中。这种表示方法使得切片的使用与C语言中传递显式指针和长度对一样便宜。Go最初将切片表示为指向上图所示结构的指针，但这样做意味着每个切片操作都要分配一个新的内存对象。即使有一个快速的分配器，这也会给垃圾收集器带来很多不必要的工作，我们发现，就像上面字符串的情况一样，程序会避免切分操作而选择传递显式索引。去掉中介和分配，使得切片的成本足够低，在大多数情况下可以避免传递显式索引。</p>
+<h2 id="new-与-make">New 与 Make</h2>
+<p>Go有两个数据结构创建函数：<code>new</code>和<code>make</code>。这种区别是早期常见的混淆点，但似乎很快就变得自然了。基本的区别是<code>new(T)</code>返回一个<code>*T</code>，一个Go程序可以隐式解除引用的指针（图中的黑色指针），而<code>make(T, args)</code>返回一个普通的<code>T</code>，不是一个指针。通常这个<code>T</code>里面有一些隐式指针（图中的灰色指针）。<code>New</code>返回一个指向归零内存的指针，而<code>make</code>返回一个复杂的结构。</p>
+<p><img src="/images/go/godata4.png" alt="new-type"></p>
+<p>有一种方法可以将这两者统一起来，但这将是对C和C++传统的重大突破：定义<code>make(*T)</code>来返回一个指向新分配的<code>T</code>的指针，这样，当前的<code>new(Point)</code>将被写成<code>make(*Point)</code>。我们尝试了几天，但认为这与人们对分配函数的期望差别太大。</p>
+<h2 id="即将到来">即将到来&hellip;</h2>
+<p>这篇文章已经有点长了。接口值、映射和通道将不得不等待未来的文章。</p>
+</article>
               </div>
             </div>
           </div>
