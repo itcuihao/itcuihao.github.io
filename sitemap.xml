@@ -2,25 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cuihao.fun/post/go-data-structures/</loc>
-    <lastmod>2022-06-16T00:25:06+08:00</lastmod>
-  </url><url>
     <loc>https://cuihao.fun/categories/</loc>
+    <lastmod>2022-06-24T08:39:11+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/</loc>
+    <lastmod>2022-06-24T08:39:11+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/post/</loc>
+    <lastmod>2022-06-24T08:39:11+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/tags/skill/</loc>
+    <lastmod>2022-06-24T08:39:11+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/categories/skill/</loc>
+    <lastmod>2022-06-24T08:39:11+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/tags/</loc>
+    <lastmod>2022-06-24T08:39:11+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/post/daily-use-skill/</loc>
+    <lastmod>2022-06-24T08:39:11+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/post/go-data-structures/</loc>
     <lastmod>2022-06-16T00:25:06+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/tags/go/</loc>
     <lastmod>2022-06-16T00:25:06+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/categories/go/</loc>
-    <lastmod>2022-06-16T00:25:06+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/</loc>
-    <lastmod>2022-06-16T00:25:06+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/post/</loc>
-    <lastmod>2022-06-16T00:25:06+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/tags/</loc>
     <lastmod>2022-06-16T00:25:06+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/tags/%E8%AF%91/</loc>
