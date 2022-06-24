@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>skill on haoc7</title>
+    <link>https://cuihao.fun/categories/skill/</link>
+    <description>Recent content in skill on haoc7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn-zh</language>
+    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Fri, 24 Jun 2022 00:22:20 +0800</lastBuildDate><atom:link href="https://cuihao.fun/categories/skill/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>日常使用技巧</title>
+      <link>https://cuihao.fun/post/daily-use-skill/</link>
+      <pubDate>Fri, 24 Jun 2022 00:22:20 +0800</pubDate>
+      
+      <guid>https://cuihao.fun/post/daily-use-skill/</guid>
+      <description>日常生活工作中，常用的一些软件技巧，记录备忘</description>
+    </item>
+    
+  </channel>
+</rss>
