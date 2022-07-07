@@ -2,26 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://cuihao.fun/post/hugo-update/</loc>
+    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
+  </url><url>
     <loc>https://cuihao.fun/categories/</loc>
-    <lastmod>2022-07-01T19:54:06+08:00</lastmod>
+    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/</loc>
-    <lastmod>2022-07-01T19:54:06+08:00</lastmod>
+    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/tags/hugo/</loc>
+    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/categories/hugo/</loc>
+    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/post/</loc>
-    <lastmod>2022-07-01T19:54:06+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/tags/skill/</loc>
-    <lastmod>2022-07-01T19:54:06+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/categories/skill/</loc>
-    <lastmod>2022-07-01T19:54:06+08:00</lastmod>
+    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/tags/</loc>
-    <lastmod>2022-07-01T19:54:06+08:00</lastmod>
+    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/tags/skill/</loc>
+    <lastmod>2022-07-01T23:07:04+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/categories/skill/</loc>
+    <lastmod>2022-07-01T23:07:04+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/post/daily-use-skill/</loc>
-    <lastmod>2022-07-01T19:54:06+08:00</lastmod>
+    <lastmod>2022-07-01T23:07:04+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/post/go-data-structures/</loc>
     <lastmod>2022-06-16T00:25:06+08:00</lastmod>
@@ -114,9 +123,6 @@
     <lastmod>2021-12-13T10:41:45+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/post/%E6%A0%91%E4%B8%AD%E4%B8%A4%E4%B8%AA%E8%8A%82%E7%82%B9%E7%9A%84%E6%9C%80%E4%BD%8E%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88/</loc>
-    <lastmod>2021-12-13T10:41:45+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/tags/hugo/</loc>
     <lastmod>2021-12-13T10:41:45+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/post/win10-install-hugo/</loc>

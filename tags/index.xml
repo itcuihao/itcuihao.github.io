@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 24 Jun 2022 00:22:20 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 07 Jul 2022 07:48:44 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hugo</title>
+      <link>https://cuihao.fun/tags/hugo/</link>
+      <pubDate>Thu, 07 Jul 2022 07:48:44 +0800</pubDate>
+      
+      <guid>https://cuihao.fun/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>skill</title>
       <link>https://cuihao.fun/tags/skill/</link>
@@ -131,15 +140,6 @@
       <pubDate>Sun, 21 Apr 2019 19:35:37 +0800</pubDate>
       
       <guid>https://cuihao.fun/tags/tree/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://cuihao.fun/tags/hugo/</link>
-      <pubDate>Sun, 14 Apr 2019 10:47:50 +0800</pubDate>
-      
-      <guid>https://cuihao.fun/tags/hugo/</guid>
       <description></description>
     </item>
     
