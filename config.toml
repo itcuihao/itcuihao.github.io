@@ -1,26 +1,71 @@
-baseURL = "http://cuihao.fun"
+baseURL = "https://cuihao.fun"
 languageCode = "cn-zh"
 title = "haoc7"
-theme = "editor-theme"
+# theme = "editor-theme"
+theme = "github-style"
 copyright = "Copyright (c) 2018 -, haoc7; all rights reserved."
-canonifyurls = true
+# canonifyurls = true
+# 限制页数
 paginate = 7
 
 #限制摘要长度
 summarylength = 80
 hasCJKLanguage = true
 
-#paginate = 5 # 限制页数
-
 googleAnalytics = "UA-123164534-1"
 
 [author]
     name = "我的名字叫浩仔丶"
-[params]
-    disqusShortname = "haoc7"
 
 [blackfriday]
   angledQuotes = true
   fractions = false
   plainIDAnchors = false
   extensions = ["hardLineBreak", "tables"]
+
+[params]
+    # 多说评论，现已经去掉 
+    # disqusShortname = "haoc7"
+    github = "itcuihao"
+    twitter = "itcuihao"
+    lastmod = true
+    favicon = "/images/avatar.png"
+    email = "itcuihao@gmail.com"
+    url = "https://cuihao.fun"
+    rss = true
+  
+  # gitalk 配置格式
+  # enableGitalk = true
+  # [params.gitalk]
+  #   clientID = "1c44abb0d95290f10a13" 
+  #   clientSecret = "ed009342e7b26963fe38493f1d9a1091fb0054bc" 
+  #   repo = "blog"
+  #   owner = "itcuihao"
+  #   admin = "itcuihao"
+  #   id = "location.pathname"
+  #   labels = "gitalk"
+  #   perPage = 15
+  #   pagerDirection = "last"
+  #   createIssueManually = true
+  #   distractionFreeMode = false
+
+  # param 添加 link
+  #   [[params.links]]
+  #     title = "Link"
+  #     href = "http://itcuihao/lovechun"
+  #   [[params.links]]
+  #     title = "Link2"
+  #     href = "https://cuihao.fun"
+  #     icon = "https://avatars.githubusercontent.com/u/9942270?s=400&u=ca8352a3ee9dd97d69efe0a331bdd7be42cd2e58&v=4"
+
+  ## 配置 utteranc评论,教程参考 https://utteranc.es/
+  [params.utteranc]
+    enable = true
+    owner = "itcuihao"
+    repo = "blog"
+    issueTerm = "pathname"
+    theme = "icy-dark"
+
+[frontmatter]
+  lastmod = ["lastmod", ":fileModTime", ":default"]
+

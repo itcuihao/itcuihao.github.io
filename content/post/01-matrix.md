@@ -4,6 +4,7 @@ date: 2020-04-19T19:40:53+08:00
 draft: false
 categories: ["Algorithms"]
 tags: ["Leetcode", "BFS"]
+summary: "leetcode 542"
 ---
 
 ```text
