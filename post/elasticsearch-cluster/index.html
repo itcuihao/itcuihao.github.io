@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="环境准备 注意需要将.env和docker-compose.yml放在同一文件夹下 .env .env文件设置运行Docker-compose.yml配置文件时使用的环境变" />
+  content="用Docker搭建Elasticsearch Cluster" />
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
@@ -28,7 +28,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Elasticsearch Cluster Docker方式搭建 - haoc7" />
 <meta name="twitter:description"
-  content="环境准备 注意需要将.env和docker-compose.yml放在同一文件夹下 .env .env文件设置运行Docker-compose.yml配置文件时使用的环境变" />
+  content="用Docker搭建Elasticsearch Cluster" />
 <meta name="twitter:site" content="https://cuihao.fun" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -38,7 +38,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Elasticsearch Cluster Docker方式搭建 - haoc7">
 <meta property="og:description"
-  content="环境准备 注意需要将.env和docker-compose.yml放在同一文件夹下 .env .env文件设置运行Docker-compose.yml配置文件时使用的环境变" />
+  content="用Docker搭建Elasticsearch Cluster" />
 <meta property="og:url" content="https://cuihao.fun/post/elasticsearch-cluster/" />
 <meta property="og:site_name" content="Elasticsearch Cluster Docker方式搭建" />
 <meta property="og:image"
@@ -151,9 +151,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 14 Aug 2022 18:55:29 &#43;0800"
+                  Modified <relative-time datetime="Thu, 18 Aug 2022 18:52:58 &#43;0800"
                     class="no-wrap">
-                    Sun, 14 Aug 2022 18:55:29 &#43;0800</relative-time>
+                    Thu, 18 Aug 2022 18:52:58 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -183,7 +183,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1244 Words
+                      1756 Words
                     
 
                   </div>
@@ -213,7 +213,7 @@
                     </header>
                     <nav id="TableOfContents">
   <ul>
-    <li><a href="#环境准备">环境准备</a>
+    <li><a href="#环境准备有密码">环境准备(有密码)</a>
       <ul>
         <li><a href="#env">.env</a></li>
         <li><a href="#docker-composeyml">docker-compose.yml</a></li>
@@ -225,11 +225,13 @@
         <li><a href="#其他问题">其他问题</a></li>
       </ul>
     </li>
+    <li><a href="#部署无密码集群">部署无密码集群</a></li>
   </ul>
 </nav>
-                  </aside><h2 id="环境准备">环境准备</h2>
+                  </aside><h2 id="环境准备有密码">环境准备(有密码)</h2>
 <ul>
 <li>注意需要将<code>.env</code>和<code>docker-compose.yml</code>放在同一文件夹下</li>
+<li><strong>此处为有密码的配置，无密码的在后面</strong></li>
 </ul>
 <h3 id="env">.env</h3>
 <blockquote>
@@ -556,6 +558,198 @@ Enter host password for user 'elastic':
   },
   &quot;tagline&quot; : &quot;You Know, for Search&quot;
 }
+</code></pre><h2 id="部署无密码集群">部署无密码集群</h2>
+<p>假如部署了带密码的集群，那就先删掉之前部署</p>
+<ul>
+<li>如果不需要删除数据</li>
+</ul>
+<p>在docker-compose.yml文件所在目录执行<code>docker-compose down</code>。</p>
+<pre tabindex="0"><code>sdev@n30-03-10:/data01/elasticsearch-8.3.3-docker$ sudo docker-compose down
+Stopping push_kibana_1 ... done
+Stopping push_es03_1   ... done
+Stopping push_es02_1   ... done
+Stopping push_es01_1   ... done
+Removing push_kibana_1 ... done
+Removing push_es03_1   ... done
+Removing push_es02_1   ... done
+Removing push_es01_1   ... done
+Removing push_setup_1  ... done
+Removing network push_default
+</code></pre><ul>
+<li>如果要删除之前部署的数据文件</li>
+</ul>
+<pre tabindex="0"><code>sdev@n30-03-10:/data01/elasticsearch-8.3.3-nopass$ sudo docker volume ls
+DRIVER              VOLUME NAME
+local               push_certs
+local               push_esdata01
+local               push_esdata02
+local               push_esdata03
+local               push_kibanadata
+
+# 删除命令
+docker volume rm push_certs
+...
+</code></pre><p>修改文件<code>.env</code></p>
+<pre tabindex="0"><code># elastic password
+#ELASTIC_PASSWORD=123456
+
+# kibana password
+KIBANA_PASSWORD=abcdefg
+
+# es version
+STACK_VERSION=8.3.3
+
+# cluster name
+CLUSTER_NAME=elasticsearch-8.3.3-push
+
+# license choose basic
+LICENSE=basic
+
+# es port
+ES_PORT=9200
+
+# kibana port
+KIBANA_PORT=5601
+
+# es mem limit
+MEM_LIMIT=4294967296
+
+# compose name
+COMPOSE_PROJECT_NAME=push
+</code></pre><p>修改<code>docker-compose.yml</code>文件</p>
+<pre tabindex="0"><code>version: &quot;2.2&quot;
+
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
+    ports:
+      - ${ES_PORT}:9200
+    environment:
+      - node.name=es01
+      - cluster.name=${CLUSTER_NAME}
+      - cluster.initial_master_nodes=es01,es02,es03
+      - discovery.seed_hosts=es02,es03
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+    mem_limit: ${MEM_LIMIT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        [
+          &quot;CMD-SHELL&quot;,
+          &quot;curl -s http://localhost:9200 | grep -q 'missing authentication credentials'&quot;,
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+  es02:
+    depends_on:
+      - es01
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    volumes:
+      - esdata02:/usr/share/elasticsearch/data
+    environment:
+      - node.name=es02
+      - cluster.name=${CLUSTER_NAME}
+      - cluster.initial_master_nodes=es01,es02,es03
+      - discovery.seed_hosts=es01,es03
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+    mem_limit: ${MEM_LIMIT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        [
+          &quot;CMD-SHELL&quot;,
+          &quot;curl -s http://localhost:9200 | grep -q 'missing authentication credentials'&quot;,
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+  es03:
+    depends_on:
+      - es02
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    volumes:
+      - esdata03:/usr/share/elasticsearch/data
+    environment:
+      - node.name=es03
+      - cluster.name=${CLUSTER_NAME}
+      - cluster.initial_master_nodes=es01,es02,es03
+      - discovery.seed_hosts=es01,es02
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.security.transport.ssl.enabled=false
+    mem_limit: ${MEM_LIMIT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    healthcheck:
+      test:
+        [
+          &quot;CMD-SHELL&quot;,
+          &quot;curl -s http://localhost:9200 | grep -q 'missing authentication credentials'&quot;,
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    volumes:
+      - kibanadata:/usr/share/kibana/data
+    ports:
+      - ${KIBANA_PORT}:5601
+    environment:
+      - SERVERNAME=kibana
+      - ELASTICSEARCH_HOSTS=http://es01:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+    mem_limit: ${MEM_LIMIT}
+    healthcheck:
+      test:
+        [
+          &quot;CMD-SHELL&quot;,
+          &quot;curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'&quot;,
+        ]
+      interval: 10s
+      timeout: 10s
+      retries: 120
+
+volumes:
+  certs:
+    driver: local
+  esdata01:
+    driver: local
+  esdata02:
+    driver: local
+  esdata03:
+    driver: local
+  kibanadata:
+    driver: local
+</code></pre><p>然后启动</p>
+<pre tabindex="0"><code>sdev@n30-03-10:/data01/elasticsearch-8.3.3-nopass$ sudo docker-compose up -d
+Creating network &quot;push_default&quot; with the default driver
+Creating push_kibana_1 ... done
+Creating push_es01_1   ... done
+Creating push_es02_1   ... done
+Creating push_es03_1   ... done
 </code></pre></article>
               </div>
             </div>

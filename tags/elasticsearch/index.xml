@@ -14,7 +14,7 @@
       <pubDate>Tue, 09 Aug 2022 18:49:28 +0800</pubDate>
       
       <guid>https://cuihao.fun/post/elasticsearch-cluster/</guid>
-      <description>环境准备 注意需要将.env和docker-compose.yml放在同一文件夹下 .env .env文件设置运行Docker-compose.yml配置文件时使用的环境变</description>
+      <description>用Docker搭建Elasticsearch Cluster</description>
     </item>
     
   </channel>
