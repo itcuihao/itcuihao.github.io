@@ -151,9 +151,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 18 Aug 2022 18:52:58 &#43;0800"
+                  Modified <relative-time datetime="Thu, 18 Aug 2022 19:02:33 &#43;0800"
                     class="no-wrap">
-                    Thu, 18 Aug 2022 18:52:58 &#43;0800</relative-time>
+                    Thu, 18 Aug 2022 19:02:33 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -617,133 +617,133 @@ MEM_LIMIT=4294967296
 # compose name
 COMPOSE_PROJECT_NAME=push
 </code></pre><p>修改<code>docker-compose.yml</code>文件</p>
-<pre tabindex="0"><code>version: &quot;2.2&quot;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;2.2&#34;</span>
 
-services:
-  es01:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
-    volumes:
-      - esdata01:/usr/share/elasticsearch/data
-    ports:
-      - ${ES_PORT}:9200
-    environment:
-      - node.name=es01
-      - cluster.name=${CLUSTER_NAME}
-      - cluster.initial_master_nodes=es01,es02,es03
-      - discovery.seed_hosts=es02,es03
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - xpack.security.http.ssl.enabled=false
-      - xpack.security.transport.ssl.enabled=false
-    mem_limit: ${MEM_LIMIT}
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    healthcheck:
-      test:
+<span style="color:#f92672">services</span>:
+  <span style="color:#f92672">es01</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">esdata01:/usr/share/elasticsearch/data</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#ae81ff">${ES_PORT}:9200</span>
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">node.name=es01</span>
+      - <span style="color:#ae81ff">cluster.name=${CLUSTER_NAME}</span>
+      - <span style="color:#ae81ff">cluster.initial_master_nodes=es01,es02,es03</span>
+      - <span style="color:#ae81ff">discovery.seed_hosts=es02,es03</span>
+      - <span style="color:#ae81ff">bootstrap.memory_lock=true</span>
+      - <span style="color:#ae81ff">xpack.security.enabled=false</span>
+      - <span style="color:#ae81ff">xpack.security.http.ssl.enabled=false</span>
+      - <span style="color:#ae81ff">xpack.security.transport.ssl.enabled=false</span>
+    <span style="color:#f92672">mem_limit</span>: <span style="color:#ae81ff">${MEM_LIMIT}</span>
+    <span style="color:#f92672">ulimits</span>:
+      <span style="color:#f92672">memlock</span>:
+        <span style="color:#f92672">soft</span>: -<span style="color:#ae81ff">1</span>
+        <span style="color:#f92672">hard</span>: -<span style="color:#ae81ff">1</span>
+    <span style="color:#f92672">healthcheck</span>:
+      <span style="color:#f92672">test</span>:
         [
-          &quot;CMD-SHELL&quot;,
-          &quot;curl -s http://localhost:9200 | grep -q 'missing authentication credentials'&quot;,
+          <span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>,
+          <span style="color:#e6db74">&#34;curl -s http://localhost:9200 | grep -q &#39;missing authentication credentials&#39;&#34;</span>,
         ]
-      interval: 10s
-      timeout: 10s
-      retries: 120
+      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">120</span>
 
-  es02:
-    depends_on:
-      - es01
-    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
-    volumes:
-      - esdata02:/usr/share/elasticsearch/data
-    environment:
-      - node.name=es02
-      - cluster.name=${CLUSTER_NAME}
-      - cluster.initial_master_nodes=es01,es02,es03
-      - discovery.seed_hosts=es01,es03
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - xpack.security.http.ssl.enabled=false
-      - xpack.security.transport.ssl.enabled=false
-    mem_limit: ${MEM_LIMIT}
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    healthcheck:
-      test:
+  <span style="color:#f92672">es02</span>:
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">es01</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">esdata02:/usr/share/elasticsearch/data</span>
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">node.name=es02</span>
+      - <span style="color:#ae81ff">cluster.name=${CLUSTER_NAME}</span>
+      - <span style="color:#ae81ff">cluster.initial_master_nodes=es01,es02,es03</span>
+      - <span style="color:#ae81ff">discovery.seed_hosts=es01,es03</span>
+      - <span style="color:#ae81ff">bootstrap.memory_lock=true</span>
+      - <span style="color:#ae81ff">xpack.security.enabled=false</span>
+      - <span style="color:#ae81ff">xpack.security.http.ssl.enabled=false</span>
+      - <span style="color:#ae81ff">xpack.security.transport.ssl.enabled=false</span>
+    <span style="color:#f92672">mem_limit</span>: <span style="color:#ae81ff">${MEM_LIMIT}</span>
+    <span style="color:#f92672">ulimits</span>:
+      <span style="color:#f92672">memlock</span>:
+        <span style="color:#f92672">soft</span>: -<span style="color:#ae81ff">1</span>
+        <span style="color:#f92672">hard</span>: -<span style="color:#ae81ff">1</span>
+    <span style="color:#f92672">healthcheck</span>:
+      <span style="color:#f92672">test</span>:
         [
-          &quot;CMD-SHELL&quot;,
-          &quot;curl -s http://localhost:9200 | grep -q 'missing authentication credentials'&quot;,
+          <span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>,
+          <span style="color:#e6db74">&#34;curl -s http://localhost:9200 | grep -q &#39;missing authentication credentials&#39;&#34;</span>,
         ]
-      interval: 10s
-      timeout: 10s
-      retries: 120
+      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">120</span>
 
-  es03:
-    depends_on:
-      - es02
-    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
-    volumes:
-      - esdata03:/usr/share/elasticsearch/data
-    environment:
-      - node.name=es03
-      - cluster.name=${CLUSTER_NAME}
-      - cluster.initial_master_nodes=es01,es02,es03
-      - discovery.seed_hosts=es01,es02
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - xpack.security.http.ssl.enabled=false
-      - xpack.security.transport.ssl.enabled=false
-    mem_limit: ${MEM_LIMIT}
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    healthcheck:
-      test:
+  <span style="color:#f92672">es03</span>:
+    <span style="color:#f92672">depends_on</span>:
+      - <span style="color:#ae81ff">es02</span>
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">esdata03:/usr/share/elasticsearch/data</span>
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">node.name=es03</span>
+      - <span style="color:#ae81ff">cluster.name=${CLUSTER_NAME}</span>
+      - <span style="color:#ae81ff">cluster.initial_master_nodes=es01,es02,es03</span>
+      - <span style="color:#ae81ff">discovery.seed_hosts=es01,es02</span>
+      - <span style="color:#ae81ff">bootstrap.memory_lock=true</span>
+      - <span style="color:#ae81ff">xpack.security.enabled=false</span>
+      - <span style="color:#ae81ff">xpack.security.http.ssl.enabled=false</span>
+      - <span style="color:#ae81ff">xpack.security.transport.ssl.enabled=false</span>
+    <span style="color:#f92672">mem_limit</span>: <span style="color:#ae81ff">${MEM_LIMIT}</span>
+    <span style="color:#f92672">ulimits</span>:
+      <span style="color:#f92672">memlock</span>:
+        <span style="color:#f92672">soft</span>: -<span style="color:#ae81ff">1</span>
+        <span style="color:#f92672">hard</span>: -<span style="color:#ae81ff">1</span>
+    <span style="color:#f92672">healthcheck</span>:
+      <span style="color:#f92672">test</span>:
         [
-          &quot;CMD-SHELL&quot;,
-          &quot;curl -s http://localhost:9200 | grep -q 'missing authentication credentials'&quot;,
+          <span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>,
+          <span style="color:#e6db74">&#34;curl -s http://localhost:9200 | grep -q &#39;missing authentication credentials&#39;&#34;</span>,
         ]
-      interval: 10s
-      timeout: 10s
-      retries: 120
+      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">120</span>
 
-  kibana:
-    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
-    volumes:
-      - kibanadata:/usr/share/kibana/data
-    ports:
-      - ${KIBANA_PORT}:5601
-    environment:
-      - SERVERNAME=kibana
-      - ELASTICSEARCH_HOSTS=http://es01:9200
-      - ELASTICSEARCH_USERNAME=kibana_system
-      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
-    mem_limit: ${MEM_LIMIT}
-    healthcheck:
-      test:
+  <span style="color:#f92672">kibana</span>:
+    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">docker.elastic.co/kibana/kibana:${STACK_VERSION}</span>
+    <span style="color:#f92672">volumes</span>:
+      - <span style="color:#ae81ff">kibanadata:/usr/share/kibana/data</span>
+    <span style="color:#f92672">ports</span>:
+      - <span style="color:#ae81ff">${KIBANA_PORT}:5601</span>
+    <span style="color:#f92672">environment</span>:
+      - <span style="color:#ae81ff">SERVERNAME=kibana</span>
+      - <span style="color:#ae81ff">ELASTICSEARCH_HOSTS=http://es01:9200</span>
+      - <span style="color:#ae81ff">ELASTICSEARCH_USERNAME=kibana_system</span>
+      - <span style="color:#ae81ff">ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}</span>
+    <span style="color:#f92672">mem_limit</span>: <span style="color:#ae81ff">${MEM_LIMIT}</span>
+    <span style="color:#f92672">healthcheck</span>:
+      <span style="color:#f92672">test</span>:
         [
-          &quot;CMD-SHELL&quot;,
-          &quot;curl -s -I http://localhost:5601 | grep -q 'HTTP/1.1 302 Found'&quot;,
+          <span style="color:#e6db74">&#34;CMD-SHELL&#34;</span>,
+          <span style="color:#e6db74">&#34;curl -s -I http://localhost:5601 | grep -q &#39;HTTP/1.1 302 Found&#39;&#34;</span>,
         ]
-      interval: 10s
-      timeout: 10s
-      retries: 120
+      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
+      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">120</span>
 
-volumes:
-  certs:
-    driver: local
-  esdata01:
-    driver: local
-  esdata02:
-    driver: local
-  esdata03:
-    driver: local
-  kibanadata:
-    driver: local
-</code></pre><p>然后启动</p>
+<span style="color:#f92672">volumes</span>:
+  <span style="color:#f92672">certs</span>:
+    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">local</span>
+  <span style="color:#f92672">esdata01</span>:
+    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">local</span>
+  <span style="color:#f92672">esdata02</span>:
+    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">local</span>
+  <span style="color:#f92672">esdata03</span>:
+    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">local</span>
+  <span style="color:#f92672">kibanadata</span>:
+    <span style="color:#f92672">driver</span>: <span style="color:#ae81ff">local</span>
+</code></pre></div><p>然后启动</p>
 <pre tabindex="0"><code>sdev@n30-03-10:/data01/elasticsearch-8.3.3-nopass$ sudo docker-compose up -d
 Creating network &quot;push_default&quot; with the default driver
 Creating push_kibana_1 ... done
