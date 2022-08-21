@@ -2,25 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cuihao.fun/post/hugo-update/</loc>
-    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
-  </url><url>
     <loc>https://cuihao.fun/categories/</loc>
-    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
+    <lastmod>2022-08-18T19:02:33+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/tags/elasticsearch/</loc>
+    <lastmod>2022-08-18T19:02:33+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/categories/elasticsearch/</loc>
+    <lastmod>2022-08-18T19:02:33+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/post/elasticsearch-cluster/</loc>
+    <lastmod>2022-08-18T19:02:33+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/</loc>
+    <lastmod>2022-08-18T19:02:33+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/post/</loc>
+    <lastmod>2022-08-18T19:02:33+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/tags/</loc>
+    <lastmod>2022-08-18T19:02:33+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2022-07-22T18:05:15+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</loc>
+    <lastmod>2022-07-22T18:05:15+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/post/house-loan/</loc>
+    <lastmod>2022-07-22T17:54:23+08:00</lastmod>
+  </url><url>
+    <loc>https://cuihao.fun/post/hugo-update/</loc>
     <lastmod>2022-07-07T08:01:12+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/tags/hugo/</loc>
     <lastmod>2022-07-07T08:01:12+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/categories/hugo/</loc>
-    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/post/</loc>
-    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/tags/</loc>
     <lastmod>2022-07-07T08:01:12+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/tags/skill/</loc>
@@ -134,12 +152,6 @@
     <loc>https://cuihao.fun/post/2018%E5%B9%B4%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2022-06-09T23:49:06+08:00</lastmod>
   </url><url>
-    <loc>https://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2022-06-14T00:01:15+08:00</lastmod>
-  </url><url>
-    <loc>https://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2022-06-14T00:01:15+08:00</lastmod>
-  </url><url>
     <loc>https://cuihao.fun/post/%E4%B8%89%E5%90%91%E5%88%87%E5%88%86%E7%9A%84%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</loc>
     <lastmod>2021-12-13T10:41:45+08:00</lastmod>
   </url><url>
@@ -147,7 +159,7 @@
     <lastmod>2021-12-13T10:41:45+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/post/%E6%89%BE%E6%88%BF%E8%AE%B0/</loc>
-    <lastmod>2021-12-13T10:41:45+08:00</lastmod>
+    <lastmod>2022-07-22T18:05:15+08:00</lastmod>
   </url><url>
     <loc>https://cuihao.fun/post/%E4%B9%B0%E6%88%BF%E8%AE%B0/</loc>
     <lastmod>2022-06-14T00:01:15+08:00</lastmod>

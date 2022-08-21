@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 07 Jul 2022 07:48:44 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Aug 2022 18:49:28 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://cuihao.fun/tags/elasticsearch/</link>
+      <pubDate>Tue, 09 Aug 2022 18:49:28 +0800</pubDate>
+      
+      <guid>https://cuihao.fun/tags/elasticsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>日常</title>
+      <link>https://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</link>
+      <pubDate>Fri, 22 Jul 2022 16:56:52 +0800</pubDate>
+      
+      <guid>https://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>hugo</title>
       <link>https://cuihao.fun/tags/hugo/</link>
@@ -140,15 +158,6 @@
       <pubDate>Sun, 21 Apr 2019 19:35:37 +0800</pubDate>
       
       <guid>https://cuihao.fun/tags/tree/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>日常</title>
-      <link>https://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</link>
-      <pubDate>Sat, 05 Jan 2019 10:05:37 +0800</pubDate>
-      
-      <guid>https://cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</guid>
       <description></description>
     </item>
     

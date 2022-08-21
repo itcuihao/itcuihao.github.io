@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 07 Jul 2022 07:48:44 +0800</lastBuildDate><atom:link href="https://cuihao.fun/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Aug 2022 18:49:28 +0800</lastBuildDate><atom:link href="https://cuihao.fun/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch Cluster Docker方式搭建</title>
+      <link>https://cuihao.fun/post/elasticsearch-cluster/</link>
+      <pubDate>Tue, 09 Aug 2022 18:49:28 +0800</pubDate>
+      
+      <guid>https://cuihao.fun/post/elasticsearch-cluster/</guid>
+      <description>用Docker搭建Elasticsearch Cluster</description>
+    </item>
+    
+    <item>
+      <title>要不要提前还房贷</title>
+      <link>https://cuihao.fun/post/house-loan/</link>
+      <pubDate>Fri, 22 Jul 2022 16:56:52 +0800</pubDate>
+      
+      <guid>https://cuihao.fun/post/house-loan/</guid>
+      <description>作为利率6个点的人，答案毫无疑问，那贷款期限不变，减少月供或缩短贷款年限，月供不变，该如何选择？</description>
+    </item>
+    
     <item>
       <title>Blog更新汇总</title>
       <link>https://cuihao.fun/post/hugo-update/</link>
@@ -167,7 +185,7 @@
       <pubDate>Sun, 26 Aug 2018 22:26:36 +0800</pubDate>
       
       <guid>https://cuihao.fun/post/%E6%89%BE%E6%88%BF%E8%AE%B0/</guid>
-      <description>2020-11-15 我又从南三环搬到北四环啦，上班距离由26公里缩短到8公里，对于自己的身体而言真是可喜可贺啊。 对于这次找房子，由于有和北京小强相处的两年经验，深知小强的藏身之处</description>
+      <description>2022-04-23 惠新西街附近的小两居，都7000左右了，6500以下的都很少了，无奈啊，接受中介涨价，没办法，搬家不如不搬，想住大一些的，只能往远处搬了。这边交通啥的还算便利</description>
     </item>
     
     <item>
