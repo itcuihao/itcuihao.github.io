@@ -2,7 +2,8 @@ baseURL = "https://cuihao.fun"
 languageCode = "cn-zh"
 title = "haoc7"
 # theme = "editor-theme"
-theme = "github-style"
+# git@github.com:MeiK2333/github-style.git
+theme = "github-style" 
 copyright = "Copyright (c) 2018 -, haoc7; all rights reserved."
 # canonifyurls = true
 # 限制页数
