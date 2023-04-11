@@ -1,4 +1,6 @@
 /public
+public/
+public/*
 .DS_Store
 .hugo_build.lock
-/themes
+themes/
