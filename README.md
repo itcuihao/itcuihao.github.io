@@ -8,3 +8,7 @@
 - 评论使用 [utteranc](https://utteranc.es/)
 - 部署使用 github actions
 
+
+---
+
+曾经的theme: ~~editor-theme~~
