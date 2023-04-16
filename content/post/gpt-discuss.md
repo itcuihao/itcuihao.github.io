@@ -33,3 +33,16 @@ from [阑夕](https://weibo.com/u/1560906700) 2023-04-13
 
 ---
 
+接入方式区别
+
+|官方接口|	ChatGPT网页版	|ChatGPT API|
+--|--|--
+官方开放，稳定性高	|由[acheong08](https://github.com/acheong08/ChatGPT-Proxy-V4)破解网页版协议接入|	由OpenAI官方开放|
+一次性回复，响应速度较快	|流式回复，响应速度较慢	|响应速度较快
+收费，0.02美元/千字	|免费|	收费，0.002美元/千字|
+GPT-3模型	|GPT-3.5模型	|GPT-3.5模型
+任何地区主机均可使用(疑似受到GFW影响)|	ChatGPT限制访问的区域使用有难度	|任何地区主机均可使用(疑似受到GFW影响)
+
+截止目前，20230417几种接入方式区别，来自[QChatGPT](https://github.com/RockChinQ/QChatGPT/wiki/%E5%AE%98%E6%96%B9%E6%8E%A5%E5%8F%A3%E3%80%81ChatGPT%E7%BD%91%E9%A1%B5%E7%89%88%E3%80%81ChatGPT-API%E5%8C%BA%E5%88%AB)
+
+---
