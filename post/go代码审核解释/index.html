@@ -1,602 +1,150 @@
-<!DOCTYPE html>
-<html lang="cn-zh">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <script type="application/javascript" src='https://cuihao.fun/js/theme-mode.js'></script>
-    <link rel="stylesheet" href='https://cuihao.fun/css/frameworks.min.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/github.min.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/github-style.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/light.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/dark.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/syntax.css' />
-    <title>[译]Go代码审查意见 - haoc7</title>
-    
-    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
-    
-    <meta name="theme-color" content="#1e2327">
-
-    
-    <meta name="description"
-  content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
-<meta name="keywords"
-  content='' />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/" />
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="[译]Go代码审查意见 - haoc7" />
-<meta name="twitter:description"
-  content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
-<meta name="twitter:site" content="https://cuihao.fun" />
-<meta name="twitter:creator" content="" />
-<meta name="twitter:image"
-  content="https://cuihao.fun">
-
-
-<meta property="og:type" content="article" />
-<meta property="og:title" content="[译]Go代码审查意见 - haoc7">
-<meta property="og:description"
-  content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。" />
-<meta property="og:url" content="https://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/" />
-<meta property="og:site_name" content="[译]Go代码审查意见" />
-<meta property="og:image"
-  content="https://cuihao.fun">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-
-<meta property="article:published_time" content="2022-06-11 09:49:33 &#43;0800 CST" />
-
-
-
-
-
-
-
-
-
-
-</head>
-
-<body>
-  <div style="position: relative">
-  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
-    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://cuihao.fun">
-        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
-          <path fill-rule="evenodd"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-          </path>
-        </svg>
-      </a>
-    </div>
-    <div class="Header-item d-md-none">
-      <button class="Header-link btn-link js-details-target" type="button"
-        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
-        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
-          <path fill-rule="evenodd"
-            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
-          </path>
-        </svg>
-      </button>
-    </div>
-    <div style="display: none;" id="header-search"
-      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
-      <div
-        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
-        <div class="position-relative">
-          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
-            autocomplete="off">
-            <label
-              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
-              <input type="text"
-                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
-                name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://cuihao.fun">
-            </label>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://cuihao.fun">
-        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
-          width="32">
-          <path fill-rule="evenodd"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-          </path>
-        </svg>
-      </a>
-    </div>
-    <div class="Header-item" style="margin-right: 0;">
-      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
-        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
-          version="1.1" width="16" height="16">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
-          </path>
-        </svg>
-      </a>
-    </div>
-  </header>
-</div>
-  
-
-<div>
-  <main>
-    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
-      <div class="px-0">
-        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
-          <div class="flex-auto min-width-0 width-fit mr-3">
-            <div class="d-flex">
-              <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://cuihao.fun">
-                  <img class=" avatar-user"
-                    src="https://cuihao.fun/images/avatar.png"
-                    width="32" height="32"></a>
-              </div>
-              <div class="d-flex flex-column">
-                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
-                  <span class="author">
-                    <a href="https://cuihao.fun"></a></span><span
-                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/">[译]Go代码审查意见</a></strong>
-                </h1>
-                <div class="note m-0">
-                  Created <relative-time datetime="Sat, 11 Jun 2022 09:49:33 &#43;0800"
-                    class="no-wrap">
-                    Sat, 11 Jun 2022 09:49:33 &#43;0800</relative-time>
-
-                  
-                  <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 12 Jun 2022 23:07:11 &#43;0800"
-                    class="no-wrap">
-                    Sun, 12 Jun 2022 23:07:11 &#43;0800</relative-time>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-lg px-3 new-discussion-timeline">
-      <div class="repository-content gist-content">
-        <div>
-          <div class="js-gist-file-update-container js-task-list-container file-box">
-            <div id="file-pytest" class="file my-2">
-              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
-                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
-                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    
-                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
-                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
-                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
-                      </svg>
-                    </summary>
-                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
-                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
-                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
-                        </div>
-                      </div>
-                    </details-menu>
-                      7252 Words
-                    
-
-                  </div>
-                  <div class="file-actions flex-order-2 pt-0">
-                    
-                    
-                    <a class="muted-link mr-3" href="/tags/go">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      Go
-                    </a>
-                    
-                    <a class="muted-link mr-3" href="/tags/wiki">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      wiki
-                    </a>
-                    
-                    <a class="muted-link mr-3" href="/tags/%E8%AF%91">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      译
-                    </a>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg">
-                  <aside>
-                    <header>
-                    <h1>[译]Go代码审查意见</h1>
-                    </header>
-                    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#格式化">格式化</a></li>
-    <li><a href="#上下文">上下文</a></li>
-    <li><a href="#复制">复制</a></li>
-    <li><a href="#rand加密">Rand加密</a></li>
-    <li><a href="#声明空切片">声明空切片</a></li>
-    <li><a href="#文档注释">文档注释</a></li>
-    <li><a href="#不使用恐慌">不使用恐慌</a></li>
-    <li><a href="#错误字符串">错误字符串</a></li>
-    <li><a href="#例子">例子</a></li>
-    <li><a href="#goroutine寿命">Goroutine寿命</a></li>
-    <li><a href="#处理错误">处理错误</a></li>
-    <li><a href="#导入">导入</a></li>
-    <li><a href="#导入空">导入空</a></li>
-    <li><a href="#导入点">导入点</a></li>
-    <li><a href="#带内错误">带内错误</a></li>
-    <li><a href="#缩进错误流程">缩进错误流程</a></li>
-    <li><a href="#首字母缩写">首字母缩写</a></li>
-    <li><a href="#接口">接口</a></li>
-    <li><a href="#行长度">行长度</a></li>
-    <li><a href="#混杂大写字母">混杂大写字母</a></li>
-    <li><a href="#命名返回参数">命名返回参数</a></li>
-    <li><a href="#裸返回">裸返回</a></li>
-    <li><a href="#包注释">包注释</a></li>
-    <li><a href="#传递值">传递值</a></li>
-    <li><a href="#接收者名称">接收者名称</a></li>
-    <li><a href="#接收器类型">接收器类型</a></li>
-    <li><a href="#有用的测试失败">有用的测试失败</a></li>
-    <li><a href="#变量名称">变量名称</a></li>
-  </ul>
-</nav>
-                  </aside><hr>
-<blockquote>
-<p>原文：<a href="https://github.com/golang/go/wiki/CodeReviewComments">CodeReviewComments</a></p>
-</blockquote>
-<blockquote>
-<p>自己水平有限，仅供参考，如有错误，请指正。联系方式可评论，或者邮件 <a href="mailto:itcuihao@gmail.com">itcuihao@gmail.com</a></p>
-</blockquote>
-<p>本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</p>
-<p>你可以把它看作是<a href="https://go.dev/doc/effective_go">Effective Go</a>的一个补充。</p>
-<p>与测试有关的其他评论可在<a href="https://github.com/golang/go/wiki/TestComments">Go Test Comments</a>找到。</p>
-<p>在编辑这个页面之前，请<a href="https://go.dev/issue/new?title=wiki%3A+CodeReviewComments+change&amp;body=&amp;labels=Documentation">讨论修改</a>，即使是小的修改。许多人都有意见，这里不是编辑战争的地方。</p>
-<h2 id="格式化">格式化</h2>
-<p>在你的代码上运行<a href="https://pkg.go.dev/cmd/gofmt/">gofmt</a>，可以自动修复大部分的机械风格问题。几乎所有的Go代码都使用gofmt。本文档的其余部分将讨论非机械式风格问题。</p>
-<p>另一种方法是使用<a href="https://pkg.go.dev/golang.org/x/tools/cmd/goimports">goimports</a>，它是 <code>gofmt</code>的超集，可以根据需要增加（和删除）导入行。</p>
-<!-- raw HTML omitted -->
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Request represents a request to run a command.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Request</span> <span style="color:#66d9ef">struct</span> { <span style="color:#f92672">...</span>
-
-<span style="color:#75715e">// Encode writes the JSON encoding of req to w.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Encode</span>(<span style="color:#a6e22e">wo</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Writer</span>, <span style="color:#a6e22e">req</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Request</span>) { <span style="color:#f92672">...</span>
-</code></pre></div><p>以此类推。</p>
-<h2 id="上下文">上下文</h2>
-<p>context.Context类型的值携带安全证书、跟踪信息、最后期限和取消信号，跨越API和进程的界限。Go程序在整个函数调用链中明确地传递Context，从传入的RPC和HTTP请求到传出的请求。</p>
-<p>大多数使用Context的函数应该接受它作为其第一个参数:</p>
-<pre tabindex="0"><code>func F(ctx context.Context, /* other arguments */) {}
-</code></pre><p>一个没有特定请求的函数可以使用context.Background()，但即使你认为不需要，也要在传递Context方面犯错。默认情况下是传递一个Context；只有在你有充分的理由说明它是错误的情况下才可以直接使用context.Background()。</p>
-<p>不要给结构类型添加Context成员；而是给该类型上需要传递Context的每个方法添加一个ctx参数。有一个例外是那些签名必须符合标准库或第三方库中的接口的方法。</p>
-<p>不要创建自定义的Context类型或在函数签名中使用其他的Context接口。</p>
-<p>如果你有应用数据需要传递，把它放在一个参数中，放在接收器中，放在全局中，或者，如果真的需要，可以放在Context值中。</p>
-<p>Context是不可改变的，所以可以传递同一个ctx，共享同一个截止日期、取消信号、凭证、父级跟踪等多个调用。</p>
-<h2 id="复制">复制</h2>
-<p>为了避免意外的别名，在从其他包中复制结构时要小心。例如，bytes.Buffer类型包含一个<code>[]byte</code>切片。如果你拷贝一个<code>Buffer</code>，拷贝中的片断可能会与原结构中的数组产生别名，导致后续的方法调用产生意想不到的效果。</p>
-<p>一般来说，如果一个<code>T</code>类型的值的方法与指针类型<code>*T</code>有关，就不要复制它。</p>
-<h2 id="rand加密">Rand加密</h2>
-<p>不要使用软件包<code>math/rand</code>来生成密钥，即使是用之便弃。不加种子，生成器是完全可预测的。用time.Nanoseconds()做种子，也只有几个比特的熵。相反，使用crypto/rand的Reader，如果你需要文本，打印成十六进制或base64。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;crypto/rand&#34;</span>
-	<span style="color:#75715e">// &#34;encoding/base64&#34;
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// &#34;encoding/hex&#34;
-</span><span style="color:#75715e"></span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
-)
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Key</span>() <span style="color:#66d9ef">string</span> {
-	<span style="color:#a6e22e">buf</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">byte</span>, <span style="color:#ae81ff">16</span>)
-	<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">buf</span>)
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		panic(<span style="color:#a6e22e">err</span>)  <span style="color:#75715e">// 超出随机性，绝不会发生
-</span><span style="color:#75715e"></span>	}
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;%x&#34;</span>, <span style="color:#a6e22e">buf</span>)
-	<span style="color:#75715e">// or hex.EncodeToString(buf)
-</span><span style="color:#75715e"></span>	<span style="color:#75715e">// or base64.StdEncoding.EncodeToString(buf)
-</span><span style="color:#75715e"></span>}
-</code></pre></div><h2 id="声明空切片">声明空切片</h2>
-<p>在声明空片时，最好选择</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">t</span> []<span style="color:#66d9ef">string</span> <span style="color:#75715e">// t==nil
-</span></code></pre></div><p>而不是</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">string</span>{} <span style="color:#75715e">// t!=nil
-</span></code></pre></div><p>前者声明的是一个空的切片值，而后者是非空的，但长度为零。它们在功能上是等价的&ndash;它们的<code>len</code>和<code>cap</code>都是0&ndash;但是首选风格应该是空切片。</p>
-<p>请注意，在有限的情况下，非0但0长度的切片是首选，比如在对JSON对象进行编码时（<code>nil</code>切片编码为<code>null</code>，而<code>[]string{}</code>编码为JSON数组<code>[]</code>）。</p>
-<p>在设计接口时，避免区分nil切片和非nil的零长度切片，因为这可能会导致微妙的编程错误。</p>
-<p>关于Go中nil的更多讨论，请参见Francesc Campoy的讲座<a href="https://www.youtube.com/watch?v=ynoY2xz-F8s">Understanding Nil</a>。</p>
-<h2 id="文档注释">文档注释</h2>
-<p>所有顶层的、导出的名字都应该有文档注释，正如非重要的未导出的类型或函数声明一样。关于注释惯例的更多信息，请参见<a href="https://go.dev/doc/effective_go#commentary">Effective Go Commentary</a>。</p>
-<h2 id="不使用恐慌">不使用恐慌</h2>
-<p>见<a href="https://go.dev/doc/effective_go#errors">Effective Go Errors</a>。不要在正常的错误处理中使用<code>panic</code>，使用错误和多个返回值。</p>
-<h2 id="错误字符串">错误字符串</h2>
-<p>错误字符串不应大写（除非以专有名词或缩略语开头），也不应以标点符号结尾，因为它们通常是在其他背景下打印的。也就是说，使用<code>fmt.Errorf(&quot;something bad&quot;)</code>而不是<code>fmt.Errorf(&quot;Something bad&quot;)</code>，这样<code>log.Printf(&quot;Reading %s: %v&quot;, filename, err)</code>的格式就不会在信息中间出现虚假的大写字母。这不适用于日志记录，因为日志记录是隐含的面向行的，并且不在其他消息内组合。</p>
-<h2 id="例子">例子</h2>
-<p>当添加一个新的包时，包括预期使用的例子：一个可运行的例子，或者一个展示完整调用序列的简单测试。</p>
-<p>阅读更多关于<a href="https://go.dev/blog/examples">可测试的Example()函数</a>。</p>
-<h2 id="goroutine寿命">Goroutine寿命</h2>
-<p>当你生成goroutine时，要清楚地说明它们何时（或是否）退出。</p>
-<p>goroutine可以通过阻塞通道发送或接收而泄漏：即使被阻塞的通道无法到达，垃圾收集器也不会终止一个goroutine。</p>
-<p>即使goroutine没有泄漏，当它们不再需要时，让它们继续飞行也会导致其他微妙的、难以诊断的问题。在封闭的通道上发送消息会引起恐慌。在 &ldquo;不需要结果之后&quot;修改仍在使用的输入，仍然会导致数据竞争。让goroutines在飞行中停留任意长的时间会导致不可预知的内存使用。</p>
-<p>尽量保持并发代码的简单性，使goroutine的寿命足够明显。如果这不可行，就记录下goroutines退出的时间和原因。</p>
-<h2 id="处理错误">处理错误</h2>
-<p>见<a href="https://go.dev/doc/effective_go#errors">Effective Go Errors</a>。不要使用<code>_</code>变量丢弃错误。如果一个函数返回一个错误，检查它以确保函数成功。处理错误，返回错误，或者，在真正特殊的情况下，使用<code>panic</code>。</p>
-<h2 id="导入">导入</h2>
-<p>避免重命名导入，除非是为了避免名称冲突；好的软件包名称不应该需要重命名。在发生碰撞的情况下，最好把本地的或项目特定的导入重命名。</p>
-<p>导入是按组织分组的，它们之间有空行。标准库包总是在第一组。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;fmt&#34;</span>
-	<span style="color:#e6db74">&#34;hash/adler32&#34;</span>
-	<span style="color:#e6db74">&#34;os&#34;</span>
-
-	<span style="color:#e6db74">&#34;github.com/foo/bar&#34;</span>
-	<span style="color:#e6db74">&#34;rsc.io/goversion/version&#34;</span>
-)
-</code></pre></div><p><a href="https://pkg.go.dev/golang.org/x/tools/cmd/goimports">goimports</a>会为你做这个。</p>
-<h2 id="导入空">导入空</h2>
-<p>只为其副作用而导入的包（使用 <code>import _ &quot;pkg&quot;</code> 语法）应该只在程序的主包中导入，或者在需要它们的测试中导入。</p>
-<h2 id="导入点">导入点</h2>
-<p><code>import .</code>形式在测试中可能很有用，由于循环依赖关系，不能成为被测试包的一部分。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">foo_test</span>
-
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;bar/testutil&#34;</span> <span style="color:#75715e">// also imports &#34;foo&#34;
-</span><span style="color:#75715e"></span>	. <span style="color:#e6db74">&#34;foo&#34;</span>
-)
-</code></pre></div><p>在这种情况下，测试文件不可能在包foo中，因为它使用了bar/testutil，它导入了foo。所以我们使用<code>import .</code>的形式，让文件假装是包foo的一部分，尽管它不是。除了这种情况，不要在你的程序中使用<code>import .</code>。它使程序更难阅读，因为它不清楚像Quux这样的名字是当前包中的顶级标识符还是导入包中的顶级标识符。</p>
-<h2 id="带内错误">带内错误</h2>
-<p>在C语言和类似语言中，函数返回-1或null这样的值是很常见的，以示错误或丢失结果。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Lookup返回key的值，如果没有key的映射，则返回&#34;&#34;。
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Lookup</span>(<span style="color:#a6e22e">key</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">string</span>
-
-<span style="color:#75715e">// 如果不检查带内错误值，就会导致错误。
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">Lookup</span>(<span style="color:#a6e22e">key</span>))  <span style="color:#75715e">//返回 &#34;解析失败的值&#34;，而不是 &#34;没有键的值&#34;
-</span></code></pre></div><p>Go对多个返回值的支持提供了一个更好的解决方案。与其要求客户检查带内的错误值，一个函数应该返回一个额外的值来表明其其他返回值是否有效。这个返回值可以是一个错误，或者在不需要解释时是一个布尔值。它应该是最终的返回值。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Lookup返回key的值，如果没有key的映射，则ok=false。
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Lookup</span>(<span style="color:#a6e22e">key</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">value</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">ok</span> <span style="color:#66d9ef">bool</span>)
-</code></pre></div><p>这可以防止调用者错误地使用返回结果。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">Lookup</span>(<span style="color:#a6e22e">key</span>))  <span style="color:#75715e">// 编译时错误
-</span></code></pre></div><p>并鼓励更健壮和可读的代码。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Lookup</span>(<span style="color:#a6e22e">key</span>)
-<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">ok</span> {
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;no value for %q&#34;</span>, <span style="color:#a6e22e">key</span>)
-}
-<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">value</span>)
-</code></pre></div><p>这个规则适用于导出的函数，但对未导出的函数也很有用。</p>
-<p>像<code>nil</code>、<code>&quot;&quot;</code>、<code>0</code>和<code>-1</code>这样的返回值，当它们是一个函数的有效结果时，也就是说，调用者不需要对它们进行与其他值不同的处理。</p>
-<p>一些标准库函数，如<code>strings</code>包中的函数，返回带内错误值。这大大简化了字符串处理的代码，但代价是要求程序员更加勤奋。一般来说<code>Go</code>代码应该为错误返回额外的值。</p>
-<h2 id="缩进错误流程">缩进错误流程</h2>
-<p>尽量使正常的代码路径保持最小的缩进，并缩进错误处理，首先处理它。这可以提高代码的可读性，因为它允许在视觉上快速扫描正常路径。</p>
-<p>例如，不要写:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-	<span style="color:#75715e">// 错误处理
-</span><span style="color:#75715e"></span>} <span style="color:#66d9ef">else</span> {
-	<span style="color:#75715e">// 正常代码
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>相反的，应该是：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-	<span style="color:#75715e">// 错误处理
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#75715e">// 或者continue等
-</span><span style="color:#75715e"></span>}
-<span style="color:#75715e">// 正常代码
-</span></code></pre></div><p>如果<code>if</code>语句有一个初始化语句，如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">f</span>(); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-	<span style="color:#75715e">// 错误处理
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span>
-} <span style="color:#66d9ef">else</span> {
-	<span style="color:#75715e">// 使用 x
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>那么这可能需要将短变量声明移到它自己的一行。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">f</span>()
-<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-	<span style="color:#75715e">// 错误处理
-</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span>
-}
-<span style="color:#75715e">// 使用 x
-</span></code></pre></div><h2 id="首字母缩写">首字母缩写</h2>
-<p>名称中的单词如果是首字母缩写或缩略语（如 “URL”或 “NATO”），其大小写要一致。例如，“URL”应显示为 “URL”或“url”（如 “urlPony”，或“URLPony”），而不是 “Url”。作为一个例子。ServeHTTP不是ServeHttp。对于有多个初始化“词” 的标识符，使用例如 “xmlHTTPRequest”或 “XMLHTTPRequest”。</p>
-<p>这个规则也适用于 &ldquo;ID&rdquo;，当它是 &ldquo;标识符 &ldquo;的简称时（这几乎是所有的情况，当它不是 &ldquo;自我&rdquo;、&ldquo;超我 &ldquo;中的 &ldquo;ID &ldquo;时），所以写 &ldquo;appID &ldquo;而不是 &ldquo;appId&rdquo;。</p>
-<p>由协议缓冲区编译器生成的代码不受这一规则影响。人写的代码要比机器写的代码有更高的标准。</p>
-<h2 id="接口">接口</h2>
-<p>Go接口通常属于使用接口类型值的包，而不是实现这些值的包。实现包应该返回具体的（通常是指针或结构体）类型：这样一来，新的方法可以被添加到实现中，而不需要大量的重构。</p>
-<p>不要在API的实现者一方定义接口，“为了嘲弄”；相反，要设计API，使其可以使用真正实现的公共API来测试。</p>
-<p>不要在使用之前就定义接口：如果没有一个真实的使用例子，就很难看出一个接口是否有必要，更不用说它应该包含哪些方法。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">consumer</span>  <span style="color:#75715e">// consumer.go
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Thinger</span> <span style="color:#66d9ef">interface</span> { <span style="color:#a6e22e">Thing</span>() <span style="color:#66d9ef">bool</span> }
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Foo</span>(<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">Thinger</span>) <span style="color:#66d9ef">string</span> { <span style="color:#960050;background-color:#1e0010">…</span> }
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">consumer</span> <span style="color:#75715e">// consumer_test.go
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">fakeThinger</span> <span style="color:#66d9ef">struct</span>{ <span style="color:#960050;background-color:#1e0010">…</span> }
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">fakeThinger</span>) <span style="color:#a6e22e">Thing</span>() <span style="color:#66d9ef">bool</span> { <span style="color:#960050;background-color:#1e0010">…</span> }
-<span style="color:#960050;background-color:#1e0010">…</span>
-<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">Foo</span>(<span style="color:#a6e22e">fakeThinger</span>{<span style="color:#960050;background-color:#1e0010">…</span>}) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;x&#34;</span> { <span style="color:#960050;background-color:#1e0010">…</span> }
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 不要这么做！！！
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">producer</span>
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Thinger</span> <span style="color:#66d9ef">interface</span> { <span style="color:#a6e22e">Thing</span>() <span style="color:#66d9ef">bool</span> }
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">defaultThinger</span> <span style="color:#66d9ef">struct</span>{ <span style="color:#960050;background-color:#1e0010">…</span> }
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">defaultThinger</span>) <span style="color:#a6e22e">Thing</span>() <span style="color:#66d9ef">bool</span> { <span style="color:#960050;background-color:#1e0010">…</span> }
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewThinger</span>() <span style="color:#a6e22e">Thinger</span> { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">defaultThinger</span>{ <span style="color:#960050;background-color:#1e0010">…</span> } }
-</code></pre></div><p>而是返回一个具体的类型，让消费者模拟生产者的实现。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">producer</span>
-
-<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Thinger</span> <span style="color:#66d9ef">struct</span>{ <span style="color:#960050;background-color:#1e0010">…</span> }
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">Thinger</span>) <span style="color:#a6e22e">Thing</span>() <span style="color:#66d9ef">bool</span> { <span style="color:#960050;background-color:#1e0010">…</span> }
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewThinger</span>() <span style="color:#a6e22e">Thinger</span> { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Thinger</span>{ <span style="color:#960050;background-color:#1e0010">…</span> } }
-</code></pre></div><h2 id="行长度">行长度</h2>
-<p>Go代码中没有严格的行长限制，但要避免令人不舒服的长行。同样地，如果行的长度更容易阅读，就不要添加换行符来保持短行，例如，如果它们是重复的。</p>
-<p>大多数时候，当人们“不自然地”换行时（在函数调用或函数声明的中间，或多或少，比如说，尽管周围有一些例外），如果他们有合理数量的参数和合理短的变量名称，换行是不必要的。长行似乎与长名字相伴，摆脱长名字有很大的帮助。</p>
-<p>换句话说，断行是因为你所写的内容的语义（作为一般规则），而不是因为行的长度。如果你发现这样做产生的行太长，那么改变名称或语义，你可能会得到一个好结果。</p>
-<p>实际上，这与关于一个函数应该有多长的建议完全一样。没有“永远不要让一个函数超过N行”的规则，但绝对存在一个太长的函数，以及太多重复的小函数，解决方法是改变函数边界的位置，而不是开始计算行数。</p>
-<h2 id="混杂大写字母">混杂大写字母</h2>
-<p>见<a href="https://go.dev/doc/effective_go#mixed-caps">Effective Go Mixed Caps</a>。即使打破了其他语言的惯例，这也适用。例如，一个未导出的常量是<code>maxLength</code>而不是<code>MaxLength</code>或<code>MAX_LENGTH</code>。</p>
-<p>另见<a href="https://github.com/golang/go/wiki/CodeReviewComments#initialisms">首字母缩写</a>。</p>
-<h2 id="命名返回参数">命名返回参数</h2>
-<p>考虑一下它在godoc中会是什么样子。命名返回参数如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span>) <span style="color:#a6e22e">Parent1</span>() (<span style="color:#a6e22e">node</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span>) {}
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span>) <span style="color:#a6e22e">Parent2</span>() (<span style="color:#a6e22e">node</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {}
-</code></pre></div><p>在godoc中会有重复，最好使用:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span>) <span style="color:#a6e22e">Parent1</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span> {}
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span>) <span style="color:#a6e22e">Parent2</span>() (<span style="color:#f92672">*</span><span style="color:#a6e22e">Node</span>, <span style="color:#66d9ef">error</span>) {}
-</code></pre></div><p>另一方面，如果一个函数返回两个或三个相同类型的参数，或者一个结果的含义在上下文中并不清楚，那么在某些情况下添加名称可能是有用的。不要为了避免在函数中声明一个var而对返回参数进行命名；这样做是以不必要的API的冗长为代价来换取一个小的实现的简洁性。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">f</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Foo</span>) <span style="color:#a6e22e">Location</span>() (<span style="color:#66d9ef">float64</span>, <span style="color:#66d9ef">float64</span>, <span style="color:#66d9ef">error</span>)
-</code></pre></div><p>不如：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Location返回f的纬度和经度。
-</span><span style="color:#75715e">// 负值分别意味着南边和西边。
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">f</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Foo</span>) <span style="color:#a6e22e">Location</span>() (<span style="color:#a6e22e">lat</span>, <span style="color:#a6e22e">long</span> <span style="color:#66d9ef">float64</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>)
-</code></pre></div><p>如果函数只有寥寥几行，裸返是可以的。一旦它是一个中等规模的函数，就要明确你的返回值。推论：为了使用裸返，而去命名返回参数，是不值得的。文档的清晰性总是比在你的函数中节省一两行更重要。</p>
-<p>最后，在某些情况下，你需要命名一个结果参数，以便在一个延迟闭包中改变它。这是一直可以的。</p>
-<blockquote>
-<p>裸返：使用命名返回参数后，返回语句通常称为裸返或裸返回。</p>
-</blockquote>
-<h2 id="裸返回">裸返回</h2>
-<p>一个没有参数的返回语句会返回指定的返回值。这就是所谓的“裸”返回。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">split</span>(<span style="color:#a6e22e">sum</span> <span style="color:#66d9ef">int</span>) (<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> <span style="color:#66d9ef">int</span>) {
-	<span style="color:#a6e22e">x</span> = <span style="color:#a6e22e">sum</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">9</span>
-	<span style="color:#a6e22e">y</span> = <span style="color:#a6e22e">sum</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">x</span>
-	<span style="color:#66d9ef">return</span>
-}
-</code></pre></div><p>见<a href="https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters">命名返回参数</a>。</p>
-<h2 id="包注释">包注释</h2>
-<p>包注释，像所有由godoc呈现的注释一样，必须出现在包子句的旁边，不能有空行。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// math包提供基本的常数和数学函数。
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">math</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">/*
-</span><span style="color:#75715e">template包实现了数据驱动的模板，用于生成HTML等文本输出。
-</span><span style="color:#75715e">输出，如HTML。
-</span><span style="color:#75715e">....
-</span><span style="color:#75715e">*/</span>
-<span style="color:#f92672">package</span> <span style="color:#a6e22e">template</span>
-</code></pre></div><p>对于<code>package main</code>的注释，其他样式的注释在二进制名称后面也是可以的（如果它在前面，可以大写），例如，对于目录<code>seedgen</code>中的<code>package main</code>，你可以写。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Binary seedgen ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</code></pre></div><p>或者</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Command seedgen ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</code></pre></div><p>或者</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Program seedgen ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</code></pre></div><p>或者</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// The seedgen command ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</code></pre></div><p>或者</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// The seedgen program ...
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</code></pre></div><p>或者</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// Seedgen ..
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</code></pre></div><p>这些都是例子，合理的变体也是可以接受的。</p>
-<p>请注意，以小写字母开始的句子不在软件包注释可接受的选项之列，因为这些注释是公开可见的，应该用正确的英语书写，包括将句子的第一个单词大写。当二进制名称是第一个词时，即使它与命令行调用的拼写不严格匹配，也需要大写。</p>
-<p>关于注释惯例的更多信息，见<a href="https://go.dev/doc/effective_go#commentary">Effective Go Commentary</a>。</p>
-<h2 id="传递值">传递值</h2>
-<p>不要为了节省几个字节而将指针作为函数参数传递。如果一个函数自始至终只把它的参数<code>x</code>称为<code>*x</code>，那么这个参数就不应该是一个指针。常见的例子包括传递一个指向字符串（<code>*string</code>）的指针或一个指向接口值（<code>*io.Reader</code>）的指针。在这两种情况下，值本身是一个固定的大小，可以直接传递。这个建议不适用于大型结构体，甚至是可能增长的小型结构体。</p>
-<h2 id="接收者名称">接收者名称</h2>
-<p>一个方法的接收者的名字应该反映它的身份；通常一个或两个字母的类型缩写就足够了（如“c”或“cl”代表 “客户”）。不要使用诸如 “me”、“this”或“self ”这样的通用名称，这些是面向对象语言的典型标识，它们赋予了方法以特殊的含义。在Go中，一个方法的接收者只是另一个参数，因此，应该相应的命名。这个名字不需要像方法参数那样具有描述性，因为它的作用是显而易见的，而且没有任何记录性的作用。它可以非常简短，因为它几乎会出现在该类型的每一个方法的每一行中；熟悉的东西就是简洁的。也要保持一致：如果你在一个方法中称接收器为“c”，不要在另一个方法中称它为 “cl”。</p>
-<h2 id="接收器类型">接收器类型</h2>
-<p>选择在方法上使用值接收器还是指针接收器可能很困难，特别是对新的Go程序员来说。如果有疑问，请使用指针，但有时值接收器是有意义的，通常是出于效率的考虑，如小型不变的结构或基本类型的值。一些有用的准则：</p>
-<ul>
-<li>如果接收器是一个map、func或chan，不要使用一个指针。如果接收方是一个片断，并且该方法没有对切片进行重新划分或重新分配，就不要使用指向它的指针。</li>
-<li>如果方法需要变动接收器，接收器必须是一个指针。</li>
-<li>如果接收器是一个包含<code>sync.Mutex</code>或类似同步字段的结构，接收器必须是一个指针以避免复制。</li>
-<li>如果接收器是一个大的结构体或数组，那么指针式的接收器会更有效。多大才算大？假设它相当于把所有的元素作为参数传递给方法。如果这感觉太大，那么对于接收器来说也是太大了。</li>
-<li>函数或方法，无论是并发的还是从这个方法中调用的，都会对接收器进行变更吗？当方法被调用时，一个值类型会创建一个接收器的副本，所以外部的更新不会被应用到这个接收器上。如果变化必须在原始接收器中可见，接收器必须是一个指针。</li>
-<li>如果接收方是一个结构体、数组或切片，并且它的任何元素是一个指向可能发生变化的东西的指针，那么最好是一个指针式的接收方，因为它将使读者更清楚地了解其意图。</li>
-<li>如果接收器是一个小的数组或结构，自然是一个值类型（例如，<code>time.Time</code>类型），没有可变的字段，也没有指针，或者只是一个简单的基本类型，如<code>int</code>或<code>string</code>，值接收器是有意义的。一个值接收器可以减少可能产生的垃圾量；如果一个值被传递给一个值方法，可以使用堆上拷贝而不是在堆上分配。(编译器试图聪明地避免这种分配，但它不可能总是成功）。在没有进行分析之前，不要因为这个原因选择一个值接收器类型。</li>
-<li>不要混用接收器类型。为所有可用的方法选择指针或结构类型。</li>
-</ul>
-<p>最后，当有疑问时，使用指针型接收器。</p>
-<h2 id="有用的测试失败">有用的测试失败</h2>
-<p>测试失败时应提供有用的信息，说明什么地方出了问题，用什么输入，实际得到了什么，以及预期得到了什么。写一堆assertFoo助手可能是很诱人的，但要确保你的助手产生有用的错误信息。假设调试你失败的测试的人不是你，也不是你的团队。一个典型的Go测试失败的情况如下</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">got</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">tt</span>.<span style="color:#a6e22e">want</span> {
-	<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;Foo(%q) = %d; want %d&#34;</span>, <span style="color:#a6e22e">tt</span>.<span style="color:#a6e22e">in</span>, <span style="color:#a6e22e">got</span>, <span style="color:#a6e22e">tt</span>.<span style="color:#a6e22e">want</span>) <span style="color:#75715e">// 或者 Fatalf, 如果测试不能通过
-</span><span style="color:#75715e"></span>})
-</code></pre></div><p>注意，这里的顺序是<code>实际</code>!= <code>预期</code>，而且消息也使用这个顺序。有些测试框架鼓励把这些东西倒过来写：<code>0 != x</code>，&ldquo;预期0，得到x&rdquo;，以此类推。Go则不然。</p>
-<p>如果这看起来像大量的输入，你可能想写一个<a href="https://github.com/golang/go/wiki/TableDrivenTests">表驱动测试</a>。</p>
-<p>在使用不同输入的测试助手时，另一个常见的技术是用不同的TestFoo函数来包装每个调用者，从而使测试以该名称失败。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestSingleValue</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) { <span style="color:#a6e22e">testHelper</span>(<span style="color:#a6e22e">t</span>, []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">80</span>}) }
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestNoValues</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>)    { <span style="color:#a6e22e">testHelper</span>(<span style="color:#a6e22e">t</span>, []<span style="color:#66d9ef">int</span>{}) }
-</code></pre></div><p>在任何情况下，你都有责任在失败时给将来调试你的代码的人一个有用的信息。</p>
-<h2 id="变量名称">变量名称</h2>
-<p>Go中的变量名应该是短的而不是长的。这对范围有限的局部变量来说尤其如此。倾向于用<code>c</code>表示<code>lineCount</code>。倾向于用<code>i</code>来表示<code>sliceIndex</code>。</p>
-<p>基本规则：名字使用的时间离其声明越远，名字的描述性越强。对于一个方法接收器来说，一个或两个字母就足够了。常见的变量，如循环索引和读取器可以是一个字母（<code>i</code>，<code>r</code>）。更加不寻常的东西和全局变量需要更多的描述性名称。</p>
-</article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-</div>
-<script type="application/javascript" src='https://cuihao.fun/js/toc.js'></script>
-<link rel="stylesheet" href='https://cuihao.fun/css/toc.css' />
-
-
-<script src="https://utteranc.es/client.js"
-        repo="itcuihao/blog",
-        issue-term="title"
-        label="💬"
-        theme="icy-dark",
-        crossorigin="anonymous"
-        async>
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
-
-
-
-
-  <div class="footer container-xl width-full p-responsive">
-  <div
-    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://cuihao.fun">
-      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
-        <path fill-rule="evenodd"
-          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-        </path>
-      </svg>
-    </a>
-    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
-      
-      <li class="mr-3 mr-lg-0">Copyright (c) 2018 -, haoc7; all rights reserved.</li>
-      
-    </ul>
-  </div>
-  <div class="d-flex flex-justify-center pb-6">
-    <span class="f6 text-gray-light"></span>
-  </div>
-
-
-</div>
-</body>
-
-<script type="application/javascript" src="https://cuihao.fun/js/github-style.js"></script>
-
-
-
-</html>
+<!doctype html><html lang=cn-zh><head><meta charset=utf-8><meta name=viewport content="width=device-width"><script type=application/javascript src=https://blog.cuihao.fun/js/theme-mode.js></script>
+<link rel=stylesheet href=https://blog.cuihao.fun/css/frameworks.min.css><link rel=stylesheet href=https://blog.cuihao.fun/css/github.min.css><link rel=stylesheet href=https://blog.cuihao.fun/css/github-style.css><link rel=stylesheet href=https://blog.cuihao.fun/css/light.css><link rel=stylesheet href=https://blog.cuihao.fun/css/dark.css><link rel=stylesheet href=https://blog.cuihao.fun/css/syntax.css><title>[译]Go代码审查意见 - haoc7</title><link rel=icon type=image/x-icon href=/images/avatar.png><meta name=theme-color content="#1e2327"><meta name=description content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。"><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=https://blog.cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/><meta name=twitter:card content="summary"><meta name=twitter:title content="[译]Go代码审查意见 - haoc7"><meta name=twitter:description content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。"><meta name=twitter:site content="https://blog.cuihao.fun"><meta name=twitter:creator content><meta name=twitter:image content="https://blog.cuihao.fun"><meta property="og:type" content="article"><meta property="og:title" content="[译]Go代码审查意见 - haoc7"><meta property="og:description" content="本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。"><meta property="og:url" content="https://blog.cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/"><meta property="og:site_name" content="[译]Go代码审查意见"><meta property="og:image" content="https://blog.cuihao.fun"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2022-06-11 09:49:33 +0800 +0800"></head><body><div style=position:relative><header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on"><div class="Header-item mobile-none" style=margin-top:-4px;margin-bottom:-4px><a class=Header-link href=https://blog.cuihao.fun><svg class="octicon" height="32" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58.0.0 3.58.0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38.0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95.0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12.0.0.67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15.0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48.0 1.07-.01 1.93-.01 2.2.0.21.15.46.55.38A8.013 8.013.0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></div><div class="Header-item d-md-none"><button class="Header-link btn-link js-details-target" type=button onclick='document.querySelector("#header-search").style.display=document.querySelector("#header-search").style.display=="none"?"block":"none"'><svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M1 2.75A.75.75.0 011.75 2h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 2.75zm0 5A.75.75.0 011.75 7h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 7.75zM1.75 12a.75.75.0 100 1.5h12.5a.75.75.0 100-1.5H1.75z"/></svg></button></div><div style=display:none id=header-search class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex"><div class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to"><div class=position-relative><form target=_blank action=https://www.google.com/search accept-charset=utf-8 method=get autocomplete=off><label class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center"><input type=text class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" name=q placeholder=Search autocomplete=off>
+<input type=hidden name=q value=site:https://blog.cuihao.fun></label></form></div></div></div><div class="Header-item Header-item--full flex-justify-center d-md-none position-relative"><a class=Header-link href=https://blog.cuihao.fun><svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58.0.0 3.58.0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38.0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95.0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12.0.0.67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15.0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48.0 1.07-.01 1.93-.01 2.2.0.21.15.46.55.38A8.013 8.013.0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></div><div class=Header-item style=margin-right:0><a href=javascript:void(0) class="Header-link no-select" onclick=switchTheme()><svg style="fill:var(--color-profile-color-modes-toggle-moon)" class="no-select" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.52208 7.71754c3.05612.0 5.53362-2.47748 5.53362-5.5336C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961 9.95801 1.07727 10.3495.771159 10.6474.99992c1.4679 1.12724 2.4141 2.90007 2.4141 4.89391.0 3.40575-2.7609 6.16667-6.16665 6.16667-2.94151.0-5.40199-2.0595-6.018122-4.81523C.794841 6.87902 1.23668 6.65289 1.55321 6.85451 2.41106 7.40095 3.4296 7.71754 4.52208 7.71754z"/></svg></a></div></header></div><div><main><div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4"><div class=px-0><div class="mb-3 d-flex px-3 px-md-3 px-lg-5"><div class="flex-auto min-width-0 width-fit mr-3"><div class=d-flex><div class="d-none d-md-block"><a class="avatar mr-2 flex-shrink-0" href=https://blog.cuihao.fun><img class=avatar-user src=https://blog.cuihao.fun/images/avatar.png width=32 height=32></a></div><div class="d-flex flex-column"><h1 class="break-word f3 text-normal mb-md-0 mb-1"><span class=author><a href=https://blog.cuihao.fun></a></span><span class=path-divider>/</span><strong class="css-truncate-target mr-1" style=max-width:410px><a href=https://blog.cuihao.fun/post/go%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E8%A7%A3%E9%87%8A/>[译]Go代码审查意见</a></strong></h1><div class="note m-0">Created <relative-time datetime="Sat, 11 Jun 2022 09:49:33 +0800" class=no-wrap>Sat, 11 Jun 2022 09:49:33 +0800</relative-time>
+<span class=file-info-divider></span>
+Modified <relative-time datetime="Wed, 26 Apr 2023 12:29:30 +0000" class=no-wrap>Wed, 26 Apr 2023 12:29:30 +0000</relative-time></div></div></div></div></div></div></div><div class="container-lg px-3 new-discussion-timeline"><div class="repository-content gist-content"><div><div class="js-gist-file-update-container js-task-list-container file-box"><div id=file-pytest class="file my-2"><div id=post-header class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style=z-index:2><div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto"><div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0"><summary id=toc-toggle onclick=clickToc() class="btn btn-octicon m-0 mr-2 p-2"><svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zM3 8A1 1 0 111 8a1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"/></svg></summary><details-menu class=SelectMenu id=toc-details style="display: none;"><div class="SelectMenu-modal rounded-3 mt-1" style=max-height:340px><div class="SelectMenu-list SelectMenu-list--borderless p-2" style=overscroll-behavior:contain id=toc-list></div></div></details-menu>7252 Words</div><div class="file-actions flex-order-2 pt-0"><a class="muted-link mr-3" href=/tags/go><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>Go</a>
+<a class="muted-link mr-3" href=/tags/wiki><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>wiki</a>
+<a class="muted-link mr-3" href=/tags/%E8%AF%91><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>译</a></div></div></div><div class="Box-body px-5 pb-5" style=z-index:1><article class="markdown-body entry-content container-lg"><hr><blockquote><p>原文：<a href=https://github.com/golang/go/wiki/CodeReviewComments>CodeReviewComments</a></p></blockquote><blockquote><p>自己水平有限，仅供参考，如有错误，请指正。联系方式可评论，或者邮件 <a href=mailto:itcuihao@gmail.com>itcuihao@gmail.com</a></p></blockquote><p>本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。</p><p>你可以把它看作是<a href=https://go.dev/doc/effective_go>Effective Go</a>的一个补充。</p><p>与测试有关的其他评论可在<a href=https://github.com/golang/go/wiki/TestComments>Go Test Comments</a>找到。</p><p>在编辑这个页面之前，请<a href="https://go.dev/issue/new?title=wiki%3A+CodeReviewComments+change&body=&labels=Documentation">讨论修改</a>，即使是小的修改。许多人都有意见，这里不是编辑战争的地方。</p><h2 id=格式化>格式化</h2><p>在你的代码上运行<a href=https://pkg.go.dev/cmd/gofmt/>gofmt</a>，可以自动修复大部分的机械风格问题。几乎所有的Go代码都使用gofmt。本文档的其余部分将讨论非机械式风格问题。</p><p>另一种方法是使用<a href=https://pkg.go.dev/golang.org/x/tools/cmd/goimports>goimports</a>，它是 <code>gofmt</code>的超集，可以根据需要增加（和删除）导入行。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Request represents a request to run a command.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Request</span> <span style=color:#66d9ef>struct</span> { <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Encode writes the JSON encoding of req to w.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Encode</span>(<span style=color:#a6e22e>wo</span> <span style=color:#a6e22e>io</span>.<span style=color:#a6e22e>Writer</span>, <span style=color:#a6e22e>req</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Request</span>) { <span style=color:#f92672>...</span>
+</span></span></code></pre></div><p>以此类推。</p><h2 id=上下文>上下文</h2><p>context.Context类型的值携带安全证书、跟踪信息、最后期限和取消信号，跨越API和进程的界限。Go程序在整个函数调用链中明确地传递Context，从传入的RPC和HTTP请求到传出的请求。</p><p>大多数使用Context的函数应该接受它作为其第一个参数:</p><pre tabindex=0><code>func F(ctx context.Context, /* other arguments */) {}
+</code></pre><p>一个没有特定请求的函数可以使用context.Background()，但即使你认为不需要，也要在传递Context方面犯错。默认情况下是传递一个Context；只有在你有充分的理由说明它是错误的情况下才可以直接使用context.Background()。</p><p>不要给结构类型添加Context成员；而是给该类型上需要传递Context的每个方法添加一个ctx参数。有一个例外是那些签名必须符合标准库或第三方库中的接口的方法。</p><p>不要创建自定义的Context类型或在函数签名中使用其他的Context接口。</p><p>如果你有应用数据需要传递，把它放在一个参数中，放在接收器中，放在全局中，或者，如果真的需要，可以放在Context值中。</p><p>Context是不可改变的，所以可以传递同一个ctx，共享同一个截止日期、取消信号、凭证、父级跟踪等多个调用。</p><h2 id=复制>复制</h2><p>为了避免意外的别名，在从其他包中复制结构时要小心。例如，bytes.Buffer类型包含一个<code>[]byte</code>切片。如果你拷贝一个<code>Buffer</code>，拷贝中的片断可能会与原结构中的数组产生别名，导致后续的方法调用产生意想不到的效果。</p><p>一般来说，如果一个<code>T</code>类型的值的方法与指针类型<code>*T</code>有关，就不要复制它。</p><h2 id=rand加密>Rand加密</h2><p>不要使用软件包<code>math/rand</code>来生成密钥，即使是用之便弃。不加种子，生成器是完全可预测的。用time.Nanoseconds()做种子，也只有几个比特的熵。相反，使用crypto/rand的Reader，如果你需要文本，打印成十六进制或base64。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;crypto/rand&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// &#34;encoding/base64&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// &#34;encoding/hex&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Key</span>() <span style=color:#66d9ef>string</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>buf</span> <span style=color:#f92672>:=</span> make([]<span style=color:#66d9ef>byte</span>, <span style=color:#ae81ff>16</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>rand</span>.<span style=color:#a6e22e>Read</span>(<span style=color:#a6e22e>buf</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		panic(<span style=color:#a6e22e>err</span>)  <span style=color:#75715e>// 超出随机性，绝不会发生
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	}
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Sprintf</span>(<span style=color:#e6db74>&#34;%x&#34;</span>, <span style=color:#a6e22e>buf</span>)
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// or hex.EncodeToString(buf)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#75715e>// or base64.StdEncoding.EncodeToString(buf)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><h2 id=声明空切片>声明空切片</h2><p>在声明空片时，最好选择</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>t</span> []<span style=color:#66d9ef>string</span> <span style=color:#75715e>// t==nil
+</span></span></span></code></pre></div><p>而不是</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>t</span> <span style=color:#f92672>:=</span> []<span style=color:#66d9ef>string</span>{} <span style=color:#75715e>// t!=nil
+</span></span></span></code></pre></div><p>前者声明的是一个空的切片值，而后者是非空的，但长度为零。它们在功能上是等价的&ndash;它们的<code>len</code>和<code>cap</code>都是0&ndash;但是首选风格应该是空切片。</p><p>请注意，在有限的情况下，非0但0长度的切片是首选，比如在对JSON对象进行编码时（<code>nil</code>切片编码为<code>null</code>，而<code>[]string{}</code>编码为JSON数组<code>[]</code>）。</p><p>在设计接口时，避免区分nil切片和非nil的零长度切片，因为这可能会导致微妙的编程错误。</p><p>关于Go中nil的更多讨论，请参见Francesc Campoy的讲座<a href="https://www.youtube.com/watch?v=ynoY2xz-F8s">Understanding Nil</a>。</p><h2 id=文档注释>文档注释</h2><p>所有顶层的、导出的名字都应该有文档注释，正如非重要的未导出的类型或函数声明一样。关于注释惯例的更多信息，请参见<a href=https://go.dev/doc/effective_go#commentary>Effective Go Commentary</a>。</p><h2 id=不使用恐慌>不使用恐慌</h2><p>见<a href=https://go.dev/doc/effective_go#errors>Effective Go Errors</a>。不要在正常的错误处理中使用<code>panic</code>，使用错误和多个返回值。</p><h2 id=错误字符串>错误字符串</h2><p>错误字符串不应大写（除非以专有名词或缩略语开头），也不应以标点符号结尾，因为它们通常是在其他背景下打印的。也就是说，使用<code>fmt.Errorf("something bad")</code>而不是<code>fmt.Errorf("Something bad")</code>，这样<code>log.Printf("Reading %s: %v", filename, err)</code>的格式就不会在信息中间出现虚假的大写字母。这不适用于日志记录，因为日志记录是隐含的面向行的，并且不在其他消息内组合。</p><h2 id=例子>例子</h2><p>当添加一个新的包时，包括预期使用的例子：一个可运行的例子，或者一个展示完整调用序列的简单测试。</p><p>阅读更多关于<a href=https://go.dev/blog/examples>可测试的Example()函数</a>。</p><h2 id=goroutine寿命>Goroutine寿命</h2><p>当你生成goroutine时，要清楚地说明它们何时（或是否）退出。</p><p>goroutine可以通过阻塞通道发送或接收而泄漏：即使被阻塞的通道无法到达，垃圾收集器也不会终止一个goroutine。</p><p>即使goroutine没有泄漏，当它们不再需要时，让它们继续飞行也会导致其他微妙的、难以诊断的问题。在封闭的通道上发送消息会引起恐慌。在 &ldquo;不需要结果之后"修改仍在使用的输入，仍然会导致数据竞争。让goroutines在飞行中停留任意长的时间会导致不可预知的内存使用。</p><p>尽量保持并发代码的简单性，使goroutine的寿命足够明显。如果这不可行，就记录下goroutines退出的时间和原因。</p><h2 id=处理错误>处理错误</h2><p>见<a href=https://go.dev/doc/effective_go#errors>Effective Go Errors</a>。不要使用<code>_</code>变量丢弃错误。如果一个函数返回一个错误，检查它以确保函数成功。处理错误，返回错误，或者，在真正特殊的情况下，使用<code>panic</code>。</p><h2 id=导入>导入</h2><p>避免重命名导入，除非是为了避免名称冲突；好的软件包名称不应该需要重命名。在发生碰撞的情况下，最好把本地的或项目特定的导入重命名。</p><p>导入是按组织分组的，它们之间有空行。标准库包总是在第一组。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;hash/adler32&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;os&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/foo/bar&#34;</span>
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;rsc.io/goversion/version&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><p><a href=https://pkg.go.dev/golang.org/x/tools/cmd/goimports>goimports</a>会为你做这个。</p><h2 id=导入空>导入空</h2><p>只为其副作用而导入的包（使用 <code>import _ "pkg"</code> 语法）应该只在程序的主包中导入，或者在需要它们的测试中导入。</p><h2 id=导入点>导入点</h2><p><code>import .</code>形式在测试中可能很有用，由于循环依赖关系，不能成为被测试包的一部分。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>foo_test</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
+</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;bar/testutil&#34;</span> <span style=color:#75715e>// also imports &#34;foo&#34;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	. <span style=color:#e6db74>&#34;foo&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span></code></pre></div><p>在这种情况下，测试文件不可能在包foo中，因为它使用了bar/testutil，它导入了foo。所以我们使用<code>import .</code>的形式，让文件假装是包foo的一部分，尽管它不是。除了这种情况，不要在你的程序中使用<code>import .</code>。它使程序更难阅读，因为它不清楚像Quux这样的名字是当前包中的顶级标识符还是导入包中的顶级标识符。</p><h2 id=带内错误>带内错误</h2><p>在C语言和类似语言中，函数返回-1或null这样的值是很常见的，以示错误或丢失结果。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Lookup返回key的值，如果没有key的映射，则返回&#34;&#34;。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Lookup</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>) <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 如果不检查带内错误值，就会导致错误。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>Parse</span>(<span style=color:#a6e22e>Lookup</span>(<span style=color:#a6e22e>key</span>))  <span style=color:#75715e>//返回 &#34;解析失败的值&#34;，而不是 &#34;没有键的值&#34;
+</span></span></span></code></pre></div><p>Go对多个返回值的支持提供了一个更好的解决方案。与其要求客户检查带内的错误值，一个函数应该返回一个额外的值来表明其其他返回值是否有效。这个返回值可以是一个错误，或者在不需要解释时是一个布尔值。它应该是最终的返回值。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Lookup返回key的值，如果没有key的映射，则ok=false。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Lookup</span>(<span style=color:#a6e22e>key</span> <span style=color:#66d9ef>string</span>) (<span style=color:#a6e22e>value</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>ok</span> <span style=color:#66d9ef>bool</span>)
+</span></span></code></pre></div><p>这可以防止调用者错误地使用返回结果。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>Parse</span>(<span style=color:#a6e22e>Lookup</span>(<span style=color:#a6e22e>key</span>))  <span style=color:#75715e>// 编译时错误
+</span></span></span></code></pre></div><p>并鼓励更健壮和可读的代码。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>value</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>Lookup</span>(<span style=color:#a6e22e>key</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>ok</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;no value for %q&#34;</span>, <span style=color:#a6e22e>key</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>Parse</span>(<span style=color:#a6e22e>value</span>)
+</span></span></code></pre></div><p>这个规则适用于导出的函数，但对未导出的函数也很有用。</p><p>像<code>nil</code>、<code>""</code>、<code>0</code>和<code>-1</code>这样的返回值，当它们是一个函数的有效结果时，也就是说，调用者不需要对它们进行与其他值不同的处理。</p><p>一些标准库函数，如<code>strings</code>包中的函数，返回带内错误值。这大大简化了字符串处理的代码，但代价是要求程序员更加勤奋。一般来说<code>Go</code>代码应该为错误返回额外的值。</p><h2 id=缩进错误流程>缩进错误流程</h2><p>尽量使正常的代码路径保持最小的缩进，并缩进错误处理，首先处理它。这可以提高代码的可读性，因为它允许在视觉上快速扫描正常路径。</p><p>例如，不要写:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 错误处理
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 正常代码
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><p>相反的，应该是：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 错误处理
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>return</span> <span style=color:#75715e>// 或者continue等
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span><span style=color:#75715e>// 正常代码
+</span></span></span></code></pre></div><p>如果<code>if</code>语句有一个初始化语句，如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>f</span>(); <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 错误处理
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>} <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 使用 x
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><p>那么这可能需要将短变量声明移到它自己的一行。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>f</span>()
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// 错误处理
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#75715e>// 使用 x
+</span></span></span></code></pre></div><h2 id=首字母缩写>首字母缩写</h2><p>名称中的单词如果是首字母缩写或缩略语（如 “URL”或 “NATO”），其大小写要一致。例如，“URL”应显示为 “URL”或“url”（如 “urlPony”，或“URLPony”），而不是 “Url”。作为一个例子。ServeHTTP不是ServeHttp。对于有多个初始化“词” 的标识符，使用例如 “xmlHTTPRequest”或 “XMLHTTPRequest”。</p><p>这个规则也适用于 &ldquo;ID&rdquo;，当它是 &ldquo;标识符 &ldquo;的简称时（这几乎是所有的情况，当它不是 &ldquo;自我&rdquo;、&ldquo;超我 &ldquo;中的 &ldquo;ID &ldquo;时），所以写 &ldquo;appID &ldquo;而不是 &ldquo;appId&rdquo;。</p><p>由协议缓冲区编译器生成的代码不受这一规则影响。人写的代码要比机器写的代码有更高的标准。</p><h2 id=接口>接口</h2><p>Go接口通常属于使用接口类型值的包，而不是实现这些值的包。实现包应该返回具体的（通常是指针或结构体）类型：这样一来，新的方法可以被添加到实现中，而不需要大量的重构。</p><p>不要在API的实现者一方定义接口，“为了嘲弄”；相反，要设计API，使其可以使用真正实现的公共API来测试。</p><p>不要在使用之前就定义接口：如果没有一个真实的使用例子，就很难看出一个接口是否有必要，更不用说它应该包含哪些方法。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>consumer</span>  <span style=color:#75715e>// consumer.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Thinger</span> <span style=color:#66d9ef>interface</span> { <span style=color:#a6e22e>Thing</span>() <span style=color:#66d9ef>bool</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Foo</span>(<span style=color:#a6e22e>t</span> <span style=color:#a6e22e>Thinger</span>) <span style=color:#66d9ef>string</span> { <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>consumer</span> <span style=color:#75715e>// consumer_test.go
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>fakeThinger</span> <span style=color:#66d9ef>struct</span>{ <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>t</span> <span style=color:#a6e22e>fakeThinger</span>) <span style=color:#a6e22e>Thing</span>() <span style=color:#66d9ef>bool</span> { <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>…</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>Foo</span>(<span style=color:#a6e22e>fakeThinger</span>{<span style=color:#960050;background-color:#1e0010>…</span>}) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;x&#34;</span> { <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// 不要这么做！！！
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>producer</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Thinger</span> <span style=color:#66d9ef>interface</span> { <span style=color:#a6e22e>Thing</span>() <span style=color:#66d9ef>bool</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>defaultThinger</span> <span style=color:#66d9ef>struct</span>{ <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>t</span> <span style=color:#a6e22e>defaultThinger</span>) <span style=color:#a6e22e>Thing</span>() <span style=color:#66d9ef>bool</span> { <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>NewThinger</span>() <span style=color:#a6e22e>Thinger</span> { <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>defaultThinger</span>{ <span style=color:#960050;background-color:#1e0010>…</span> } }
+</span></span></code></pre></div><p>而是返回一个具体的类型，让消费者模拟生产者的实现。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>producer</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Thinger</span> <span style=color:#66d9ef>struct</span>{ <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>t</span> <span style=color:#a6e22e>Thinger</span>) <span style=color:#a6e22e>Thing</span>() <span style=color:#66d9ef>bool</span> { <span style=color:#960050;background-color:#1e0010>…</span> }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>NewThinger</span>() <span style=color:#a6e22e>Thinger</span> { <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>Thinger</span>{ <span style=color:#960050;background-color:#1e0010>…</span> } }
+</span></span></code></pre></div><h2 id=行长度>行长度</h2><p>Go代码中没有严格的行长限制，但要避免令人不舒服的长行。同样地，如果行的长度更容易阅读，就不要添加换行符来保持短行，例如，如果它们是重复的。</p><p>大多数时候，当人们“不自然地”换行时（在函数调用或函数声明的中间，或多或少，比如说，尽管周围有一些例外），如果他们有合理数量的参数和合理短的变量名称，换行是不必要的。长行似乎与长名字相伴，摆脱长名字有很大的帮助。</p><p>换句话说，断行是因为你所写的内容的语义（作为一般规则），而不是因为行的长度。如果你发现这样做产生的行太长，那么改变名称或语义，你可能会得到一个好结果。</p><p>实际上，这与关于一个函数应该有多长的建议完全一样。没有“永远不要让一个函数超过N行”的规则，但绝对存在一个太长的函数，以及太多重复的小函数，解决方法是改变函数边界的位置，而不是开始计算行数。</p><h2 id=混杂大写字母>混杂大写字母</h2><p>见<a href=https://go.dev/doc/effective_go#mixed-caps>Effective Go Mixed Caps</a>。即使打破了其他语言的惯例，这也适用。例如，一个未导出的常量是<code>maxLength</code>而不是<code>MaxLength</code>或<code>MAX_LENGTH</code>。</p><p>另见<a href=https://github.com/golang/go/wiki/CodeReviewComments#initialisms>首字母缩写</a>。</p><h2 id=命名返回参数>命名返回参数</h2><p>考虑一下它在godoc中会是什么样子。命名返回参数如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span>) <span style=color:#a6e22e>Parent1</span>() (<span style=color:#a6e22e>node</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span>) {}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span>) <span style=color:#a6e22e>Parent2</span>() (<span style=color:#a6e22e>node</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>) {}
+</span></span></code></pre></div><p>在godoc中会有重复，最好使用:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span>) <span style=color:#a6e22e>Parent1</span>() <span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span> {}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>n</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span>) <span style=color:#a6e22e>Parent2</span>() (<span style=color:#f92672>*</span><span style=color:#a6e22e>Node</span>, <span style=color:#66d9ef>error</span>) {}
+</span></span></code></pre></div><p>另一方面，如果一个函数返回两个或三个相同类型的参数，或者一个结果的含义在上下文中并不清楚，那么在某些情况下添加名称可能是有用的。不要为了避免在函数中声明一个var而对返回参数进行命名；这样做是以不必要的API的冗长为代价来换取一个小的实现的简洁性。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>f</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Foo</span>) <span style=color:#a6e22e>Location</span>() (<span style=color:#66d9ef>float64</span>, <span style=color:#66d9ef>float64</span>, <span style=color:#66d9ef>error</span>)
+</span></span></code></pre></div><p>不如：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Location返回f的纬度和经度。
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// 负值分别意味着南边和西边。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>f</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Foo</span>) <span style=color:#a6e22e>Location</span>() (<span style=color:#a6e22e>lat</span>, <span style=color:#a6e22e>long</span> <span style=color:#66d9ef>float64</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>)
+</span></span></code></pre></div><p>如果函数只有寥寥几行，裸返是可以的。一旦它是一个中等规模的函数，就要明确你的返回值。推论：为了使用裸返，而去命名返回参数，是不值得的。文档的清晰性总是比在你的函数中节省一两行更重要。</p><p>最后，在某些情况下，你需要命名一个结果参数，以便在一个延迟闭包中改变它。这是一直可以的。</p><blockquote><p>裸返：使用命名返回参数后，返回语句通常称为裸返或裸返回。</p></blockquote><h2 id=裸返回>裸返回</h2><p>一个没有参数的返回语句会返回指定的返回值。这就是所谓的“裸”返回。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>split</span>(<span style=color:#a6e22e>sum</span> <span style=color:#66d9ef>int</span>) (<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>y</span> <span style=color:#66d9ef>int</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>x</span> = <span style=color:#a6e22e>sum</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>9</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>y</span> = <span style=color:#a6e22e>sum</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>x</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>见<a href=https://github.com/golang/go/wiki/CodeReviewComments#named-result-parameters>命名返回参数</a>。</p><h2 id=包注释>包注释</h2><p>包注释，像所有由godoc呈现的注释一样，必须出现在包子句的旁边，不能有空行。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// math包提供基本的常数和数学函数。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>math</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>/*
+</span></span></span><span style=display:flex><span><span style=color:#75715e>template包实现了数据驱动的模板，用于生成HTML等文本输出。
+</span></span></span><span style=display:flex><span><span style=color:#75715e>输出，如HTML。
+</span></span></span><span style=display:flex><span><span style=color:#75715e>....
+</span></span></span><span style=display:flex><span><span style=color:#75715e>*/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>template</span>
+</span></span></code></pre></div><p>对于<code>package main</code>的注释，其他样式的注释在二进制名称后面也是可以的（如果它在前面，可以大写），例如，对于目录<code>seedgen</code>中的<code>package main</code>，你可以写。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Binary seedgen ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span></code></pre></div><p>或者</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Command seedgen ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span></code></pre></div><p>或者</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Program seedgen ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span></code></pre></div><p>或者</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// The seedgen command ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span></code></pre></div><p>或者</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// The seedgen program ...
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span></code></pre></div><p>或者</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// Seedgen ..
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
+</span></span></code></pre></div><p>这些都是例子，合理的变体也是可以接受的。</p><p>请注意，以小写字母开始的句子不在软件包注释可接受的选项之列，因为这些注释是公开可见的，应该用正确的英语书写，包括将句子的第一个单词大写。当二进制名称是第一个词时，即使它与命令行调用的拼写不严格匹配，也需要大写。</p><p>关于注释惯例的更多信息，见<a href=https://go.dev/doc/effective_go#commentary>Effective Go Commentary</a>。</p><h2 id=传递值>传递值</h2><p>不要为了节省几个字节而将指针作为函数参数传递。如果一个函数自始至终只把它的参数<code>x</code>称为<code>*x</code>，那么这个参数就不应该是一个指针。常见的例子包括传递一个指向字符串（<code>*string</code>）的指针或一个指向接口值（<code>*io.Reader</code>）的指针。在这两种情况下，值本身是一个固定的大小，可以直接传递。这个建议不适用于大型结构体，甚至是可能增长的小型结构体。</p><h2 id=接收者名称>接收者名称</h2><p>一个方法的接收者的名字应该反映它的身份；通常一个或两个字母的类型缩写就足够了（如“c”或“cl”代表 “客户”）。不要使用诸如 “me”、“this”或“self ”这样的通用名称，这些是面向对象语言的典型标识，它们赋予了方法以特殊的含义。在Go中，一个方法的接收者只是另一个参数，因此，应该相应的命名。这个名字不需要像方法参数那样具有描述性，因为它的作用是显而易见的，而且没有任何记录性的作用。它可以非常简短，因为它几乎会出现在该类型的每一个方法的每一行中；熟悉的东西就是简洁的。也要保持一致：如果你在一个方法中称接收器为“c”，不要在另一个方法中称它为 “cl”。</p><h2 id=接收器类型>接收器类型</h2><p>选择在方法上使用值接收器还是指针接收器可能很困难，特别是对新的Go程序员来说。如果有疑问，请使用指针，但有时值接收器是有意义的，通常是出于效率的考虑，如小型不变的结构或基本类型的值。一些有用的准则：</p><ul><li>如果接收器是一个map、func或chan，不要使用一个指针。如果接收方是一个片断，并且该方法没有对切片进行重新划分或重新分配，就不要使用指向它的指针。</li><li>如果方法需要变动接收器，接收器必须是一个指针。</li><li>如果接收器是一个包含<code>sync.Mutex</code>或类似同步字段的结构，接收器必须是一个指针以避免复制。</li><li>如果接收器是一个大的结构体或数组，那么指针式的接收器会更有效。多大才算大？假设它相当于把所有的元素作为参数传递给方法。如果这感觉太大，那么对于接收器来说也是太大了。</li><li>函数或方法，无论是并发的还是从这个方法中调用的，都会对接收器进行变更吗？当方法被调用时，一个值类型会创建一个接收器的副本，所以外部的更新不会被应用到这个接收器上。如果变化必须在原始接收器中可见，接收器必须是一个指针。</li><li>如果接收方是一个结构体、数组或切片，并且它的任何元素是一个指向可能发生变化的东西的指针，那么最好是一个指针式的接收方，因为它将使读者更清楚地了解其意图。</li><li>如果接收器是一个小的数组或结构，自然是一个值类型（例如，<code>time.Time</code>类型），没有可变的字段，也没有指针，或者只是一个简单的基本类型，如<code>int</code>或<code>string</code>，值接收器是有意义的。一个值接收器可以减少可能产生的垃圾量；如果一个值被传递给一个值方法，可以使用堆上拷贝而不是在堆上分配。(编译器试图聪明地避免这种分配，但它不可能总是成功）。在没有进行分析之前，不要因为这个原因选择一个值接收器类型。</li><li>不要混用接收器类型。为所有可用的方法选择指针或结构类型。</li></ul><p>最后，当有疑问时，使用指针型接收器。</p><h2 id=有用的测试失败>有用的测试失败</h2><p>测试失败时应提供有用的信息，说明什么地方出了问题，用什么输入，实际得到了什么，以及预期得到了什么。写一堆assertFoo助手可能是很诱人的，但要确保你的助手产生有用的错误信息。假设调试你失败的测试的人不是你，也不是你的团队。一个典型的Go测试失败的情况如下</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#a6e22e>got</span> <span style=color:#f92672>!=</span> <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>want</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;Foo(%q) = %d; want %d&#34;</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>in</span>, <span style=color:#a6e22e>got</span>, <span style=color:#a6e22e>tt</span>.<span style=color:#a6e22e>want</span>) <span style=color:#75715e>// 或者 Fatalf, 如果测试不能通过
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>})
+</span></span></code></pre></div><p>注意，这里的顺序是<code>实际</code>!= <code>预期</code>，而且消息也使用这个顺序。有些测试框架鼓励把这些东西倒过来写：<code>0 != x</code>，&ldquo;预期0，得到x&rdquo;，以此类推。Go则不然。</p><p>如果这看起来像大量的输入，你可能想写一个<a href=https://github.com/golang/go/wiki/TableDrivenTests>表驱动测试</a>。</p><p>在使用不同输入的测试助手时，另一个常见的技术是用不同的TestFoo函数来包装每个调用者，从而使测试以该名称失败。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestSingleValue</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>) { <span style=color:#a6e22e>testHelper</span>(<span style=color:#a6e22e>t</span>, []<span style=color:#66d9ef>int</span>{<span style=color:#ae81ff>80</span>}) }
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>TestNoValues</span>(<span style=color:#a6e22e>t</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>testing</span>.<span style=color:#a6e22e>T</span>)    { <span style=color:#a6e22e>testHelper</span>(<span style=color:#a6e22e>t</span>, []<span style=color:#66d9ef>int</span>{}) }
+</span></span></code></pre></div><p>在任何情况下，你都有责任在失败时给将来调试你的代码的人一个有用的信息。</p><h2 id=变量名称>变量名称</h2><p>Go中的变量名应该是短的而不是长的。这对范围有限的局部变量来说尤其如此。倾向于用<code>c</code>表示<code>lineCount</code>。倾向于用<code>i</code>来表示<code>sliceIndex</code>。</p><p>基本规则：名字使用的时间离其声明越远，名字的描述性越强。对于一个方法接收器来说，一个或两个字母就足够了。常见的变量，如循环索引和读取器可以是一个字母（<code>i</code>，<code>r</code>）。更加不寻常的东西和全局变量需要更多的描述性名称。</p></article></div></div></div></div></div></div></main></div><script type=application/javascript src=https://blog.cuihao.fun/js/toc.js></script>
+<link rel=stylesheet href=https://blog.cuihao.fun/css/toc.css><div class="footer container-xl width-full p-responsive"><div class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light"><a aria-label=Homepage title=GitHub class="footer-octicon d-none d-lg-block mr-lg-4" href=https://blog.cuihao.fun><svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M8 0C3.58.0.0 3.58.0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38.0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95.0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12.0.0.67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15.0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48.0 1.07-.01 1.93-.01 2.2.0.21.15.46.55.38A8.013 8.013.0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a><ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0"><li class="mr-3 mr-lg-0">Copyright (c) 2018 -, haoc7; all rights reserved.</li></ul></div><div class="d-flex flex-justify-center pb-6"><span class="f6 text-gray-light"></span></div></div></body><script type=application/javascript src=https://blog.cuihao.fun/js/github-style.js></script></html>

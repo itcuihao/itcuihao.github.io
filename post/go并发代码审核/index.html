@@ -1,488 +1,90 @@
-<!DOCTYPE html>
-<html lang="cn-zh">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <script type="application/javascript" src='https://cuihao.fun/js/theme-mode.js'></script>
-    <link rel="stylesheet" href='https://cuihao.fun/css/frameworks.min.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/github.min.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/github-style.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/light.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/dark.css' />
-    <link rel="stylesheet" href='https://cuihao.fun/css/syntax.css' />
-    <title>[译]Go并发代码审查 - haoc7</title>
-    
-    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
-    
-    <meta name="theme-color" content="#1e2327">
-
-    
-    <meta name="description"
-  content="本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。" />
-<meta name="keywords"
-  content='' />
-<meta name="robots" content="noodp" />
-<link rel="canonical" href="https://cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/" />
-
-
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="[译]Go并发代码审查 - haoc7" />
-<meta name="twitter:description"
-  content="本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。" />
-<meta name="twitter:site" content="https://cuihao.fun" />
-<meta name="twitter:creator" content="" />
-<meta name="twitter:image"
-  content="https://cuihao.fun">
-
-
-<meta property="og:type" content="article" />
-<meta property="og:title" content="[译]Go并发代码审查 - haoc7">
-<meta property="og:description"
-  content="本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。" />
-<meta property="og:url" content="https://cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/" />
-<meta property="og:site_name" content="[译]Go并发代码审查" />
-<meta property="og:image"
-  content="https://cuihao.fun">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-
-<meta property="article:published_time" content="2022-06-11 12:44:51 &#43;0800 CST" />
-
-
-
-
-
-
-
-
-
-
-</head>
-
-<body>
-  <div style="position: relative">
-  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
-    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://cuihao.fun">
-        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
-          <path fill-rule="evenodd"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-          </path>
-        </svg>
-      </a>
-    </div>
-    <div class="Header-item d-md-none">
-      <button class="Header-link btn-link js-details-target" type="button"
-        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
-        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
-          <path fill-rule="evenodd"
-            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
-          </path>
-        </svg>
-      </button>
-    </div>
-    <div style="display: none;" id="header-search"
-      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
-      <div
-        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
-        <div class="position-relative">
-          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
-            autocomplete="off">
-            <label
-              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
-              <input type="text"
-                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
-                name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://cuihao.fun">
-            </label>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://cuihao.fun">
-        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
-          width="32">
-          <path fill-rule="evenodd"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-          </path>
-        </svg>
-      </a>
-    </div>
-    <div class="Header-item" style="margin-right: 0;">
-      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
-        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
-          version="1.1" width="16" height="16">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
-          </path>
-        </svg>
-      </a>
-    </div>
-  </header>
-</div>
-  
-
-<div>
-  <main>
-    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
-      <div class="px-0">
-        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
-          <div class="flex-auto min-width-0 width-fit mr-3">
-            <div class="d-flex">
-              <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://cuihao.fun">
-                  <img class=" avatar-user"
-                    src="https://cuihao.fun/images/avatar.png"
-                    width="32" height="32"></a>
-              </div>
-              <div class="d-flex flex-column">
-                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
-                  <span class="author">
-                    <a href="https://cuihao.fun"></a></span><span
-                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/">[译]Go并发代码审查</a></strong>
-                </h1>
-                <div class="note m-0">
-                  Created <relative-time datetime="Sat, 11 Jun 2022 12:44:51 &#43;0800"
-                    class="no-wrap">
-                    Sat, 11 Jun 2022 12:44:51 &#43;0800</relative-time>
-
-                  
-                  <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 12 Jun 2022 23:14:36 &#43;0800"
-                    class="no-wrap">
-                    Sun, 12 Jun 2022 23:14:36 &#43;0800</relative-time>
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container-lg px-3 new-discussion-timeline">
-      <div class="repository-content gist-content">
-        <div>
-          <div class="js-gist-file-update-container js-task-list-container file-box">
-            <div id="file-pytest" class="file my-2">
-              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
-                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
-                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    
-                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
-                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
-                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
-                      </svg>
-                    </summary>
-                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
-                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
-                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
-                        </div>
-                      </div>
-                    </details-menu>
-                      3038 Words
-                    
-
-                  </div>
-                  <div class="file-actions flex-order-2 pt-0">
-                    
-                    
-                    <a class="muted-link mr-3" href="/tags/go">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      Go
-                    </a>
-                    
-                    <a class="muted-link mr-3" href="/tags/wiki">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      wiki
-                    </a>
-                    
-                    <a class="muted-link mr-3" href="/tags/%E8%AF%91">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      译
-                    </a>
-                    
-                    
-                  </div>
-                </div>
-              </div>
-
-
-              <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg">
-                  <aside>
-                    <header>
-                    <h1>[译]Go并发代码审查</h1>
-                    </header>
-                    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#不充分的同步性和竞争条件">不充分的同步性和竞争条件</a>
-      <ul>
-        <li><a href="#从多个goroutine并发调用http处理函数是否安全">从多个goroutine并发调用HTTP处理函数是否安全？</a></li>
-        <li><a href="#未保护的变量">未保护的变量</a></li>
-        <li><a href="#未保护的指针">未保护的指针</a></li>
-        <li><a href="#heading"></a></li>
-      </ul>
-    </li>
-    <li><a href="#扩展性">扩展性</a>
-      <ul>
-        <li><a href="#通道">通道</a></li>
-        <li><a href="#锁">锁</a></li>
-      </ul>
-    </li>
-    <li><a href="#时间">时间</a>
-      <ul>
-        <li><a href="#定时器">定时器</a></li>
-        <li><a href="#时间比较">时间比较</a></li>
-        <li><a href="#timesince">time.Since</a></li>
-        <li><a href="#timebefore">time.Before</a></li>
-      </ul>
-    </li>
-    <li><a href="#阅读列表">阅读列表</a></li>
-  </ul>
-</nav>
-                  </aside><hr>
-<blockquote>
-<p>原文：<a href="https://github.com/golang/go/wiki/CodeReviewConcurrency">CodeReviewConcurrency</a></p>
-</blockquote>
-<blockquote>
-<p>自己水平有限，仅供参考，如有错误，请指正。联系方式可评论，或者邮件 <a href="mailto:itcuihao@gmail.com">itcuihao@gmail.com</a></p>
-</blockquote>
-<p>本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。</p>
-<p>你也可以只读一遍这个列表，以刷新你的记忆，并确保你知道所有这些并发性的问题。</p>
-<p><em>⚠️这个页面是由社区撰写和维护的。它包括有争议的信息，可能会有误导或不正确。</em></p>
-<hr>
-<p>不充分的同步性和竞争条件</p>
-<ul>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#http-handlers">HTTP处理函数是线程安全的吗？</a></li>
-<li><a href="https://go.dev/doc/articles/race_detector#Unprotected_global_variable">全局函数和变量受到突变器的保护或其他线程安全的保护？</a></li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#sync-balance">对字段和变量的读取是受保护的？</a></li>
-<li><a href="https://go.dev/doc/articles/race_detector#Race_on_loop_counter">循环变量作为参数传入goroutine函数？</a></li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#return-pointer">线程安全类型的方法不返回指向受保护结构的指针？</a></li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#sync-map-race">在<code>Load()</code>之后对<code>sync.Map</code>的<code>Load()</code>或<code>Delete()</code>调用不是一个竞争条件？</a></li>
-</ul>
-<p>测试</p>
-<ul>
-<li><a href="https://go.dev/doc/articles/race_detector">在CI/CD中用<code>-race</code>标志运行测试？</a></li>
-</ul>
-<p>可扩展性</p>
-<ul>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#zero-cap-ch">故意创建一个容量为零的通道？</a></li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#rwmutex">没有使用<code>sync.RWMutex</code>来保护非常短的操作？</a></li>
-</ul>
-<p>时间</p>
-<ul>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#ticker-stop">停止<code>time.Ticker</code>使用<code>defer tick.Stop()</code>？</a></li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#time-eq">比较<code>time.Time</code>使用<code>Equal()</code>而不是<code>==</code>？</a></li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#time-since">在<code>time.Time</code>的参数<code>time.Since()</code>中保持单调的成分？</a></li>
-<li><a href="https://github.com/golang/go/wiki/CodeReviewConcurrency#time-before">通过<code>t.Before(u)</code>比较系统时间时，将单调成分从参数中剥离？</a></li>
-</ul>
-<h2 id="不充分的同步性和竞争条件">不充分的同步性和竞争条件</h2>
-<h3 id="从多个goroutine并发调用http处理函数是否安全">从多个goroutine并发调用HTTP处理函数是否安全？</h3>
-<p>我们很容易忽视HTTP处理程序应该是线程安全的，因为它们通常不是从项目代码的任何地方明确调用的，而只是从HTTP服务器的内部调用。</p>
-<h3 id="未保护的变量">未保护的变量</h3>
-<p>是否有一些不受<code>mutex</code>保护的字段或变量访问，其中字段或变量是一个原始的或不明确的线程安全的类型（如atomic.Value），而这个字段可以从一个并发的goroutine中更新？由于非原子的硬件写入和潜在的内存可见性问题，即使对原始变量跳过同步读取也是不安全的。</p>
-<p>也请看典型的数据竞赛：<a href="https://go.dev/doc/articles/race_detector#Primitive_unprotected_variable">原始的不受保护的变量</a>。</p>
-<h3 id="未保护的指针">未保护的指针</h3>
-<p>一个线程安全类型的方法没有返回一个指向受保护结构的指针？这是一个微妙的bug，它导致了前一项中描述的不受保护的访问问题。例子：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Counters</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">mu</span>   <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Mutex</span>
-	<span style="color:#a6e22e">vals</span> <span style="color:#66d9ef">map</span>[<span style="color:#a6e22e">Key</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">Counter</span>
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Counters</span>) <span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">k</span> <span style="color:#a6e22e">Key</span>, <span style="color:#a6e22e">amount</span> <span style="color:#66d9ef">int</span>) {
-    <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Lock</span>()
-    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
-    <span style="color:#a6e22e">count</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">vals</span>[<span style="color:#a6e22e">k</span>]
-    <span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">ok</span> {
-    	<span style="color:#a6e22e">count</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Counter</span>{<span style="color:#a6e22e">sum</span>: <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">num</span>: <span style="color:#ae81ff">0</span>}
-    	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">vals</span>[<span style="color:#a6e22e">k</span>] = <span style="color:#a6e22e">count</span>
-    }
-    <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">sum</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">amount</span>
-    <span style="color:#a6e22e">count</span>.<span style="color:#a6e22e">n</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Counters</span>) <span style="color:#a6e22e">GetCounter</span>(<span style="color:#a6e22e">k</span> <span style="color:#a6e22e">Key</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Counter</span> {
-	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Lock</span>()
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">vals</span>[<span style="color:#a6e22e">k</span>] <span style="color:#75715e">// BUG! 返回一个指向结构的指针，该结构必须被保护。
-</span><span style="color:#75715e"></span>}
-</code></pre></div><p>一个可能的解决方案是在<code>GetCounter()</code>中返回一个拷贝，而不是一个指向结构的指针。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Counters</span> <span style="color:#66d9ef">struct</span> {
-    <span style="color:#a6e22e">mu</span>   <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Mutex</span>
-    <span style="color:#a6e22e">vals</span> <span style="color:#66d9ef">map</span>[<span style="color:#a6e22e">Key</span>]<span style="color:#a6e22e">Counter</span> <span style="color:#75715e">// 注意，现在我们是直接存储计数器，而不是指针。
-</span><span style="color:#75715e"></span>}
-
-<span style="color:#f92672">...</span>
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Counters</span>) <span style="color:#a6e22e">GetCounter</span>(<span style="color:#a6e22e">k</span> <span style="color:#a6e22e">Key</span>) (<span style="color:#a6e22e">count</span> <span style="color:#a6e22e">Counter</span>, <span style="color:#a6e22e">exists</span> <span style="color:#66d9ef">bool</span>) {
-	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Lock</span>()
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">vals</span>[<span style="color:#a6e22e">k</span>]
-}
-</code></pre></div><h3 id="heading"></h3>
-<p>如果有一个以上的<code>goroutine</code>可以更新一个<code>sync.Map</code>，你不会根据之前<code>m.Load()</code>调用的成功与否来调用<code>m.Store()</code>或<code>m.Delete()</code>？换句话说，下面的代码是饶舌的。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">m</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Map</span>
-
-<span style="color:#75715e">// 可以从多个goroutine中同时调用
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">DoSomething</span>(<span style="color:#a6e22e">k</span> <span style="color:#a6e22e">Key</span>, <span style="color:#a6e22e">v</span> <span style="color:#a6e22e">Value</span>) {
-	<span style="color:#a6e22e">existing</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Load</span>(<span style="color:#a6e22e">k</span>)
-	<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">ok</span> {
-		<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Store</span>(<span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span>) <span style="color:#75715e">// 竞争条件——两个goroutines可以并行地执行这个程序
-</span><span style="color:#75715e"></span>		<span style="color:#f92672">...</span> <span style="color:#a6e22e">一些其他的逻辑</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">假设</span><span style="color:#e6db74">`k`</span><span style="color:#a6e22e">中的值现在是映射中的</span><span style="color:#e6db74">`v`</span><span style="color:#960050;background-color:#1e0010">。</span>
-    }
-    <span style="color:#f92672">...</span>
-}
-</code></pre></div><p>这样的竞争条件在某些情况下可能是良性的：例如，<code>Load()</code>和<code>Store()</code>调用之间的逻辑是计算要缓存在映射中的值，这种计算总是返回相同的结果，不会产生副作用。</p>
-<blockquote>
-<p>⚠️可能会有误导性的信息。&ldquo;竞赛条件 &ldquo;可以指逻辑错误，就像这个例子一样，它可能是良性的。但这个短语也常用于指违反内存模型的情况，而这绝不是良性的。</p>
-</blockquote>
-<p>如果竞赛条件不是良性的，请使用<code>sync.Map.LoadOrStore()</code>和<code>LoadAndDelete()</code>方法来修复它。</p>
-<h2 id="扩展性">扩展性</h2>
-<h3 id="通道">通道</h3>
-<p>创建一个零容量的通道，就像<code>make(chan *Foo)</code>一样，这是故意的吗？一个向零容量通道发送消息的<code>goroutine</code>会被阻塞，直到另一个<code>goroutine</code>收到这个消息。在<code>make()</code>调用中省略容量可能只是一个错误，这将限制代码的可扩展性，而且很可能单元测试不会发现这样的错误。</p>
-<blockquote>
-<p>⚠️误导性的信息。缓冲通道与非缓冲通道相比，本质上没有增加 &ldquo;可扩展性&rdquo;。然而，缓冲通道可以很容易地掩盖死锁和其他基本的设计错误，而这些错误在非缓冲通道中会立即显现。</p>
-</blockquote>
-<h3 id="锁">锁</h3>
-<p>与普通的<code>sync.Mutex</code>相比，用<code>sync.RWMutex</code>锁定会产生额外的开销，此外，目前<a href="https://github.com/golang/go/issues/17973">Go中RWMutex的实现可能存在一些扩展性问题</a>。除非情况非常明确（比如一个<code>RWMutex</code>用于同步许多只读操作，每个操作持续数百毫秒或更多，而需要独占锁的写操作很少发生），否则应该有一些基准来证明<code>RWMutex</code>确实有助于提高性能。一个典型的例子是，RWMutex肯定是弊大于利的，那就是对一个结构中的变量的简单保护。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Box</span> <span style="color:#66d9ef">struct</span> {
-	<span style="color:#a6e22e">mu</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">RWMutex</span> <span style="color:#75715e">// 不要这样做 -- 利用Mutex代替
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">x</span>  <span style="color:#66d9ef">int</span>
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Box</span>) <span style="color:#a6e22e">Get</span>() <span style="color:#66d9ef">int</span> {
-	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">RLock</span>()
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">RUnlock</span>()
-	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">x</span>
-}
-
-<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Box</span>) <span style="color:#a6e22e">Set</span>(<span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>) {
-	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Lock</span>()
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">mu</span>.<span style="color:#a6e22e">Unlock</span>()
-	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">x</span> = <span style="color:#a6e22e">x</span>
-}
-</code></pre></div><h2 id="时间">时间</h2>
-<h3 id="定时器">定时器</h3>
-<p><code>Time.Ticker</code>是否使用<code>defer tick.Stop()</code>停止？
-当循环中使用<code>ticker</code>的函数返回时，不停止<code>ticker</code>是一种内存泄漏。</p>
-<h3 id="时间比较">时间比较</h3>
-<p><code>time.Time</code>结构是否使用<code>Equal()</code>方法进行比较，而不仅仅是<code>==</code>？
-引用<a href="https://pkg.go.dev/time/#Time"><code>time.Time</code>的文档</a>。</p>
-<blockquote>
-<p>请注意，Go <code>==</code>操作符不仅要比较时间瞬间，还要比较位置和单调的时钟读数。因此，如果不首先保证所有值都设置了相同的<code>Location</code>（可以通过使用<code>UTC()</code>或<code>Local()</code>方法来实现），并且通过设置<code>t = t.Round(0)</code>来剥离单调的时钟读数，则不应将时间值用作地图或数据库键。一般来说，首选<code>t.Equal(u)</code>而不是<code>t == u</code>，因为<code>t.Equal()</code>使用了最精确的比较，并且正确处理了只有一个参数有单调时钟读数的情况。</p>
-</blockquote>
-<h3 id="timesince">time.Since</h3>
-<p>在调用<code>time.Since(t)</code>之前，单调成分没有从t中剥离出来？这是上一条的结果。如果在调用<code>time.Since()</code>函数之前（通过调用<code>UTC()</code>、<code>Local()</code>、<code>In()</code>、<code>Round()</code>、<code>Truncate()</code>或<code>AddDate()</code>）将单调成分从<code>time.Time</code>结构中剥离，那么在很多情况下<code>time.Since()</code>的结果可能是负数，例如在最初获得起始时间和调用<code>time.Since()</code>的时刻之间，系统时间已经通过<code>NTP</code>进行了同步。如果单调成分没有被剥离，<code>time.Since()</code>将总是返回一个正的持续时间。</p>
-<h3 id="timebefore">time.Before</h3>
-<p>如果你想通过<code>t.Before(u)</code>来比较系统时间，你是否从参数中剥离单调成分，例如通过<code>u.Round(0)</code>？这是与<a href="#%E6%97%B6%E9%97%B4%E6%AF%94%E8%BE%83">时间比较</a>相关的另一点。有时，您需要仅通过存储在其中的系统时间来比较两个<code>time.Time</code>结构，具体而言。在将这些时间结构之一存储在磁盘上或通过网络发送之前，您可能需要这样做。例如，想象一下某种遥测代理，它定期将遥测指标和时间一起推送给某个远程系统。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">latestSentTime</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Time</span>
-
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">pushMetricPeriodically</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
-	<span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTicker</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Stop</span>()
-	<span style="color:#66d9ef">for</span> {
-		<span style="color:#66d9ef">select</span> {
-		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>: <span style="color:#66d9ef">return</span>
-		<span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">C</span>:
-			<span style="color:#a6e22e">newTime</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Round</span>(<span style="color:#ae81ff">0</span>) <span style="color:#75715e">// 剥离单调成分，只比较系统时间
-</span><span style="color:#75715e"></span>			<span style="color:#75715e">// 检查新的时间是否较晚，以避免在系统时间向后设置时扰乱遥测数据。
-</span><span style="color:#75715e"></span>            <span style="color:#75715e">// 在NTP同步时向后设置。
-</span><span style="color:#75715e"></span>			<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">latestSentTime</span>.<span style="color:#a6e22e">Before</span>(<span style="color:#a6e22e">newTime</span>) {
-				<span style="color:#a6e22e">sendOverNetwork</span>(<span style="color:#a6e22e">NewDataPoint</span>(<span style="color:#a6e22e">newTime</span>, <span style="color:#a6e22e">metric</span>()))
-				<span style="color:#a6e22e">latestSentTime</span> = <span style="color:#a6e22e">newTime</span>
-			}
-		}
-	}
-}
-</code></pre></div><p>如果不调用<code>Round(0)</code>，即剥去单调成分，这段代码就会出错。</p>
-<h2 id="阅读列表">阅读列表</h2>
-<p><a href="https://github.com/golang/go/wiki/CodeReviewComments">Go代码审查意见</a>：审查Go代码的检查表，不针对并发性。</p>
-<p>Go并发性：</p>
-<ul>
-<li><a href="https://go.dev/ref/mem">Go内存模型</a></li>
-<li><a href="https://go.dev/doc/effective_go#concurrency">《Effective Go》中关于并发性的部分</a></li>
-<li>Go博客中的帖子。
-<ul>
-<li><a href="https://go.dev/blog/codelab-share">通过交流分享内存</a></li>
-<li><a href="https://go.dev/blog/concurrency-timeouts">Go并发模式：计时，继续</a></li>
-<li><a href="https://go.dev/blog/context">Go并发模式：上下文</a></li>
-<li><a href="https://go.dev/blog/pipelines">Go并发模式：管线和取消</a></li>
-<li><a href="https://go.dev/blog/io2013-talk-concurrency">高级Go并发模式</a>（视频）</li>
-<li><a href="https://www.youtube.com/watch?v=5zXAHh5tJqQ">重新思考经典的并发模式</a>（视频）</li>
-</ul>
-</li>
-<li><a href="https://songlh.github.io/paper/go-study.pdf">了解现实世界中Go的并发性错误</a></li>
-</ul>
-<p>并发，但不是针对Go的：</p>
-<p><a href="https://mechanical-sympathy.blogspot.com/2011/09/single-writer-principle.html">Mechanical Sympathy：单写者原则</a></p>
-</article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-</div>
-<script type="application/javascript" src='https://cuihao.fun/js/toc.js'></script>
-<link rel="stylesheet" href='https://cuihao.fun/css/toc.css' />
-
-
-<script src="https://utteranc.es/client.js"
-        repo="itcuihao/blog",
-        issue-term="title"
-        label="💬"
-        theme="icy-dark",
-        crossorigin="anonymous"
-        async>
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
-
-
-
-
-  <div class="footer container-xl width-full p-responsive">
-  <div
-    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://cuihao.fun">
-      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
-        <path fill-rule="evenodd"
-          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
-        </path>
-      </svg>
-    </a>
-    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
-      
-      <li class="mr-3 mr-lg-0">Copyright (c) 2018 -, haoc7; all rights reserved.</li>
-      
-    </ul>
-  </div>
-  <div class="d-flex flex-justify-center pb-6">
-    <span class="f6 text-gray-light"></span>
-  </div>
-
-
-</div>
-</body>
-
-<script type="application/javascript" src="https://cuihao.fun/js/github-style.js"></script>
-
-
-
-</html>
+<!doctype html><html lang=cn-zh><head><meta charset=utf-8><meta name=viewport content="width=device-width"><script type=application/javascript src=https://blog.cuihao.fun/js/theme-mode.js></script>
+<link rel=stylesheet href=https://blog.cuihao.fun/css/frameworks.min.css><link rel=stylesheet href=https://blog.cuihao.fun/css/github.min.css><link rel=stylesheet href=https://blog.cuihao.fun/css/github-style.css><link rel=stylesheet href=https://blog.cuihao.fun/css/light.css><link rel=stylesheet href=https://blog.cuihao.fun/css/dark.css><link rel=stylesheet href=https://blog.cuihao.fun/css/syntax.css><title>[译]Go并发代码审查 - haoc7</title><link rel=icon type=image/x-icon href=/images/avatar.png><meta name=theme-color content="#1e2327"><meta name=description content="本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。"><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=https://blog.cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/><meta name=twitter:card content="summary"><meta name=twitter:title content="[译]Go并发代码审查 - haoc7"><meta name=twitter:description content="本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。"><meta name=twitter:site content="https://blog.cuihao.fun"><meta name=twitter:creator content><meta name=twitter:image content="https://blog.cuihao.fun"><meta property="og:type" content="article"><meta property="og:title" content="[译]Go并发代码审查 - haoc7"><meta property="og:description" content="本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。"><meta property="og:url" content="https://blog.cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/"><meta property="og:site_name" content="[译]Go并发代码审查"><meta property="og:image" content="https://blog.cuihao.fun"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2022-06-11 12:44:51 +0800 +0800"></head><body><div style=position:relative><header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on"><div class="Header-item mobile-none" style=margin-top:-4px;margin-bottom:-4px><a class=Header-link href=https://blog.cuihao.fun><svg class="octicon" height="32" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58.0.0 3.58.0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38.0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95.0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12.0.0.67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15.0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48.0 1.07-.01 1.93-.01 2.2.0.21.15.46.55.38A8.013 8.013.0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></div><div class="Header-item d-md-none"><button class="Header-link btn-link js-details-target" type=button onclick='document.querySelector("#header-search").style.display=document.querySelector("#header-search").style.display=="none"?"block":"none"'><svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M1 2.75A.75.75.0 011.75 2h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 2.75zm0 5A.75.75.0 011.75 7h12.5a.75.75.0 110 1.5H1.75A.75.75.0 011 7.75zM1.75 12a.75.75.0 100 1.5h12.5a.75.75.0 100-1.5H1.75z"/></svg></button></div><div style=display:none id=header-search class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex"><div class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to"><div class=position-relative><form target=_blank action=https://www.google.com/search accept-charset=utf-8 method=get autocomplete=off><label class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center"><input type=text class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" name=q placeholder=Search autocomplete=off>
+<input type=hidden name=q value=site:https://blog.cuihao.fun></label></form></div></div></div><div class="Header-item Header-item--full flex-justify-center d-md-none position-relative"><a class=Header-link href=https://blog.cuihao.fun><svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" width="32"><path fill-rule="evenodd" d="M8 0C3.58.0.0 3.58.0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38.0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95.0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12.0.0.67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15.0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48.0 1.07-.01 1.93-.01 2.2.0.21.15.46.55.38A8.013 8.013.0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a></div><div class=Header-item style=margin-right:0><a href=javascript:void(0) class="Header-link no-select" onclick=switchTheme()><svg style="fill:var(--color-profile-color-modes-toggle-moon)" class="no-select" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.52208 7.71754c3.05612.0 5.53362-2.47748 5.53362-5.5336C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961 9.95801 1.07727 10.3495.771159 10.6474.99992c1.4679 1.12724 2.4141 2.90007 2.4141 4.89391.0 3.40575-2.7609 6.16667-6.16665 6.16667-2.94151.0-5.40199-2.0595-6.018122-4.81523C.794841 6.87902 1.23668 6.65289 1.55321 6.85451 2.41106 7.40095 3.4296 7.71754 4.52208 7.71754z"/></svg></a></div></header></div><div><main><div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4"><div class=px-0><div class="mb-3 d-flex px-3 px-md-3 px-lg-5"><div class="flex-auto min-width-0 width-fit mr-3"><div class=d-flex><div class="d-none d-md-block"><a class="avatar mr-2 flex-shrink-0" href=https://blog.cuihao.fun><img class=avatar-user src=https://blog.cuihao.fun/images/avatar.png width=32 height=32></a></div><div class="d-flex flex-column"><h1 class="break-word f3 text-normal mb-md-0 mb-1"><span class=author><a href=https://blog.cuihao.fun></a></span><span class=path-divider>/</span><strong class="css-truncate-target mr-1" style=max-width:410px><a href=https://blog.cuihao.fun/post/go%E5%B9%B6%E5%8F%91%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8/>[译]Go并发代码审查</a></strong></h1><div class="note m-0">Created <relative-time datetime="Sat, 11 Jun 2022 12:44:51 +0800" class=no-wrap>Sat, 11 Jun 2022 12:44:51 +0800</relative-time>
+<span class=file-info-divider></span>
+Modified <relative-time datetime="Wed, 26 Apr 2023 12:29:30 +0000" class=no-wrap>Wed, 26 Apr 2023 12:29:30 +0000</relative-time></div></div></div></div></div></div></div><div class="container-lg px-3 new-discussion-timeline"><div class="repository-content gist-content"><div><div class="js-gist-file-update-container js-task-list-container file-box"><div id=file-pytest class="file my-2"><div id=post-header class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style=z-index:2><div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto"><div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0"><summary id=toc-toggle onclick=clickToc() class="btn btn-octicon m-0 mr-2 p-2"><svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered"><path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zm0 5a.75.75.0 000 1.5h8.5a.75.75.0 000-1.5h-8.5zM3 8A1 1 0 111 8a1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"/></svg></summary><details-menu class=SelectMenu id=toc-details style="display: none;"><div class="SelectMenu-modal rounded-3 mt-1" style=max-height:340px><div class="SelectMenu-list SelectMenu-list--borderless p-2" style=overscroll-behavior:contain id=toc-list></div></div></details-menu>3038 Words</div><div class="file-actions flex-order-2 pt-0"><a class="muted-link mr-3" href=/tags/go><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>Go</a>
+<a class="muted-link mr-3" href=/tags/wiki><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>wiki</a>
+<a class="muted-link mr-3" href=/tags/%E8%AF%91><svg class="octicon octicon-tag" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25.0 01.25-.25h5.025a.25.25.0 01.177.073l6.25 6.25a.25.25.0 010 .354l-5.025 5.025a.25.25.0 01-.354.0l-6.25-6.25A.25.25.0 012.5 7.775zm-1.5.0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464.0.91.184 1.238.513l6.25 6.25a1.75 1.75.0 010 2.474l-5.026 5.026a1.75 1.75.0 01-2.474.0l-6.25-6.25A1.75 1.75.0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z"/></svg>译</a></div></div></div><div class="Box-body px-5 pb-5" style=z-index:1><article class="markdown-body entry-content container-lg"><hr><blockquote><p>原文：<a href=https://github.com/golang/go/wiki/CodeReviewConcurrency>CodeReviewConcurrency</a></p></blockquote><blockquote><p>自己水平有限，仅供参考，如有错误，请指正。联系方式可评论，或者邮件 <a href=mailto:itcuihao@gmail.com>itcuihao@gmail.com</a></p></blockquote><p>本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。</p><p>你也可以只读一遍这个列表，以刷新你的记忆，并确保你知道所有这些并发性的问题。</p><p><em>⚠️这个页面是由社区撰写和维护的。它包括有争议的信息，可能会有误导或不正确。</em></p><hr><p>不充分的同步性和竞争条件</p><ul><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#http-handlers>HTTP处理函数是线程安全的吗？</a></li><li><a href=https://go.dev/doc/articles/race_detector#Unprotected_global_variable>全局函数和变量受到突变器的保护或其他线程安全的保护？</a></li><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#sync-balance>对字段和变量的读取是受保护的？</a></li><li><a href=https://go.dev/doc/articles/race_detector#Race_on_loop_counter>循环变量作为参数传入goroutine函数？</a></li><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#return-pointer>线程安全类型的方法不返回指向受保护结构的指针？</a></li><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#sync-map-race>在<code>Load()</code>之后对<code>sync.Map</code>的<code>Load()</code>或<code>Delete()</code>调用不是一个竞争条件？</a></li></ul><p>测试</p><ul><li><a href=https://go.dev/doc/articles/race_detector>在CI/CD中用<code>-race</code>标志运行测试？</a></li></ul><p>可扩展性</p><ul><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#zero-cap-ch>故意创建一个容量为零的通道？</a></li><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#rwmutex>没有使用<code>sync.RWMutex</code>来保护非常短的操作？</a></li></ul><p>时间</p><ul><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#ticker-stop>停止<code>time.Ticker</code>使用<code>defer tick.Stop()</code>？</a></li><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#time-eq>比较<code>time.Time</code>使用<code>Equal()</code>而不是<code>==</code>？</a></li><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#time-since>在<code>time.Time</code>的参数<code>time.Since()</code>中保持单调的成分？</a></li><li><a href=https://github.com/golang/go/wiki/CodeReviewConcurrency#time-before>通过<code>t.Before(u)</code>比较系统时间时，将单调成分从参数中剥离？</a></li></ul><h2 id=不充分的同步性和竞争条件>不充分的同步性和竞争条件</h2><h3 id=从多个goroutine并发调用http处理函数是否安全>从多个goroutine并发调用HTTP处理函数是否安全？</h3><p>我们很容易忽视HTTP处理程序应该是线程安全的，因为它们通常不是从项目代码的任何地方明确调用的，而只是从HTTP服务器的内部调用。</p><h3 id=未保护的变量>未保护的变量</h3><p>是否有一些不受<code>mutex</code>保护的字段或变量访问，其中字段或变量是一个原始的或不明确的线程安全的类型（如atomic.Value），而这个字段可以从一个并发的goroutine中更新？由于非原子的硬件写入和潜在的内存可见性问题，即使对原始变量跳过同步读取也是不安全的。</p><p>也请看典型的数据竞赛：<a href=https://go.dev/doc/articles/race_detector#Primitive_unprotected_variable>原始的不受保护的变量</a>。</p><h3 id=未保护的指针>未保护的指针</h3><p>一个线程安全类型的方法没有返回一个指向受保护结构的指针？这是一个微妙的bug，它导致了前一项中描述的不受保护的访问问题。例子：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Counters</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>mu</span>   <span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>Mutex</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>vals</span> <span style=color:#66d9ef>map</span>[<span style=color:#a6e22e>Key</span>]<span style=color:#f92672>*</span><span style=color:#a6e22e>Counter</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Counters</span>) <span style=color:#a6e22e>Add</span>(<span style=color:#a6e22e>k</span> <span style=color:#a6e22e>Key</span>, <span style=color:#a6e22e>amount</span> <span style=color:#66d9ef>int</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Lock</span>()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Unlock</span>()
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>count</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>vals</span>[<span style=color:#a6e22e>k</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>ok</span> {
+</span></span><span style=display:flex><span>    	<span style=color:#a6e22e>count</span> = <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>Counter</span>{<span style=color:#a6e22e>sum</span>: <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>num</span>: <span style=color:#ae81ff>0</span>}
+</span></span><span style=display:flex><span>    	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>vals</span>[<span style=color:#a6e22e>k</span>] = <span style=color:#a6e22e>count</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>sum</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>amount</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>count</span>.<span style=color:#a6e22e>n</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Counters</span>) <span style=color:#a6e22e>GetCounter</span>(<span style=color:#a6e22e>k</span> <span style=color:#a6e22e>Key</span>) <span style=color:#f92672>*</span><span style=color:#a6e22e>Counter</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Lock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Unlock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>vals</span>[<span style=color:#a6e22e>k</span>] <span style=color:#75715e>// BUG! 返回一个指向结构的指针，该结构必须被保护。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span></code></pre></div><p>一个可能的解决方案是在<code>GetCounter()</code>中返回一个拷贝，而不是一个指向结构的指针。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Counters</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>mu</span>   <span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>Mutex</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>vals</span> <span style=color:#66d9ef>map</span>[<span style=color:#a6e22e>Key</span>]<span style=color:#a6e22e>Counter</span> <span style=color:#75715e>// 注意，现在我们是直接存储计数器，而不是指针。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Counters</span>) <span style=color:#a6e22e>GetCounter</span>(<span style=color:#a6e22e>k</span> <span style=color:#a6e22e>Key</span>) (<span style=color:#a6e22e>count</span> <span style=color:#a6e22e>Counter</span>, <span style=color:#a6e22e>exists</span> <span style=color:#66d9ef>bool</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Lock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Unlock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>vals</span>[<span style=color:#a6e22e>k</span>]
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=heading></h3><p>如果有一个以上的<code>goroutine</code>可以更新一个<code>sync.Map</code>，你不会根据之前<code>m.Load()</code>调用的成功与否来调用<code>m.Store()</code>或<code>m.Delete()</code>？换句话说，下面的代码是饶舌的。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>m</span> <span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>Map</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 可以从多个goroutine中同时调用
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>DoSomething</span>(<span style=color:#a6e22e>k</span> <span style=color:#a6e22e>Key</span>, <span style=color:#a6e22e>v</span> <span style=color:#a6e22e>Value</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>existing</span>, <span style=color:#a6e22e>ok</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>Load</span>(<span style=color:#a6e22e>k</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> !<span style=color:#a6e22e>ok</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>Store</span>(<span style=color:#a6e22e>k</span>, <span style=color:#a6e22e>v</span>) <span style=color:#75715e>// 竞争条件——两个goroutines可以并行地执行这个程序
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>		<span style=color:#f92672>...</span> <span style=color:#960050;background-color:#1e0010>一些其他的逻辑，假设</span><span style=color:#e6db74>`k`</span><span style=color:#960050;background-color:#1e0010>中的值现在是映射中的</span><span style=color:#e6db74>`v`</span><span style=color:#960050;background-color:#1e0010>。</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#f92672>...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>这样的竞争条件在某些情况下可能是良性的：例如，<code>Load()</code>和<code>Store()</code>调用之间的逻辑是计算要缓存在映射中的值，这种计算总是返回相同的结果，不会产生副作用。</p><blockquote><p>⚠️可能会有误导性的信息。&ldquo;竞赛条件 &ldquo;可以指逻辑错误，就像这个例子一样，它可能是良性的。但这个短语也常用于指违反内存模型的情况，而这绝不是良性的。</p></blockquote><p>如果竞赛条件不是良性的，请使用<code>sync.Map.LoadOrStore()</code>和<code>LoadAndDelete()</code>方法来修复它。</p><h2 id=扩展性>扩展性</h2><h3 id=通道>通道</h3><p>创建一个零容量的通道，就像<code>make(chan *Foo)</code>一样，这是故意的吗？一个向零容量通道发送消息的<code>goroutine</code>会被阻塞，直到另一个<code>goroutine</code>收到这个消息。在<code>make()</code>调用中省略容量可能只是一个错误，这将限制代码的可扩展性，而且很可能单元测试不会发现这样的错误。</p><blockquote><p>⚠️误导性的信息。缓冲通道与非缓冲通道相比，本质上没有增加 &ldquo;可扩展性&rdquo;。然而，缓冲通道可以很容易地掩盖死锁和其他基本的设计错误，而这些错误在非缓冲通道中会立即显现。</p></blockquote><h3 id=锁>锁</h3><p>与普通的<code>sync.Mutex</code>相比，用<code>sync.RWMutex</code>锁定会产生额外的开销，此外，目前<a href=https://github.com/golang/go/issues/17973>Go中RWMutex的实现可能存在一些扩展性问题</a>。除非情况非常明确（比如一个<code>RWMutex</code>用于同步许多只读操作，每个操作持续数百毫秒或更多，而需要独占锁的写操作很少发生），否则应该有一些基准来证明<code>RWMutex</code>确实有助于提高性能。一个典型的例子是，RWMutex肯定是弊大于利的，那就是对一个结构中的变量的简单保护。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Box</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>mu</span> <span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>RWMutex</span> <span style=color:#75715e>// 不要这样做 -- 利用Mutex代替
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>x</span>  <span style=color:#66d9ef>int</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>b</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Box</span>) <span style=color:#a6e22e>Get</span>() <span style=color:#66d9ef>int</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>RLock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>RUnlock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>x</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>b</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>Box</span>) <span style=color:#a6e22e>Set</span>(<span style=color:#a6e22e>x</span> <span style=color:#66d9ef>int</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Lock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>mu</span>.<span style=color:#a6e22e>Unlock</span>()
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>x</span> = <span style=color:#a6e22e>x</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=时间>时间</h2><h3 id=定时器>定时器</h3><p><code>Time.Ticker</code>是否使用<code>defer tick.Stop()</code>停止？
+当循环中使用<code>ticker</code>的函数返回时，不停止<code>ticker</code>是一种内存泄漏。</p><h3 id=时间比较>时间比较</h3><p><code>time.Time</code>结构是否使用<code>Equal()</code>方法进行比较，而不仅仅是<code>==</code>？
+引用<a href=https://pkg.go.dev/time/#Time><code>time.Time</code>的文档</a>。</p><blockquote><p>请注意，Go <code>==</code>操作符不仅要比较时间瞬间，还要比较位置和单调的时钟读数。因此，如果不首先保证所有值都设置了相同的<code>Location</code>（可以通过使用<code>UTC()</code>或<code>Local()</code>方法来实现），并且通过设置<code>t = t.Round(0)</code>来剥离单调的时钟读数，则不应将时间值用作地图或数据库键。一般来说，首选<code>t.Equal(u)</code>而不是<code>t == u</code>，因为<code>t.Equal()</code>使用了最精确的比较，并且正确处理了只有一个参数有单调时钟读数的情况。</p></blockquote><h3 id=timesince>time.Since</h3><p>在调用<code>time.Since(t)</code>之前，单调成分没有从t中剥离出来？这是上一条的结果。如果在调用<code>time.Since()</code>函数之前（通过调用<code>UTC()</code>、<code>Local()</code>、<code>In()</code>、<code>Round()</code>、<code>Truncate()</code>或<code>AddDate()</code>）将单调成分从<code>time.Time</code>结构中剥离，那么在很多情况下<code>time.Since()</code>的结果可能是负数，例如在最初获得起始时间和调用<code>time.Since()</code>的时刻之间，系统时间已经通过<code>NTP</code>进行了同步。如果单调成分没有被剥离，<code>time.Since()</code>将总是返回一个正的持续时间。</p><h3 id=timebefore>time.Before</h3><p>如果你想通过<code>t.Before(u)</code>来比较系统时间，你是否从参数中剥离单调成分，例如通过<code>u.Round(0)</code>？这是与<a href=#%E6%97%B6%E9%97%B4%E6%AF%94%E8%BE%83>时间比较</a>相关的另一点。有时，您需要仅通过存储在其中的系统时间来比较两个<code>time.Time</code>结构，具体而言。在将这些时间结构之一存储在磁盘上或通过网络发送之前，您可能需要这样做。例如，想象一下某种遥测代理，它定期将遥测指标和时间一起推送给某个远程系统。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>var</span> <span style=color:#a6e22e>latestSentTime</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Time</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>pushMetricPeriodically</span>(<span style=color:#a6e22e>ctx</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Context</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>t</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>NewTicker</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>Stop</span>()
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>for</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>select</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>case</span> <span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>Done</span>: <span style=color:#66d9ef>return</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>case</span> <span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>C</span>:
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>newTime</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Now</span>().<span style=color:#a6e22e>Round</span>(<span style=color:#ae81ff>0</span>) <span style=color:#75715e>// 剥离单调成分，只比较系统时间
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>			<span style=color:#75715e>// 检查新的时间是否较晚，以避免在系统时间向后设置时扰乱遥测数据。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>            <span style=color:#75715e>// 在NTP同步时向后设置。
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>			<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>latestSentTime</span>.<span style=color:#a6e22e>Before</span>(<span style=color:#a6e22e>newTime</span>) {
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>sendOverNetwork</span>(<span style=color:#a6e22e>NewDataPoint</span>(<span style=color:#a6e22e>newTime</span>, <span style=color:#a6e22e>metric</span>()))
+</span></span><span style=display:flex><span>				<span style=color:#a6e22e>latestSentTime</span> = <span style=color:#a6e22e>newTime</span>
+</span></span><span style=display:flex><span>			}
+</span></span><span style=display:flex><span>		}
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>如果不调用<code>Round(0)</code>，即剥去单调成分，这段代码就会出错。</p><h2 id=阅读列表>阅读列表</h2><p><a href=https://github.com/golang/go/wiki/CodeReviewComments>Go代码审查意见</a>：审查Go代码的检查表，不针对并发性。</p><p>Go并发性：</p><ul><li><a href=https://go.dev/ref/mem>Go内存模型</a></li><li><a href=https://go.dev/doc/effective_go#concurrency>《Effective Go》中关于并发性的部分</a></li><li>Go博客中的帖子。<ul><li><a href=https://go.dev/blog/codelab-share>通过交流分享内存</a></li><li><a href=https://go.dev/blog/concurrency-timeouts>Go并发模式：计时，继续</a></li><li><a href=https://go.dev/blog/context>Go并发模式：上下文</a></li><li><a href=https://go.dev/blog/pipelines>Go并发模式：管线和取消</a></li><li><a href=https://go.dev/blog/io2013-talk-concurrency>高级Go并发模式</a>（视频）</li><li><a href="https://www.youtube.com/watch?v=5zXAHh5tJqQ">重新思考经典的并发模式</a>（视频）</li></ul></li><li><a href=https://songlh.github.io/paper/go-study.pdf>了解现实世界中Go的并发性错误</a></li></ul><p>并发，但不是针对Go的：</p><p><a href=https://mechanical-sympathy.blogspot.com/2011/09/single-writer-principle.html>Mechanical Sympathy：单写者原则</a></p></article></div></div></div></div></div></div></main></div><script type=application/javascript src=https://blog.cuihao.fun/js/toc.js></script>
+<link rel=stylesheet href=https://blog.cuihao.fun/css/toc.css><div class="footer container-xl width-full p-responsive"><div class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light"><a aria-label=Homepage title=GitHub class="footer-octicon d-none d-lg-block mr-lg-4" href=https://blog.cuihao.fun><svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" width="24"><path fill-rule="evenodd" d="M8 0C3.58.0.0 3.58.0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38.0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95.0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12.0.0.67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15.0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48.0 1.07-.01 1.93-.01 2.2.0.21.15.46.55.38A8.013 8.013.0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a><ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0"><li class="mr-3 mr-lg-0">Copyright (c) 2018 -, haoc7; all rights reserved.</li></ul></div><div class="d-flex flex-justify-center pb-6"><span class="f6 text-gray-light"></span></div></div></body><script type=application/javascript src=https://blog.cuihao.fun/js/github-style.js></script></html>
