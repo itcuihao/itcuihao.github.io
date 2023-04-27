@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://blog.cuihao.fun/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github-style.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/light.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/dark.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/syntax.css' />
+    <title>【译】Rob Pike认为Go成功的5件事 - haoc7</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="Rob Pike 认为Go成功的5件小事" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.cuihao.fun/post/rob-pike-go-success5/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="【译】Rob Pike认为Go成功的5件事 - haoc7" />
+<meta name="twitter:description"
+  content="Rob Pike 认为Go成功的5件小事" />
+<meta name="twitter:site" content="https://blog.cuihao.fun" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://blog.cuihao.fun">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="【译】Rob Pike认为Go成功的5件事 - haoc7">
+<meta property="og:description"
+  content="Rob Pike 认为Go成功的5件小事" />
+<meta property="og:url" content="https://blog.cuihao.fun/post/rob-pike-go-success5/" />
+<meta property="og:site_name" content="【译】Rob Pike认为Go成功的5件事" />
+<meta property="og:image"
+  content="https://blog.cuihao.fun">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2022-08-30 10:40:51 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://blog.cuihao.fun">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://blog.cuihao.fun">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://blog.cuihao.fun">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://blog.cuihao.fun">
+                  <img class=" avatar-user"
+                    src="https://blog.cuihao.fun/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://blog.cuihao.fun"></a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://blog.cuihao.fun/post/rob-pike-go-success5/">【译】Rob Pike认为Go成功的5件事</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Tue, 30 Aug 2022 10:40:51 &#43;0800"
+                    class="no-wrap">
+                    Tue, 30 Aug 2022 10:40:51 &#43;0800</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Wed, 31 Aug 2022 18:28:49 &#43;0800"
+                    class="no-wrap">
+                    Wed, 31 Aug 2022 18:28:49 &#43;0800</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      2227 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/go">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Go
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/%E8%AF%91">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      译
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><hr>
+<p><a href="https://changelog.com/posts/5-things-rob-pike-attributes-to-gos-success">原文链接</a></p>
+<p>俗话说……历史不会重演，但经常押韵。</p>
+<p>如果您想创建成功的编程语言（或至少了解您的可能如何），那么向其他人学习的人来说，这是非常有价值的。在<a href="https://changelog.com/gotime">Go Time＃100</a>上，Rob Pike和Robert Griesemer（Go的两个创作者）坐下来讨论该语言的成功。</p>
+<p>这是罗布·派克（Rob Pike）在演出中的成功归因于该语言的成功。</p>
+<h2 id="1他们写了正式的规范">1.他们写了正式的规范</h2>
+<p>Rob在给出该项目的起源故事时说</p>
+<blockquote>
+<p>但这是规范发生的时候。是的，几个星期。所以我们真正开始了六个月左右的头脑风暴和近似塑造。我们做的第一件重要的事情之一&ndash;也许是我们做的第一件重要的事情&ndash;是我们写了一个正式的语言规范，我认为这是项目成功的一个关键部分。</p>
+</blockquote>
+<blockquote>
+<p>最重要的事情之一是伊恩·泰勒（Ian Taylor）也在谷歌（Google），他看到了这个规范，并决定他想为它写一个编译器。所以有一天，他走进我们的办公室，说：&ldquo;哦，顺便说一下，我已经为你的语言写了一个编译器。&rdquo; 这对我们来说是一个惊人的时刻。当然，他成为了团队的一员，现在他还在为Go工作。</p>
+</blockquote>
+<p><a href="https://changelog.com/gotime/100#transcript-30">来源</a></p>
+<p>该规范获得伊恩·兰斯·泰勒（<a href="https://twitter.com/ianlancetaylor">Ian Lance Taylor</a>）等工程师的最初兴趣。</p>
+<p>（巧合的是，伊恩（Ian）最近也在演讲中谈论他在<a href="https://changelog.com/gotime/98">泛型</a>方面的工作。）</p>
+<h2 id="2他们吸引了杀手级应用程序">2.他们吸引了杀手级应用程序</h2>
+<p>遗憾的是，Rob并没有对他们如何在早期吸引Docker进行评价。我猜是通过使语言&hellip;&hellip;对系统程序员有吸引力？</p>
+<blockquote>
+<p>是的，Docker是我们的杀手级应用，因为它是用Go写的，运行良好，而且它成为现在所谓的云计算的核心&hellip;&hellip;我们过去只是称之为系统编程，或服务器。事实上，其中一项关键技术是用Go写的，这对很多人来说证明了该语言的目的&hellip;&hellip;我认为它实际上是一种非常好的语言；这正是我们在编写该语言时考虑的事情，尽管我们自己并没有这样做。</p>
+</blockquote>
+<blockquote>
+<p>后来，Kubernetes也出现了，这次是来自谷歌。但是，拥有用你的语言编写的重要软件是使一种语言成功的一个真正重要的部分。如果什么都不写，那么语言再好也没有用。</p>
+</blockquote>
+<p><a href="https://changelog.com/gotime/100#transcript-62">来源</a></p>
+<h2 id="3他们成立了一个开源社区">3.他们成立了一个开源社区</h2>
+<p>Rob坦率地谈到了他们在开源世界中遇到的挑战，这令人耳目一新。</p>
+<blockquote>
+<p>我确实认为，团队并没有真正准备好与开源社区互动，以及这意味着什么。伊恩是我们中唯一一个在开源世界花了很多时间的人，而他做的事情比他在社区的份额要多。</p>
+</blockquote>
+<blockquote>
+<p>我们花了很长时间来理解成为开源社区的一部分意味着什么，拥有一个基本上由公司支付的项目，但有很多开源的贡献者&hellip;&hellip;实际上，我们很早就有很多奇妙的开源开发。移植到Windows是完全由外部贡献者完成的，这非常好&hellip;&hellip;而社区的投入一直很关键。</p>
+</blockquote>
+<blockquote>
+<p>我认为有时人们认为谷歌控制得太多了，这是他们的观点，但我不同意；我认为他们低估了团队对开源社区所说的话的倾听程度，阅读了所有的问题，处理得非常好&hellip;&hellip;有时不那么好，但随后它被修复。</p>
+</blockquote>
+<blockquote>
+<p>当有成千上万的人的时候，这是一件非常具有挑战性的事情，现在相信世界上有数百万Go程序员。他们对这件事都有自己的看法，如何倾听，但也要确保你保持项目的灵魂&ndash;我不认为这有什么简单的答案。我认为很多人认为这是微不足道的，你只是接受每个人想要的东西&hellip;&hellip;但那样你就不会有Go，你会有完全不同的东西。这真的很棘手，这是一个非常困难的平衡行为。</p>
+</blockquote>
+<p><a href="https://changelog.com/gotime/100#transcript-67">来源</a></p>
+<h2 id="4他们使语言难以改变">4.他们使语言难以改变</h2>
+<p>这一点起初有点违反直觉。通常对于软件来说，可塑性是一种美德，而僵化是一种诅咒。然而，Rob很好地解释了为什么翻转剧本对Go这样的编程语言如此重要。</p>
+<blockquote>
+<p>好吧，我们让它难以改变。我们特意为Go1写下，我们承诺不做任何改变。这对这门语言的成功至关重要，因为它使企业相信我们所做的事情和对我们的依赖不会破坏他们的东西&hellip;&hellip;而这使得改变变得更加困难。我认为很多人不理解我们对该合同的热情。我们没有破坏人们的程序，尽管它现在是一个十年前的项目。这只是一个令人难以置信的负担，但它对于让我们达到现在的位置至关重要。<a href="https://changelog.com/gotime/100#transcript-69">来源</a></p>
+</blockquote>
+<h2 id="5他们坚持使用他们相信的功能">5.他们坚持使用他们相信的功能</h2>
+<p>当Jon Calhoun问及社区的反馈以及团队对改变的抵制是如何起作用时，Rob说。</p>
+<blockquote>
+<p>Go的一些功能对它的成功很重要，但人们并不喜欢，我们对此也很有意见。我想你提到的那个未使用的变量的编译错误就是其中之一。这很烦人&ndash;你忘记删除一个未使用的变量，你的程序就会被编译。但对我们来说，这也是我们试图讲述的故事的一部分，那就是制作一种语言，尽可能地保证更好的代码质量，尽管我们不能阻止你写坏的代码&hellip;&hellip;但我们可以确保不会有东西溜进来，使你的构建速度变慢，或者你的代码更难维护。</p>
+</blockquote>
+<blockquote>
+<p>我认为真正让人抓狂的是你不允许导入一个你不使用的库。这对我们来说是非常重要的，因为我们花了很多时间来处理大量二进制文件的缓慢构建，确保你的程序的依赖性正是你所需要的，而不是更多；这对我们来说是非常重要的，但对很多人来说，每次你进行编辑并删除一个打印语句或其他东西，编译器就会说 &ldquo;你没有使用这个库。我不会再为你编译了&rdquo;。</p>
+</blockquote>
+<blockquote>
+<p>后来Brad写了一个叫<code>goimports</code>的东西，它是<code>gofmt</code>的一个变种，可以为你管理导入，这就基本平息了这种抱怨。正如通常的情况一样，自动化可以摆脱很多抱怨。</p>
+</blockquote>
+<p><a href="https://changelog.com/gotime/100#transcript-73">来源</a></p>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://blog.cuihao.fun/js/toc.js'></script>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/toc.css' />
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://blog.cuihao.fun">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Copyright(c) 2018 -, haoc7; all rights reserved.</li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://blog.cuihao.fun/js/github-style.js"></script>
+
+
+
+
+</html>

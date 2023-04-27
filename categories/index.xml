@@ -2,135 +2,144 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on haoc7</title>
-    <link>https://cuihao.fun/categories/</link>
+    <link>https://blog.cuihao.fun/categories/</link>
     <description>Recent content in Categories on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 09 Aug 2022 18:49:28 +0800</lastBuildDate><atom:link href="https://cuihao.fun/categories/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Fri, 14 Apr 2023 10:34:25 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Elasticsearch</title>
-      <link>https://cuihao.fun/categories/elasticsearch/</link>
-      <pubDate>Tue, 09 Aug 2022 18:49:28 +0800</pubDate>
+      <title>AI</title>
+      <link>https://blog.cuihao.fun/categories/ai/</link>
+      <pubDate>Fri, 14 Apr 2023 10:34:25 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/elasticsearch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>日常</title>
-      <link>https://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</link>
-      <pubDate>Fri, 22 Jul 2022 16:56:52 +0800</pubDate>
-      
-      <guid>https://cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://cuihao.fun/categories/hugo/</link>
-      <pubDate>Thu, 07 Jul 2022 07:48:44 +0800</pubDate>
-      
-      <guid>https://cuihao.fun/categories/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>skill</title>
-      <link>https://cuihao.fun/categories/skill/</link>
-      <pubDate>Fri, 24 Jun 2022 00:22:20 +0800</pubDate>
-      
-      <guid>https://cuihao.fun/categories/skill/</guid>
+      <guid>https://blog.cuihao.fun/categories/ai/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>https://cuihao.fun/categories/go/</link>
-      <pubDate>Tue, 14 Jun 2022 18:44:59 +0800</pubDate>
+      <link>https://blog.cuihao.fun/categories/go/</link>
+      <pubDate>Tue, 30 Aug 2022 10:40:51 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/go/</guid>
+      <guid>https://blog.cuihao.fun/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://blog.cuihao.fun/categories/elasticsearch/</link>
+      <pubDate>Tue, 09 Aug 2022 18:49:28 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/categories/elasticsearch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>日常</title>
+      <link>https://blog.cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</link>
+      <pubDate>Fri, 22 Jul 2022 16:56:52 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://blog.cuihao.fun/categories/hugo/</link>
+      <pubDate>Thu, 07 Jul 2022 07:48:44 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>skill</title>
+      <link>https://blog.cuihao.fun/categories/skill/</link>
+      <pubDate>Fri, 24 Jun 2022 00:22:20 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/categories/skill/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Algorithms</title>
-      <link>https://cuihao.fun/categories/algorithms/</link>
+      <link>https://blog.cuihao.fun/categories/algorithms/</link>
       <pubDate>Sun, 19 Apr 2020 19:40:53 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/algorithms/</guid>
+      <guid>https://blog.cuihao.fun/categories/algorithms/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Design</title>
-      <link>https://cuihao.fun/categories/design/</link>
+      <link>https://blog.cuihao.fun/categories/design/</link>
       <pubDate>Thu, 05 Mar 2020 11:48:10 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/design/</guid>
+      <guid>https://blog.cuihao.fun/categories/design/</guid>
       <description></description>
     </item>
     
     <item>
       <title>life</title>
-      <link>https://cuihao.fun/categories/life/</link>
+      <link>https://blog.cuihao.fun/categories/life/</link>
       <pubDate>Sun, 01 Dec 2019 19:05:30 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/life/</guid>
+      <guid>https://blog.cuihao.fun/categories/life/</guid>
       <description></description>
     </item>
     
     <item>
       <title>书籍</title>
-      <link>https://cuihao.fun/categories/%E4%B9%A6%E7%B1%8D/</link>
+      <link>https://blog.cuihao.fun/categories/%E4%B9%A6%E7%B1%8D/</link>
       <pubDate>Sun, 19 May 2019 21:18:57 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/%E4%B9%A6%E7%B1%8D/</guid>
+      <guid>https://blog.cuihao.fun/categories/%E4%B9%A6%E7%B1%8D/</guid>
       <description></description>
     </item>
     
     <item>
       <title>随记</title>
-      <link>https://cuihao.fun/categories/%E9%9A%8F%E8%AE%B0/</link>
+      <link>https://blog.cuihao.fun/categories/%E9%9A%8F%E8%AE%B0/</link>
       <pubDate>Sun, 14 Apr 2019 10:47:50 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/%E9%9A%8F%E8%AE%B0/</guid>
+      <guid>https://blog.cuihao.fun/categories/%E9%9A%8F%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>碎碎念</title>
-      <link>https://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
+      <link>https://blog.cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link>
       <pubDate>Mon, 30 Jul 2018 23:24:19 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
+      <guid>https://blog.cuihao.fun/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Unix</title>
-      <link>https://cuihao.fun/categories/unix/</link>
+      <link>https://blog.cuihao.fun/categories/unix/</link>
       <pubDate>Fri, 27 Jul 2018 01:04:33 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/unix/</guid>
+      <guid>https://blog.cuihao.fun/categories/unix/</guid>
       <description></description>
     </item>
     
     <item>
       <title>从0开始学架构</title>
-      <link>https://cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</link>
+      <link>https://blog.cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</link>
       <pubDate>Mon, 23 Jul 2018 22:52:41 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</guid>
+      <guid>https://blog.cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://cuihao.fun/categories/linux/</link>
+      <link>https://blog.cuihao.fun/categories/linux/</link>
       <pubDate>Sun, 22 Jul 2018 19:10:51 +0800</pubDate>
       
-      <guid>https://cuihao.fun/categories/linux/</guid>
+      <guid>https://blog.cuihao.fun/categories/linux/</guid>
       <description></description>
     </item>
     

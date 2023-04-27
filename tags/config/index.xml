@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>config on haoc7</title>
-    <link>https://cuihao.fun/tags/config/</link>
+    <link>https://blog.cuihao.fun/tags/config/</link>
     <description>Recent content in config on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 24 Sep 2019 07:40:49 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/config/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Tue, 24 Sep 2019 07:40:49 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/config/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>配置文件热更新</title>
-      <link>https://cuihao.fun/post/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%83%AD%E6%9B%B4%E6%96%B0/</link>
+      <link>https://blog.cuihao.fun/post/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%83%AD%E6%9B%B4%E6%96%B0/</link>
       <pubDate>Tue, 24 Sep 2019 07:40:49 +0800</pubDate>
       
-      <guid>https://cuihao.fun/post/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%83%AD%E6%9B%B4%E6%96%B0/</guid>
+      <guid>https://blog.cuihao.fun/post/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%83%AD%E6%9B%B4%E6%96%B0/</guid>
       <description>想要使程序在不重启的前提下读取更新的配置文件，探索了以下几种方式： 信号量触发更新 API手动触发更新 监听文件触发更新 使用第三方包 一、信号量触发更新 对系统进程调用监</description>
     </item>
     
