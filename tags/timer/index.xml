@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>timer on haoc7</title>
-    <link>https://cuihao.fun/tags/timer/</link>
+    <link>https://blog.cuihao.fun/tags/timer/</link>
     <description>Recent content in timer on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 11 Dec 2021 21:59:22 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/timer/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Sat, 11 Dec 2021 21:59:22 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/timer/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Go Timer</title>
-      <link>https://cuihao.fun/post/go-timer/</link>
+      <link>https://blog.cuihao.fun/post/go-timer/</link>
       <pubDate>Sat, 11 Dec 2021 21:59:22 +0800</pubDate>
       
-      <guid>https://cuihao.fun/post/go-timer/</guid>
+      <guid>https://blog.cuihao.fun/post/go-timer/</guid>
       <description>定时器是经常使用的</description>
     </item>
     

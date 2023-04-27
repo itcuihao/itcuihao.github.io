@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>BFS on haoc7</title>
-    <link>https://cuihao.fun/tags/bfs/</link>
+    <link>https://blog.cuihao.fun/tags/bfs/</link>
     <description>Recent content in BFS on haoc7</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
-    <copyright>Copyright (c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 19 Apr 2020 19:40:53 +0800</lastBuildDate><atom:link href="https://cuihao.fun/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Sun, 19 Apr 2020 19:40:53 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/bfs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>01 Matrix</title>
-      <link>https://cuihao.fun/post/01-matrix/</link>
+      <link>https://blog.cuihao.fun/post/01-matrix/</link>
       <pubDate>Sun, 19 Apr 2020 19:40:53 +0800</pubDate>
       
-      <guid>https://cuihao.fun/post/01-matrix/</guid>
+      <guid>https://blog.cuihao.fun/post/01-matrix/</guid>
       <description>leetcode 542</description>
     </item>
     
     <item>
       <title>17.letter Combinations of a Phone Number</title>
-      <link>https://cuihao.fun/post/17.letter-combinations-of-a-phone-number/</link>
+      <link>https://blog.cuihao.fun/post/17.letter-combinations-of-a-phone-number/</link>
       <pubDate>Thu, 26 Jul 2018 00:17:05 +0800</pubDate>
       
-      <guid>https://cuihao.fun/post/17.letter-combinations-of-a-phone-number/</guid>
+      <guid>https://blog.cuihao.fun/post/17.letter-combinations-of-a-phone-number/</guid>
       <description>题目 Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent. 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。 A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters. 给出数字到字母</description>
     </item>
     
