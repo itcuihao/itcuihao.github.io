@@ -7,7 +7,61 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 14 Apr 2023 10:34:25 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jul 2023 08:46:21 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Shortcodes Example</title>
+      <link>https://blog.cuihao.fun/post/hugo-shortcodes/</link>
+      <pubDate>Sat, 01 Jul 2023 08:46:21 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/hugo-shortcodes/</guid>
+      <description>hugo shortcode使用方法(记录本项目)</description>
+    </item>
+    
+    <item>
+      <title>一些有意思的项目</title>
+      <link>https://blog.cuihao.fun/post/03-hi-guy/</link>
+      <pubDate>Sat, 01 Jul 2023 08:29:07 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/03-hi-guy/</guid>
+      <description>有意思的项目</description>
+    </item>
+    
+    <item>
+      <title>ChatGPT带我部署脚本</title>
+      <link>https://blog.cuihao.fun/post/02multi-deploy/</link>
+      <pubDate>Fri, 26 May 2023 17:29:10 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/02multi-deploy/</guid>
+      <description>利用ChatGPT带自己使用Ansible批量部署服务</description>
+    </item>
+    
+    <item>
+      <title>Hugo 支持相册</title>
+      <link>https://blog.cuihao.fun/post/hugo-photo/</link>
+      <pubDate>Tue, 09 May 2023 00:43:19 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/hugo-photo/</guid>
+      <description>利用hugo插件nanogallery2支持相册</description>
+    </item>
+    
+    <item>
+      <title>Go Modules 梳理</title>
+      <link>https://blog.cuihao.fun/post/go-mod-note/</link>
+      <pubDate>Mon, 08 May 2023 14:21:52 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/go-mod-note/</guid>
+      <description>go mod 相关规则的梳理，简单的介绍使用方法</description>
+    </item>
+    
+    <item>
+      <title>Hugo 配置 Github Action</title>
+      <link>https://blog.cuihao.fun/post/hugo-github-action/</link>
+      <pubDate>Fri, 28 Apr 2023 11:04:18 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/hugo-github-action/</guid>
+      <description>由A repo提交，发布至B repo github pages</description>
+    </item>
+    
     <item>
       <title>GPT Discuss Timeline</title>
       <link>https://blog.cuihao.fun/post/gpt-discuss/</link>
@@ -18,7 +72,7 @@
     </item>
     
     <item>
-      <title>【译】Rob Pike认为Go成功的5件事</title>
+      <title>[译]Rob Pike认为Go成功的5件事</title>
       <link>https://blog.cuihao.fun/post/rob-pike-go-success5/</link>
       <pubDate>Tue, 30 Aug 2022 10:40:51 +0800</pubDate>
       

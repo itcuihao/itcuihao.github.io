@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ansible on haoc7</title>
+    <link>https://blog.cuihao.fun/tags/ansible/</link>
+    <description>Recent content in ansible on haoc7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn-zh</language>
+    <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Fri, 26 May 2023 17:29:10 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ChatGPT带我部署脚本</title>
+      <link>https://blog.cuihao.fun/post/02multi-deploy/</link>
+      <pubDate>Fri, 26 May 2023 17:29:10 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/02multi-deploy/</guid>
+      <description>利用ChatGPT带自己使用Ansible批量部署服务</description>
+    </item>
+    
+  </channel>
+</rss>

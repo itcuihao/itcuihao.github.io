@@ -1,0 +1,525 @@
+[
+    {
+        "title": "About",
+        "uri": "about",
+        "content": "haoc7                                                                                          github bilibili twitter instagram",
+        "objectID": "about",
+        "date": "2018-07-22T06:16:54.000Z",
+        "draft": false
+    },
+    {
+        "title": "01 Matrix",
+        "uri": "post/01-matrix",
+        "content": "0   1                  0                  1      1      0 0 0 0 1 0 0 0 0     0 0 0 0 1 0 0 0 0    2      0 0 0 0 1 0 1 1 1     0 0 0 0 1 0 1 2 1                  10000                0                                  LeetCode     https   leetcode cn com problems 01 matrix                                        0                    1   1                                        1     package matrix import    fmt    func updateMatrix matrix int  int   len matrix     0   return nil   maxRow  maxCel    len matrix   len matrix 0   zero    make int  0     0  0   item    zero 0  x    item 0  y    item 1  fmt Println  queue     zero  zero   zero 1   _     range around   ax  ay    x a 0   y a 1  fmt Println  new    ax  ay  ax   maxRow    ay   maxCel   continue   fmt Println  res    matrixax  matrixx 1  matrixax     1   matrixax   matrixx   1 zero   append zero    int ax  ay     fmt Println  matrix     matrix      return matrix   queue    0 0   0 1   0 2   1 0   1 2   new  0 1 res  0 1 matrix    0 0 0   0  1 0    1  1  1   new  0  1 new  1 0 res  0 1 matrix    0 0 0   0  1 0    1  1  1   new   1 0 queue    0 1   0 2   1 0   1 2   new  0 2 res  0 1 matrix    0 0 0   0  1 0    1  1  1   new  0 0 res  0 1 matrix    0 0 0   0  1 0    1  1  1   new  1 1 res   1 1 matrix    0 0 0   0 1 0    1  1  1   new   1 1 queue    0 2   1 0   1 2   1 1   new  0 3 new  0 1 res  0 1 matrix    0 0 0   0 1 0    1  1  1   new  1 2 res  0 1 matrix    0 0 0   0 1 0    1  1  1   new   1 2 queue    1 0   1 2   1 1   new  1 1 res  1 1 matrix    0 0 0   0 1 0    1  1  1   new  1  1 new  2 0 res   1 1 matrix    0 0 0   0 1 0   1  1  1   new  0 0 res  0 1 matrix    0 0 0   0 1 0   1  1  1   queue    1 2   1 1   2 0   new  1 3 new  1 1 res  1 1 matrix    0 0 0   0 1 0   1  1  1   new  2 2 res   1 1 matrix    0 0 0   0 1 0   1  1 1   new  0 2 res  0 1 matrix    0 0 0   0 1 0   1  1 1   queue    1 1   2 0   2 2   new  1 2 res  0 2 matrix    0 0 0   0 1 0   1  1 1   new  1 0 res  0 2 matrix    0 0 0   0 1 0   1  1 1   new  2 1 res   1 2 matrix    0 0 0   0 1 0   1 2 1   new  0 1 res  0 2 matrix    0 0 0   0 1 0   1 2 1   queue    2 0   2 2   2 1   new  2 1 res  2 2 matrix    0 0 0   0 1 0   1 2 1   new  2  1 new  3 0 new  1 0 res  0 2 matrix    0 0 0   0 1 0   1 2 1   queue    2 2   2 1   new  2 3 new  2 1 res  2 2 matrix    0 0 0   0 1 0   1 2 1   new  3 2 new  1 2 res  0 2 matrix    0 0 0   0 1 0   1 2 1   queue    2 1   new  2 2 res  1 3 matrix    0 0 0   0 1 0   1 2 1   new  2 0 res  1 3 matrix    0 0 0   0 1 0   1 2 1   new  3 1 new  1 1 res  1 3 matrix    0 0 0   0 1 0   1 2 1",
+        "objectID": "post/01-matrix",
+        "date": "2020-04-19T11:40:53.000Z",
+        "draft": false,
+        "categories": [
+            "Algorithms"
+        ],
+        "tags": [
+            "Leetcode",
+            "BFS"
+        ],
+        "summary": "leetcode 542"
+    },
+    {
+        "title": "14 高性能数据库集群：读写分离",
+        "uri": "post/14-高性能数据库集群：读写分离",
+        "content": "0             13                                                                                                                                                                                                                                                                                                                                                                                          ACID         SQL                                                                                           Oracle DB2 MySQL",
+        "objectID": "post/14-高性能数据库集群：读写分离",
+        "date": "2018-07-23T14:52:41.000Z",
+        "draft": false,
+        "categories": [
+            "从0开始学架构"
+        ],
+        "tags": [
+            "架构",
+            "数据库",
+            "集群"
+        ]
+    },
+    {
+        "title": "17.letter Combinations of a Phone Number",
+        "uri": "post/17.letter-combinations-of-a-phone-number",
+        "content": "Given string containing digits 2 9 inclusive  return possible letter combinations number represent            2 9                     mapping digit letters  just telephone buttons  given below  Note 1 does not map letters                           1          Example  Input   23  Output    ad    ae    af    bd    be    bf    cd    ce    cf    Note  Although above answer lexicographical order  answer order want                                                                      DFS func letterCombinationsDFS digits string    string   var jp     string          abc    def    ghi    jkl    mno    pqrs    tuv    wxyz   cur    make   rune  len digits   ans   dfs digits  jp  0  cur  return ans   var   ans   string   func dfs digits string  jp   string  l int  cur   rune    string   l    len digits    l   0   ans   append ans  string cur     return ans   s    jp digits l   0   _  v    range s   cur l    v fmt Println  cur    string cur   ans   dfs digits  jp  l 1  cur    return ans   BFS func letterCombinations digits string    string   var jp     string          abc    def    ghi    jkl    mno    pqrs    tuv    wxyz   ld    len digits         r      string   ld    0   return r   r     string        0    ld  i     var tmp   string      jp      index    digits i     0  _  k    range r   _  j    range jp index    tmp   append tmp  k string j             r   r   tmp   return r",
+        "objectID": "post/17.letter-combinations-of-a-phone-number",
+        "date": "2018-07-25T16:17:05.000Z",
+        "draft": false,
+        "categories": [
+            "Algorithms"
+        ],
+        "tags": [
+            "Leetcode",
+            "DFS",
+            "BFS"
+        ]
+    },
+    {
+        "title": "19.remove Nth Node From End of List",
+        "uri": "post/19.remove-nth-node-from-end-of-list",
+        "content": "Leetcode    Github      Given linked list  remove n th node end list return its head                  n                 Example  Given linked list  1  2  3  4  5  n   2  removing second node end  linked list becomes 1  2  3  5  Note  Given n will always valid      n         Follow up  one pass                                       list        n                                        p next p next next    type ListNode struct   Val int Next  ListNode   func removeNthFromEnd head ListNode  n int  ListNode   p     ListNode   s    p e    p p Next   head    0",
+        "objectID": "post/19.remove-nth-node-from-end-of-list",
+        "date": "2018-08-01T14:53:23.000Z",
+        "draft": false,
+        "categories": [
+            "Algorithms"
+        ],
+        "tags": [
+            "Leetcode",
+            "Linked list"
+        ]
+    },
+    {
+        "title": "2018年总结",
+        "uri": "post/2018年总结",
+        "content": "2018                                                                    2018                                                                                                                                          15k       5k                                                                                            2018 3 18                                           4                                        hr                                                           bug                                                                                                                 8                                                                                             8 24                                                                                                                                                                        19                                          2018                      2019",
+        "objectID": "post/2018年总结",
+        "date": "2019-01-05T02:05:37.000Z",
+        "draft": false,
+        "categories": [
+            "日常"
+        ],
+        "tags": [
+            "日常"
+        ]
+    },
+    {
+        "title": "20191201",
+        "uri": "post/20191201",
+        "content": "9 00     22 40                                                                    11116                     20                                                                                                                                                                                                                                                                                 12   19                            8",
+        "objectID": "post/20191201",
+        "date": "2019-12-01T11:05:30.000Z",
+        "draft": false,
+        "categories": [
+            "life"
+        ],
+        "tags": [
+            "life"
+        ]
+    },
+    {
+        "title": "2019年书单",
+        "uri": "post/2019年书单",
+        "content": "SQL                                       start                 start                     start                     MySQL     InnoDB                 Offer                                                              C                                                                       HTTP                                                  start                                                                       start                 start",
+        "objectID": "post/2019年书单",
+        "date": "2019-05-19T13:18:57.000Z",
+        "draft": false,
+        "categories": [
+            "书籍"
+        ],
+        "tags": [
+            "书单"
+        ]
+    },
+    {
+        "title": "BinaryTree的遍历",
+        "uri": "post/BinaryTree的遍历",
+        "content": "type TreeNode struct   Val int Left  TreeNode Right  TreeNode           func preorderTraversal root  TreeNode    int   var l   int root    nil   return l   l   append l  root Val  l   append l  preorderTraversal root Left      l   append l  preorderTraversal root Right      return l        func inorderTraversal root  TreeNode    int   var l   int root    nil   return l   l   append l  inorderTraversal root Left      l   append l  root Val  l   append l  inorderTraversal root Right      return l        func postorderTraversal root  TreeNode    int   l      int   root    nil   return l   l   append l  postorderTraversal root Left      l   append l  postorderTraversal root Right      l   append l  root Val  return l            func preorderFor root  TreeNode    int   var   l   int tempStack    TreeNode   root    nil    len tempStack    0   l   append l  root Val  root Left    nil   root Right    nil   tempStack   append tempStack  root Right    root   root Left   else root Right    nil   root   root Right   else   len tempStack     0   break   root   tempStack len tempStack  1  tempStack   tempStack  len tempStack  1      return l        func inorder root  TreeNode    int   var res   int root    nil   return res   var stack    TreeNode cur    root cur    nil    len stack    0   cur    nil   stack   append stack  cur  cur   cur Left   cur   stack len stack  1  stack   stack  len stack  1  res   append res  cur Val  cur   cur Right   return res        func portorder root  TreeNode    int   l      int   tempStack       TreeNode   root    nil    len tempStack    0   root    nil   tempStack   append tempStack  root  l   append l  root Val  root   root Right   else   root   tempStack len tempStack  1  tempStack   tempStack  len tempStack  1  root   root Left     lt    len l     0    lt 2  i     l i   l lt i 1    l lt i 1   l i    return l        leetcode94 leetcode144 leetcode145",
+        "objectID": "post/BinaryTree的遍历",
+        "date": "2019-04-21T11:35:37.000Z",
+        "draft": false,
+        "categories": [
+            "Algorithms"
+        ],
+        "tags": [
+            "tree",
+            "Leetcode"
+        ]
+    },
+    {
+        "title": "Catch and Redirect Panic",
+        "uri": "post/Catch-And-Redirect-Panic",
+        "content": "panic        recover                  panic    log     log                   panic                      Linux Windows     syscall             Linux func Catch path string  error      Linux Uncomment file  err    os OpenFile path  os ORDWR os OCREATE os O_APPEND  0666  globalf   file err    nil   return err   t    fmt Sprintf  panic time   s   time Now   Format  2006 01 02 15 04 05    file Write   byte t   file Write   byte   n    err   syscall Dup2 int file Fd     int os Stderr Fd      err    nil   return err   return nil   Windows func Catch path string  error      windows uncomment file  err    os OpenFile path  os OWRONLY os OCREATE os O_APPEND  0666  globalf   file err    nil   return err   t    fmt Sprintf  panic time   s   time Now   Format  2006 01 02 15 04 05    file Write   byte t   file Write   byte   r n    lp    syscall NewLazyDLL kdll  NewProc ssh  seh    syscall STDERRORHANDLE v  _  err    lp Call uintptr seh   uintptr file Fd     v    0   return err   return nil",
+        "objectID": "post/Catch-And-Redirect-Panic",
+        "date": "2018-07-30T14:11:59.000Z",
+        "draft": false,
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "panic"
+        ]
+    },
+    {
+        "title": "日常使用技巧",
+        "uri": "post/daily-use-skill",
+        "content": "mac             finder              open     mac    finder                      Command   Shift   G   Vim                   w  sudo tee     Vim         wq       x                       Querious DataGrip Workbench Sequel Sqlyog      Excalidraw     Plantuml      vscode           Graphviz   Tikz   Edraw   Lucidchart   Draw io          Carbon             revealjs        PPT      CleanMyMac   mac   Alfred macOS                 Magnet Magent",
+        "objectID": "post/daily-use-skill",
+        "date": "2022-06-23T16:22:20.000Z",
+        "draft": false,
+        "categories": [
+            "skill"
+        ],
+        "tags": [
+            "skill"
+        ],
+        "summary": "日常生活工作中，常用的一些软件技巧，记录备忘"
+    },
+    {
+        "title": "Elasticsearch Cluster Docker方式搭建",
+        "uri": "post/elasticsearch-cluster",
+        "content": "env docker compose yml                            env   env      Docker compose yml                 ElasticPassword Kibanapassword   Elastic Kibana_System             docker compose yml      elastic password      ELASTIC_PASSWORD 123456 kibana password      KIBANA_PASSWORD abcdefg es version STACK_VERSION 8 3 3 cluster name CLUSTER_NAME elasticsearch 8 3 3 push license choose basic LICENSE basic es port ES_PORT 9200 kibana port KIBANA_PORT 5601 es mem limit MEM_LIMIT 1073741824 1G 8 3 3        4G     MEM_LIMIT 4294967296 compose name COMPOSEPROJECTNAME push docker compose yml      docker compose yml   Docker compose yml             Elasticsearch                    Kibana            version   2 2  services  setup  image  docker elastic co elasticsearch elasticsearch   STACK_VERSION  volumes  certs  usr share elasticsearch config certs user   0  command    bash  c     x  ELASTIC_PASSWORD     x    echo  Set ELASTIC_PASSWORD environment variable  env file   exit 1  elif   x  KIBANA_PASSWORD     x    echo  Set KIBANA_PASSWORD environment variable  env file   exit 1  fi       f config certs ca zip    echo  Creating CA   bin elasticsearch certutil ca   silent   pem  out config certs ca zip  unzip config certs ca zip  d config certs  fi       f config certs certs zip    echo  Creating certs   echo  ne    instances  n       name  es01 n     dns  n       es01 n       localhost n     ip  n       127 0 0 1 n       name  es02 n     dns  n       es02 n       localhost n     ip  n       127 0 0 1 n       name  es03 n     dns  n       es03 n       localhost n     ip  n       127 0 0 1 n     config certs instances yml  bin elasticsearch certutil cert   silent   pem  out config certs certs zip   in config certs instances yml   ca cert config certs ca ca crt   ca key config certs ca ca key  unzip config certs certs zip  d config certs  fi  echo  Setting file permissions  chown  R root root config certs  find    type d  exec chmod 750          find    type f  exec chmod 640          echo  Waiting Elasticsearch availability   until curl  s   cacert config certs ca ca crt https   es01 9200   grep  q  missing authentication credentials   sleep 30  done  echo  Setting kibana_system password   until curl  s  X POST   cacert config certs ca ca crt  u elastic   ELASTICPASSWORD   H  Content Type  application json  https   es01 9200 security user kibanasystem password  d     password       KIBANA_PASSWORD        grep  q        sleep 10  done  echo  All done      healthcheck  test    CMD SHELL       f config certs es01 es01 crt     interval  1s timeout  5s retries  120 es01  depends_on  setup  condition  service_healthy image  docker elastic co elasticsearch elasticsearch   STACK_VERSION  volumes  certs  usr share elasticsearch config certs esdata01  usr share elasticsearch data ports    ES_PORT  9200 environment  node name es01 cluster name   CLUSTER_NAME  cluster initialmasternodes es01 es02 es03 discovery seed_hosts es02 es03 ELASTICPASSWORD   ELASTICPASSWORD  bootstrap memory_lock true xpack security enabled true xpack security http ssl enabled true xpack security http ssl key certs es01 es01 key xpack security http ssl certificate certs es01 es01 crt xpack security http ssl certificate_authorities certs ca ca crt xpack security http ssl verification_mode certificate xpack security transport ssl enabled true xpack security transport ssl key certs es01 es01 key xpack security transport ssl certificate certs es01 es01 crt xpack security transport ssl certificate_authorities certs ca ca crt xpack security transport ssl verification_mode certificate xpack license self_generated type   LICENSE  memlimit    MEMLIMIT  ulimits  memlock  soft   1 hard   1 healthcheck  test     CMD SHELL    curl  s   cacert config certs ca ca crt https   localhost 9200   grep  q  missing authentication credentials      interval  10s timeout  10s retries  120 es02  depends_on  es01 image  docker elastic co elasticsearch elasticsearch   STACK_VERSION  volumes  certs  usr share elasticsearch config certs esdata02  usr share elasticsearch data environment  node name es02 cluster name   CLUSTER_NAME  cluster initialmasternodes es01 es02 es03 discovery seed_hosts es01 es03 bootstrap memory_lock true xpack security enabled true xpack security http ssl enabled true xpack security http ssl key certs es02 es02 key xpack security http ssl certificate certs es02 es02 crt xpack security http ssl certificate_authorities certs ca ca crt xpack security http ssl verification_mode certificate xpack security transport ssl enabled true xpack security transport ssl key certs es02 es02 key xpack security transport ssl certificate certs es02 es02 crt xpack security transport ssl certificate_authorities certs ca ca crt xpack security transport ssl verification_mode certificate xpack license self_generated type   LICENSE  memlimit    MEMLIMIT  ulimits  memlock  soft   1 hard   1 healthcheck  test     CMD SHELL    curl  s   cacert config certs ca ca crt https   localhost 9200   grep  q  missing authentication credentials      interval  10s timeout  10s retries  120 es03  depends_on  es02 image  docker ",
+        "objectID": "post/elasticsearch-cluster",
+        "date": "2022-08-09T10:49:28.000Z",
+        "draft": false,
+        "categories": [
+            "Elasticsearch"
+        ],
+        "tags": [
+            "Elasticsearch"
+        ],
+        "summary": "用Docker搭建Elasticsearch Cluster"
+    },
+    {
+        "title": "Eric Raymond's 17 Unix Rules",
+        "uri": "post/Eric-Raymond's-17-Unix-Rules",
+        "content": "Eric Raymond s 17 Unix Rules book Art Unix Programming first published 2003 11   Eric S  Raymond  American programmer open source advocate  summarizes Unix philosophy KISS Principle  Keep Simple  Stupid   12  provides series design rules  1  Rule Modularity  Developers build program simple parts connected defined interfaces  so problems local  parts program replaced future versions support new features  rule aims save time debugging code complex  long  unreadable  Rule Clarity  Developers write programs important communication developer will read maintain program  rather computer  rule aims code readable comprehensible possible whoever works code future  Rule Composition  Developers write programs communicate easily programs  rule aims allow developers break down projects small  simple programs rather overly complex monolithic programs  Rule Separation  Developers separate mechanisms programs policies programs  one method divide program front end interface back end engine interface communicates  rule aims prevent bug introduction allowing policies changed minimum likelihood destabilizing operational mechanisms  Rule Simplicity  Developers design simplicity looking ways break program systems small  straightforward cooperating pieces  rule aims discourage developers  affection writing  intricate beautiful complexities  reality bug prone programs  Rule Parsimony  Developers avoid writing big programs  rule aims prevent overinvestment development time failed suboptimal approaches caused owners program s reluctance throw away visibly large pieces work  Smaller programs not easier write  optimize  maintain  easier delete when deprecated  Rule Transparency  Developers design visibility discoverability writing thought process lucidly seen future developers working project using input output formats easy identify valid input correct output  rule aims reduce debugging time extend lifespan programs  Rule Robustness  Developers design robust programs designing transparency discoverability  code easy understand easier stress test unexpected conditions may not foreseeable complex programs  rule aims help developers build robust  reliable products  Rule Representation  Developers choose data complicated rather procedural logic program when faced choice  easier humans understand complex data compared complex logic  rule aims programs readable developer working project  allows program maintained  Rule Least Surprise  Developers design programs build top potential users  expected knowledge  example      calculator program always mean  addition   rule aims encourage developers build intuitive products easy use  Rule Silence  Developers design programs so not print unnecessary output  rule aims allow programs developers pick information need program s output without having parse verbosity  Rule Repair  Developers design programs fail manner easy localize diagnose words  fail noisily   rule aims prevent incorrect output program becoming input corrupting output code undetected  Rule Economy  Developers value developer time machine time  machine cycles today relatively inexpensive compared prices 1970s  rule aims reduce development costs projects  Rule Generation  Developers avoid writing code hand instead write abstract high level programs generate code  rule aims reduce human errors save time  Rule Optimization  Developers prototype software polishing it  rule aims prevent developers spending time marginal gains  Rule Diversity  Developers design programs flexible open  rule aims programs flexible  allowing used ways developers intended  Rule Extensibility  Developers design future making protocols extensible  allowing easy plugins without modification program s architecture developers  noting version program  more  rule aims extend lifespan enhance utility code developer writes",
+        "objectID": "post/Eric-Raymond's-17-Unix-Rules",
+        "date": "2018-07-26T17:04:33.000Z",
+        "draft": false,
+        "categories": [
+            "Unix"
+        ],
+        "tags": [
+            "方法论",
+            "Unix"
+        ]
+    },
+    {
+        "title": "Go Timer",
+        "uri": "post/Go Timer",
+        "content": "context  Go Timer      package main import    context   fmt   runtime debug   sync   time    func main     mt    timerTest   time Sleep time Second   30  i  tt    range mt c   fmt Printf  k   v  ti    v n   i  tt    fmt Printf  k   v  ti    v n    all   mt    type mtimer struct   c map int  context CancelFunc rw sync RWMutex   func timerC mt  mtimer  int    defer func     err    recover    err    nil   fmt Println  i recover    string debug Stack     fmt Println err        t    time NewTimer time Duration i    time Second  ctx  cancel    context WithCancel context Background    mt rw Lock   mt c i     cancel mt rw Unlock   select   case",
+        "objectID": "post/Go Timer",
+        "date": "2021-12-11T13:59:22.000Z",
+        "draft": false,
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "Go",
+            "timer"
+        ],
+        "summary": "定时器是经常使用的"
+    },
+    {
+        "title": "Go Build",
+        "uri": "post/go-build",
+        "content": "Go              go build   o output   build flags   packages    build       _test go       build                     windows       exe      o                          a force rebuilding packages already up to date   n print commands not run them   p n number programs  build commands test binaries  run parallel  default GOMAXPROCS  normally number CPUs available   race enable data race detection  Supported linux amd64  freebsd amd64  darwin amd64  windows amd64  linux ppc64le linux arm64  only 48 bit VMA    msan enable interoperation memory sanitizer  Supported linux amd64  linux arm64 Clang LLVM host C compiler  linux arm64  pie build mode will used   v print names packages compiled   work print name temporary work directory not delete when exiting   x print commands   asmflags   pattern  arg list  arguments pass go tool asm invocation   buildmode mode build mode use   go help buildmode  more   compiler name name compiler use  runtime Compiler  gccgo gc    gccgoflags   pattern  arg list  arguments pass gccgo compiler linker invocation   gcflags   pattern  arg list  arguments pass go tool compile invocation   installsuffix suffix suffix use name package installation directory  order keep output separate default builds  using  race flag  install suffix automatically set race or  set explicitly  _race appended it  Likewise  msan flag  Using  buildmode option requires non default compile flags similar effect   ldflags   pattern  arg list  arguments pass go tool link invocation   linkshared build code will linked against shared libraries previously created  buildmode shared   mod mode module download mode use  readonly  vendor  mod  default  vendor directory present go version go mod 1 14 higher  go command acts  mod vendor set  Otherwise  go command acts  mod readonly set  https   golang org ref mod build commands details   modcacherw leave newly created directories module cache read write instead making read only   modfile file module aware mode  read  and possibly write  alternate go mod file instead one module root directory  file named  go mod  present order determine module root directory  not accessed  When  modfile specified  alternate go sum file used  its path derived  modfile flag trimming   mod  extension appending   sum    overlay file read JSON config file provides overlay build operations  file JSON struct single field  named  Replace   maps disk file path  a string  its backing file path  so build will run disk file path exists contents given backing file paths  disk file path does not exist its backing file path empty  Support  overlay flag limitations  importantly  cgo files included outside include path directory Go package included from  overlays will not appear when binaries tests run go run go test respectively   pkgdir dir install load packages dir instead usual locations  example  when building non standard configuration  use  pkgdir keep generated packages separate location   tags tag list comma separated list build tags consider satisfied during build  information build tags  description build constraints documentation go build package   Earlier versions Go used space separated list  form deprecated recognized    trimpath remove file system paths resulting executable  Instead absolute file system paths  recorded file names will begin either  go   for standard library   module path version  when using modules   plain import path  when using GOPATH    toolexec  cmd args  program use invoke toolchain programs vet asm  example  instead running asm  go command will run  cmd args  path to asm    TOOLEXEC_IMPORTPATH environment variable will set  matching  go list  f    ImportPath    package built                 Linux 64          CGO_ENABLED                             0            GOOS              GOARCH                  ldflags   w  s     w            gdb     s                  CGO_ENABLE 0 GOOS linux GOARCH amd64 go build  ldflags   w  s   o main main go            go build  gcflags   m  m  main go",
+        "objectID": "post/go-build",
+        "date": "2021-12-19T15:16:12.000Z",
+        "draft": false,
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "Go",
+            "command"
+        ],
+        "summary": "Go常利用此命令进行编译打包"
+    },
+    {
+        "title": "[译]Go数据结构",
+        "uri": "post/go-data-structures",
+        "content": "Go Data Structures                                    itcuihao gmail com  Russ Cox                    Go       Go                                                                                          i    int          32               32                    64         int   32               64         j    int32            i j                     i   j                   i   int j     f    float           32            int32                               bytes     5 byte    5               5            C          primes   4        Go C       Java                                  type Point struct   X  Y int          Point                    Int         Point 10  20         Point                       Point                                                  type Rect1 struct   Min  Max Point   type Rect2 struct   Min  Max  Point   Rect1      Point         Powers    ints          Rect2      Point         Points       C           Point    Point                 Java Python                                              Go                                                                                                                                  2                                                               s        2                                                                            Java                                                                          Go                                                                                                      3                                      x i               x i j                                                               int 2  3  5  7  11                      x               x 1 3                                                 2 y 0  y 1               4 y 0 4                                       Effective Go                                                                        C                  Go                                                                                                                                                         New   Go            new make                                 new T      T   Go                        make T  args        T            T                   New               make                                C C            make T            T          new Point     make Point",
+        "objectID": "post/go-data-structures",
+        "date": "2022-06-14T10:44:59.000Z",
+        "draft": false,
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "Go",
+            "译"
+        ],
+        "summary": "在向新的程序员解释Go时，我发现解释Go的值在内存中是什么样子的，往往有助于建立正确的直觉，了解哪些操作是昂贵的，哪些是不昂贵的。—— Russ Cox"
+    },
+    {
+        "title": "[译]Go代码审查意见",
+        "uri": "post/Go代码审核解释",
+        "content": "CodeReviewComments                                    itcuihao gmail com        Go                                                             Effective Go                   Go Test Comments                                                             gofmt                       Go     gofmt                              goimports    gofmt                      zhushi       Effective Go Commentary                                        godoc                                     Request represents request run command  type Request struct          Encode writes JSON encoding req w  func Encode wo io Writer  req  Request                  context Context                            API       Go                Context     RPC HTTP               Context                  func F ctx context Context     arguments                       context Background                  Context               Context                            context Background             Context              Context         ctx                                          Context              Context                                                      Context    Context                ctx                                                             bytes Buffer        byte          Buffer                                                    T             T           Rand          math rand                               time Nanoseconds                     crypto rand Reader                 base64  import    crypto rand      encoding base64      encoding hex   fmt    func Key   string   buf    make   byte  16  _  err    rand Read buf  err    nil   panic err                   return fmt Sprintf   x   buf     hex EncodeToString buf     base64 StdEncoding EncodeToString buf                      var t   string    t  nil     t      string      t  nil                                            len cap  0                             0 0             JSON        nil     null    string     JSON                  nil    nil                          Go nil         Francesc Campoy   Understanding Nil                                                              Effective Go Commentary         Effective Go Errors              panic                                                                               fmt Errorf  something bad     fmt Errorf  Something bad     log Printf  Reading  s   v   filename  err                                                                                                                         Example      Goroutine       goroutine                     goroutine                                          goroutine    goroutine                                                                                        goroutines                                        goroutine                   goroutines                Effective Go Errors     _                                                        panic                                                                                                    package main import    fmt   hash adler32   os   github com foo bar   rsc io goversion version    goimports                           import _  pkg                                     import                                     package foo_test import    bar testutil     imports  foo     foo                    foo        bar testutil     foo       import             foo                            import                   Quux                                    C              1 null                        Lookup  key       key           func Lookup key string  string                       Parse Lookup key                             Go                                                                                                             Lookup  key       key     ok false  func Lookup key string   value string  ok bool                     Parse Lookup key                          value  ok    Lookup key   ok   return fmt Errorf  no value  q   key    return Parse value                              nil    0  1                                                          strings                                               Go                                                                                             err    nil             else                      err    nil           return      continue              if              x  err    f    err    nil           return   else         x                          x  err    f   err    nil           return         x                             URL    NATO               URL       URL   url     urlPony    URLPony        Url         ServeHTTP  ServeHttp                        xmlHTTPRequest    XMLHTTPRequest             ID                                              ID          appID       appId                                                  Go                                                                                    API                        API              API                                                              package consumer    consumer go type Thinger interface   Thing   bool   func Foo t Thinger",
+        "objectID": "post/Go代码审核解释",
+        "date": "2022-06-11T01:49:33.000Z",
+        "draft": false,
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "Go",
+            "wiki",
+            "译"
+        ],
+        "toc": true,
+        "summary": "本页收集了审查Go代码时的常见解释，以便于通过速记来参考单一的详细解释。这是一份常见错误的清单，而不是一份全面的风格指南。"
+    },
+    {
+        "title": "[译]Go并发代码审查",
+        "uri": "post/Go并发代码审核",
+        "content": "CodeReviewConcurrency                                    itcuihao gmail com     Go                           Go           bug                                                                                             HTTP                                                                  goroutine                             Load     sync Map Load   Delete                  CI CD   race                                sync RWMutex                time Ticker  defer tick Stop      time Time  Equal          time Time   time Since              t Before u                                      goroutine    HTTP                 HTTP                                         HTTP                        mutex                                      atomic Value               goroutine                                                                                                                bug                          type Counters struct   mu sync Mutex vals map Key  Counter   func  c  Counters  Add k Key  amount int    c mu Lock   defer c mu Unlock   count  ok    c vals k   ok   count    Counter sum  0  num  0  c vals k    count   count sum    amount count n    1   func  c Counters  GetCounter k Key  Counter   c mu Lock   defer c mu Unlock   return c vals k     BUG                                     GetCounter                        type Counters struct   mu sync Mutex vals map Key Counter                                 func  c  Counters  GetCounter k Key   count Counter  exists bool    c mu Lock   defer c mu Unlock   return c vals k            goroutine      sync Map        m Load            m Store   m Delete                   var m sync Map         goroutine      func DoSomething k Key  v Value    existing  ok    m Load k   ok   m Store k  v             goroutines                          k          v                                 Load   Store                                                                                                                                        sync Map LoadOrStore   LoadAndDelete                              make chan  Foo                        goroutine          goroutine        make                                                                                                                                             sync Mutex    sync RWMutex                Go RWMutex                            RWMutex                                                     RWMutex                   RWMutex                            type Box struct   mu sync RWMutex               Mutex   x int   func  b  Box  Get   int   b mu RLock   defer b mu RUnlock   return b x   func  b  Box  Set x int    b mu Lock   defer b mu Unlock   b x   x          Time Ticker    defer tick Stop            ticker          ticker              time Time      Equal                    time Time          Go                                                   Location       UTC   Local               t   t Round 0                                    t Equal u    t    u   t Equal                                     time Since    time Since t           t                    time Since           UTC   Local   In   Round   Truncate   AddDate         time Time              time Since                         time Since                NTP                  time Since                 time Before       t Before u                           u Round 0                                        time Time                                                                                 var latestSentTime time Time func pushMetricPeriodically ctx context Context    t    time NewTicker time Second  defer t Stop     select   case",
+        "objectID": "post/Go并发代码审核",
+        "date": "2022-06-11T04:44:51.000Z",
+        "draft": false,
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "Go",
+            "wiki",
+            "译"
+        ],
+        "summary": "本页是对Go代码审查意见列表的补充。这个列表的目的是为了帮助在审查Go代码时发现与并发有关的bug。"
+    },
+    {
+        "title": "Go的位操作四则运算实现",
+        "uri": "post/Go的位操作四则运算实现",
+        "content": "package main import  fmt  func main        2 b    2 fmt Println add a  b   fmt Println sub a  b   fmt Println mul a  b   fmt Println div a  b     func add a  b int  int   b    0   return   tmp    0 b    0   tmp    a   b     1   return ans   func div a  b int  int   ans    0    31     0  i     b   uint64 i     ans    1   uint64 i     b   uint64 i      return ans",
+        "objectID": "post/Go的位操作四则运算实现",
+        "date": "2018-08-01T16:26:55.000Z",
+        "draft": false,
+        "categories": [
+            "Go",
+            "Algorithms"
+        ],
+        "tags": [
+            "mathematics"
+        ]
+    },
+    {
+        "title": "GPT Discuss Timeline",
+        "uri": "post/gpt-discuss",
+        "content": "GPT                                       AutoGPT       AI                          AI            GPT4ALL      LLM                    Token API                                                AutoGPT                   AI                 GPT4ALL   AI       U                         GPT4ALL                             AI                                                                      AutoGPT                      GPT4ALL                                                               AI                                                     AI                                                                              LLM                                                                                                                                                                                       2023 04 13               ChatGPT     ChatGPT API                       acheong08            OpenAI                                           0 02              0 002       GPT 3    GPT 3 5    GPT 3 5                  GFW     ChatGPT                             GFW         20230417           QChatGPT",
+        "objectID": "post/gpt-discuss",
+        "date": "2023-04-14T02:34:25.000Z",
+        "draft": false,
+        "categories": [
+            "AI"
+        ],
+        "tags": [
+            "GPT",
+            "AI"
+        ],
+        "toc": false,
+        "summary": "有关GPT的讨论时间线"
+    },
+    {
+        "title": "要不要提前还房贷",
+        "uri": "post/house-loan",
+        "content": "3     5                                                                                       5 6      100               30                                      20         20                                                                                         LPR       5 6    5 4       30                                      30              2000    2000                                                                  5 8                                   10                                                                                                                             LPR     5 20                                 LPR   1  LPR 3 7        5    LPR 4 45      4 6   15                                  20                4 25                                       4 25                                  100       30                         5 0          5368      93 25           4 25         4919 4      77 1            418       5000    20    16 15     5 0                      6                                      1000                                                       2022                                                                         5                                                                                                                                                                                                                                                   360                                                                                                                          5 6  6 4                                                                             7 8                                                                                                                                       LPR               LPR                                                                                1 2                                1 3                                                                                                                                                                                                                                                                                                18               5 88                  30    60w     67w                                                                         ensp  ensp  ensp  ensp                                     ensp  ensp  ensp  ensp                                                                                                                                               256846                        95761         900        ensp  ensp  ensp  ensp                                                                                                                                               ensp  ensp  ensp  ensp                                ensp  ensp  ensp  ensp",
+        "objectID": "post/house-loan",
+        "date": "2022-07-22T08:56:52.000Z",
+        "draft": false,
+        "categories": [
+            "日常"
+        ],
+        "tags": [
+            "日常"
+        ],
+        "summary": "作为利率6个点的人，答案毫无疑问，那贷款期限不变，减少月供或缩短贷款年限，月供不变，该如何选择？"
+    },
+    {
+        "title": "Hugo 配置 Github Action",
+        "uri": "post/hugo-github-action",
+        "content": "github workflows hugo yml     name  GitHub Pages on  push  branches  main   Set branch deploy pull_request  jobs  deploy  runs on  ubuntu 22 04 concurrency  group      github workflow        github ref    steps  uses  actions checkout v3 with  submodules  true   Fetch Hugo themes  true recursive  fetch depth  0   Fetch history  GitInfo  Lastmod name  Setup Hugo uses  peaceiris actions hugo v2 with  hugo version   0 110 0  extended  true name  Build run  hugo   minify name  Deploy uses  peaceiris actions gh pages v3 if      github ref     refs heads main     with  githubtoken      secrets ACCESSTOKEN    publish_dir    public name  Pushes repository uses  cpina github action push to another repository main env  APITOKENGITHUB      secrets ACCESS_TOKEN    with  source directory   public  destination github username   username  destination repository name   repo name  user email    gmail com target branch  gh pages              ACCESS_TOKEN destination github username destination repository name user email APITOKENGITHUB    github tokens           ACCESS_TOKEN     token                   repo        settings secrets actions  destination github username    username  destination repository name   repo  user email",
+        "objectID": "post/hugo-github-action",
+        "date": "2023-04-28T03:04:18.000Z",
+        "draft": false,
+        "categories": [
+            "hugo"
+        ],
+        "tags": [
+            "hugo"
+        ],
+        "toc": false,
+        "summary": "由A repo提交，发布至B repo github pages"
+    },
+    {
+        "title": "Blog更新汇总",
+        "uri": "post/hugo-update",
+        "content": "utteranc     github  utteranc    github style    themes github style layouts partials     utteranc html        Site Params Utteranc enable    Please enable JavaScript view comments powered utterances     end         themes github style layouts _default single html      define  content        partial  toc html         partial  post html         partial  gitalk html          partial  utteranc html               end        config toml       params   params utteranc  enable   true owner    yourgithubname  repo    blog  issueTerm    pathname  theme    icy dark    github action   20230428               20230505   github style    theme static     js      Progress bar part let progressmeter   document getElementById  progressmeter    let height   document body scrollHeight   screen height  let last_position   window scrollY  function updateprogressmeter      height   document body clientHeight   window innerHeight  current_position   window scrollY  progress   Math ceil  current_position   height    100      Makes looks better     height    0    progress   100    else  progress 100    progress   100    progress_meter innerText   progress          let ticking   false  window addEventListener  scroll   function e      ticking    window requestAnimationFrame function     updateprogressmeter    ticking   false      ticking   true        progress_meter style textDecoration    none   updateprogressmeter     layouts partials script html    js  layouts partials baseof html        JS Arrow        20230505   github style    theme static     js   var binft   function r n         n                var n   n map function t    return t                rgb 110 64 170     rgb 150 61 179     rgb 191 60 175     rgb 228 65 157     rgb 254 75 131     rgb 255 94 99     rgb 255 120 71     rgb 251 150 51     rgb 226 183 47     rgb 198 214 60     rgb 175 240 91     rgb 127 246 88     rgb 82 246 103     rgb 48 239 130     rgb 29 223 163     rgb 26 199 194     rgb 35 171 216     rgb 54 140 225     rgb 76 110 219     rgb 96 84 200      l                    text      prefixP   5  skillI  0  skillP  0  direction   forward   delay  2  step  1         n            n sort function     return Math random     0 5                t             function t     var e   n l skillI   l step   l step      l step   1  l prefixP      Content         Site Params Aphorisms   jsonify",
+        "objectID": "post/hugo-update",
+        "date": "2022-07-06T23:48:44.000Z",
+        "draft": false,
+        "categories": [
+            "hugo"
+        ],
+        "tags": [
+            "hugo"
+        ],
+        "summary": "更新点滴",
+        "toc": false
+    },
+    {
+        "title": "[译]Rob Pike认为Go成功的5件事",
+        "uri": "post/rob-pike-go-success5",
+        "content": "Go Time 100  Rob Pike Robert Griesemer Go                            Rob Pike                   1           Rob                                                                                                                                             Ian Taylor      Google                                                                                                        Go                     Ian Lance Taylor                     Ian                      2                   Rob             Docker                                   Docker               Go                                                               Go                                                                              Kubernetes                                                                        3             Rob                                                                                                                                                                                            Windows                                                                                                                                                                          Go                                                                                               Go                                     4                                                     Rob              Go                               Go1                                                                                                                                                                 5                Jon Calhoun                         Rob    Go                                                                                                                                                                                                                                                                                                                                                                       Brad     goimports      gofmt",
+        "objectID": "post/rob-pike-go-success5",
+        "date": "2022-08-30T02:40:51.000Z",
+        "draft": "fasle",
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "Go",
+            "译"
+        ],
+        "summary": "Rob Pike 认为Go成功的5件小事"
+    },
+    {
+        "title": "Win10 Install Hugo",
+        "uri": "post/win10-install-hugo",
+        "content": "install choco   PowerShell             Set ExecutionPolicy Bypass  Scope Process  Force  iex   New Object System Net WebClient  DownloadString  https   chocolatey org install ps1         install hugo choco install hugo  confirm",
+        "objectID": "post/win10-install-hugo",
+        "date": "2019-04-14T02:47:50.000Z",
+        "draft": false,
+        "categories": [
+            "随记"
+        ],
+        "tags": [
+            "hugo"
+        ]
+    },
+    {
+        "title": "三向切分的快速排序",
+        "uri": "post/三向切分的快速排序",
+        "content": "Algorithms Fourth Edition                    Go            func quick3way a   int  lo  hi int    lo    hi   return   lt  i  gt    lo  lo 1  hi v    a lo  v   a gt   a i    a i   a gt  gt     else   i       quick3way a  lo  lt 1  quick3way a  gt 1  hi",
+        "objectID": "post/三向切分的快速排序",
+        "date": "2018-12-23T15:02:56.000Z",
+        "draft": false,
+        "categories": [
+            "Algorithms"
+        ],
+        "tags": [
+            "排序"
+        ]
+    },
+    {
+        "title": "买房记",
+        "uri": "post/买房记",
+        "content": "2017                                        35w                                                                                                                                                                                                                                                                                                                         8 4                                                                  34                        32                                                                                                                                              2                       1                                                   1                      8 5                                                       8 6                                                      0 03                                                                                                                                                                                                                                                                                                                 3 9 27            8 7                                       8 11    6                                                          8 12        K343              8 13                                                                                      8 14                   8 14                                                                                             20191201                     20 1                                                                                  20211205",
+        "objectID": "post/买房记",
+        "date": "2018-08-14T16:02:39.000Z",
+        "draft": false,
+        "categories": [
+            "日常"
+        ],
+        "tags": [
+            "日常"
+        ],
+        "summary": "普通人买房日常，稀里糊涂就买了，且行且看吧"
+    },
+    {
+        "title": "利用Privoxy设置终端http代理🚀",
+        "uri": "post/利用Privoxy设置终端http代理",
+        "content": "Privoxy  sock5     http   1   Privoxy sudo apt get update sudo apt get install privoxy 2   Privoxy vim  etc privoxy config     listen address     vim     listen address   listen address 127 0 0 1 8118  listen address    1  8118           forward socks5   127 0 0 1 1080   listen address 127 0 0 1 1081 3   Privoxy              sudo service privoxy restart    sudo systemctl restart privoxy 4            sock5 http                          export http_proxy http   127 0 0 1 1081 export https_proxy http   127 0 0 1 1081        curl www google com               unset http_proxy unset https_proxy       bash_profile           vim    bash_profile alais chproxy  export httpproxy http   127 0 0 1 1081    export httpsproxy http   127 0 0 1 1081  alais unchproxy  unset httpproxy    unset httpsproxy  source    bash_profile 5    sudo apt get remove privoxy           Google   SwitchyOmega provixy    vim  etc privoxy config listen address 0 0 0 0 1081 sudo systemctl restart privoxy         SwitchyOmega                                        http       ifconfig         1081                                IP         export httpproxy http   ip 1081    export httpsproxy http   ip 1081",
+        "objectID": "post/利用Privoxy设置终端http代理",
+        "date": "2018-07-22T11:10:51.000Z",
+        "draft": false,
+        "categories": [
+            "Linux"
+        ],
+        "tags": [
+            "代理"
+        ]
+    },
+    {
+        "title": "客户端拉取数据",
+        "uri": "post/客户端拉取数据",
+        "content": "API             push          pull",
+        "objectID": "post/客户端拉取数据",
+        "date": "2020-03-05T03:48:10.000Z",
+        "draft": false,
+        "categories": [
+            "Design"
+        ],
+        "tags": [
+            "etcd",
+            "Nsq"
+        ]
+    },
+    {
+        "title": "找房记",
+        "uri": "post/找房记",
+        "content": "2023 01 01                                 4500 6000       40 50                                                              1000       5100                                        2022 04 23             7000    6500                                                                                                    2020 11 15                   26     8                                                                                                                                                                                                                                                     2019 12 01      10       9                  50             10                                   50 70        5500 7000                                                                                 90 00                                         08                80   6500                                                                bedbug                                               8                                          20                                                                                                                                               12                          2018 09 16                                                                            90                   15    2018 08 26                                   2018 03 18",
+        "objectID": "post/找房记",
+        "date": "2018-08-26T14:26:36.000Z",
+        "draft": false,
+        "categories": [
+            "日常"
+        ],
+        "tags": [
+            "日常"
+        ],
+        "summary": "租房的日常，搬家的苦乐"
+    },
+    {
+        "title": "树中两个节点的最低公共祖先",
+        "uri": "post/树中两个节点的最低公共祖先",
+        "content": "Offer 7 2                                                                                                                                                                         func lowestCommonAncestor root  p  q structure TreeNode  structure TreeNode   root    nil    p    nil    q    nil   return nil   switch   case q Val root Val    p Val   root Val  return lowestCommonAncestor root Right  p  q    return root                                                                                              func lowestCommonAncestor root  p  q structure TreeNode  structure TreeNode   root    nil   return nil   root Val    p Val    root Val    q Val   return root   left    lowestCommonAncestor root Left  p  q  right    lowestCommonAncestor root Right  p  q  switch   case left    nil  return right case right    nil  return left   return root                                                                                                                                func getIntersectionNode headA  headB structure ListNode  structure ListNode   headA    nil    headB    nil   return nil   a  b    headA  headB la  lb    0  0    nil     a Next la     b    nil   b   b Next lb     la   lb   abs    la   lb   abs   0  abs     headA   headA Next     else   abs    lb   la   abs   0  abs     headB   headB Next     headA    nil    headB    nil   headA Val    headB Val   return headA   headA   headA Next headB   headB Next   return nil                                                               p q  root   p q                                                   Offer leetcode 160 leetcode 235 leetcode 236",
+        "objectID": "post/树中两个节点的最低公共祖先",
+        "date": "2019-04-14T23:45:14.000Z",
+        "draft": false,
+        "categories": [
+            "Algorithms"
+        ],
+        "tags": [
+            "tree",
+            "Leetcode"
+        ]
+    },
+    {
+        "title": "碎碎念",
+        "uri": "post/碎碎念",
+        "content": "Disqus       HTML",
+        "objectID": "post/碎碎念",
+        "date": "2018-07-30T15:24:19.000Z",
+        "draft": false,
+        "categories": [
+            "碎碎念"
+        ],
+        "tags": [
+            "碎碎念"
+        ]
+    },
+    {
+        "title": "简单的利用shell部署代码💻",
+        "uri": "post/简单的利用shell部署代码",
+        "content": "develop                           PR                                             root ubuntu  home xg  tree  L 2       deploy sh     release sh     start sh     tmp       static       web     qddx       conf       qddx_out log       qddx_web       static     qdlg       conf       qdlg_out log       qdlg_web       static     tyxy       conf       tyxy_out log       tyxy_web       static     xg_code     bin     pkg     src deploy sh                 tmp static           xg_code       tmp        web  release sh              qddx qdlg tyxy                       start sh                                 1 DEPLOY SH    bin bash echo  e   033 45 37m          033 0m  xg   home xg tmp  codepath   home xg xgcode src  echo  e   033 33m     ing     033 0m  cd  code_path AntLinkCampus git pull origin develop echo  e   033 33m        033   echo  e   033 31m   ing     033 0m  rm  rf  xg static   cp  a  code_path AntLinkCampus CampusUI static  xg cd  xg echo  e   033 33m         033 0m  echo  e   033 31m   ing      033 0m  go build  i  v  ldflags   w  s   o  xg web AntLinkCampus CampusServer apps web echo  e   033 32m       033 0m  echo  e   033 32m    release sh      033 0m  2 RELEASE SH    bin bash echo  e   033 45 37m          033 0m  echo  e   033 34 42m                 033 0m  echo  e   033 33 44m      qddx  033 0m  echo  e   033 33 44m      tyxy 033 0m  echo  e   033 33 44m        qdlg 033 0m  read  p       school     school x    qddx x   echo  e   033 32m         033 0m  elif     school x    tyxy x   echo  e   033 32m         033 0m  elif     school x    qdlg x   echo  e   033 32m           033 0m  else echo  e   033 41 37m      033 0m  exit fi xg   home xg   school tmp   home xg tmp  echo  e   033 33m        033 0m  echo  e   033 31m   ing     033 0m  rm  rf  xg static   cp  a  tmp static  xg echo  e   033 33m        033 0m  echo  e   033 31m   ing     033 0m  webpid   pgrep  f   school web  echo  e   033 41 37m PID    web_pid   033 0m      web_pid x   x   echo  e   033 33m        033 0m  cp  tmp web  xg   school _web echo  e   033 41 37m     start sh      033 0m  else echo  e   033 33m        033 0m  kill  9  web_pid sleep 2s cp  tmp web  xg   school _web echo  e   033 41 37m     start sh      033 0m  fi 3 START SH    bin bash echo  e   033 45 37m          033 0m  echo  e   033 34 42m                 033 0m  echo  e   033 33 44m      qddx  033 0m  echo  e   033 33 44m      tyxy 033 0m  echo  e   033 33 44m        qdlg 033 0m  xg   home xg  read  p       school nohupweb    cd  xg  school nohup     school web      school out log  2  1   echo  e   033 42 37m     033 0m        school x    qddx x   echo  e   033 32m         033 0m  nohupweb elif     school x    tyxy x   echo  e   033 32m         033 0m  nohupweb elif     school x    qdlg x   echo  e   033 32m           033 0m  nohupweb else echo  e   033 41 37m      033 0m  exit fi    Nginx                 server        listen 8088  server_name localhost   charset koi8 r   access_log logs host access log main  location  nginx   root html  index index html index htm          location  web   proxy_pass http   127 0 0 1 8086    location  api   proxy_pass http   127 0 0 1 8086       web   location     root  home xg qddx static  index login html index html index htm     error_page 404  404 html  redirect server error pages static page  50x html error_page 500 502 503 504  50x html  location    50x html   root html                    server        listen 8089  server_name localhost   charset koi8 r   access_log logs host access log main  location  nginx   root html  index index html index htm          location  web   proxy_pass http   127 0 0 1 8087    location  api   proxy_pass http   127 0 0 1 8087       web   location     root  home xg tyxy static  index login html index html index htm     error_page 404  404 html  redirect server error pages static page  50x html error_page 500 502 503 504  50x html  location    50x html   root html                      server        listen 8084  server_name localhost   charset koi8 r   access_log logs host access log main  location  nginx   root html  index index html index htm          location  web   proxy_pass http   127 0 0 1 8082    location  api   proxy_pass http   127 0 0 1 8082       web   location     root  home xg qdlg static  index login html index html index htm     error_page 404  404 html  redirect server error pages static page  50x html error_page 500 502 503 504  50x html  location    50x html   root html                                          Shell    nohup",
+        "objectID": "post/简单的利用shell部署代码",
+        "date": "2018-07-22T10:22:23.000Z",
+        "draft": false,
+        "categories": [
+            "Linux"
+        ],
+        "tags": [
+            "Shell"
+        ]
+    },
+    {
+        "title": "配置文件热更新",
+        "uri": "post/配置文件热更新",
+        "content": "API                                                syscal SIGHUP    syscal SIGUSR1       reload       config                 hup    make chan os Signal  signal Notify hup  syscall SIGHUP  go func       select   case c LastModifyTime   c parse     log Println  loading                          2 atomic    var atoConfig atomic Value func  c  Config  reload     ticker    time NewTicker time Second   3    select   case c LastModifyTime   mysql    read c Filename  mysql    nil   atoConfig Store mysql  chwr",
+        "objectID": "post/配置文件热更新",
+        "date": "2019-09-23T23:40:49.000Z",
+        "draft": false,
+        "categories": [
+            "Go"
+        ],
+        "tags": [
+            "config"
+        ]
+    },
+    {
+        "title": "Readme",
+        "uri": "readme",
+        "content": "github bilibili twitter instagram",
+        "objectID": "readme",
+        "date": "2022-06-08T16:12:59.000Z",
+        "draft": false,
+        "categories": [
+            ""
+        ],
+        "tags": [
+            ""
+        ]
+    }
+]

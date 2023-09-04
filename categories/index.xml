@@ -7,22 +7,49 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 14 Apr 2023 10:34:25 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jul 2023 08:46:21 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>AI</title>
-      <link>https://blog.cuihao.fun/categories/ai/</link>
-      <pubDate>Fri, 14 Apr 2023 10:34:25 +0800</pubDate>
+      <title>hugo</title>
+      <link>https://blog.cuihao.fun/categories/hugo/</link>
+      <pubDate>Sat, 01 Jul 2023 08:46:21 +0800</pubDate>
       
-      <guid>https://blog.cuihao.fun/categories/ai/</guid>
+      <guid>https://blog.cuihao.fun/categories/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>项目</title>
+      <link>https://blog.cuihao.fun/categories/%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Sat, 01 Jul 2023 08:29:07 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/categories/%E9%A1%B9%E7%9B%AE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://blog.cuihao.fun/categories/linux/</link>
+      <pubDate>Fri, 26 May 2023 17:29:10 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
       <link>https://blog.cuihao.fun/categories/go/</link>
-      <pubDate>Tue, 30 Aug 2022 10:40:51 +0800</pubDate>
+      <pubDate>Mon, 08 May 2023 14:21:52 +0800</pubDate>
       
       <guid>https://blog.cuihao.fun/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AI</title>
+      <link>https://blog.cuihao.fun/categories/ai/</link>
+      <pubDate>Fri, 14 Apr 2023 10:34:25 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/categories/ai/</guid>
       <description></description>
     </item>
     
@@ -41,15 +68,6 @@
       <pubDate>Fri, 22 Jul 2022 16:56:52 +0800</pubDate>
       
       <guid>https://blog.cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://blog.cuihao.fun/categories/hugo/</link>
-      <pubDate>Thu, 07 Jul 2022 07:48:44 +0800</pubDate>
-      
-      <guid>https://blog.cuihao.fun/categories/hugo/</guid>
       <description></description>
     </item>
     
@@ -131,15 +149,6 @@
       <pubDate>Mon, 23 Jul 2018 22:52:41 +0800</pubDate>
       
       <guid>https://blog.cuihao.fun/categories/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E6%9E%B6%E6%9E%84/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://blog.cuihao.fun/categories/linux/</link>
-      <pubDate>Sun, 22 Jul 2018 19:10:51 +0800</pubDate>
-      
-      <guid>https://blog.cuihao.fun/categories/linux/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://blog.cuihao.fun/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github-style.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/light.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/dark.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/syntax.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/action-button.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/fonts.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/search.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/simple-notice.css' />
+
+    <title>Hugo Shortcodes Example - haoc7</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="hugo shortcode使用方法(记录本项目)" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.cuihao.fun/post/hugo-shortcodes/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Hugo Shortcodes Example - haoc7" />
+<meta name="twitter:description"
+  content="hugo shortcode使用方法(记录本项目)" />
+<meta name="twitter:site" content="https://blog.cuihao.fun" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://blog.cuihao.fun">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Hugo Shortcodes Example - haoc7">
+<meta property="og:description"
+  content="hugo shortcode使用方法(记录本项目)" />
+<meta property="og:url" content="https://blog.cuihao.fun/post/hugo-shortcodes/" />
+<meta property="og:site_name" content="Hugo Shortcodes Example" />
+<meta property="og:image"
+  content="https://blog.cuihao.fun">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2023-07-01 08:46:21 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<style type="text/css" media="screen, print">
+    @font-face {
+        font-family: "FancyTitleFont";
+        font-style: normal;
+        font-display: swap;
+        src: url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+    }
+     
+      
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Light'), local('NotoSerifCJK-Light'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Noto Serif CJK SC'), local('NotoSerifCJK-Regular'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Medium'), local('NotoSerifCJK-Medium'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff') format('woff');
+         
+    }
+</style>
+
+</head>
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://blog.cuihao.fun">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <label
+            class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+            <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+              <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+            </svg>
+            
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<span class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-input-search" class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" placeholder="Search..." name="search" autocomplete="off" />
+    <a href=javascript:void(0); class="search-clear" id="search-clear" title=清空 onclick="document.getElementById('aa-input-search').value='';">
+        <i class="fas fa-times-circle fa-fw"></i>
+    </a>
+</span>
+
+          </label>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://blog.cuihao.fun">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://blog.cuihao.fun">
+                  <img class=" avatar-user"
+                    src="https://blog.cuihao.fun/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://blog.cuihao.fun">我的名字叫浩仔</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://blog.cuihao.fun/post/hugo-shortcodes/">Hugo Shortcodes Example</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Sat, 01 Jul 2023 08:46:21 &#43;0800"
+                    class="no-wrap">
+                    Sat, 01 Jul 2023 08:46:21 &#43;0800</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Mon, 04 Sep 2023 15:41:33 &#43;0800"
+                    class="no-wrap">
+                    Mon, 04 Sep 2023 15:41:33 &#43;0800</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      210 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/shortcode">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      shortcode
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1;">
+                <article class="markdown-body entry-content container-lg"><h2 id="button">button</h2>
+
+<a  href="https://google.com" target="_blank"  class="btn btn-default">
+  
+  
+  
+  前往Google
+  
+</a>
+<h2 id="card">card</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/fendou.png>
+    <figcaption>粪发涂墙</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h2 id="github">github</h2>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/sc-github.css' />
+<div class="github">
+    <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon github-icon" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 2.5C2 1.83696 2.26339 1.20107 2.73223 0.732233C3.20108 0.263392 3.83696 0 4.5 0L13.25 0C13.4489 0 13.6397 0.0790176 13.7803 0.21967C13.921 0.360322 14 0.551088 14 0.75V13.25C14 13.4489 13.921 13.6397 13.7803 13.7803C13.6397 13.921 13.4489 14 13.25 14H10.75C10.5511 14 10.3603 13.921 10.2197 13.7803C10.079 13.6397 10 13.4489 10 13.25C10 13.0511 10.079 12.8603 10.2197 12.7197C10.3603 12.579 10.5511 12.5 10.75 12.5H12.5V10.5H4.5C4.30308 10.5 4.11056 10.5582 3.94657 10.6672C3.78257 10.7762 3.65442 10.9312 3.57816 11.1128C3.50191 11.2943 3.48096 11.4943 3.51793 11.6878C3.5549 11.8812 3.64816 12.0594 3.786 12.2C3.92524 12.3422 4.0023 12.5338 4.00024 12.7328C3.99818 12.9318 3.91716 13.1218 3.775 13.261C3.63285 13.4002 3.4412 13.4773 3.24222 13.4752C3.04325 13.4732 2.85324 13.3922 2.714 13.25C2.25571 12.7829 1.99929 12.1544 2 11.5V2.5ZM12.5 1.5V9H4.5C4.144 9 3.806 9.074 3.5 9.208V2.5C3.5 2.23478 3.60536 1.98043 3.79289 1.79289C3.98043 1.60536 4.23478 1.5 4.5 1.5H12.5ZM5 12.25V15.5C5 15.5464 5.01293 15.5919 5.03734 15.6314C5.06175 15.6709 5.09667 15.7028 5.1382 15.7236C5.17972 15.7444 5.22621 15.7532 5.27245 15.749C5.31869 15.7448 5.36286 15.7279 5.4 15.7L6.85 14.613C6.89328 14.5805 6.94591 14.563 7 14.563C7.05409 14.563 7.10673 14.5805 7.15 14.613L8.6 15.7C8.63714 15.7279 8.68131 15.7448 8.72755 15.749C8.77379 15.7532 8.82028 15.7444 8.8618 15.7236C8.90333 15.7028 8.93826 15.6709 8.96266 15.6314C8.98707 15.5919 9 15.5464 9 15.5V12.25C9 12.1837 8.97366 12.1201 8.92678 12.0732C8.87989 12.0263 8.81631 12 8.75 12H5.25C5.1837 12 5.12011 12.0263 5.07322 12.0732C5.02634 12.1201 5 12.1837 5 12.25Z"/></svg>
+        <a class="name" href=https://github.com/itcuihao/img2hub target="_blank">img2hub</a>
+    </div>
+    <div class="description">A Chrome extension that uploads PNG and JPG images from web pages to GitHub, power by me and chatgpt.</div> 
+    <div class="language">
+        <span class="language-color" style="background-color: #e16737"></span>
+        <span class="language-name">Javascript</span>
+    </div>
+</div>
+<h2 id="innerlink">innerlink</h2>
+<div style="height: 200px;margin: 1em auto;position: relative;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+        border-radius: 15px;padding: 23px;max-width: 780px;background: var(--entry);">
+    
+    
+    <div style="font-size: 22px; font-weight: 600">
+        <a target="_blank" href="https://blog.cuihao.fun/post/house-loan/" style="box-shadow: none">要不要提前还房贷</a>
+    </div>
+    <span style="font-size: 14px; color: #999">
+        日期: 2022-07-22
+        &nbsp;
+        标签:
+        
+            #日常&nbsp;
+        
+    </span>
+    <div style="font-size: 14px; line-height: 1.825;max-height: 75px; overflow: hidden;margin-top: 5px;">
+        作为利率6个点的人，答案毫无疑问，那贷款期限不变，减少月供或缩短贷款年限，月供不变，该如何选择？ ......
+    </div>
+    
+    
+</div>
+<h2 id="galleries">galleries</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/css/nanogallery2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/jquery.nanogallery2.min.js"></script>
+</head>
+<body>
+
+<div data-nanogallery2='{
+	 "thumbnailDisplayTransition":          "none",
+     "thumbnailDisplayTransitionDuration":  500,
+     "thumbnailDisplayInterval":            30,
+     "galleryDisplayTransition":            "none",
+     "galleryDisplayTransitionDuration":    500,
+     "galleryDisplayMode": "rows",
+     "thumbnailDisplayOutsideScreen": "false",
+     "eventsDebounceDelay": 10,
+     "thumbnailL1BorderHorizontal": 0,
+     "thumbnailL1BorderVertical": 0,
+     "thumbnailLabel": {
+        "titleFontSize": "0.6em"
+     },
+     "thumbnailHoverEffect2": "image_scale_1.00_1.10|label_backgroundColor_rgba(0,0,0,0)_rgba(255,255,255,0)",
+     "galleryTheme": {
+        "thumbnail": {
+            "borderRadius": "8px"
+        }
+     },
+     "thumbnailToolbarImage": {
+        "topLeft": "",
+        "topRight": "",
+        "bottomLeft": "",
+        "bottomRight": ""
+     },
+     "viewerToolbar":   {
+        "display": true,
+        "standard": "label"
+     },
+     "viewerTools":     {
+        "topLeft":    "pageCounter, playPauseButton",
+        "topRight":   "downloadButton, rotateLeft, zoomButton, fullscreenButton, closeButton"
+     },
+     "viewerGalleryTWidth": 40,
+     "viewerGalleryTHeight": 40
+}'>
+    
+<a href="/images/fendou.png" data-ngThumb="/images/fendou.png">命运</a>
+
+</div>
+</body>
+</html>
+
+<p>实现：</p>
+<div style="height: 200px;margin: 1em auto;position: relative;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+        border-radius: 15px;padding: 23px;max-width: 780px;background: var(--entry);">
+    
+    
+    <div style="font-size: 22px; font-weight: 600">
+        <a target="_blank" href="https://blog.cuihao.fun/post/hugo-photo/" style="box-shadow: none">Hugo 支持相册</a>
+    </div>
+    <span style="font-size: 14px; color: #999">
+        日期: 2023-05-09
+        &nbsp;
+        标签:
+        
+            #hugo&nbsp;
+        
+    </span>
+    <div style="font-size: 14px; line-height: 1.825;max-height: 75px; overflow: hidden;margin-top: 5px;">
+        利用hugo插件nanogallery2支持相册 ......
+    </div>
+    
+    
+</div>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://blog.cuihao.fun/js/toc.js'></script>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/toc.css' />
+
+
+
+<script src="https://utteranc.es/client.js"
+        repo="itcuihao/blog",
+        issue-term="title"
+        label="💬"
+        theme="icy-dark",
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+
+
+
+
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://blog.cuihao.fun">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Copyright(c) 2018 -, haoc7; all rights reserved.</li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+</div>
+  
+<div id="action-botton">
+    <div class="action-wrapper">
+      <div class="action meter">
+        <span id="progress_meter">JS</span>
+      </div>
+      <a href="#top" class="action up no-dot">
+        <svg xmlns='http://www.w3.org/2000/svg' class='icon' viewBox='0 0 512 512'><title>Arrow Up</title><path fill='none' stroke='currentColor' stroke-linecap='square' stroke-miterlimit='10' stroke-width='96' d='M112 244l144-144 144 144M256 120v292'/></svg>
+      </a>
+    </div>
+</div>
+</body>
+
+<script type="application/javascript" src="https://blog.cuihao.fun/js/github-style.js"></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/progress-meter.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/love.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/search.js'></script>
+
+
+
+
+</html>

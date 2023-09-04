@@ -10,6 +10,14 @@
     <link rel="stylesheet" href='https://blog.cuihao.fun/css/light.css' />
     <link rel="stylesheet" href='https://blog.cuihao.fun/css/dark.css' />
     <link rel="stylesheet" href='https://blog.cuihao.fun/css/syntax.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/action-button.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/fonts.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/search.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/simple-notice.css' />
+
     <title>Blog更新汇总 - haoc7</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
@@ -57,8 +65,60 @@
 
 
 
-</head>
 
+    
+
+<style type="text/css" media="screen, print">
+    @font-face {
+        font-family: "FancyTitleFont";
+        font-style: normal;
+        font-display: swap;
+        src: url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+    }
+     
+      
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Light'), local('NotoSerifCJK-Light'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Noto Serif CJK SC'), local('NotoSerifCJK-Regular'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Medium'), local('NotoSerifCJK-Medium'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff') format('woff');
+         
+    }
+</style>
+
+</head>
 <body>
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
@@ -83,19 +143,33 @@
     </div>
     <div style="display: none;" id="header-search"
       class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+
       <div
         class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
         <div class="position-relative">
-          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
-            autocomplete="off">
-            <label
-              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
-              <input type="text"
-                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
-                name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://blog.cuihao.fun">
-            </label>
-          </form>
+          
+          <label
+            class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+            <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+              <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+            </svg>
+            
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<span class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-input-search" class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" placeholder="Search..." name="search" autocomplete="off" />
+    <a href=javascript:void(0); class="search-clear" id="search-clear" title=清空 onclick="document.getElementById('aa-input-search').value='';">
+        <i class="fas fa-times-circle fa-fw"></i>
+    </a>
+</span>
+
+          </label>
+          
         </div>
       </div>
     </div>
@@ -139,7 +213,7 @@
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://blog.cuihao.fun"></a></span><span
+                    <a href="https://blog.cuihao.fun">我的名字叫浩仔</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
                       href="https://blog.cuihao.fun/post/hugo-update/">Blog更新汇总</a></strong>
                 </h1>
@@ -150,9 +224,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 07 Jul 2022 08:01:12 &#43;0800"
+                  Modified <relative-time datetime="Mon, 04 Sep 2023 15:41:33 &#43;0800"
                     class="no-wrap">
-                    Thu, 07 Jul 2022 08:01:12 &#43;0800</relative-time>
+                    Mon, 04 Sep 2023 15:41:33 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -182,7 +256,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      274 Words
+                      2803 Words
                     
 
                   </div>
@@ -204,7 +278,7 @@
               </div>
 
 
-              <div class="Box-body px-5 pb-5" style="z-index: 1">
+              <div class="Box-body px-5 pb-5" style="z-index: 1;">
                 <article class="markdown-body entry-content container-lg"><hr>
 <h2 id="添加utteranchttpsgithubcomutterance评论">添加<a href="https://github.com/utterance">utteranc</a>评论</h2>
 <p>首先github授权<a href="https://utteranc.es/">utteranc</a>。</p>
@@ -236,7 +310,438 @@
     <span style="color:#a6e22e">repo</span> = <span style="color:#e6db74">&#34;blog&#34;</span>
     <span style="color:#a6e22e">issueTerm</span> = <span style="color:#e6db74">&#34;pathname&#34;</span>
     <span style="color:#a6e22e">theme</span> = <span style="color:#e6db74">&#34;icy-dark&#34;</span>
-</code></pre></div></article>
+</code></pre></div><hr>
+<h2 id="添加github-actionhttpsblogcuihaofunposthugo-github-action部署20230428">添加<a href="https://blog.cuihao.fun/post/hugo-github-action/">github action</a>部署（20230428）</h2>
+<p>详情见链接</p>
+<hr>
+<h2 id="增加回到顶部">增加回到顶部</h2>
+<p><em>20230505</em></p>
+<p>针对<code>github-style</code>主题，在theme的static目录下增加js文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">// Progress bar part
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">progress_meter</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;progress_meter&#34;</span>);
+
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">scrollHeight</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">height</span>;
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">last_position</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">scrollY</span>;
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">update_progress_meter</span> () {
+  <span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">clientHeight</span> <span style="color:#f92672">-</span> window.<span style="color:#a6e22e">innerHeight</span>;
+  <span style="color:#a6e22e">current_position</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">scrollY</span>;
+
+  <span style="color:#a6e22e">progress</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">ceil</span>((<span style="color:#a6e22e">current_position</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">height</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>);
+  <span style="color:#75715e">// Makes it looks better...
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">height</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#a6e22e">progress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">progress</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>) {
+    <span style="color:#a6e22e">progress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">progress</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>) {
+    <span style="color:#a6e22e">progress</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;
+  } 
+  
+  <span style="color:#a6e22e">progress_meter</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">progress</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;%&#34;</span>;
+}
+
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">ticking</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;scroll&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">ticking</span>) {
+	window.<span style="color:#a6e22e">requestAnimationFrame</span>(<span style="color:#66d9ef">function</span>() {
+	  <span style="color:#a6e22e">update_progress_meter</span>();
+	  <span style="color:#a6e22e">ticking</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+	});
+
+	<span style="color:#a6e22e">ticking</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+  }
+});
+
+<span style="color:#a6e22e">progress_meter</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">textDecoration</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;none&#39;</span>;
+<span style="color:#a6e22e">update_progress_meter</span>();
+</code></pre></div><p>在<code>layouts/partials/script.html</code>中，引入js</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- top 标记 --&gt;</span>
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;application/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{{ &#34;js/progress-meter.js&#34; | absURL }}&#39;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><p>在<code>layouts/partials/baseof.html</code>中，加入按钮块</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;action-botton&#34;</span>&gt;
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;action-wrapper&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;action meter&#34;</span>&gt;
+      &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;progress_meter&#34;</span>&gt;JS&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#top&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;action up no-dot&#34;</span>&gt;
+      &lt;<span style="color:#f92672">svg</span> <span style="color:#a6e22e">xmlns</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;http://www.w3.org/2000/svg&#39;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;icon&#39;</span> <span style="color:#a6e22e">viewBox</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;0 0 512 512&#39;</span>&gt;&lt;<span style="color:#f92672">title</span>&gt;Arrow Up&lt;/<span style="color:#f92672">title</span>&gt;&lt;<span style="color:#f92672">path</span> <span style="color:#a6e22e">fill</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;none&#39;</span> <span style="color:#a6e22e">stroke</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;currentColor&#39;</span> <span style="color:#a6e22e">stroke-linecap</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;square&#39;</span> <span style="color:#a6e22e">stroke-miterlimit</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;10&#39;</span> <span style="color:#a6e22e">stroke-width</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;96&#39;</span> <span style="color:#a6e22e">d</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;M112 244l144-144 144 144M256 120v292&#39;</span>/&gt;&lt;/<span style="color:#f92672">svg</span>&gt;
+    &lt;/<span style="color:#f92672">a</span>&gt;
+  &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><hr>
+<h2 id="增加动漫名言">增加动漫名言</h2>
+<p><em>20230505</em></p>
+<p>针对<code>github-style</code>主题，在theme的static目录下增加js文件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">binft</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">r</span>,<span style="color:#a6e22e">n</span>) {
+    <span style="color:#75715e">// 将 n 数组中的所有元素转换为字符串
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">t</span>) {
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#34;</span>;
+      })
+      , <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;rgb(110,64,170)&#34;</span>, <span style="color:#e6db74">&#34;rgb(150,61,179)&#34;</span>, <span style="color:#e6db74">&#34;rgb(191,60,175)&#34;</span>, <span style="color:#e6db74">&#34;rgb(228,65,157)&#34;</span>, <span style="color:#e6db74">&#34;rgb(254,75,131)&#34;</span>, <span style="color:#e6db74">&#34;rgb(255,94,99)&#34;</span>, <span style="color:#e6db74">&#34;rgb(255,120,71)&#34;</span>, <span style="color:#e6db74">&#34;rgb(251,150,51)&#34;</span>, <span style="color:#e6db74">&#34;rgb(226,183,47)&#34;</span>, <span style="color:#e6db74">&#34;rgb(198,214,60)&#34;</span>, <span style="color:#e6db74">&#34;rgb(175,240,91)&#34;</span>, <span style="color:#e6db74">&#34;rgb(127,246,88)&#34;</span>, <span style="color:#e6db74">&#34;rgb(82,246,103)&#34;</span>, <span style="color:#e6db74">&#34;rgb(48,239,130)&#34;</span>, <span style="color:#e6db74">&#34;rgb(29,223,163)&#34;</span>, <span style="color:#e6db74">&#34;rgb(26,199,194)&#34;</span>, <span style="color:#e6db74">&#34;rgb(35,171,216)&#34;</span>, <span style="color:#e6db74">&#34;rgb(54,140,225)&#34;</span>, <span style="color:#e6db74">&#34;rgb(76,110,219)&#34;</span>, <span style="color:#e6db74">&#34;rgb(96,84,200)&#34;</span>]
+      , <span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> { <span style="color:#75715e">// 定义打字动画的状态对象
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">text</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+        <span style="color:#a6e22e">prefixP</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>,
+        <span style="color:#a6e22e">skillI</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+        <span style="color:#a6e22e">skillP</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+        <span style="color:#a6e22e">direction</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;forward&#34;</span>,
+        <span style="color:#a6e22e">delay</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+        <span style="color:#a6e22e">step</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+    };
+
+    <span style="color:#75715e">// 将 n 数组中的元素随机排序
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">sort</span>(<span style="color:#66d9ef">function</span>() {
+        <span style="color:#66d9ef">return</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">0.5</span>;
+    });
+    
+    <span style="color:#75715e">// 定义递归函数 t()，实现打字动画效果
+</span><span style="color:#75715e"></span>    <span style="color:#f92672">!</span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">t</span>() {
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>[<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillI</span>];
+        <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">step</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">step</span><span style="color:#f92672">--</span> <span style="color:#f92672">:</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">step</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">prefixP</span> <span style="color:#f92672">&lt;</span> <span style="color:#e6db74">&#34;&#34;</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">?</span> (<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">prefixP</span> <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;&#34;</span>[<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">prefixP</span>]),
+        <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">prefixP</span><span style="color:#f92672">++</span>) <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;forward&#34;</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">direction</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillP</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">?</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">e</span>[<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillP</span>],
+        <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillP</span><span style="color:#f92672">++</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">delay</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">delay</span><span style="color:#f92672">--</span> <span style="color:#f92672">:</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;backward&#34;</span>,
+        <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">delay</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillP</span> <span style="color:#f92672">?</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">text</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">text</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>),
+        <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillP</span><span style="color:#f92672">--</span>) <span style="color:#f92672">:</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillI</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillI</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%</span> <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">length</span>,
+        <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">direction</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;forward&#34;</span>)),
+        <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">text</span>,
+        <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">t</span>) {
+            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createDocumentFragment</span>(), <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">r</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">t</span>; <span style="color:#a6e22e">r</span><span style="color:#f92672">++</span>) {
+                <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#34;span&#34;</span>);
+                <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">textContent</span> <span style="color:#f92672">=</span> String.<span style="color:#a6e22e">fromCharCode</span>(<span style="color:#ae81ff">94</span> <span style="color:#f92672">*</span> Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">+</span> <span style="color:#ae81ff">33</span>),
+                <span style="color:#a6e22e">n</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">i</span>[Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">i</span>.<span style="color:#a6e22e">length</span>)],
+                <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">n</span>)
+            }
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>
+        }(<span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">prefixP</span> <span style="color:#f92672">&lt;</span> <span style="color:#e6db74">&#34;&#34;</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">?</span> Math.<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">prefixP</span>) <span style="color:#f92672">:</span> Math.<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">5</span>, <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#a6e22e">l</span>.<span style="color:#a6e22e">skillP</span>))),
+        <span style="color:#a6e22e">setTimeout</span>(<span style="color:#a6e22e">t</span>, <span style="color:#ae81ff">75</span>)
+    }()
+};
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">divElement</span><span style="color:#f92672">=</span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;binft&#34;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">descElement</span><span style="color:#f92672">=</span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#34;anime-aphorisms&#34;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">myArray</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">descElement</span>.<span style="color:#a6e22e">textContent</span>);
+<span style="color:#a6e22e">binft</span>(<span style="color:#a6e22e">divElement</span>,<span style="color:#a6e22e">myArray</span>)
+</code></pre></div><p>在<code>config.toml</code>中新增参数</p>
+<pre tabindex="0"><code>[params]
+  Aphorisms = [
+      &quot;与其装点自己的终焉，不如漂亮地活到最后。——《银魂》&quot;,
+      &quot;真実はいつもひとつ。——《名侦探柯南》&quot;,
+      &quot;安西教练，我想打篮球。——《灌篮高手》&quot;,
+      &quot;逃げちゃだめだ逃げちゃだめだ逃げちゃだめだ 不可以逃避！不可以逃避！不可以逃避！——《新世纪福音战士》&quot;,
+      &quot;海賊王になる男です 我是要成为海贼王的男人！——《海贼王》&quot;,
+      &quot;我が生涯に一片の悔いなし 吾之一生，无憾无悔。——《北斗神拳》&quot;,
+      &quot;あきらめたらそこで試合終了だよ 一旦放弃，比赛就会在那一刻结束。——《灌篮高手》&quot;,
+      &quot;我不知道离别的滋味是这样凄凉，我不知道说声再见要这么坚强。——《千与千寻》&quot;,
+      &quot;外見をあまり気にしないでください。心が一番大切です 不要对外表过分在意，心灵才是最重要的。——《魔女宅急便》&quot;,
+      &quot;なんとかなるよ！絶対大丈夫だよ 一定有办法的，肯定没问题。——《魔卡少女樱》&quot;,
+      &quot;まっすぐ自分の言葉は曲げねぇ それがオレの忍道だ 我说到做到，这就是我的忍道！——《火影忍者》&quot;,
+      &quot;ピカチュウ、行きましょう 去吧，皮卡丘！——《神奇宝贝》&quot;,
+      &quot;月を代表してあなたを滅ぼします 我要代表月亮消灭你！——《美少女战士》。&quot;,
+  ]
+</code></pre><p>在<code>layouts/partials/overview.html</code>中，修改代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">article</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;markdown-body entry-content container-lg f5&#34;</span>&gt;
+  {{- .Content -}}
+  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anime-aphorisms&#34;</span>&gt;&lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;binft&#34;</span>&gt;{{ .Site.Params.Aphorisms | jsonify }}&lt;/<span style="color:#f92672">p</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">article</span>&gt;
+<span style="color:#75715e">&lt;!-- 闪动字体 --&gt;</span>
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;application/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{{ &#34;js/binft.js&#34; | absURL }}&#39;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><hr>
+<h2 id="更换字体">更换字体</h2>
+<p><em>20230506</em></p>
+<hr>
+<h2 id="增加algolia搜索">增加Algolia搜索</h2>
+<p><em>20230507</em></p>
+<hr>
+<h2 id="增加sakana小人">增加sakana小人</h2>
+<p><em>20230507</em></p>
+<hr>
+<h2 id="增加相册">增加相册</h2>
+<p><em>20230509</em></p>
+<h3 id="展示效果">展示效果</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/css/nanogallery2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/jquery.nanogallery2.min.js"></script>
+</head>
+<body>
+
+<div data-nanogallery2='{
+	 "thumbnailDisplayTransition":          "none",
+     "thumbnailDisplayTransitionDuration":  500,
+     "thumbnailDisplayInterval":            30,
+     "galleryDisplayTransition":            "none",
+     "galleryDisplayTransitionDuration":    500,
+     "galleryDisplayMode": "rows",
+     "thumbnailDisplayOutsideScreen": "false",
+     "eventsDebounceDelay": 10,
+     "thumbnailL1BorderHorizontal": 0,
+     "thumbnailL1BorderVertical": 0,
+     "thumbnailLabel": {
+        "titleFontSize": "0.6em"
+     },
+     "thumbnailHoverEffect2": "image_scale_1.00_1.10|label_backgroundColor_rgba(0,0,0,0)_rgba(255,255,255,0)",
+     "galleryTheme": {
+        "thumbnail": {
+            "borderRadius": "8px"
+        }
+     },
+     "thumbnailToolbarImage": {
+        "topLeft": "",
+        "topRight": "",
+        "bottomLeft": "",
+        "bottomRight": ""
+     },
+     "viewerToolbar":   {
+        "display": true,
+        "standard": "label"
+     },
+     "viewerTools":     {
+        "topLeft":    "pageCounter, playPauseButton",
+        "topRight":   "downloadButton, rotateLeft, zoomButton, fullscreenButton, closeButton"
+     },
+     "viewerGalleryTWidth": 40,
+     "viewerGalleryTHeight": 40
+}'>
+    
+<a href="/images/fendou.png" data-ngThumb="/images/fendou.png">命运</a>
+
+</div>
+</body>
+</html>
+
+<h3 id="添加步骤">添加步骤</h3>
+<p>采用的是nanogallery2插件，具体的配置文档：<a href="https://nanogallery2.nanostudio.org/documentation.html">nanogallery2用法指导</a></p>
+<p>详情见<a href="https://blog.cuihao.fun/post/hugo-photo/">链接</a></p>
+
+<a  href="https://blog.cuihao.fun/post/hugo-photo/" target="_blank"  class="btn btn-default">
+  
+  
+  
+  前往
+  
+</a>
+<hr>
+<h2 id="增加内链">增加内链</h2>
+<p><em>20230509</em></p>
+<h3 id="展示效果-1">展示效果</h3>
+<div style="height: 200px;margin: 1em auto;position: relative;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+        border-radius: 15px;padding: 23px;max-width: 780px;background: var(--entry);">
+    
+    
+    <div style="font-size: 22px; font-weight: 600">
+        <a target="_blank" href="https://blog.cuihao.fun/post/hugo-photo/" style="box-shadow: none">Hugo 支持相册</a>
+    </div>
+    <span style="font-size: 14px; color: #999">
+        日期: 2023-05-09
+        &nbsp;
+        标签:
+        
+            #hugo&nbsp;
+        
+    </span>
+    <div style="font-size: 14px; line-height: 1.825;max-height: 75px; overflow: hidden;margin-top: 5px;">
+        利用hugo插件nanogallery2支持相册 ......
+    </div>
+    
+    
+</div>
+<h3 id="文件路径">文件路径</h3>
+<p>在<code>layouts/shortcodes</code>目录下（没有则创建目录），新建一个名为<code>innerlink.html</code>的文件。</p>
+<h3 id="添加代码">添加代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;height: 200px;margin: 1em auto;position: relative;
+</span><span style="color:#e6db74">        box-shadow: 0 2px 4px rgb(0 0 0 / 25%), 0 0 2px rgb(0 0 0 / 25%);
+</span><span style="color:#e6db74">        border-radius: 15px;padding: 23px;max-width: 780px;background: var(--entry);&#34;</span>&gt;
+    {{ $url := .Get &#34;src&#34; }}
+    {{ with .Site.GetPage $url }}
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-size: 22px; font-weight: 600&#34;</span>&gt;
+        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Permalink }}&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;box-shadow: none&#34;</span>&gt;{{ .Title }}&lt;/<span style="color:#f92672">a</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-size: 14px; color: #999&#34;</span>&gt;
+        日期: {{ .Date.Format ( default &#34;2006-01-02&#34;) }}
+        {{ if .Params.tags }}&amp;nbsp;
+        标签:
+        {{ range .Params.tags }}
+            #{{ . }}&amp;nbsp;
+        {{ end }}
+    &lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;font-size: 14px; line-height: 1.825;max-height: 75px; overflow: hidden;margin-top: 5px;&#34;</span>&gt;
+        {{ .Summary | plainify}} ......
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    {{ end }}
+    {{ end }}
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><hr>
+<h2 id="增加按钮">增加按钮</h2>
+<p><em>20230509</em></p>
+<h3 id="展示效果-2">展示效果</h3>
+
+<a  href="https://google.com" target="_blank"  class="btn btn-default">
+  
+  
+  
+  前往Google
+  
+</a>
+<h3 id="文件路径-1">文件路径</h3>
+<p>在<code>layouts/shortcodes</code>目录下（没有则创建目录），新建一个名为<code>button.html</code>的文件。</p>
+<h3 id="添加代码-1">添加代码</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{{ $_hugo_config := `{ &#34;version&#34;: 1 }` }}
+&lt;<span style="color:#f92672">a</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">with</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Get</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">href</span><span style="color:#960050;background-color:#1e0010">&#34;}}</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{.}}&#34;</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-default&#34;</span>&gt;
+  {{ $icon := .Get &#34;icon&#34; }}
+  {{ $iconposition := .Get &#34;icon-position&#34; }}
+  {{ if ($icon) }}
+    {{ if or (not ($iconposition)) (eq $iconposition &#34;left&#34;) }}
+  &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{$icon}}&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;
+    {{ end }}
+  {{ end }}
+  {{ .Inner }}
+  {{ if and ($icon) (eq $iconposition &#34;right&#34;)}}
+  &lt;<span style="color:#f92672">i</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{$icon}}&#34;</span>&gt;&lt;/<span style="color:#f92672">i</span>&gt;
+  {{ end }}
+&lt;/<span style="color:#f92672">a</span>&gt;
+</code></pre></div><hr>
+<h2 id="增加提示">增加提示</h2>
+<p><em>20230509</em></p>
+<h3 id="展示效果-3">展示效果</h3>
+<p>支持两种风格</p>
+<ul>
+<li><a href="https://github.com/martignoni/hugo-notice">hugo-notice</a>风格</li>
+<li>自定义风格</li>
+</ul>
+<h4 id="hugo-notice展示">hugo-notice展示</h4>
+<style type="text/css">.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}</style>
+<div><svg width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg"><symbol id="tip-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></symbol><symbol id="note-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="warning-notice" viewBox="0 0 576 512" preserveAspectRatio="xMidYMid meet"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="info-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></symbol></svg></div><div class="notice warning" >
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span></p><p>莫听穿林打叶声，何妨吟啸且徐行。</p></div>
+<div class="notice info" >
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#info-notice"></use></svg></span></p><p>竹杖芒鞋轻胜马，谁怕？ 一蓑烟雨任平生。</p></div>
+<div class="notice note" >
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#note-notice"></use></svg></span></p><p>料峭春风吹酒醒，微冷，山头斜照却相迎。</p></div>
+<div class="notice tip" >
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#tip-notice"></use></svg></span></p><p>回首向来萧瑟处，归去，也无风雨也无晴。</p></div>
+<h4 id="自定义展示">自定义展示</h4>
+
+
+
+<div class="simple-notice warning" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 512 512"><path d="M114.57 76.07a45.71 45.71 0 00-67.51-6.41c-17.58 16.18-19 43.52-4.75 62.77l91.78 123-92.33 124.15c-14.23 19.25-13.11 46.59 4.74 62.77a45.71 45.71 0 0067.5-6.41L242.89 262.7a12.14 12.14 0 000-14.23zm355.67 303.51l-92.33-124.13 91.78-123c14.22-19.25 12.83-46.59-4.75-62.77a45.71 45.71 0 00-67.51 6.41l-128 172.12a12.14 12.14 0 000 14.23L398 435.94a45.71 45.71 0 0067.51 6.41c17.84-16.18 18.96-43.52 4.73-62.77z"/></svg></div><p>莫听穿林打叶声，何妨吟啸且徐行。</p></div>
+
+
+
+
+<div class="simple-notice info" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 192 512"><path d="M20 424.23h20V279.77H20a20 20 0 01-20-20V212a20 20 0 0120-20h112a20 20 0 0120 20v212.23h20a20 20 0 0120 20V492a20 20 0 01-20 20H20a20 20 0 01-20-20v-47.77a20 20 0 0120-20zM96 0a72 72 0 100 144A72 72 0 0096 0z"/></svg></div><p>竹杖芒鞋轻胜马，谁怕？ 一蓑烟雨任平生。</p></div>
+
+
+
+
+<div class="simple-notice note" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 192 512"><path d="M176 432c0 44.11-35.89 80-80 80s-80-35.89-80-80 35.89-80 80-80 80 35.89 80 80zM25.26 25.2l13.6 272A24 24 0 0062.83 320h66.34a24 24 0 0023.97-22.8l13.6-272A24 24 0 00142.77 0H49.23a24 24 0 00-23.97 25.2z"/></svg></div><p>料峭春风吹酒醒，微冷，山头斜照却相迎。</p></div>
+
+
+
+
+<div class="simple-notice tip" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 512 512"><path d="M173.9 439.4L7.5 273c-10-10-10-26.2 0-36.2l36.2-36.2c10-10 26.2-10 36.2 0L192 312.69l240.1-240.1c10-10 26.2-10 36.2 0l36.2 36.21c10 10 10 26.2 0 36.2L210.1 439.4c-10 10-26.2 10-36.2 0z"/></svg></div><p>回首向来萧瑟处，归去，也无风雨也无晴。</p></div>
+
+<h3 id="实现方式">实现方式</h3>
+
+<a  href="https://google.com" target="_blank"  class="btn btn-default">
+  
+  
+  
+  点击查看
+  
+</a>
+<h2 id="增加github-shortcode">增加github shortcode</h2>
+<p><em>20230701</em></p>
+<h3 id="展示效果-4">展示效果</h3>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/sc-github.css' />
+<div class="github">
+    <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon github-icon" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 2.5C2 1.83696 2.26339 1.20107 2.73223 0.732233C3.20108 0.263392 3.83696 0 4.5 0L13.25 0C13.4489 0 13.6397 0.0790176 13.7803 0.21967C13.921 0.360322 14 0.551088 14 0.75V13.25C14 13.4489 13.921 13.6397 13.7803 13.7803C13.6397 13.921 13.4489 14 13.25 14H10.75C10.5511 14 10.3603 13.921 10.2197 13.7803C10.079 13.6397 10 13.4489 10 13.25C10 13.0511 10.079 12.8603 10.2197 12.7197C10.3603 12.579 10.5511 12.5 10.75 12.5H12.5V10.5H4.5C4.30308 10.5 4.11056 10.5582 3.94657 10.6672C3.78257 10.7762 3.65442 10.9312 3.57816 11.1128C3.50191 11.2943 3.48096 11.4943 3.51793 11.6878C3.5549 11.8812 3.64816 12.0594 3.786 12.2C3.92524 12.3422 4.0023 12.5338 4.00024 12.7328C3.99818 12.9318 3.91716 13.1218 3.775 13.261C3.63285 13.4002 3.4412 13.4773 3.24222 13.4752C3.04325 13.4732 2.85324 13.3922 2.714 13.25C2.25571 12.7829 1.99929 12.1544 2 11.5V2.5ZM12.5 1.5V9H4.5C4.144 9 3.806 9.074 3.5 9.208V2.5C3.5 2.23478 3.60536 1.98043 3.79289 1.79289C3.98043 1.60536 4.23478 1.5 4.5 1.5H12.5ZM5 12.25V15.5C5 15.5464 5.01293 15.5919 5.03734 15.6314C5.06175 15.6709 5.09667 15.7028 5.1382 15.7236C5.17972 15.7444 5.22621 15.7532 5.27245 15.749C5.31869 15.7448 5.36286 15.7279 5.4 15.7L6.85 14.613C6.89328 14.5805 6.94591 14.563 7 14.563C7.05409 14.563 7.10673 14.5805 7.15 14.613L8.6 15.7C8.63714 15.7279 8.68131 15.7448 8.72755 15.749C8.77379 15.7532 8.82028 15.7444 8.8618 15.7236C8.90333 15.7028 8.93826 15.6709 8.96266 15.6314C8.98707 15.5919 9 15.5464 9 15.5V12.25C9 12.1837 8.97366 12.1201 8.92678 12.0732C8.87989 12.0263 8.81631 12 8.75 12H5.25C5.1837 12 5.12011 12.0263 5.07322 12.0732C5.02634 12.1201 5 12.1837 5 12.25Z"/></svg>
+        <a class="name" href=https://github.com/itcuihao/img2hub target="_blank">img2hub</a>
+    </div>
+    <div class="description">A Chrome extension that uploads PNG and JPG images from web pages to GitHub, power by me and chatgpt.</div> 
+    <div class="language">
+        <span class="language-color" style="background-color: #e16737"></span>
+        <span class="language-name">Javascript</span>
+    </div>
+</div>
+<h3 id="文件路径-2">文件路径</h3>
+<ul>
+<li>
+<p>在<code>layouts/shortcodes</code>目录下（没有则创建目录），新建一个名为<code>github.html</code>的文件。</p>
+</li>
+<li>
+<p>在<code>static/css</code>目录下（没有则创建目录），新建一个名为<code>shortcode-github.css</code>的文件。</p>
+</li>
+<li>
+<p>在<code>data/SVG.toml</code>文件中（没有则创建文件）， 中增加一行<code>repository</code> svg配置</p>
+</li>
+</ul>
+<h3 id="添加代码-2">添加代码</h3>
+<h4 id="githubhtml">github.html</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{{ &#34;css/sc-github.css&#34; | absURL }}&#39;</span> /&gt;
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;github&#34;</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;logo&#34;</span>&gt;
+        {{ replace $.Site.Data.SVG.repository &#34;icon&#34; &#34;icon github-icon&#34; | safeHTML }}
+        &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">{{</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Get</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">link</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span>&gt;{{ .Get &#34;name&#34; }}&lt;/<span style="color:#f92672">a</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;description&#34;</span>&gt;{{ .Get &#34;description&#34; }}&lt;/<span style="color:#f92672">div</span>&gt; 
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language&#34;</span>&gt;
+        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-color&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;background-color: {{ .Get &#34;</span><span style="color:#a6e22e">color</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}&#34;</span>&gt;&lt;/<span style="color:#f92672">span</span>&gt;
+        &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;language-name&#34;</span>&gt;{{ .Get &#34;language&#34; }}&lt;/<span style="color:#f92672">span</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><h4 id="shortcode-githubcss">shortcode-github.css</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">github</span> {
+    <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#31655f</span>;
+    <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">3</span><span style="color:#66d9ef">px</span>;
+    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">auto</span>;
+    <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>;
+    <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>;
+    <span style="color:#960050;background-color:#1e0010">.github-icon</span> <span style="color:#960050;background-color:#1e0010">{</span>
+        <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">1.2</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">1.2</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">margin-right</span>: <span style="color:#ae81ff">0.5</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">0.2</span><span style="color:#66d9ef">em</span>;
+        fill: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span><span style="color:#66d9ef">color</span><span style="color:#f92672">-</span>contrast<span style="color:#f92672">-</span><span style="color:#66d9ef">high</span>);
+        <span style="color:#66d9ef">transition</span>: <span style="color:#66d9ef">all</span> <span style="color:#ae81ff">.5</span><span style="color:#66d9ef">s</span>;
+    }
+    .<span style="color:#a6e22e">name</span> {
+        <span style="color:#66d9ef">font-weight</span>: <span style="color:#66d9ef">bold</span>;
+        <span style="color:#66d9ef">color</span>: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span><span style="color:#66d9ef">color</span><span style="color:#f92672">-</span>primary);
+        <span style="color:#66d9ef">text-decoration</span>: <span style="color:#66d9ef">none</span>;
+    }
+    .<span style="color:#a6e22e">description</span> {
+        <span style="color:#66d9ef">margin-top</span>: <span style="color:#ae81ff">0.5</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">color</span>: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span><span style="color:#66d9ef">color</span><span style="color:#f92672">-</span>contrast<span style="color:#f92672">-</span><span style="color:#66d9ef">high</span>);
+        <span style="color:#66d9ef">text-align</span>: <span style="color:#66d9ef">justify</span>;
+        <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">90</span><span style="color:#66d9ef">%</span>;
+        <span style="color:#66d9ef">transition</span>: <span style="color:#66d9ef">all</span> <span style="color:#ae81ff">.5</span><span style="color:#66d9ef">s</span>;
+    }
+    .<span style="color:#a6e22e">language-color</span> {
+        <span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">relative</span>;
+        <span style="color:#66d9ef">top</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span>;
+        <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">inline-block</span>;
+        <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">0.75</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">height</span>: <span style="color:#ae81ff">0.75</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">border-radius</span>: <span style="color:#ae81ff">50</span><span style="color:#66d9ef">%</span>;
+    }
+    .<span style="color:#a6e22e">language-name</span> {
+        <span style="color:#66d9ef">color</span>: <span style="color:#a6e22e">var</span>(<span style="color:#f92672">--</span><span style="color:#66d9ef">color</span><span style="color:#f92672">-</span>contrast<span style="color:#f92672">-</span><span style="color:#66d9ef">high</span>);
+        <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">90</span><span style="color:#66d9ef">%</span>;
+        <span style="color:#66d9ef">margin-left</span>: <span style="color:#ae81ff">0.5</span><span style="color:#66d9ef">em</span>;
+        <span style="color:#66d9ef">transition</span>: <span style="color:#66d9ef">all</span> <span style="color:#ae81ff">.5</span><span style="color:#66d9ef">s</span>;
+    }
+<span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><h4 id="svg配置">svg配置</h4>
+<pre tabindex="0"><code>repository = '&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; class=&quot;icon&quot; viewBox=&quot;0 0 16 16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; clip-rule=&quot;evenodd&quot; d=&quot;M2 2.5C2 1.83696 2.26339 1.20107 2.73223 0.732233C3.20108 0.263392 3.83696 0 4.5 0L13.25 0C13.4489 0 13.6397 0.0790176 13.7803 0.21967C13.921 0.360322 14 0.551088 14 0.75V13.25C14 13.4489 13.921 13.6397 13.7803 13.7803C13.6397 13.921 13.4489 14 13.25 14H10.75C10.5511 14 10.3603 13.921 10.2197 13.7803C10.079 13.6397 10 13.4489 10 13.25C10 13.0511 10.079 12.8603 10.2197 12.7197C10.3603 12.579 10.5511 12.5 10.75 12.5H12.5V10.5H4.5C4.30308 10.5 4.11056 10.5582 3.94657 10.6672C3.78257 10.7762 3.65442 10.9312 3.57816 11.1128C3.50191 11.2943 3.48096 11.4943 3.51793 11.6878C3.5549 11.8812 3.64816 12.0594 3.786 12.2C3.92524 12.3422 4.0023 12.5338 4.00024 12.7328C3.99818 12.9318 3.91716 13.1218 3.775 13.261C3.63285 13.4002 3.4412 13.4773 3.24222 13.4752C3.04325 13.4732 2.85324 13.3922 2.714 13.25C2.25571 12.7829 1.99929 12.1544 2 11.5V2.5ZM12.5 1.5V9H4.5C4.144 9 3.806 9.074 3.5 9.208V2.5C3.5 2.23478 3.60536 1.98043 3.79289 1.79289C3.98043 1.60536 4.23478 1.5 4.5 1.5H12.5ZM5 12.25V15.5C5 15.5464 5.01293 15.5919 5.03734 15.6314C5.06175 15.6709 5.09667 15.7028 5.1382 15.7236C5.17972 15.7444 5.22621 15.7532 5.27245 15.749C5.31869 15.7448 5.36286 15.7279 5.4 15.7L6.85 14.613C6.89328 14.5805 6.94591 14.563 7 14.563C7.05409 14.563 7.10673 14.5805 7.15 14.613L8.6 15.7C8.63714 15.7279 8.68131 15.7448 8.72755 15.749C8.77379 15.7532 8.82028 15.7444 8.8618 15.7236C8.90333 15.7028 8.93826 15.6709 8.96266 15.6314C8.98707 15.5919 9 15.5464 9 15.5V12.25C9 12.1837 8.97366 12.1201 8.92678 12.0732C8.87989 12.0263 8.81631 12 8.75 12H5.25C5.1837 12 5.12011 12.0263 5.07322 12.0732C5.02634 12.1201 5 12.1837 5 12.25Z&quot;/&gt;&lt;/svg&gt;'
+</code></pre></article>
               </div>
             </div>
           </div>
@@ -247,6 +752,23 @@
 </div>
 <script type="application/javascript" src='https://blog.cuihao.fun/js/toc.js'></script>
 <link rel="stylesheet" href='https://blog.cuihao.fun/css/toc.css' />
+
+
+
+<script src="https://utteranc.es/client.js"
+        repo="itcuihao/blog",
+        issue-term="title"
+        label="💬"
+        theme="icy-dark",
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+
+
+
+
 
 
   <div class="footer container-xl width-full p-responsive">
@@ -268,12 +790,27 @@
   <div class="d-flex flex-justify-center pb-6">
     <span class="f6 text-gray-light"></span>
   </div>
-
-
+</div>
+  
+<div id="action-botton">
+    <div class="action-wrapper">
+      <div class="action meter">
+        <span id="progress_meter">JS</span>
+      </div>
+      <a href="#top" class="action up no-dot">
+        <svg xmlns='http://www.w3.org/2000/svg' class='icon' viewBox='0 0 512 512'><title>Arrow Up</title><path fill='none' stroke='currentColor' stroke-linecap='square' stroke-miterlimit='10' stroke-width='96' d='M112 244l144-144 144 144M256 120v292'/></svg>
+      </a>
+    </div>
 </div>
 </body>
 
 <script type="application/javascript" src="https://blog.cuihao.fun/js/github-style.js"></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/progress-meter.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/love.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/search.js'></script>
 
 
 

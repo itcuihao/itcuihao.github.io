@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sun, 22 Jul 2018 19:10:51 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 26 May 2023 17:29:10 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ChatGPT带我部署脚本</title>
+      <link>https://blog.cuihao.fun/post/02multi-deploy/</link>
+      <pubDate>Fri, 26 May 2023 17:29:10 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/02multi-deploy/</guid>
+      <description>利用ChatGPT带自己使用Ansible批量部署服务</description>
+    </item>
+    
     <item>
       <title>利用Privoxy设置终端http代理🚀</title>
       <link>https://blog.cuihao.fun/post/%E5%88%A9%E7%94%A8privoxy%E8%AE%BE%E7%BD%AE%E7%BB%88%E7%AB%AFhttp%E4%BB%A3%E7%90%86/</link>

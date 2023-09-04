@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://blog.cuihao.fun/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github-style.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/light.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/dark.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/syntax.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/action-button.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/fonts.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/search.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/simple-notice.css' />
+
+    <title>Go Modules 梳理 - haoc7</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="go mod 相关规则的梳理，简单的介绍使用方法" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.cuihao.fun/post/go-mod-note/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Go Modules 梳理 - haoc7" />
+<meta name="twitter:description"
+  content="go mod 相关规则的梳理，简单的介绍使用方法" />
+<meta name="twitter:site" content="https://blog.cuihao.fun" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://blog.cuihao.fun">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Go Modules 梳理 - haoc7">
+<meta property="og:description"
+  content="go mod 相关规则的梳理，简单的介绍使用方法" />
+<meta property="og:url" content="https://blog.cuihao.fun/post/go-mod-note/" />
+<meta property="og:site_name" content="Go Modules 梳理" />
+<meta property="og:image"
+  content="https://blog.cuihao.fun">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2023-05-08 14:21:52 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<style type="text/css" media="screen, print">
+    @font-face {
+        font-family: "FancyTitleFont";
+        font-style: normal;
+        font-display: swap;
+        src: url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+    }
+     
+      
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Light'), local('NotoSerifCJK-Light'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Noto Serif CJK SC'), local('NotoSerifCJK-Regular'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Medium'), local('NotoSerifCJK-Medium'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff') format('woff');
+         
+    }
+</style>
+
+</head>
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://blog.cuihao.fun">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <label
+            class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+            <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+              <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+            </svg>
+            
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<span class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-input-search" class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" placeholder="Search..." name="search" autocomplete="off" />
+    <a href=javascript:void(0); class="search-clear" id="search-clear" title=清空 onclick="document.getElementById('aa-input-search').value='';">
+        <i class="fas fa-times-circle fa-fw"></i>
+    </a>
+</span>
+
+          </label>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://blog.cuihao.fun">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://blog.cuihao.fun">
+                  <img class=" avatar-user"
+                    src="https://blog.cuihao.fun/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://blog.cuihao.fun">我的名字叫浩仔</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://blog.cuihao.fun/post/go-mod-note/">Go Modules 梳理</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Mon, 08 May 2023 14:21:52 &#43;0800"
+                    class="no-wrap">
+                    Mon, 08 May 2023 14:21:52 &#43;0800</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Thu, 11 May 2023 11:31:53 &#43;0800"
+                    class="no-wrap">
+                    Thu, 11 May 2023 11:31:53 &#43;0800</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      3038 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/go">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Go
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1;">
+                <article class="markdown-body entry-content container-lg"><hr>
+<style type="text/css">.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}</style>
+<div><svg width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg"><symbol id="tip-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></symbol><symbol id="note-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="warning-notice" viewBox="0 0 576 512" preserveAspectRatio="xMidYMid meet"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="info-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></symbol></svg></div><div class="notice info" >
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#info-notice"></use></svg></span></p><p>大致梳理这几部分：更新历程，大致规则，命令解释，实践操作</p></div>
+<h2 id="mod展示">Mod展示</h2>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>➜&nbsp;&nbsp;~&nbsp;go&nbsp;mod</li>
+        
+        
+        <li>Go&nbsp;mod&nbsp;provides&nbsp;access&nbsp;to&nbsp;operations&nbsp;on&nbsp;modules.</li>
+        
+        
+        <li></li>
+        
+        
+        <li>Note&nbsp;that&nbsp;support&nbsp;for&nbsp;modules&nbsp;is&nbsp;built&nbsp;into&nbsp;all&nbsp;the&nbsp;go&nbsp;commands,</li>
+        
+        
+        <li>not&nbsp;just&nbsp;'go&nbsp;mod'.&nbsp;For&nbsp;example,&nbsp;day-to-day&nbsp;adding,&nbsp;removing,&nbsp;upgrading,</li>
+        
+        
+        <li>and&nbsp;downgrading&nbsp;of&nbsp;dependencies&nbsp;should&nbsp;be&nbsp;done&nbsp;using&nbsp;'go&nbsp;get'.</li>
+        
+        
+        <li>See&nbsp;'go&nbsp;help&nbsp;modules'&nbsp;for&nbsp;an&nbsp;overview&nbsp;of&nbsp;module&nbsp;functionality.</li>
+        
+        
+        <li></li>
+        
+        
+        <li>Usage:</li>
+        
+        
+        <li></li>
+        
+        
+        <li>	go&nbsp;mod&nbsp;<command>&nbsp;[arguments]</li>
+        
+        
+        <li></li>
+        
+        
+        <li>The&nbsp;commands&nbsp;are:</li>
+        
+        
+        <li></li>
+        
+        
+        <li>	download&nbsp;&nbsp;&nbsp;&nbsp;download&nbsp;modules&nbsp;to&nbsp;local&nbsp;cache</li>
+        
+        
+        <li>	edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edit&nbsp;go.mod&nbsp;from&nbsp;tools&nbsp;or&nbsp;scripts</li>
+        
+        
+        <li>	graph&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;module&nbsp;requirement&nbsp;graph</li>
+        
+        
+        <li>	init&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;initialize&nbsp;new&nbsp;module&nbsp;in&nbsp;current&nbsp;directory</li>
+        
+        
+        <li>	tidy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add&nbsp;missing&nbsp;and&nbsp;remove&nbsp;unused&nbsp;modules</li>
+        
+        
+        <li>	vendor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make&nbsp;vendored&nbsp;copy&nbsp;of&nbsp;dependencies</li>
+        
+        
+        <li>	verify&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verify&nbsp;dependencies&nbsp;have&nbsp;expected&nbsp;content</li>
+        
+        
+        <li>	why&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;explain&nbsp;why&nbsp;packages&nbsp;or&nbsp;modules&nbsp;are&nbsp;needed</li>
+        
+        
+        <li></li>
+        
+        
+        <li>Use&nbsp;"go&nbsp;help&nbsp;mod&nbsp;<command>"&nbsp;for&nbsp;more&nbsp;information&nbsp;about&nbsp;a&nbsp;command.</li>
+        
+        
+        <li></li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<h2 id="mod历程">Mod历程</h2>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p><strong>时间线：</strong></p>
+<link rel="stylesheet" href="https://blog.cuihao.fun/css/timeline.css">
+<link rel="stylesheet" href="https://blog.cuihao.fun/css/timeline-mobile.css" media="screen and (max-width: 736px)">
+
+<div class="timeline">
+    
+
+
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<div class="container">
+    <div class="content collapsible ">
+        <div class="title">Go 1.12</div>
+        
+        <div class="duration"  id="duration" >
+            
+        </div>
+        
+        <div class="body"><p><em>event:</em> Go 1.12发布 Modules 默认为 auto;</p>
+</div>
+    </div>
+    
+    <div class="date">
+        
+            February<br>2019
+        
+    </div>
+
+</div>
+
+
+    <script>
+        function non0plural(number, name) {
+            if (number == 0) {
+                return "";
+            }
+            return number + " " + name + (number > 1 ? "s" : "");
+        }
+
+        function monthDiff(d1, d2) {
+            let months;
+            months = (d2.getFullYear() - d1.getFullYear()) * 12;
+            months -= d1.getMonth();
+            months += d2.getMonth();
+            return months <= 0 ? 0 : months;
+        }
+
+        el = document.querySelector("#duration");
+        function refresh() {
+            const start = new Date("2018-08-24");
+            const now = new Date();
+
+            const total_months = monthDiff(start, now);
+            const months = total_months % 12;
+            const years = Math.floor((total_months) / 12);
+            el.innerHTML = non0plural(years, "year") + " " + non0plural(months, "month");
+        }
+        window.setInterval(refresh, 1*1000);
+    </script>
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<div class="container">
+    <div class="content collapsible ">
+        <div class="title">Go 1.11</div>
+        
+        <div class="duration" >
+              
+        </div>
+        
+        <div class="body"><p><em>event:</em> Go 1.11发布 Modules 作为官方试验;</p>
+</div>
+    </div>
+    
+    <div class="date">
+        
+            August<br>2018
+        
+    </div>
+
+</div>
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<div class="container">
+    <div class="content collapsible ">
+        <div class="title">Go 1.7</div>
+        
+        <div class="duration" >
+              5 months 
+        </div>
+        
+        <div class="body"><p><em>event:</em> Go 1.7: vendor 目录永远启用2017年1月 Go 团队发布 Dep，作为准官方试验;</p>
+</div>
+    </div>
+    
+    <div class="date">
+        
+            August<br>2016
+        
+    </div>
+
+</div>
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<div class="container">
+    <div class="content collapsible ">
+        <div class="title">Go 1.6</div>
+        
+        <div class="duration" >
+              5 months 
+        </div>
+        
+        <div class="body"><p><em>event:</em> Go 1.6 vendor 机制 默认开启2016年5月 Go 团队的 Peter Bourgon 建立委员会，讨论依赖管理工具，即dep;</p>
+</div>
+    </div>
+    
+    <div class="date">
+        
+            February<br>2016
+        
+    </div>
+
+</div>
+
+
+
+
+	
+	
+
+
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<div class="container">
+    <div class="content collapsible ">
+        <div class="title">Go 1.5</div>
+        
+        <div class="duration" >
+              
+        </div>
+        
+        <div class="body"><p><em>event:</em>  Go 1.5 实验性质加入 vendor 机制2015年 有人提出了采用语义化版本的草案;</p>
+</div>
+    </div>
+    
+    <div class="date">
+        
+            August<br>2015
+        
+    </div>
+
+</div>
+
+
+
+
+
+	
+
+
+
+    
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+
+<div class="container">
+    <div class="content collapsible ">
+        <div class="title">Go 1.5以前</div>
+        
+        <div class="duration" >
+              
+        </div>
+        
+        <div class="body"><p><em>event:</em>  Go 1.5之前的各种草案;</p>
+<ul>
+<li>2015年 govendor，kardianos/govendor;</li>
+<li>2015年 gb;</li>
+<li>2014年 有人提出 external packages 的概念，在项目的目录下增加一个 vendor 目录来存放外部的包;</li>
+<li>2014年 glide</li>
+<li>2014年 gopkg.in;</li>
+<li>2013年10月 Godep</li>
+<li>2012年 goven，github/kr/goven;</li>
+<li>2012年 Go发布，只有GOPATH</li>
+</ul>
+</div>
+    </div>
+    
+    <div class="date">
+        
+            August<br>2015
+        
+    </div>
+
+</div>
+
+
+
+
+
+</div>
+
+<script>
+    
+    
+    for (const collapsible of document.getElementsByClassName("collapsible")) {
+        const content = collapsible.querySelector(".body");
+
+        function doCollapse(collapse) {
+            if (collapse) {
+                content.style.maxHeight = "0px";
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        collapsible.addEventListener("click", () => {
+            
+            doCollapse(collapsible.classList.contains("collapsed"));
+            
+            window.requestAnimationFrame(() => {
+                window.requestAnimationFrame(() => {
+                    const collapsed = collapsible.classList.toggle("collapsed");
+                    doCollapse(collapsed);
+                });
+            });
+        });
+
+        
+        
+        content.addEventListener('transitionend', (transitionEvent) => {
+            if(transitionEvent.propertyName == "max-height") {
+                content.style.maxHeight = null;
+            }
+        });
+    }
+</script>
+<h2 id="mod规则">Mod规则</h2>
+<p>module是发布、版本控制和分发的集合，可以直接从版本控制存储库或模块代理服务器下载包。
+go module 主要使用语义化版本、导入兼容性规则、最小版本选择。</p>
+<h3 id="语义化版本">语义化版本</h3>
+<p>版本格式：主版本号.次版本号.修订号，版本号
+递增规则如下：
+主版本号：当你做了不兼容的 API 修改，
+次版本号：当你做了向下兼容的功能性新增，
+修订号：当你做了向下兼容的问题修正。
+先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+<h3 id="导入兼容性规则">导入兼容性规则</h3>
+<p>如果新包和旧包具有相同的导入路径，则新包必须向后兼容旧包。</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod1.png>
+    <figcaption>go version</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h3 id="最小版本选择mvs">最小版本选择（MVS）</h3>
+<h4 id="介绍">介绍</h4>
+<p>最小版本选择的关键是偏好选择模块允许的最小版本。</p>
+<p>例如</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod2.png>
+    <figcaption>go version</figcaption>
+</figure>
+</body>
+</html>
+
+
+<p>递归构建列表。</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod3.png>
+    <figcaption>go version</figcaption>
+</figure>
+</body>
+</html>
+
+
+<p>最终根据最小版本选择找到每个module的最大版本，那就是满足需求的最小版本。</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod4.png>
+    <figcaption>go version</figcaption>
+</figure>
+</body>
+</html>
+
+
+<p>Go Module 使用Russ Cox提出的最小版本选择算法选择构建包。</p>
+<p>主要包括四个操作：</p>
+<ul>
+<li>构建当前的构建列表。</li>
+<li>将所有模块升级到最新版本。</li>
+<li>将一个模块升级到特定的较新版本。</li>
+<li>将一个模块降级到特定的旧版本。</li>
+</ul>
+<h4 id="构建">构建</h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod5.png>
+    <figcaption>go mod</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h4 id="替换">替换</h4>
+<p>replace C v1.4 =&gt; R</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod6.png>
+    <figcaption>go mod</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h4 id="排除">排除</h4>
+<p>exclude C v1.3</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod7.png>
+    <figcaption>go mod</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h4 id="升级">升级</h4>
+<p>升级B v1.2到B v1.3</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod8.png>
+    <figcaption>go mod</figcaption>
+</figure>
+</body>
+</html>
+
+
+<p>要保留升级，Go命令将更新Go.mod中的require，它将将B的要求更改为1.3版。它还将在// indirect 注释中添加C 1.4和D 1.3的要求，否则这些版本不会被选择。</p>
+<h4 id="降级">降级</h4>
+<p>C v1.4降级</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod9.png>
+    <figcaption>go mod</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h3 id="mod文件">Mod文件</h3>
+<h4 id="格式">格式</h4>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>➜&nbsp;&nbsp;~&nbsp;cat&nbsp;go.mod</li>
+        
+        
+        <li>#module&nbsp;指令指定路径，go.mod&nbsp;必须包含一个module指令</li>
+        
+        
+        <li>module&nbsp;example.com/my/thing&nbsp;</li>
+        
+        
+        <li>#go&nbsp;指令后面跟版本号，必须是有效的版本号；go1.17之后，如果没有设置，则默认go1.16</li>
+        
+        
+        <li>go&nbsp;1.17&nbsp;</li>
+        
+        
+        <li>#require&nbsp;指令声明依赖库的最低版本，加载require指令后，go按照MSV生成构建列表。</li>
+        
+        
+        <li>require&nbsp;example.com/other/thing&nbsp;v1.0.2</li>
+        
+        
+        <li>require&nbsp;example.com/new/thing/v2&nbsp;v2.3.4</li>
+        
+        
+        <li>#exclude&nbsp;指令可以防止对应版本的加载。</li>
+        
+        
+        <li>exclude&nbsp;example.com/old/thing&nbsp;v1.2.3</li>
+        
+        
+        <li>#replace&nbsp;指令替换代码库某一版本、或者所有版本，新模块可以为另一模块路径版本或者对应系统的文件目录。</li>
+        
+        
+        <li>replace&nbsp;example.com/bad/thing&nbsp;v1.4.5&nbsp;=>&nbsp;example.com/good/thing&nbsp;v1.4.5</li>
+        
+        
+        <li>#retract&nbsp;指令撤回版本，例如某个第三方库的某一版本有误，可以添加到此处。</li>
+        
+        
+        <li>retract&nbsp;[v1.9.0,&nbsp;v1.9.5]</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<h4 id="命令">命令</h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod10.png>
+    <figcaption>go mod 命令</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h5 id="模块感知命令">模块感知命令</h5>
+<p><em>GO111MODULE</em></p>
+<ul>
+<li>on或者未设置: 启用module模式，即使go.mod不存在</li>
+<li>off: 禁用module模式，使用GOPATH模式</li>
+<li>auto: go.mod存在或者任意的父目录存在，启用module模式</li>
+</ul>
+
+
+
+<div class="simple-notice tip" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 512 512"><path d="M173.9 439.4L7.5 273c-10-10-10-26.2 0-36.2l36.2-36.2c10-10 26.2-10 36.2 0L192 312.69l240.1-240.1c10-10 26.2-10 36.2 0l36.2 36.21c10 10 10 26.2 0 36.2L210.1 439.4c-10 10-26.2 10-36.2 0z"/></svg></div><p>使用go env命令查看，可以使用go env -w GO111MODULE=on修改。</p></div>
+
+<h5 id="常用命令">常用命令</h5>
+<h6 id="go-get">go get</h6>
+<pre tabindex="0"><code>用法：
+go get [-d] [-t] [-u] [build flags] [packages]
+例子：
+＃升级特定模块。
+$ go get -d golang.org/net
+＃升级模块，提供主模块中的包导入的包。
+$ go get -d -u / ...
+＃升级或降级到模块的特定版本。
+$ go get -d golang.org/x/text@v0.3.2
+＃更新到模块的主分支机构上的提交。
+$ go get -d golang.org/x/text@master
+＃删除对需要它的模块和降级模块的依赖项
+＃到不需要它的版本。
+$ go get -d golang.org/x/text@none
+</code></pre><h6 id="go-list">go list</h6>
+<pre tabindex="0"><code>go list -m
+用法:
+go list -m [-u] [-retracted] [-versions] [list flags] [modules]
+例子:
+$ go list -m all
+$ go list -m -versions example.com/m
+$ go list -m -json example.com/m@latest
+</code></pre><h6 id="go-mod-graph">go mod graph</h6>
+<p>打印<code>package</code>引用关系</p>
+<p>例如：</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>➜&nbsp;&nbsp;crypto-data-etl&nbsp;git:(master)&nbsp;✗&nbsp;go&nbsp;list&nbsp;-m&nbsp;all&nbsp;</li>
+        
+        
+        <li>crypto-data-etl</li>
+        
+        
+        <li>bazil.org/fuse&nbsp;v0.0.0-20160811212531-371fbbdaa898</li>
+        
+        
+        <li>看到bazil包，想要看是谁使用了，就可以使用该命令</li>
+        
+        
+        <li>➜&nbsp;&nbsp;crypto-data-etl&nbsp;git:(master)&nbsp;✗&nbsp;go&nbsp;mod&nbsp;graph&nbsp;|&nbsp;grep&nbsp;bazil</li>
+        
+        
+        <li>github.com/containerd/continuity@v0.0.0-20191214063359-1097c8bae83b&nbsp;bazil.org/fuse@v0.0.0-20160811212531-371fbbdaa898</li>
+        
+        
+        <li></li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<h6 id="goproxy">goproxy</h6>
+
+
+
+<div class="simple-notice warning" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 512 512"><path d="M114.57 76.07a45.71 45.71 0 00-67.51-6.41c-17.58 16.18-19 43.52-4.75 62.77l91.78 123-92.33 124.15c-14.23 19.25-13.11 46.59 4.74 62.77a45.71 45.71 0 0067.5-6.41L242.89 262.7a12.14 12.14 0 000-14.23zm355.67 303.51l-92.33-124.13 91.78-123c14.22-19.25 12.83-46.59-4.75-62.77a45.71 45.71 0 00-67.51 6.41l-128 172.12a12.14 12.14 0 000 14.23L398 435.94a45.71 45.71 0 0067.51 6.41c17.84-16.18 18.96-43.52 4.73-62.77z"/></svg></div><p>go env -w GOPROXY=https://goproxy.cn,direct</p></div>
+
+<p>这个命令可以说是需要经常使用</p>
+<h4 id="mod实践">Mod实践</h4>
+<h5 id="回顾">回顾</h5>
+<pre tabindex="0"><code>初始化 
+go mod init [folder]
+下载
+go get package_link@version
+更新
+go mod tidy
+指定版本
+go mod edit -replace=package_link@old_version=package_link@new_version
+更新到vendor
+go mod vendor
+</code></pre><h5 id="实践">实践</h5>
+<h6 id="前辈蜜汁操作">前辈蜜汁操作</h6>
+<p>比如前辈自己拷贝的库，tag对应代码不对，需要针对某个<code>commit id</code>拉取代码；</p>
+<p><code>go mod edit -require github.com/windless0530/redis-go-cluster@f6b361520b1277d838c4e44efe8628caddc9900b</code></p>
+<p>如图：</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod11.png>
+    <figcaption>自己 fork repo</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h6 id="过时不过气包">过时不过气包</h6>
+<p>比较老旧的包，定位当前使用版本，要注意找到包的tag名称。由于不能升级，所以需要定位到特定tag。</p>
+<p><code>go mod edit -replace github.com/apache/thrift=git.apache.org/thrift.git@0.9.3.1</code></p>
+<p>如图：</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod12.png>
+    <figcaption>历史遗留</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h6 id="开发者不坑人">开发者不坑人</h6>
+<p>开发者改了<code>github</code>的<code>username</code>，比如这位<a href="https://github.com/Sirupsen/logrus">logrus开发者</a>。</p>
+<p><code>go mod edit -replace github.com/Sirupsen/logrus=github.com/sirupsen/logrus@v1.6.0</code></p>
+<p>如图：</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go-mod/mod13.png>
+    <figcaption>改名咯</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h6 id="本地的公共包">本地的公共包</h6>
+<p><code>go mod edit -replace=go-base=../go-base</code></p>
+<p>此处有个问题，就是在自己本地的相对路径，其他同事并不可通用，此时需要另一个命令，go.work go的工作区模式，将replace本地目录，移到本地的工作区中。</p>
+<h4 id="详细资料">详细资料</h4>
+<ul>
+<li><a href="https://go.dev/ref/mod">https://go.dev/ref/mod</a></li>
+<li><a href="https://semver.org/lang/zh-CN/">https://semver.org/lang/zh-CN/</a></li>
+<li><a href="https://research.swtch.com/vgo-import">https://research.swtch.com/vgo-import</a></li>
+<li><a href="https://research.swtch.com/vgo-mvs">https://research.swtch.com/vgo-mvs</a></li>
+</ul>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://blog.cuihao.fun/js/toc.js'></script>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/toc.css' />
+
+
+
+<script src="https://utteranc.es/client.js"
+        repo="itcuihao/blog",
+        issue-term="title"
+        label="💬"
+        theme="icy-dark",
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+
+
+
+
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://blog.cuihao.fun">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Copyright(c) 2018 -, haoc7; all rights reserved.</li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+</div>
+  
+<div id="action-botton">
+    <div class="action-wrapper">
+      <div class="action meter">
+        <span id="progress_meter">JS</span>
+      </div>
+      <a href="#top" class="action up no-dot">
+        <svg xmlns='http://www.w3.org/2000/svg' class='icon' viewBox='0 0 512 512'><title>Arrow Up</title><path fill='none' stroke='currentColor' stroke-linecap='square' stroke-miterlimit='10' stroke-width='96' d='M112 244l144-144 144 144M256 120v292'/></svg>
+      </a>
+    </div>
+</div>
+</body>
+
+<script type="application/javascript" src="https://blog.cuihao.fun/js/github-style.js"></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/progress-meter.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/love.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/search.js'></script>
+
+
+
+
+</html>

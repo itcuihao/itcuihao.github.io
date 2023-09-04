@@ -2,38 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blog.cuihao.fun/categories/ai/</loc>
-    <lastmod>2023-04-27T11:31:51+08:00</lastmod>
-  </url><url>
     <loc>https://blog.cuihao.fun/categories/</loc>
-    <lastmod>2023-04-27T11:31:51+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/tags/gpt/</loc>
-    <lastmod>2023-04-27T11:31:51+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/post/gpt-discuss/</loc>
-    <lastmod>2023-04-27T11:31:51+08:00</lastmod>
+    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/</loc>
-    <lastmod>2023-04-27T11:31:51+08:00</lastmod>
+    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/categories/hugo/</loc>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/hugo-shortcodes/</loc>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/</loc>
-    <lastmod>2023-04-27T11:31:51+08:00</lastmod>
+    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/shortcode/</loc>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/</loc>
-    <lastmod>2023-04-27T11:31:51+08:00</lastmod>
+    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/go/</loc>
-    <lastmod>2022-08-31T18:28:49+08:00</lastmod>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/03-hi-guy/</loc>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/categories/%E9%A1%B9%E7%9B%AE/</loc>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/ansible/</loc>
+    <lastmod>2023-05-26T17:59:18+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/02multi-deploy/</loc>
+    <lastmod>2023-05-26T17:59:18+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/categories/linux/</loc>
+    <lastmod>2023-05-26T17:59:18+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/hugo/</loc>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/hugo-photo/</loc>
+    <lastmod>2023-05-09T13:29:51+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/categories/go/</loc>
-    <lastmod>2022-08-31T18:28:49+08:00</lastmod>
+    <lastmod>2023-05-11T11:31:53+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/go-mod-note/</loc>
+    <lastmod>2023-05-11T11:31:53+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/hugo-github-action/</loc>
+    <lastmod>2023-05-05T14:45:58+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/ai/</loc>
+    <lastmod>2023-05-04T17:47:43+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/categories/ai/</loc>
+    <lastmod>2023-05-04T17:47:43+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/gpt/</loc>
+    <lastmod>2023-05-04T17:47:43+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/gpt-discuss/</loc>
+    <lastmod>2023-05-04T17:47:43+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/rob-pike-go-success5/</loc>
-    <lastmod>2022-08-31T18:28:49+08:00</lastmod>
+    <lastmod>2023-05-05T20:27:50+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/%E8%AF%91/</loc>
-    <lastmod>2022-08-31T18:28:49+08:00</lastmod>
+    <lastmod>2023-05-05T20:27:50+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/elasticsearch/</loc>
     <lastmod>2022-08-19T10:19:36+08:00</lastmod>
@@ -45,22 +84,16 @@
     <lastmod>2022-08-19T10:19:36+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2023-04-11T16:43:26+08:00</lastmod>
+    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/categories/%E6%97%A5%E5%B8%B8/</loc>
-    <lastmod>2023-04-11T16:43:26+08:00</lastmod>
+    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/house-loan/</loc>
-    <lastmod>2022-07-22T17:54:23+08:00</lastmod>
+    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/hugo-update/</loc>
-    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/tags/hugo/</loc>
-    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/categories/hugo/</loc>
-    <lastmod>2022-07-07T08:01:12+08:00</lastmod>
+    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/skill/</loc>
     <lastmod>2022-07-01T23:07:04+08:00</lastmod>
@@ -84,7 +117,7 @@
     <lastmod>2022-06-12T23:07:11+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/readme/</loc>
-    <lastmod>2022-06-09T23:29:51+08:00</lastmod>
+    <lastmod>2023-05-10T13:20:54+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/command/</loc>
     <lastmod>2022-06-11T12:07:37+08:00</lastmod>
@@ -174,7 +207,7 @@
     <lastmod>2023-04-11T16:43:26+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/%E4%B9%B0%E6%88%BF%E8%AE%B0/</loc>
-    <lastmod>2022-06-14T00:01:15+08:00</lastmod>
+    <lastmod>2023-09-04T16:13:53+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/go%E7%9A%84%E4%BD%8D%E6%93%8D%E4%BD%9C%E5%9B%9B%E5%88%99%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0/</loc>
     <lastmod>2021-12-13T10:41:45+08:00</lastmod>
@@ -234,9 +267,6 @@
     <lastmod>2021-12-13T10:41:45+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/%E9%9B%86%E7%BE%A4/</loc>
-    <lastmod>2021-12-13T10:41:45+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/categories/linux/</loc>
     <lastmod>2021-12-13T10:41:45+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/%E4%BB%A3%E7%90%86/</loc>

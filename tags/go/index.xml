@@ -7,9 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Tue, 30 Aug 2022 10:40:51 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jul 2023 08:29:07 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【译】Rob Pike认为Go成功的5件事</title>
+      <title>一些有意思的项目</title>
+      <link>https://blog.cuihao.fun/post/03-hi-guy/</link>
+      <pubDate>Sat, 01 Jul 2023 08:29:07 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/03-hi-guy/</guid>
+      <description>有意思的项目</description>
+    </item>
+    
+    <item>
+      <title>Go Modules 梳理</title>
+      <link>https://blog.cuihao.fun/post/go-mod-note/</link>
+      <pubDate>Mon, 08 May 2023 14:21:52 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/go-mod-note/</guid>
+      <description>go mod 相关规则的梳理，简单的介绍使用方法</description>
+    </item>
+    
+    <item>
+      <title>[译]Rob Pike认为Go成功的5件事</title>
       <link>https://blog.cuihao.fun/post/rob-pike-go-success5/</link>
       <pubDate>Tue, 30 Aug 2022 10:40:51 +0800</pubDate>
       

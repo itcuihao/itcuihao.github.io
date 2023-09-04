@@ -11,6 +11,14 @@
     <link rel="stylesheet" href='https://blog.cuihao.fun/css/light.css' />
     <link rel="stylesheet" href='https://blog.cuihao.fun/css/dark.css' />
     <link rel="stylesheet" href='https://blog.cuihao.fun/css/syntax.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/action-button.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/fonts.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/search.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/simple-notice.css' />
+
     <title>haoc7</title>
     
     <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
@@ -29,7 +37,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="haoc7" />
 <meta name="twitter:description"
-  content="" />
+  content="Keep it simple, stupid. I am Gopher. Dream life:💻🌌🌊ᗢᕡᓗ" />
 <meta name="twitter:site" content="https://blog.cuihao.fun" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -39,7 +47,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="haoc7">
 <meta property="og:description"
-  content="" />
+  content="Keep it simple, stupid. I am Gopher. Dream life:💻🌌🌊ᗢᕡᓗ" />
 <meta property="og:url" content="https://blog.cuihao.fun/" />
 <meta property="og:site_name" content="haoc7" />
 <meta property="og:image"
@@ -58,8 +66,60 @@
 
 
 
-</head>
 
+    
+
+<style type="text/css" media="screen, print">
+    @font-face {
+        font-family: "FancyTitleFont";
+        font-style: normal;
+        font-display: swap;
+        src: url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+    }
+     
+      
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Light'), local('NotoSerifCJK-Light'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Noto Serif CJK SC'), local('NotoSerifCJK-Regular'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Medium'), local('NotoSerifCJK-Medium'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff') format('woff');
+         
+    }
+</style>
+
+</head>
 <body>
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
@@ -84,19 +144,33 @@
     </div>
     <div style="display: none;" id="header-search"
       class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+
       <div
         class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
         <div class="position-relative">
-          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
-            autocomplete="off">
-            <label
-              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
-              <input type="text"
-                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
-                name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://blog.cuihao.fun">
-            </label>
-          </form>
+          
+          <label
+            class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+            <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+              <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+            </svg>
+            
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<span class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-input-search" class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" placeholder="Search..." name="search" autocomplete="off" />
+    <a href=javascript:void(0); class="search-clear" id="search-clear" title=清空 onclick="document.getElementById('aa-input-search').value='';">
+        <i class="fas fa-times-circle fa-fw"></i>
+    </a>
+</span>
+
+          </label>
+          
         </div>
       </div>
     </div>
@@ -155,7 +229,7 @@
                 </path>
               </svg>
               Posts
-              <span class="Counter">32</span>
+              <span class="Counter">38</span>
             </a>
           </nav>
           <div class="profile-color-modes js-promo-color-modes-banner-profile isInitialToggle">
@@ -290,7 +364,7 @@
               
             </span>
             <span class="d-table-cell v-align-middle lh-condensed">
-              <strong></strong>
+              <strong>我的名字叫浩仔</strong>
             </span>
           </div>
         </div>
@@ -309,7 +383,7 @@
             class="vcard-names-container float-left col-10 col-md-12 pt-1 pt-md-3 pb-1 pb-md-3 js-sticky js-user-profile-sticky-fields"
             data-original-top="0px" style="position: sticky;">
             <h1 class="vcard-names pl-2 pl-md-0">
-              <span class="p-name vcard-fullname d-block overflow-hidden"></span>
+              <span class="p-name vcard-fullname d-block overflow-hidden">我的名字叫浩仔</span>
               
               <span class="p-nickname vcard-username d-block">itcuihao</span>
               
@@ -318,9 +392,11 @@
         </div>
 
         <div class="p-note user-profile-bio mb-3 js-user-profile-bio f4">
-          <div></div>
+          
+          
+          <div id="person-description">Keep it simple, stupid. I am Gopher. Dream life:💻🌌🌊ᗢᕡᓗ</div>
         </div>
-
+ 
         <div class="d-flex flex-column">
           <div class="js-profile-editable-area d-flex flex-column d-md-block">
             <ul class="vcard-details">
@@ -344,7 +420,7 @@
                   </path>
                 </svg>
                 
-                <a rel="nofollow me" class="link-gray-dark" href="https://blog.cuihao.fun">https://blog.cuihao.fun</a>
+                <a rel="nofollow me" class="link-gray-dark" href="http://cuihao.fun">http://cuihao.fun</a>
                 
               </li>
             </ul>
@@ -386,6 +462,33 @@
             <img alt="@rss" width="32" height="32" src="https://blog.cuihao.fun/images/rss.png" class="avatar">
           </a>
           
+
+          
+          <link rel="stylesheet" href='https://blog.cuihao.fun/css/reward.css' />
+
+<div class="post-reward">
+    <div style="padding: 0 0 0 0; margin: 0 0 0 0; width: 100%; font-size:16px; text-align: center;">
+        <div id="QR" style="opacity: 0;">
+            <div id="wechat" style="display: inline-block">
+                <a class="fancybox" rel="group">
+                    <img id="wechat_qr" src="/images/readme/cha.png" alt="wechat_pay"></a>
+                <p>微信</p>
+            </div>
+        </div>
+        <button id="rewardButton"
+                onclick="
+            var qr = document.getElementById('QR');
+            if (qr.style.opacity === '0') {
+                qr.style.opacity='1';
+            } else {
+                qr.style.opacity='0'
+            }"
+        >
+            <span style="margin: 0 10px 10px 0;">🧧 喝茶</span>
+        </button>
+    </div>
+</div>
+          
          </div>
         </div>
       </div>
@@ -415,7 +518,7 @@
         </path>
       </svg>
       Posts
-      <span class="Counter ">32</span>
+      <span class="Counter ">38</span>
     </a>
   </nav>
 </div>
@@ -451,11 +554,66 @@
         <article class="markdown-body entry-content container-lg f5"><!-- raw HTML omitted -->
 <p>在网络上常用的昵称：<strong>我的名字叫浩仔</strong></p>
 <ul>
-<li>喜欢动漫</li>
-<li>喜欢健身</li>
+<li><del>喜欢动漫</del></li>
+<li><del>喜欢健身</del></li>
 </ul>
 <hr>
-<!-- raw HTML omitted --></article>
+<!-- raw HTML omitted -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/css/nanogallery2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/nanogallery2@3.0.5/dist/jquery.nanogallery2.min.js"></script>
+</head>
+<body>
+
+<div data-nanogallery2='{
+	 "thumbnailDisplayTransition":          "none",
+     "thumbnailDisplayTransitionDuration":  500,
+     "thumbnailDisplayInterval":            30,
+     "galleryDisplayTransition":            "none",
+     "galleryDisplayTransitionDuration":    500,
+     "galleryDisplayMode": "rows",
+     "thumbnailDisplayOutsideScreen": "false",
+     "eventsDebounceDelay": 10,
+     "thumbnailL1BorderHorizontal": 0,
+     "thumbnailL1BorderVertical": 0,
+     "thumbnailLabel": {
+        "titleFontSize": "0.6em"
+     },
+     "thumbnailHoverEffect2": "image_scale_1.00_1.10|label_backgroundColor_rgba(0,0,0,0)_rgba(255,255,255,0)",
+     "galleryTheme": {
+        "thumbnail": {
+            "borderRadius": "8px"
+        }
+     },
+     "thumbnailToolbarImage": {
+        "topLeft": "",
+        "topRight": "",
+        "bottomLeft": "",
+        "bottomRight": ""
+     },
+     "viewerToolbar":   {
+        "display": true,
+        "standard": "label"
+     },
+     "viewerTools":     {
+        "topLeft":    "pageCounter, playPauseButton",
+        "topRight":   "downloadButton, rotateLeft, zoomButton, fullscreenButton, closeButton"
+     },
+     "viewerGalleryTWidth": 40,
+     "viewerGalleryTHeight": 40
+}'>
+    
+<a href="/images/readme/fendou.png" data-ngThumb="/images/readme/fendou.png">命运</a>
+<!-- <a href="/images/readme/cha.png" data-ngThumb="/images/readme/cha.png"></a> -->
+
+</div>
+</body>
+</html><div id="anime-aphorisms"><p id="binft">["与其装点自己的终焉，不如漂亮地活到最后。——《银魂》","真実はいつもひとつ。——《名侦探柯南》","安西教练，我想打篮球。——《灌篮高手》","逃げちゃだめだ逃げちゃだめだ逃げちゃだめだ 不可以逃避！不可以逃避！不可以逃避！——《新世纪福音战士》","海賊王になる男です 我是要成为海贼王的男人！——《海贼王》","我が生涯に一片の悔いなし 吾之一生，无憾无悔。——《北斗神拳》","あきらめたらそこで試合終了だよ 一旦放弃，比赛就会在那一刻结束。——《灌篮高手》","我不知道离别的滋味是这样凄凉，我不知道说声再见要这么坚强。——《千与千寻》","外見をあまり気にしないでください。心が一番大切です 不要对外表过分在意，心灵才是最重要的。——《魔女宅急便》","なんとかなるよ！絶対大丈夫だよ 一定有办法的，肯定没问题。——《魔卡少女樱》","まっすぐ自分の言葉は曲げねぇ それがオレの忍道だ 我说到做到，这就是我的忍道！——《火影忍者》","ピカチュウ、行きましょう 去吧，皮卡丘！——《神奇宝贝》","月を代表してあなたを滅ぼします 我要代表月亮消灭你！——《美少女战士》。","警報！警報！前方高エネルギー！非戦闘員は速やかに退避する ——《机动战士高达》","如果你想和谁说什么话，你就该在有机会的时候说出口，因为说不定什么时候就一切都晚了。——《马男波杰克》","曾经有过悲伤和痛苦的日子，然后从今以后，也许仍然还会有那样的日子。即使如此，我不会忘记，宝贵的每一天。——《夏目友人帐》","食べてはいけないのが太すぎて、さもなくば殺されます 不能吃的太胖，不然会被杀掉的。——《千与千寻》","只要记住你的名字，不管你在世界的哪个地方，我一定会去叫你。——《你的名字》","たとえ千件のメールを送っても、心と心の距離は一センチほど縮めたことがありません 就算发一千条短信，心与心之间的距离也不曾拉近过一厘米。——《秒速五厘米》","人の夢は終わらない 人的梦想，是不会终结的。——《海贼王》","覚悟とは、漆黒の荒野に、進むべき道を開くことである 所谓觉悟，就是在漆黑的荒野上开辟出一条理当前进的光明大道。——《JOJO奇妙冒险》","谎言，重要的不是说谎的内容，而是为什么说谎。——《狼与香辛料》","風が吹いたら、一生懸命に生きるしかない 起风了，唯有努力生存。——《起风了》","今日はいつも昨日と違って大切です 今天总是和昨天不一样，所以很珍贵。——《玉子爱情故事》","正因为与你在一起，我才能明白，无论身处哪一条世界线，什么时间，什么地点，我都喜欢你。——《命运石之门》","孤独を恐れないで、この世界のため、きっと一人が努力してあなたに向かいます 无畏孤单，因为这个世界上，肯定有一个人正努力走向你。——《龙猫》"]</p></div>
+        </article>
       </div>
     </div>
     
@@ -477,26 +635,26 @@
                       d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
                     </path>
                   </svg>
-                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/gpt-discuss/">
-                    <span class="repo" title="GPT Discuss Timeline">GPT Discuss Timeline</span>
+                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/hugo-shortcodes/">
+                    <span class="repo" title="Hugo Shortcodes Example">Hugo Shortcodes Example</span>
                   </a>
                 </div>
 
 
                 <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-                  有关GPT的讨论时间线
+                  hugo shortcode使用方法(记录本项目)
                 </div>
 
                 <p class="mb-0 f6 text-gray">
                   
                   
-                  <a href="/tags/gpt" class="pinned-item-meta muted-link ">
+                  <a href="/tags/shortcode" class="pinned-item-meta muted-link ">
                     <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                       <path fill-rule="evenodd"
                         d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                       </path>
                     </svg>
-                    GPT
+                    shortcode
                   </a>
                   
                   
@@ -516,14 +674,14 @@
                       d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
                     </path>
                   </svg>
-                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/rob-pike-go-success5/">
-                    <span class="repo" title="【译】Rob Pike认为Go成功的5件事">【译】Rob Pike认为Go成功的5件事</span>
+                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/03-hi-guy/">
+                    <span class="repo" title="一些有意思的项目">一些有意思的项目</span>
                   </a>
                 </div>
 
 
                 <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-                  Rob Pike 认为Go成功的5件小事
+                  有意思的项目
                 </div>
 
                 <p class="mb-0 f6 text-gray">
@@ -538,15 +696,6 @@
                     Go
                   </a>
                   
-                  <a href="/tags/%E8%AF%91" class="pinned-item-meta muted-link ">
-                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                      <path fill-rule="evenodd"
-                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                      </path>
-                    </svg>
-                    译
-                  </a>
-                  
                   
                 </p>
               </div>
@@ -564,26 +713,26 @@
                       d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
                     </path>
                   </svg>
-                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/elasticsearch-cluster/">
-                    <span class="repo" title="Elasticsearch Cluster Docker方式搭建">Elasticsearch Cluster Docker方式搭建</span>
+                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/02multi-deploy/">
+                    <span class="repo" title="ChatGPT带我部署脚本">ChatGPT带我部署脚本</span>
                   </a>
                 </div>
 
 
                 <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-                  用Docker搭建Elasticsearch Cluster
+                  利用ChatGPT带自己使用Ansible批量部署服务
                 </div>
 
                 <p class="mb-0 f6 text-gray">
                   
                   
-                  <a href="/tags/elasticsearch" class="pinned-item-meta muted-link ">
+                  <a href="/tags/ansible" class="pinned-item-meta muted-link ">
                     <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                       <path fill-rule="evenodd"
                         d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                       </path>
                     </svg>
-                    Elasticsearch
+                    ansible
                   </a>
                   
                   
@@ -603,53 +752,14 @@
                       d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
                     </path>
                   </svg>
-                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/house-loan/">
-                    <span class="repo" title="要不要提前还房贷">要不要提前还房贷</span>
+                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/hugo-photo/">
+                    <span class="repo" title="Hugo 支持相册">Hugo 支持相册</span>
                   </a>
                 </div>
 
 
                 <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-                  作为利率6个点的人，答案毫无疑问，那贷款期限不变，减少月供或缩短贷款年限，月供不变，该如何选择？
-                </div>
-
-                <p class="mb-0 f6 text-gray">
-                  
-                  
-                  <a href="/tags/%E6%97%A5%E5%B8%B8" class="pinned-item-meta muted-link ">
-                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                      <path fill-rule="evenodd"
-                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                      </path>
-                    </svg>
-                    日常
-                  </a>
-                  
-                  
-                </p>
-              </div>
-            </div>
-          </li>
-          
-          <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
-            <div
-              class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source reorderable sortable-button-item">
-              <div class="pinned-item-list-item-content">
-                <div class="d-flex width-full flex-items-center position-relative">
-                  <svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 16 16" version="1.1"
-                    width="16" height="16">
-                    <path fill-rule="evenodd"
-                      d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
-                    </path>
-                  </svg>
-                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/hugo-update/">
-                    <span class="repo" title="Blog更新汇总">Blog更新汇总</span>
-                  </a>
-                </div>
-
-
-                <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-                  更新点滴
+                  利用hugo插件nanogallery2支持相册
                 </div>
 
                 <p class="mb-0 f6 text-gray">
@@ -681,26 +791,65 @@
                       d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
                     </path>
                   </svg>
-                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/daily-use-skill/">
-                    <span class="repo" title="日常使用技巧">日常使用技巧</span>
+                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/go-mod-note/">
+                    <span class="repo" title="Go Modules 梳理">Go Modules 梳理</span>
                   </a>
                 </div>
 
 
                 <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
-                  日常生活工作中，常用的一些软件技巧，记录备忘
+                  go mod 相关规则的梳理，简单的介绍使用方法
                 </div>
 
                 <p class="mb-0 f6 text-gray">
                   
                   
-                  <a href="/tags/skill" class="pinned-item-meta muted-link ">
+                  <a href="/tags/go" class="pinned-item-meta muted-link ">
                     <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                       <path fill-rule="evenodd"
                         d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                       </path>
                     </svg>
-                    skill
+                    Go
+                  </a>
+                  
+                  
+                </p>
+              </div>
+            </div>
+          </li>
+          
+          <li class="col-12 col-md-6 col-lg-6 mb-3 d-flex flex-content-stretch">
+            <div
+              class="Box pinned-item-list-item d-flex p-3 width-full js-pinned-item-list-item public source reorderable sortable-button-item">
+              <div class="pinned-item-list-item-content">
+                <div class="d-flex width-full flex-items-center position-relative">
+                  <svg class="octicon octicon-repo mr-2 text-gray flex-shrink-0" viewBox="0 0 16 16" version="1.1"
+                    width="16" height="16">
+                    <path fill-rule="evenodd"
+                      d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z">
+                    </path>
+                  </svg>
+                  <a class="text-bold flex-auto min-width-0" href="https://blog.cuihao.fun/post/hugo-github-action/">
+                    <span class="repo" title="Hugo 配置 Github Action">Hugo 配置 Github Action</span>
+                  </a>
+                </div>
+
+
+                <div name="summary" class="pinned-item-desc text-gray text-small d-block mt-2 mb-3">
+                  由A repo提交，发布至B repo github pages
+                </div>
+
+                <p class="mb-0 f6 text-gray">
+                  
+                  
+                  <a href="/tags/hugo" class="pinned-item-meta muted-link ">
+                    <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                      <path fill-rule="evenodd"
+                        d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                      </path>
+                    </svg>
+                    hugo
                   </a>
                   
                   
@@ -716,13 +865,49 @@
     
     <div class="mt-4 position-relative" id="contributions" data='[
 {
+  "title": "Hugo%20Shortcodes%20Example",
+  "link": "https://blog.cuihao.fun/post/hugo-shortcodes/",
+  "publishDate": "2023-07-01%2008:46:21"
+},
+
+{
+  "title": "%e4%b8%80%e4%ba%9b%e6%9c%89%e6%84%8f%e6%80%9d%e7%9a%84%e9%a1%b9%e7%9b%ae",
+  "link": "https://blog.cuihao.fun/post/03-hi-guy/",
+  "publishDate": "2023-07-01%2008:29:07"
+},
+
+{
+  "title": "ChatGPT%e5%b8%a6%e6%88%91%e9%83%a8%e7%bd%b2%e8%84%9a%e6%9c%ac",
+  "link": "https://blog.cuihao.fun/post/02multi-deploy/",
+  "publishDate": "2023-05-26%2017:29:10"
+},
+
+{
+  "title": "Hugo%20%e6%94%af%e6%8c%81%e7%9b%b8%e5%86%8c",
+  "link": "https://blog.cuihao.fun/post/hugo-photo/",
+  "publishDate": "2023-05-09%2000:43:19"
+},
+
+{
+  "title": "Go%20Modules%20%e6%a2%b3%e7%90%86",
+  "link": "https://blog.cuihao.fun/post/go-mod-note/",
+  "publishDate": "2023-05-08%2014:21:52"
+},
+
+{
+  "title": "Hugo%20%e9%85%8d%e7%bd%ae%20Github%20Action",
+  "link": "https://blog.cuihao.fun/post/hugo-github-action/",
+  "publishDate": "2023-04-28%2011:04:18"
+},
+
+{
   "title": "GPT%20Discuss%20Timeline",
   "link": "https://blog.cuihao.fun/post/gpt-discuss/",
   "publishDate": "2023-04-14%2010:34:25"
 },
 
 {
-  "title": "%e3%80%90%e8%af%91%e3%80%91Rob%20Pike%e8%ae%a4%e4%b8%baGo%e6%88%90%e5%8a%9f%e7%9a%845%e4%bb%b6%e4%ba%8b",
+  "title": "[%e8%af%91]Rob%20Pike%e8%ae%a4%e4%b8%baGo%e6%88%90%e5%8a%9f%e7%9a%845%e4%bb%b6%e4%ba%8b",
   "link": "https://blog.cuihao.fun/post/rob-pike-go-success5/",
   "publishDate": "2022-08-30%2010:40:51"
 },
@@ -994,6 +1179,34 @@ else {
 
 
     
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/binft.js'></script>
+
+
+<div class="global-ui">
+    <div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-2a01419c data-v-2a01419c>
+        <svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-2a01419c>
+            <path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-2a01419c></path>
+            <path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-2a01419c></path>
+        </svg>
+    </div>
+    
+    <div>
+        <div id="sakana-box" class="sakana-box" style="position:fixed;left:0;bottom:24px;transform-origin:0% 100%;"></div>
+        <script>
+            function initSakanaWidget() {
+                Sakana.init({
+                    "scale": 0.5,
+                    "character": "chisato",
+                    "canSwitchCharacter": true,
+                    "el": ".sakana-box"
+                });
+            }
+        </script>
+        <script async="async" onload="initSakanaWidget()" src="https://cdn.jsdelivr.net/npm/sakana"></script>
+    </div>
+  </div>
+  
   </main>
 </div>
 
@@ -1016,12 +1229,27 @@ else {
   <div class="d-flex flex-justify-center pb-6">
     <span class="f6 text-gray-light"></span>
   </div>
-
-
+</div>
+  
+<div id="action-botton">
+    <div class="action-wrapper">
+      <div class="action meter">
+        <span id="progress_meter">JS</span>
+      </div>
+      <a href="#top" class="action up no-dot">
+        <svg xmlns='http://www.w3.org/2000/svg' class='icon' viewBox='0 0 512 512'><title>Arrow Up</title><path fill='none' stroke='currentColor' stroke-linecap='square' stroke-miterlimit='10' stroke-width='96' d='M112 244l144-144 144 144M256 120v292'/></svg>
+      </a>
+    </div>
 </div>
 </body>
 
 <script type="application/javascript" src="https://blog.cuihao.fun/js/github-style.js"></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/progress-meter.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/love.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/search.js'></script>
 
 
 

@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Thu, 07 Jul 2022 07:48:44 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 May 2023 00:43:19 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo 支持相册</title>
+      <link>https://blog.cuihao.fun/post/hugo-photo/</link>
+      <pubDate>Tue, 09 May 2023 00:43:19 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/hugo-photo/</guid>
+      <description>利用hugo插件nanogallery2支持相册</description>
+    </item>
+    
+    <item>
+      <title>Hugo 配置 Github Action</title>
+      <link>https://blog.cuihao.fun/post/hugo-github-action/</link>
+      <pubDate>Fri, 28 Apr 2023 11:04:18 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/hugo-github-action/</guid>
+      <description>由A repo提交，发布至B repo github pages</description>
+    </item>
+    
     <item>
       <title>Blog更新汇总</title>
       <link>https://blog.cuihao.fun/post/hugo-update/</link>

@@ -7,22 +7,58 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Fri, 14 Apr 2023 10:34:25 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jul 2023 08:46:21 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>GPT</title>
-      <link>https://blog.cuihao.fun/tags/gpt/</link>
-      <pubDate>Fri, 14 Apr 2023 10:34:25 +0800</pubDate>
+      <title>shortcode</title>
+      <link>https://blog.cuihao.fun/tags/shortcode/</link>
+      <pubDate>Sat, 01 Jul 2023 08:46:21 +0800</pubDate>
       
-      <guid>https://blog.cuihao.fun/tags/gpt/</guid>
+      <guid>https://blog.cuihao.fun/tags/shortcode/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
       <link>https://blog.cuihao.fun/tags/go/</link>
-      <pubDate>Tue, 30 Aug 2022 10:40:51 +0800</pubDate>
+      <pubDate>Sat, 01 Jul 2023 08:29:07 +0800</pubDate>
       
       <guid>https://blog.cuihao.fun/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ansible</title>
+      <link>https://blog.cuihao.fun/tags/ansible/</link>
+      <pubDate>Fri, 26 May 2023 17:29:10 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/tags/ansible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://blog.cuihao.fun/tags/hugo/</link>
+      <pubDate>Tue, 09 May 2023 00:43:19 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AI</title>
+      <link>https://blog.cuihao.fun/tags/ai/</link>
+      <pubDate>Fri, 14 Apr 2023 10:34:25 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/tags/ai/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GPT</title>
+      <link>https://blog.cuihao.fun/tags/gpt/</link>
+      <pubDate>Fri, 14 Apr 2023 10:34:25 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/tags/gpt/</guid>
       <description></description>
     </item>
     
@@ -50,15 +86,6 @@
       <pubDate>Fri, 22 Jul 2022 16:56:52 +0800</pubDate>
       
       <guid>https://blog.cuihao.fun/tags/%E6%97%A5%E5%B8%B8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>https://blog.cuihao.fun/tags/hugo/</link>
-      <pubDate>Thu, 07 Jul 2022 07:48:44 +0800</pubDate>
-      
-      <guid>https://blog.cuihao.fun/tags/hugo/</guid>
       <description></description>
     </item>
     
