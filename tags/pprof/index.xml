@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pprof on haoc7</title>
+    <link>https://blog.cuihao.fun/tags/pprof/</link>
+    <description>Recent content in Pprof on haoc7</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>cn-zh</language>
+    <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
+    <lastBuildDate>Thu, 19 Oct 2023 19:48:12 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/pprof/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Benchmark 使用</title>
+      <link>https://blog.cuihao.fun/post/go-benchmark/</link>
+      <pubDate>Thu, 19 Oct 2023 19:48:12 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/go-benchmark/</guid>
+      <description>总结golang benchmark 一些使用方式，以及注意情况</description>
+    </item>
+    
+  </channel>
+</rss>

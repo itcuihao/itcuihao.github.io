@@ -2,11 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.cuihao.fun/tags/benchmark/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
     <loc>https://blog.cuihao.fun/categories/</loc>
-    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/go/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/categories/go/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/go-benchmark/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/</loc>
-    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/post/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/pprof/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+  </url><url>
+    <loc>https://blog.cuihao.fun/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/</loc>
+    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/categories/hugo/</loc>
     <lastmod>2023-09-04T15:41:33+08:00</lastmod>
@@ -14,16 +38,7 @@
     <loc>https://blog.cuihao.fun/post/hugo-shortcodes/</loc>
     <lastmod>2023-09-04T15:41:33+08:00</lastmod>
   </url><url>
-    <loc>https://blog.cuihao.fun/post/</loc>
-    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
-  </url><url>
     <loc>https://blog.cuihao.fun/tags/shortcode/</loc>
-    <lastmod>2023-09-04T15:41:33+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/tags/</loc>
-    <lastmod>2023-09-04T16:20:17+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/tags/go/</loc>
     <lastmod>2023-09-04T15:41:33+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/03-hi-guy/</loc>
@@ -46,9 +61,6 @@
   </url><url>
     <loc>https://blog.cuihao.fun/post/hugo-photo/</loc>
     <lastmod>2023-05-09T13:29:51+08:00</lastmod>
-  </url><url>
-    <loc>https://blog.cuihao.fun/categories/go/</loc>
-    <lastmod>2023-05-11T11:31:53+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/go-mod-note/</loc>
     <lastmod>2023-05-11T11:31:53+08:00</lastmod>

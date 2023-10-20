@@ -7,22 +7,49 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>cn-zh</language>
     <copyright>Copyright(c) 2018 -, haoc7; all rights reserved.</copyright>
-    <lastBuildDate>Sat, 01 Jul 2023 08:46:21 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 19 Oct 2023 19:48:12 +0800</lastBuildDate><atom:link href="https://blog.cuihao.fun/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>shortcode</title>
-      <link>https://blog.cuihao.fun/tags/shortcode/</link>
-      <pubDate>Sat, 01 Jul 2023 08:46:21 +0800</pubDate>
+      <title>Benchmark</title>
+      <link>https://blog.cuihao.fun/tags/benchmark/</link>
+      <pubDate>Thu, 19 Oct 2023 19:48:12 +0800</pubDate>
       
-      <guid>https://blog.cuihao.fun/tags/shortcode/</guid>
+      <guid>https://blog.cuihao.fun/tags/benchmark/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
       <link>https://blog.cuihao.fun/tags/go/</link>
-      <pubDate>Sat, 01 Jul 2023 08:29:07 +0800</pubDate>
+      <pubDate>Thu, 19 Oct 2023 19:48:12 +0800</pubDate>
       
       <guid>https://blog.cuihao.fun/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pprof</title>
+      <link>https://blog.cuihao.fun/tags/pprof/</link>
+      <pubDate>Thu, 19 Oct 2023 19:48:12 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/tags/pprof/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工具链</title>
+      <link>https://blog.cuihao.fun/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
+      <pubDate>Thu, 19 Oct 2023 19:48:12 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shortcode</title>
+      <link>https://blog.cuihao.fun/tags/shortcode/</link>
+      <pubDate>Sat, 01 Jul 2023 08:46:21 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/tags/shortcode/</guid>
       <description></description>
     </item>
     

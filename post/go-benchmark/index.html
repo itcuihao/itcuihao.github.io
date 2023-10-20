@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://blog.cuihao.fun/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github.min.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/github-style.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/light.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/dark.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/syntax.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/action-button.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/fonts.css' />
+    
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/search.css' />
+    <link rel="stylesheet" href='https://blog.cuihao.fun/css/simple-notice.css' />
+
+    <title>Go Benchmark 使用 - haoc7</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/avatar.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="总结golang benchmark 一些使用方式，以及注意情况" />
+<meta name="keywords"
+  content='' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://blog.cuihao.fun/post/go-benchmark/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Go Benchmark 使用 - haoc7" />
+<meta name="twitter:description"
+  content="总结golang benchmark 一些使用方式，以及注意情况" />
+<meta name="twitter:site" content="https://blog.cuihao.fun" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://blog.cuihao.fun">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Go Benchmark 使用 - haoc7">
+<meta property="og:description"
+  content="总结golang benchmark 一些使用方式，以及注意情况" />
+<meta property="og:url" content="https://blog.cuihao.fun/post/go-benchmark/" />
+<meta property="og:site_name" content="Go Benchmark 使用" />
+<meta property="og:image"
+  content="https://blog.cuihao.fun">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2023-10-19 19:48:12 &#43;0800 CST" />
+
+
+
+
+
+
+
+
+
+
+
+    
+
+<style type="text/css" media="screen, print">
+    @font-face {
+        font-family: "FancyTitleFont";
+        font-style: normal;
+        font-display: swap;
+        src: url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+    }
+     
+      
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 300;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Light'), local('NotoSerifCJK-Light'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-300.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Noto Serif CJK SC'), local('NotoSerifCJK-Regular'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-regular.woff') format('woff');
+         
+    }
+
+     
+    @font-face {
+        font-family: 'Noto Serif CJK SC';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: local('Noto Serif CJK SC Medium'), local('NotoSerifCJK-Medium'),
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff2') format('woff2'),
+             
+            url('https://blog.cuihao.fun/fonts/noto-serif-sc-v7-latin_chinese-simplified-500.woff') format('woff');
+         
+    }
+</style>
+
+</head>
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://blog.cuihao.fun">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <label
+            class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+            <svg class="aa-input-icon" viewBox="654 -372 1664 1664">
+              <path d="M1806,332c0-123.3-43.8-228.8-131.5-316.5C1586.8-72.2,1481.3-116,1358-116s-228.8,43.8-316.5,131.5  C953.8,103.2,910,208.7,910,332s43.8,228.8,131.5,316.5C1129.2,736.2,1234.7,780,1358,780s228.8-43.8,316.5-131.5  C1762.2,560.8,1806,455.3,1806,332z M2318,1164c0,34.7-12.7,64.7-38,90s-55.3,38-90,38c-36,0-66-12.7-90-38l-343-342  c-119.3,82.7-252.3,124-399,124c-95.3,0-186.5-18.5-273.5-55.5s-162-87-225-150s-113-138-150-225S654,427.3,654,332  s18.5-186.5,55.5-273.5s87-162,150-225s138-113,225-150S1262.7-372,1358-372s186.5,18.5,273.5,55.5s162,87,225,150s113,138,150,225  S2062,236.7,2062,332c0,146.7-41.3,279.7-124,399l343,343C2305.7,1098.7,2318,1128.7,2318,1164z" />
+            </svg>
+            
+<script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/algoliasearch.min.js"></script>
+<script src="https://res.cloudinary.com/jimmysong/raw/upload/rootsongjc-hugo/autocomplete.min.js"></script>
+
+<span class="aa-input-container" id="aa-input-container">
+    <input type="search" id="aa-input-search" class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable" placeholder="Search..." name="search" autocomplete="off" />
+    <a href=javascript:void(0); class="search-clear" id="search-clear" title=清空 onclick="document.getElementById('aa-input-search').value='';">
+        <i class="fas fa-times-circle fa-fw"></i>
+    </a>
+</span>
+
+          </label>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://blog.cuihao.fun">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://blog.cuihao.fun">
+                  <img class=" avatar-user"
+                    src="https://blog.cuihao.fun/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://blog.cuihao.fun">我的名字叫浩仔</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://blog.cuihao.fun/post/go-benchmark/">Go Benchmark 使用</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Thu, 19 Oct 2023 19:48:12 &#43;0800"
+                    class="no-wrap">
+                    Thu, 19 Oct 2023 19:48:12 &#43;0800</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Fri, 20 Oct 2023 20:14:41 &#43;0800"
+                    class="no-wrap">
+                    Fri, 20 Oct 2023 20:14:41 &#43;0800</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      4025 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/go">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Go
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      工具链
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/benchmark">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Benchmark
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/pprof">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Pprof
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1;">
+                <article class="markdown-body entry-content container-lg"><p>在 Go 中 Benchmark 是常用的性能对比手段，可以辅助我们优化代码。</p>
+<h2 id="benchmark-结构讲解">Benchmark 结构讲解</h2>
+<h3 id="目录结构">目录结构</h3>
+<p>本次实验的目录结构：</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>~/hello&nbsp;via&nbsp;🐹</li>
+        
+        
+        <li>❯&nbsp;tree</li>
+        
+        
+        <li>.</li>
+        
+        
+        <li>├──&nbsp;fib</li>
+        
+        
+        <li>│  &nbsp;├──&nbsp;fib.go</li>
+        
+        
+        <li>│  &nbsp;└──&nbsp;fib_test.go</li>
+        
+        
+        <li>└──&nbsp;encode</li>
+        
+        
+        <li>  &nbsp;└──&nbsp;encode_test.go</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>创建文件，在一文件夹下创建文件<code>fib.go</code>，创建<code>fib_test.go</code>作为测试文件。</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>～/hello&nbsp;via&nbsp;🐹&nbsp;</li>
+        
+        
+        <li>❯&nbsp;ll&nbsp;fib&nbsp;</li>
+        
+        
+        <li>total&nbsp;16</li>
+        
+        
+        <li>-rw-r--r--&nbsp;&nbsp;1&nbsp;cuihao&nbsp;&nbsp;staff&nbsp;&nbsp;&nbsp;102B&nbsp;Oct&nbsp;19&nbsp;18:14&nbsp;fib.go</li>
+        
+        
+        <li>-rw-r--r--&nbsp;&nbsp;1&nbsp;cuihao&nbsp;&nbsp;staff&nbsp;&nbsp;&nbsp;258B&nbsp;Oct&nbsp;19&nbsp;18:15&nbsp;fib_test.go</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<h3 id="代码内容">代码内容</h3>
+<p><code>fib.go</code>的文件内容：</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;cat&nbsp;fib/fib.go&nbsp;</li>
+        
+        
+        <li>package&nbsp;fib</li>
+        
+        
+        <li></li>
+        
+        
+        <li>func&nbsp;fib(n&nbsp;int)&nbsp;int&nbsp;{</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;n&nbsp;==&nbsp;0&nbsp;||&nbsp;n&nbsp;==&nbsp;1&nbsp;{</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;n</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;fib(n-2)&nbsp;+&nbsp;fib(n-1)</li>
+        
+        
+        <li>}</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p><code>fib_test.go</code>的文件内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Golang" data-lang="Golang"><span style="color:#f92672">package</span> <span style="color:#a6e22e">fib</span>
+
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;testing&#34;</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkFib10</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">ResetTimer</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">n</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">fib</span>(<span style="color:#ae81ff">10</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkFib20</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">ResetTimer</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">n</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">fib</span>(<span style="color:#ae81ff">20</span>)
+	}
+}
+</code></pre></div><h2 id="benchmark-执行">Benchmark 执行</h2>
+<h3 id="常用执行方式">常用执行方式</h3>
+<blockquote>
+<p><code>go test -bench=Fib ./fib</code> // 执行 fib 文件下，函数名包涵 Fib 的方法</p>
+</blockquote>
+<blockquote>
+<p><code>go test -bench=Fib -benchtime=2x ./fib</code> // 执行 2 次</p>
+</blockquote>
+<blockquote>
+<p><code>go test -bench=Fib -benchtime=1s ./fib</code> // 执行 1 秒</p>
+</blockquote>
+<blockquote>
+<p><code>go test -bench=Fib -count=2 ./fib</code> // 函数测试 2 次</p>
+</blockquote>
+<blockquote>
+<p><code>go test -bench=Fib -cpu=1,2,4,8 ./fib</code> // cpu 核数限制</p>
+</blockquote>
+<blockquote>
+<p><code>go test -bench=Fib -benchmen ./fib</code>  // 展示内存分配</p>
+</blockquote>
+<h3 id="参数解释">参数解释</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>🌰</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-bench=*</td>
+<td>-banch=Fib</td>
+<td>支持正则表达式，只有匹配到的测试用例才会执行，使用<code>.</code>则运行所有测试用例</td>
+</tr>
+<tr>
+<td>-count=n</td>
+<td>-count=2</td>
+<td>函数测试轮数</td>
+</tr>
+<tr>
+<td>-benchtime=Ns</td>
+<td>-benchtime=1s</td>
+<td>函数运行时间</td>
+</tr>
+<tr>
+<td>-benchtime=Nx</td>
+<td>-benchtime=2x</td>
+<td>函数运行次数</td>
+</tr>
+<tr>
+<td>-cpu=*</td>
+<td>-cpu=1,2,4,8</td>
+<td>指定cpu核数</td>
+</tr>
+<tr>
+<td>-benchmem</td>
+<td>-</td>
+<td>展示内存使用情况</td>
+</tr>
+</tbody>
+</table>
+<h3 id="结果分析">结果分析</h3>
+<p>执行上面的 benchmark：</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello/fib(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;go&nbsp;test&nbsp;-bench=Fib&nbsp;-benchmem&nbsp;./fib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello/fib</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>BenchmarkFib10-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2968881&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;402.1&nbsp;ns/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;B/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;allocs/op</li>
+        
+        
+        <li>BenchmarkFib20-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23586&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;57676&nbsp;ns/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;B/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;allocs/op</li>
+        
+        
+        <li>PASS</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>针对上面的结构进行解释，以<code>BenchmarkFib10-8</code>这行为例子。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>goos</td>
+<td>系统os</td>
+</tr>
+<tr>
+<td>gorach</td>
+<td>系统架构</td>
+</tr>
+<tr>
+<td>pkg</td>
+<td>package 名称</td>
+</tr>
+<tr>
+<td>cpu</td>
+<td>cpu 处理器型号</td>
+</tr>
+<tr>
+<td>BenchmarkFib10-8</td>
+<td>函数名-cpu核数</td>
+</tr>
+<tr>
+<td>2968881</td>
+<td>迭代次数</td>
+</tr>
+<tr>
+<td>402.1 ns/op</td>
+<td>每次操作耗费的纳秒</td>
+</tr>
+<tr>
+<td>0 B/op</td>
+<td>每次操作分配的bytes</td>
+</tr>
+<tr>
+<td>0 allocs/op</td>
+<td>每次操作的分配次数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="实践">实践</h3>
+<p>现有一业务需要用到<code>json.Encode</code>方法，那么可以benchmark下。</p>
+<p>代码如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Golang" data-lang="Golang"><span style="color:#f92672">import</span>(
+    <span style="color:#e6db74">&#34;encoding/gob&#34;</span>
+	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/francoispqt/gojay&#34;</span>
+	<span style="color:#a6e22e">jsoniter</span> <span style="color:#e6db74">&#34;github.com/json-iterator/go&#34;</span>
+)
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkGobEncode</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">ResetTimer</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buffer</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+		<span style="color:#a6e22e">encoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gob</span>.<span style="color:#a6e22e">NewEncoder</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buffer</span>)
+		<span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">Encode</span>(<span style="color:#a6e22e">doc</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkJsonEncode</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">ResetTimer</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buffer</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+		<span style="color:#a6e22e">encoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewEncoder</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buffer</span>)
+		<span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">Encode</span>(<span style="color:#a6e22e">doc</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkJsoniterEncode</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">ResetTimer</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buffer</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+		<span style="color:#a6e22e">encoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">NewEncoder</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buffer</span>)
+		<span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">Encode</span>(<span style="color:#a6e22e">doc</span>)
+	}
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkGojayEncode</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">ResetTimer</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buffer</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+		<span style="color:#a6e22e">encoder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gojay</span>.<span style="color:#a6e22e">NewEncoder</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">buffer</span>)
+		<span style="color:#a6e22e">encoder</span>.<span style="color:#a6e22e">Encode</span>(<span style="color:#a6e22e">doc</span>)
+	}
+}
+</code></pre></div>
+
+
+<div class="simple-notice warning" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 512 512"><path d="M114.57 76.07a45.71 45.71 0 00-67.51-6.41c-17.58 16.18-19 43.52-4.75 62.77l91.78 123-92.33 124.15c-14.23 19.25-13.11 46.59 4.74 62.77a45.71 45.71 0 0067.5-6.41L242.89 262.7a12.14 12.14 0 000-14.23zm355.67 303.51l-92.33-124.13 91.78-123c14.22-19.25 12.83-46.59-4.75-62.77a45.71 45.71 0 00-67.51 6.41l-128 172.12a12.14 12.14 0 000 14.23L398 435.94a45.71 45.71 0 0067.51 6.41c17.84-16.18 18.96-43.52 4.73-62.77z"/></svg></div><p>有时基准测试的设置成本是每次运行一次。b.ResetTimer()可以用来忽略setup中累积的时间。</p></div>
+
+<p>benchmark结果：</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello/fib(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;go&nbsp;test&nbsp;-bench=Encode&nbsp;-benchmem&nbsp;./encode</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello/encode</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>BenchmarkGobEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;265953&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4194&nbsp;ns/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1664&nbsp;B/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;31&nbsp;allocs/op</li>
+        
+        
+        <li>BenchmarkJsonEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1503925&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;745.3&nbsp;ns/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;240&nbsp;B/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;allocs/op</li>
+        
+        
+        <li>BenchmarkJsoniterEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1593012&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;741.6&nbsp;ns/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;240&nbsp;B/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;allocs/op</li>
+        
+        
+        <li>BenchmarkGojayEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2765398&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;428.9&nbsp;ns/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;288&nbsp;B/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;allocs/op</li>
+        
+        
+        <li>PASS</li>
+        
+        
+        <li>ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/hello/encode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.019s</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>可以通过结果对比<code>BenchmarkGojayEncode</code>的方式是最优解。</p>
+<h2 id="benchmark-其他玩法">Benchmark 其他玩法</h2>
+<h3 id="benchstat">benchstat</h3>
+<p><code>benchstat</code>对<code>benchmakr</code>进行计算统计摘要和A/B比较。</p>
+<p>下载 <a href="https://cs.opensource.google/go/x/perf">benchstat</a>，详细<a href="https://pkg.go.dev/golang.org/x/perf/cmd/benchstat">教程</a>查看这里。</p>
+<h4 id="测试手段">测试手段</h4>
+<p>我们以<code>BenchmarkGobEncode</code>与<code>BenchmarkGojayEncode</code>为例子，做对比。</p>
+<p>这里为了对比性能提升，我们需要修改代码，<code>BenchmarkGobEncode</code>函数名改为<code>BenchmarkEncode</code>, 执行 10 次benchmark</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello/encode(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;go&nbsp;test&nbsp;-bench=BenchmarkEncode&nbsp;-count=10&nbsp;./encode&nbsp;|&nbsp;tee&nbsp;old.txt</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello/encode</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;264470&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4294&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;285097&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4109&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;274879&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4064&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;257868&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4069&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;293433&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4107&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;277754&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4006&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;294042&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4064&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;277792&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5215&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;280048&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4075&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;284413&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4132&nbsp;ns/op</li>
+        
+        
+        <li>PASS</li>
+        
+        
+        <li>ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/hello/encode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12.790s</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>查看分析</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;benchstat&nbsp;gob.txt</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;gob.txt&nbsp;&nbsp;&nbsp;│</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;sec/op&nbsp;&nbsp;&nbsp;&nbsp;│</li>
+        
+        
+        <li>GobEncode-8&nbsp;&nbsp;&nbsp;4.091µ&nbsp;±&nbsp;5%</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>benchstat告诉我们，BenchmarkGobEncode平均值为4.091微秒，样品中的+/- 5％变化。</p>
+<p>同理，这里为了对比性能提升，我们需要修改代码，<code>BenchmarkGojayEncode</code>函数名改为<code>BenchmarkEncode</code>, 执行 10 次benchmark</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello/encode(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;go&nbsp;test&nbsp;-bench=BenchmarkEncode&nbsp;-count=10&nbsp;./encode&nbsp;|&nbsp;tee&nbsp;new.txt</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello/encode</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2773693&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;414.5&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2768872&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;415.9&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2870995&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;430.7&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2735547&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;422.8&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2896785&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;420.2&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2807527&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;427.5&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2844328&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;426.5&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2859422&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;414.5&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2926161&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;419.6&nbsp;ns/op</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2764474&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;416.2&nbsp;ns/op</li>
+        
+        
+        <li>PASS</li>
+        
+        
+        <li>ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/hello/encode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16.668s</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>查看分析</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;benchstat&nbsp;gob.txt</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;gojay.txt&nbsp;&nbsp;│</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;sec/op&nbsp;&nbsp;&nbsp;&nbsp;│</li>
+        
+        
+        <li>GojayEncode-8&nbsp;&nbsp;&nbsp;419.9n&nbsp;±&nbsp;2%</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>benchstat告诉我们，BenchmarkGojayEncode平均值为419.9纳秒，样品中的+/- 2％变化。</p>
+<h4 id="结果分析-1">结果分析</h4>
+<p>使用<code>benchstat</code>对<code>old.txt</code>与<code>new.txt</code>进行对比。</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;benchstat&nbsp;old.txt&nbsp;new.txt</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;g101/hello/indexs</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;old.txt&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new.txt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</li>
+        
+        
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;sec/op&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;sec/op&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vs&nbsp;base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</li>
+        
+        
+        <li>Encode-8&nbsp;&nbsp;&nbsp;4093.5n&nbsp;±&nbsp;2%&nbsp;&nbsp;&nbsp;442.1n&nbsp;±&nbsp;12%&nbsp;&nbsp;-89.20%&nbsp;(p=0.000&nbsp;n=10)</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>benchstat将为每种配置打印单独的表，比较表明提升了<code>89.2%</code>，但是新修改的波动更大<code>12%</code>，也可能是样本数据太少导致。</p>
+
+
+
+<div class="simple-notice tip" >
+    <div class="simple-notice-title"><svg xmlns="http://www.w3.org/2000/svg" class="icon simple-notice-icon" viewBox="0 0 512 512"><path d="M173.9 439.4L7.5 273c-10-10-10-26.2 0-36.2l36.2-36.2c10-10 26.2-10 36.2 0L192 312.69l240.1-240.1c10-10 26.2-10 36.2 0l36.2 36.21c10 10 10 26.2 0 36.2L210.1 439.4c-10 10-26.2 10-36.2 0z"/></svg></div><p>p值小于0.05可能具有统计学意义。p值大于0.05意味着该基准可能不具有统计显著性</p></div>
+
+<h3 id="benchmark-错误">Benchmark 错误</h3>
+<style type="text/css">.notice{--root-color:#444;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#c33;--warning-content:#fee;--info-title:#fb7;--info-content:#fec;--note-title:#6be;--note-content:#e7f2fa;--tip-title:#5a5;--tip-content:#efe}@media (prefers-color-scheme:dark){.notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}}body.dark .notice{--root-color:#ddd;--root-background:#eff;--title-color:#fff;--title-background:#7bd;--warning-title:#800;--warning-content:#400;--info-title:#a50;--info-content:#420;--note-title:#069;--note-content:#023;--tip-title:#363;--tip-content:#121}.notice{padding:18px;line-height:24px;margin-bottom:24px;border-radius:4px;color:var(--root-color);background:var(--root-background)}.notice p:last-child{margin-bottom:0}.notice-title{margin:-18px -18px 12px;padding:4px 18px;border-radius:4px 4px 0 0;font-weight:700;color:var(--title-color);background:var(--title-background)}.notice.warning .notice-title{background:var(--warning-title)}.notice.warning{background:var(--warning-content)}.notice.info .notice-title{background:var(--info-title)}.notice.info{background:var(--info-content)}.notice.note .notice-title{background:var(--note-title)}.notice.note{background:var(--note-content)}.notice.tip .notice-title{background:var(--tip-title)}.notice.tip{background:var(--tip-content)}.icon-notice{display:inline-flex;align-self:center;margin-right:8px}.icon-notice img,.icon-notice svg{height:1em;width:1em;fill:currentColor}.icon-notice img,.icon-notice.baseline svg{top:.125em;position:relative}</style>
+<div><svg width="0" height="0" display="none" xmlns="http://www.w3.org/2000/svg"><symbol id="tip-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"/></symbol><symbol id="note-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zm-248 50c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="warning-notice" viewBox="0 0 576 512" preserveAspectRatio="xMidYMid meet"><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></symbol><symbol id="info-notice" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet"><path d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"/></symbol></svg></div><div class="notice warning" >
+<p class="first notice-title"><span class="icon-notice baseline"><svg><use href="#warning-notice"></use></svg></span></p><p>下面的代码是错误的，请谨慎使用！</p></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Golang" data-lang="Golang"><span style="color:#75715e">// 错误使用
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkFibWrong</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">Fib</span>(<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>)
+}
+
+<span style="color:#75715e">// 错误使用
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkFibWrong2</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">n</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">n</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">n</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">Fib</span>(<span style="color:#a6e22e">n</span>)
+	}
+}
+</code></pre></div><h3 id="profiling-benchmarks">Profiling benchmarks</h3>
+<p>测试包内置了对生成CPU、memory和block profile文件的支持。</p>
+<ul>
+<li>
+<p>cpuprofile=$FILE， 写一个 CPU profile 的文件；</p>
+</li>
+<li>
+<p>memprofile=$FILE， 写一个 memory profile 的文件, -memprofilerate=N 调整 profile 速率为 1/N；</p>
+</li>
+<li>
+<p>blockprofile=$FILE， 写一个 block profile 的文件；</p>
+</li>
+</ul>
+<h4 id="测试方式">测试方式</h4>
+<p>代码如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Golang" data-lang="Golang"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">BenchmarkEncode</span>(<span style="color:#a6e22e">b</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">B</span>) {
+	<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">ResetTimer</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">N</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buffer</span> <span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Buffer</span>
+        <span style="color:#75715e">// old
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// encoder := gob.NewEncoder(&amp;buffer)
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// encoder.Encode(doc)
+</span><span style="color:#75715e"></span>
+        <span style="color:#75715e">// new
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 	encoder := gojay.NewEncoder(&amp;buffer)
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// 	encoder.Encode(doc)
+</span><span style="color:#75715e"></span>	}
+}
+</code></pre></div><p>gob 方式抓取 cpu profile。</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;go&nbsp;test&nbsp;-bench=BenchmarkEncode&nbsp;-cpuprofile=old.p&nbsp;./encode</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello/encode</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>BenchmarkEncode-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;232494&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4416&nbsp;ns/op</li>
+        
+        
+        <li>PASS</li>
+        
+        
+        <li>ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/hello/encode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.753s</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>gojay 方式抓取 cpu profile。</p>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;go&nbsp;test&nbsp;-bench=BenchmarkEncode&nbsp;-cpuprofile=new.p&nbsp;./encode</li>
+        
+        
+        <li>goos:&nbsp;darwin</li>
+        
+        
+        <li>goarch:&nbsp;amd64</li>
+        
+        
+        <li>pkg:&nbsp;~/hello/encode</li>
+        
+        
+        <li>cpu:&nbsp;Intel(R)&nbsp;Core(TM)&nbsp;i7-4770HQ&nbsp;CPU&nbsp;@&nbsp;2.20GHz</li>
+        
+        
+        <li>BenchmarkEncodeOld-8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2654364&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;465.5&nbsp;ns/op</li>
+        
+        
+        <li>PASS</li>
+        
+        
+        <li>ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~/hello/encode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.153s</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<h4 id="对比结果">对比结果</h4>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
+
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>❯&nbsp;go&nbsp;tool&nbsp;pprof&nbsp;-http=:8888&nbsp;-base&nbsp;old.p&nbsp;new.p</li>
+        
+        
+        <li>Serving&nbsp;web&nbsp;UI&nbsp;on&nbsp;http://localhost:8888</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<p>得到对比结果：</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        
+        figure.figurefx {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transform: scale(0.8);
+            overflow: hidden;
+            margin: -40px auto;
+        }
+
+        figure.figurefx figcaption {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: "Montserrat";
+            width: 100%;
+            max-height: 100%;
+            left: 0;
+            color: #999;
+            font-size: 0.90rem;
+        }
+
+        figure.figurefx figcaption a {
+            text-decoration: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<figure class="figurefx">
+    <img src=/images/go/benchmark_profile.png>
+    <figcaption>profile</figcaption>
+</figure>
+</body>
+</html>
+
+
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a href="https://dave.cheney.net/high-performance-go-workshop/gophercon-2019.html">High Performance Go Workshop</a></li>
+<li><a href="https://pkg.go.dev/golang.org/x/perf/cmd/benchstat">Benchstat Documentation</a></li>
+<li><a href="https://cs.opensource.google/go/x/perf">Go benchmark analysis tools</a></li>
+</ul>
+</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://blog.cuihao.fun/js/toc.js'></script>
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/toc.css' />
+
+
+
+<script src="https://utteranc.es/client.js"
+        repo="itcuihao/blog",
+        issue-term="title"
+        label="💬"
+        theme="icy-dark",
+        crossorigin="anonymous"
+        async>
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+
+
+
+
+
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://blog.cuihao.fun">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Copyright(c) 2018 -, haoc7; all rights reserved.</li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+</div>
+  
+<div id="action-botton">
+    <div class="action-wrapper">
+      <div class="action meter">
+        <span id="progress_meter">JS</span>
+      </div>
+      <a href="#top" class="action up no-dot">
+        <svg xmlns='http://www.w3.org/2000/svg' class='icon' viewBox='0 0 512 512'><title>Arrow Up</title><path fill='none' stroke='currentColor' stroke-linecap='square' stroke-miterlimit='10' stroke-width='96' d='M112 244l144-144 144 144M256 120v292'/></svg>
+      </a>
+    </div>
+</div>
+</body>
+
+<script type="application/javascript" src="https://blog.cuihao.fun/js/github-style.js"></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/progress-meter.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/love.js'></script>
+
+<script type="application/javascript" src='https://blog.cuihao.fun/js/search.js'></script>
+
+
+
+
+</html>
