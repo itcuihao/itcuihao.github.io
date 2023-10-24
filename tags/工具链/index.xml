@@ -17,5 +17,14 @@
       <description>总结golang benchmark 一些使用方式，以及注意情况</description>
     </item>
     
+    <item>
+      <title>Go Build</title>
+      <link>https://blog.cuihao.fun/post/go-build/</link>
+      <pubDate>Sun, 19 Dec 2021 23:16:12 +0800</pubDate>
+      
+      <guid>https://blog.cuihao.fun/post/go-build/</guid>
+      <description>Go常利用此命令进行编译打包，其他功能点击查看</description>
+    </item>
+    
   </channel>
 </rss>

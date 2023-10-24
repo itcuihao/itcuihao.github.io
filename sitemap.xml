@@ -3,34 +3,34 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://blog.cuihao.fun/tags/benchmark/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T16:43:02+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/categories/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/go/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/categories/go/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/go-benchmark/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T16:43:02+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/pprof/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T16:43:02+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/tags/%E5%B7%A5%E5%85%B7%E9%93%BE/</loc>
-    <lastmod>2023-10-20T20:14:41+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/categories/hugo/</loc>
     <lastmod>2023-09-04T15:41:33+08:00</lastmod>
@@ -131,11 +131,8 @@
     <loc>https://blog.cuihao.fun/readme/</loc>
     <lastmod>2023-05-10T13:20:54+08:00</lastmod>
   </url><url>
-    <loc>https://blog.cuihao.fun/tags/command/</loc>
-    <lastmod>2022-06-11T12:07:37+08:00</lastmod>
-  </url><url>
     <loc>https://blog.cuihao.fun/post/go-build/</loc>
-    <lastmod>2022-06-11T12:07:37+08:00</lastmod>
+    <lastmod>2023-10-24T17:05:59+08:00</lastmod>
   </url><url>
     <loc>https://blog.cuihao.fun/post/go-timer/</loc>
     <lastmod>2022-06-11T11:43:12+08:00</lastmod>

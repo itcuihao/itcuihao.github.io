@@ -26,7 +26,7 @@
 
     
     <meta name="description"
-  content="Go常利用此命令进行编译打包" />
+  content="Go常利用此命令进行编译打包，其他功能点击查看" />
 <meta name="keywords"
   content='' />
 <meta name="robots" content="noodp" />
@@ -36,7 +36,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Go Build - haoc7" />
 <meta name="twitter:description"
-  content="Go常利用此命令进行编译打包" />
+  content="Go常利用此命令进行编译打包，其他功能点击查看" />
 <meta name="twitter:site" content="https://blog.cuihao.fun" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
@@ -46,7 +46,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Go Build - haoc7">
 <meta property="og:description"
-  content="Go常利用此命令进行编译打包" />
+  content="Go常利用此命令进行编译打包，其他功能点击查看" />
 <meta property="og:url" content="https://blog.cuihao.fun/post/go-build/" />
 <meta property="og:site_name" content="Go Build" />
 <meta property="og:image"
@@ -224,9 +224,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 11 Jun 2022 12:07:37 &#43;0800"
+                  Modified <relative-time datetime="Tue, 24 Oct 2023 17:05:59 &#43;0800"
                     class="no-wrap">
-                    Sat, 11 Jun 2022 12:07:37 &#43;0800</relative-time>
+                    Tue, 24 Oct 2023 17:05:59 &#43;0800</relative-time>
                   
                 </div>
               </div>
@@ -256,7 +256,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1000 Words
+                      727 Words
                     
 
                   </div>
@@ -272,13 +272,13 @@
                       Go
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/command">
+                    <a class="muted-link mr-3" href="/tags/%E5%B7%A5%E5%85%B7%E9%93%BE">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      command
+                      工具链
                     </a>
                     
                     
@@ -297,103 +297,335 @@
 <p>build时会默认使用文件名作为编译后的名字，如果是windows平台，则会添加exe的后缀。</p>
 <p><code>-o</code> 标识指定编译后文件的输出位置以及文件名；</p>
 <h2 id="解释">解释</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">-</span><span style="color:#a6e22e">a</span>
-	<span style="color:#a6e22e">force</span> <span style="color:#a6e22e">rebuilding</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">already</span> <span style="color:#a6e22e">up</span><span style="color:#f92672">-</span><span style="color:#a6e22e">to</span><span style="color:#f92672">-</span><span style="color:#a6e22e">date</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">n</span>
-	<span style="color:#a6e22e">print</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">commands</span> <span style="color:#a6e22e">but</span> <span style="color:#a6e22e">do</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">them</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">p</span> <span style="color:#a6e22e">n</span>
-	<span style="color:#a6e22e">the</span> <span style="color:#a6e22e">number</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">programs</span>, <span style="color:#a6e22e">such</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">commands</span> <span style="color:#a6e22e">or</span>
-	<span style="color:#a6e22e">test</span> <span style="color:#a6e22e">binaries</span>, <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">parallel</span>.
-	<span style="color:#a6e22e">The</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">GOMAXPROCS</span>, <span style="color:#a6e22e">normally</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">number</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">CPUs</span> <span style="color:#a6e22e">available</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">race</span>
-	<span style="color:#a6e22e">enable</span> <span style="color:#a6e22e">data</span> <span style="color:#a6e22e">race</span> <span style="color:#a6e22e">detection</span>.
-	<span style="color:#a6e22e">Supported</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">linux</span><span style="color:#f92672">/</span><span style="color:#a6e22e">amd64</span>, <span style="color:#a6e22e">freebsd</span><span style="color:#f92672">/</span><span style="color:#a6e22e">amd64</span>, <span style="color:#a6e22e">darwin</span><span style="color:#f92672">/</span><span style="color:#a6e22e">amd64</span>, <span style="color:#a6e22e">windows</span><span style="color:#f92672">/</span><span style="color:#a6e22e">amd64</span>,
-	<span style="color:#a6e22e">linux</span><span style="color:#f92672">/</span><span style="color:#a6e22e">ppc64le</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">linux</span><span style="color:#f92672">/</span><span style="color:#a6e22e">arm64</span> (<span style="color:#a6e22e">only</span> <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">48</span><span style="color:#f92672">-</span><span style="color:#a6e22e">bit</span> <span style="color:#a6e22e">VMA</span>).
-<span style="color:#f92672">-</span><span style="color:#a6e22e">msan</span>
-	<span style="color:#a6e22e">enable</span> <span style="color:#a6e22e">interoperation</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">memory</span> <span style="color:#a6e22e">sanitizer</span>.
-	<span style="color:#a6e22e">Supported</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">linux</span><span style="color:#f92672">/</span><span style="color:#a6e22e">amd64</span>, <span style="color:#a6e22e">linux</span><span style="color:#f92672">/</span><span style="color:#a6e22e">arm64</span>
-	<span style="color:#a6e22e">and</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">Clang</span><span style="color:#f92672">/</span><span style="color:#a6e22e">LLVM</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">host</span> <span style="color:#a6e22e">C</span> <span style="color:#a6e22e">compiler</span>.
-	<span style="color:#a6e22e">On</span> <span style="color:#a6e22e">linux</span><span style="color:#f92672">/</span><span style="color:#a6e22e">arm64</span>, <span style="color:#a6e22e">pie</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">mode</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">used</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">v</span>
-	<span style="color:#a6e22e">print</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">names</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">compiled</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">work</span>
-	<span style="color:#a6e22e">print</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">name</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">temporary</span> <span style="color:#a6e22e">work</span> <span style="color:#a6e22e">directory</span> <span style="color:#a6e22e">and</span>
-	<span style="color:#a6e22e">do</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">delete</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">when</span> <span style="color:#a6e22e">exiting</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">x</span>
-	<span style="color:#a6e22e">print</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">commands</span>.
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal.css' />
+<link rel="stylesheet" href='https://blog.cuihao.fun/css/terminal-mobile.css' media="screen and (max-width: 736px)">
 
-<span style="color:#f92672">-</span><span style="color:#a6e22e">asmflags</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>[<span style="color:#a6e22e">pattern</span>=]<span style="color:#a6e22e">arg</span> <span style="color:#a6e22e">list</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-	<span style="color:#a6e22e">arguments</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">pass</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">each</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">tool</span> <span style="color:#a6e22e">asm</span> <span style="color:#a6e22e">invocation</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">buildmode</span> <span style="color:#a6e22e">mode</span>
-	<span style="color:#a6e22e">build</span> <span style="color:#a6e22e">mode</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span>. <span style="color:#a6e22e">See</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#66d9ef">go</span> <span style="color:#a6e22e">help</span> <span style="color:#a6e22e">buildmode</span><span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">more</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">compiler</span> <span style="color:#a6e22e">name</span>
-	<span style="color:#a6e22e">name</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">compiler</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span>, <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">runtime</span>.<span style="color:#a6e22e">Compiler</span> (<span style="color:#a6e22e">gccgo</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">gc</span>).
-<span style="color:#f92672">-</span><span style="color:#a6e22e">gccgoflags</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>[<span style="color:#a6e22e">pattern</span>=]<span style="color:#a6e22e">arg</span> <span style="color:#a6e22e">list</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-	<span style="color:#a6e22e">arguments</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">pass</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">each</span> <span style="color:#a6e22e">gccgo</span> <span style="color:#a6e22e">compiler</span><span style="color:#f92672">/</span><span style="color:#a6e22e">linker</span> <span style="color:#a6e22e">invocation</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">gcflags</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>[<span style="color:#a6e22e">pattern</span>=]<span style="color:#a6e22e">arg</span> <span style="color:#a6e22e">list</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-	<span style="color:#a6e22e">arguments</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">pass</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">each</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">tool</span> <span style="color:#a6e22e">compile</span> <span style="color:#a6e22e">invocation</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">installsuffix</span> <span style="color:#a6e22e">suffix</span>
-	<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">suffix</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">name</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">installation</span> <span style="color:#a6e22e">directory</span>,
-	<span style="color:#a6e22e">in</span> <span style="color:#a6e22e">order</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">keep</span> <span style="color:#a6e22e">output</span> <span style="color:#a6e22e">separate</span> <span style="color:#a6e22e">from</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">builds</span>.
-	<span style="color:#a6e22e">If</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">the</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">race</span> <span style="color:#a6e22e">flag</span>, <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">suffix</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">automatically</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">race</span>
-	<span style="color:#a6e22e">or</span>, <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">explicitly</span>, <span style="color:#a6e22e">has</span> <span style="color:#a6e22e">_race</span> <span style="color:#a6e22e">appended</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">it</span>. <span style="color:#a6e22e">Likewise</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">msan</span>
-	<span style="color:#a6e22e">flag</span>. <span style="color:#a6e22e">Using</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">buildmode</span> <span style="color:#a6e22e">option</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">requires</span> <span style="color:#a6e22e">non</span><span style="color:#f92672">-</span><span style="color:#66d9ef">default</span> <span style="color:#a6e22e">compile</span> <span style="color:#a6e22e">flags</span>
-	<span style="color:#a6e22e">has</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">similar</span> <span style="color:#a6e22e">effect</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">ldflags</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>[<span style="color:#a6e22e">pattern</span>=]<span style="color:#a6e22e">arg</span> <span style="color:#a6e22e">list</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-	<span style="color:#a6e22e">arguments</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">pass</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">each</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">tool</span> <span style="color:#a6e22e">link</span> <span style="color:#a6e22e">invocation</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">linkshared</span>
-	<span style="color:#a6e22e">build</span> <span style="color:#a6e22e">code</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">linked</span> <span style="color:#a6e22e">against</span> <span style="color:#a6e22e">shared</span> <span style="color:#a6e22e">libraries</span> <span style="color:#a6e22e">previously</span>
-	<span style="color:#a6e22e">created</span> <span style="color:#a6e22e">with</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">buildmode</span>=<span style="color:#a6e22e">shared</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">mod</span> <span style="color:#a6e22e">mode</span>
-	<span style="color:#a6e22e">module</span> <span style="color:#a6e22e">download</span> <span style="color:#a6e22e">mode</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span>: <span style="color:#a6e22e">readonly</span>, <span style="color:#a6e22e">vendor</span>, <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">mod</span>.
-	<span style="color:#a6e22e">By</span> <span style="color:#66d9ef">default</span>, <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">vendor</span> <span style="color:#a6e22e">directory</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">present</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">the</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">version</span> <span style="color:#a6e22e">in</span> <span style="color:#66d9ef">go</span>.<span style="color:#a6e22e">mod</span>
-	<span style="color:#a6e22e">is</span> <span style="color:#ae81ff">1.14</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">higher</span>, <span style="color:#a6e22e">the</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">command</span> <span style="color:#a6e22e">acts</span> <span style="color:#a6e22e">as</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">mod</span>=<span style="color:#a6e22e">vendor</span> <span style="color:#a6e22e">were</span> <span style="color:#a6e22e">set</span>.
-	<span style="color:#a6e22e">Otherwise</span>, <span style="color:#a6e22e">the</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">command</span> <span style="color:#a6e22e">acts</span> <span style="color:#a6e22e">as</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">mod</span>=<span style="color:#a6e22e">readonly</span> <span style="color:#a6e22e">were</span> <span style="color:#a6e22e">set</span>.
-	<span style="color:#a6e22e">See</span> <span style="color:#a6e22e">https</span>:<span style="color:#75715e">//golang.org/ref/mod#build-commands for details.
-</span><span style="color:#75715e"></span><span style="color:#f92672">-</span><span style="color:#a6e22e">modcacherw</span>
-	<span style="color:#a6e22e">leave</span> <span style="color:#a6e22e">newly</span><span style="color:#f92672">-</span><span style="color:#a6e22e">created</span> <span style="color:#a6e22e">directories</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">module</span> <span style="color:#a6e22e">cache</span> <span style="color:#a6e22e">read</span><span style="color:#f92672">-</span><span style="color:#a6e22e">write</span>
-	<span style="color:#a6e22e">instead</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">making</span> <span style="color:#a6e22e">them</span> <span style="color:#a6e22e">read</span><span style="color:#f92672">-</span><span style="color:#a6e22e">only</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">modfile</span> <span style="color:#a6e22e">file</span>
-	<span style="color:#a6e22e">in</span> <span style="color:#a6e22e">module</span> <span style="color:#a6e22e">aware</span> <span style="color:#a6e22e">mode</span>, <span style="color:#a6e22e">read</span> (<span style="color:#a6e22e">and</span> <span style="color:#a6e22e">possibly</span> <span style="color:#a6e22e">write</span>) <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">alternate</span> <span style="color:#66d9ef">go</span>.<span style="color:#a6e22e">mod</span>
-	<span style="color:#a6e22e">file</span> <span style="color:#a6e22e">instead</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">one</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">module</span> <span style="color:#a6e22e">root</span> <span style="color:#a6e22e">directory</span>. <span style="color:#a6e22e">A</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">named</span>
-	<span style="color:#e6db74">&#34;go.mod&#34;</span> <span style="color:#a6e22e">must</span> <span style="color:#a6e22e">still</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">present</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">order</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">determine</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">module</span> <span style="color:#a6e22e">root</span>
-	<span style="color:#a6e22e">directory</span>, <span style="color:#a6e22e">but</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">accessed</span>. <span style="color:#a6e22e">When</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">modfile</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">specified</span>, <span style="color:#a6e22e">an</span>
-	<span style="color:#a6e22e">alternate</span> <span style="color:#66d9ef">go</span>.<span style="color:#a6e22e">sum</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">also</span> <span style="color:#a6e22e">used</span>: <span style="color:#a6e22e">its</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">derived</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">the</span>
-	<span style="color:#f92672">-</span><span style="color:#a6e22e">modfile</span> <span style="color:#a6e22e">flag</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">trimming</span> <span style="color:#a6e22e">the</span> <span style="color:#e6db74">&#34;.mod&#34;</span> <span style="color:#a6e22e">extension</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">appending</span> <span style="color:#e6db74">&#34;.sum&#34;</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">overlay</span> <span style="color:#a6e22e">file</span>
-	<span style="color:#a6e22e">read</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">JSON</span> <span style="color:#a6e22e">config</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">provides</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">overlay</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">operations</span>.
-	<span style="color:#a6e22e">The</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">JSON</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">single</span> <span style="color:#a6e22e">field</span>, <span style="color:#a6e22e">named</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">Replace</span><span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#a6e22e">that</span>
-	<span style="color:#a6e22e">maps</span> <span style="color:#a6e22e">each</span> <span style="color:#a6e22e">disk</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">path</span> (<span style="color:#a6e22e">a</span> <span style="color:#66d9ef">string</span>) <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">its</span> <span style="color:#a6e22e">backing</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">path</span>, <span style="color:#a6e22e">so</span> <span style="color:#a6e22e">that</span>
-	<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">as</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">disk</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">exists</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">contents</span>
-	<span style="color:#a6e22e">given</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">backing</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">paths</span>, <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">as</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">disk</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span>
-	<span style="color:#a6e22e">exist</span> <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">its</span> <span style="color:#a6e22e">backing</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">empty</span>. <span style="color:#a6e22e">Support</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">overlay</span> <span style="color:#a6e22e">flag</span>
-	<span style="color:#a6e22e">has</span> <span style="color:#a6e22e">some</span> <span style="color:#a6e22e">limitations</span>: <span style="color:#a6e22e">importantly</span>, <span style="color:#a6e22e">cgo</span> <span style="color:#a6e22e">files</span> <span style="color:#a6e22e">included</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">outside</span> <span style="color:#a6e22e">the</span>
-	<span style="color:#a6e22e">include</span> <span style="color:#a6e22e">path</span> <span style="color:#a6e22e">must</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">same</span> <span style="color:#a6e22e">directory</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">Go</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">are</span>
-	<span style="color:#a6e22e">included</span> <span style="color:#a6e22e">from</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">overlays</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">appear</span> <span style="color:#a6e22e">when</span> <span style="color:#a6e22e">binaries</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">tests</span> <span style="color:#a6e22e">are</span>
-	<span style="color:#a6e22e">run</span> <span style="color:#a6e22e">through</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">and</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">test</span> <span style="color:#a6e22e">respectively</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">pkgdir</span> <span style="color:#a6e22e">dir</span>
-	<span style="color:#a6e22e">install</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">load</span> <span style="color:#a6e22e">all</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">dir</span> <span style="color:#a6e22e">instead</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">usual</span> <span style="color:#a6e22e">locations</span>.
-	<span style="color:#a6e22e">For</span> <span style="color:#a6e22e">example</span>, <span style="color:#a6e22e">when</span> <span style="color:#a6e22e">building</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">non</span><span style="color:#f92672">-</span><span style="color:#a6e22e">standard</span> <span style="color:#a6e22e">configuration</span>,
-	<span style="color:#a6e22e">use</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">pkgdir</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">keep</span> <span style="color:#a6e22e">generated</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">separate</span> <span style="color:#a6e22e">location</span>.
-<span style="color:#f92672">-</span><span style="color:#a6e22e">tags</span> <span style="color:#a6e22e">tag</span>,<span style="color:#a6e22e">list</span>
-	<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">comma</span><span style="color:#f92672">-</span><span style="color:#a6e22e">separated</span> <span style="color:#a6e22e">list</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">tags</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">consider</span> <span style="color:#a6e22e">satisfied</span> <span style="color:#a6e22e">during</span> <span style="color:#a6e22e">the</span>
-	<span style="color:#a6e22e">build</span>. <span style="color:#a6e22e">For</span> <span style="color:#a6e22e">more</span> <span style="color:#a6e22e">information</span> <span style="color:#a6e22e">about</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">tags</span>, <span style="color:#a6e22e">see</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">description</span> <span style="color:#a6e22e">of</span>
-	<span style="color:#a6e22e">build</span> <span style="color:#a6e22e">constraints</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">documentation</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#66d9ef">go</span><span style="color:#f92672">/</span><span style="color:#a6e22e">build</span> <span style="color:#f92672">package</span>.
-	(<span style="color:#a6e22e">Earlier</span> <span style="color:#a6e22e">versions</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">Go</span> <span style="color:#a6e22e">used</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">space</span><span style="color:#f92672">-</span><span style="color:#a6e22e">separated</span> <span style="color:#a6e22e">list</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">form</span>
-	<span style="color:#a6e22e">is</span> <span style="color:#a6e22e">deprecated</span> <span style="color:#a6e22e">but</span> <span style="color:#a6e22e">still</span> <span style="color:#a6e22e">recognized</span>.)
-<span style="color:#f92672">-</span><span style="color:#a6e22e">trimpath</span>
-	<span style="color:#a6e22e">remove</span> <span style="color:#a6e22e">all</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">system</span> <span style="color:#a6e22e">paths</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">resulting</span> <span style="color:#a6e22e">executable</span>.
-	<span style="color:#a6e22e">Instead</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">absolute</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">system</span> <span style="color:#a6e22e">paths</span>, <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">recorded</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">names</span>
-	<span style="color:#a6e22e">will</span> <span style="color:#a6e22e">begin</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">either</span> <span style="color:#e6db74">&#34;go&#34;</span> (<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">standard</span> <span style="color:#a6e22e">library</span>),
-	<span style="color:#a6e22e">or</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">module</span> <span style="color:#a6e22e">path</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">version</span> (<span style="color:#a6e22e">when</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">modules</span>),
-	<span style="color:#a6e22e">or</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">plain</span> <span style="color:#f92672">import</span> <span style="color:#a6e22e">path</span> (<span style="color:#a6e22e">when</span> <span style="color:#a6e22e">using</span> <span style="color:#a6e22e">GOPATH</span>).
-<span style="color:#f92672">-</span><span style="color:#a6e22e">toolexec</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">cmd</span> <span style="color:#a6e22e">args</span><span style="color:#960050;background-color:#1e0010">&#39;</span>
-	<span style="color:#a6e22e">a</span> <span style="color:#a6e22e">program</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">invoke</span> <span style="color:#a6e22e">toolchain</span> <span style="color:#a6e22e">programs</span> <span style="color:#a6e22e">like</span> <span style="color:#a6e22e">vet</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">asm</span>.
-	<span style="color:#a6e22e">For</span> <span style="color:#a6e22e">example</span>, <span style="color:#a6e22e">instead</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">running</span> <span style="color:#a6e22e">asm</span>, <span style="color:#a6e22e">the</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">command</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">run</span>
-	<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">cmd</span> <span style="color:#a6e22e">args</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">path</span><span style="color:#f92672">/</span><span style="color:#a6e22e">to</span><span style="color:#f92672">/</span><span style="color:#a6e22e">asm</span> &lt;<span style="color:#a6e22e">arguments</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">asm</span>&gt;<span style="color:#960050;background-color:#1e0010">&#39;</span>.
-	<span style="color:#a6e22e">The</span> <span style="color:#a6e22e">TOOLEXEC_IMPORTPATH</span> <span style="color:#a6e22e">environment</span> <span style="color:#a6e22e">variable</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">set</span>,
-	<span style="color:#a6e22e">matching</span> <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#66d9ef">go</span> <span style="color:#a6e22e">list</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">f</span> {{.<span style="color:#a6e22e">ImportPath</span>}}<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">being</span> <span style="color:#a6e22e">built</span>.
-</code></pre></div><h2 id="常用命令">常用命令</h2>
+<div class="window">
+    <div class="titlebar">
+      <div class="buttons">
+        <div class="bclose">
+          <a class="closebutton" href="#"><span><strong>x</strong></span></a>
+        </div>
+        <div class="minimize">
+          <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
+        </div>
+        <div class="zoom">
+          <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
+        </div>
+      </div>
+      ~/hello(~zsh): 
+    </div>
+    <div class="terminal">
+      <ul>
+        
+        
+        <li></li>
+        
+        
+        <li>~&nbsp;via&nbsp;🐹</li>
+        
+        
+        <li>❯&nbsp;go&nbsp;help&nbsp;build</li>
+        
+        
+        <li>...</li>
+        
+        
+        <li>-a</li>
+        
+        
+        <li>	force&nbsp;rebuilding&nbsp;of&nbsp;packages&nbsp;that&nbsp;are&nbsp;already&nbsp;up-to-date.</li>
+        
+        
+        <li>-n</li>
+        
+        
+        <li>	print&nbsp;the&nbsp;commands&nbsp;but&nbsp;do&nbsp;not&nbsp;run&nbsp;them.</li>
+        
+        
+        <li>-p&nbsp;n</li>
+        
+        
+        <li>	the&nbsp;number&nbsp;of&nbsp;programs,&nbsp;such&nbsp;as&nbsp;build&nbsp;commands&nbsp;or</li>
+        
+        
+        <li>	test&nbsp;binaries,&nbsp;that&nbsp;can&nbsp;be&nbsp;run&nbsp;in&nbsp;parallel.</li>
+        
+        
+        <li>	The&nbsp;default&nbsp;is&nbsp;GOMAXPROCS,&nbsp;normally&nbsp;the&nbsp;number&nbsp;of&nbsp;CPUs&nbsp;available.</li>
+        
+        
+        <li>-race</li>
+        
+        
+        <li>	enable&nbsp;data&nbsp;race&nbsp;detection.</li>
+        
+        
+        <li>	Supported&nbsp;only&nbsp;on&nbsp;linux/amd64,&nbsp;freebsd/amd64,&nbsp;darwin/amd64,&nbsp;windows/amd64,</li>
+        
+        
+        <li>	linux/ppc64le&nbsp;and&nbsp;linux/arm64&nbsp;(only&nbsp;for&nbsp;48-bit&nbsp;VMA).</li>
+        
+        
+        <li>-msan</li>
+        
+        
+        <li>	enable&nbsp;interoperation&nbsp;with&nbsp;memory&nbsp;sanitizer.</li>
+        
+        
+        <li>	Supported&nbsp;only&nbsp;on&nbsp;linux/amd64,&nbsp;linux/arm64</li>
+        
+        
+        <li>	and&nbsp;only&nbsp;with&nbsp;Clang/LLVM&nbsp;as&nbsp;the&nbsp;host&nbsp;C&nbsp;compiler.</li>
+        
+        
+        <li>	On&nbsp;linux/arm64,&nbsp;pie&nbsp;build&nbsp;mode&nbsp;will&nbsp;be&nbsp;used.</li>
+        
+        
+        <li>-v</li>
+        
+        
+        <li>	print&nbsp;the&nbsp;names&nbsp;of&nbsp;packages&nbsp;as&nbsp;they&nbsp;are&nbsp;compiled.</li>
+        
+        
+        <li>-work</li>
+        
+        
+        <li>	print&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;temporary&nbsp;work&nbsp;directory&nbsp;and</li>
+        
+        
+        <li>	do&nbsp;not&nbsp;delete&nbsp;it&nbsp;when&nbsp;exiting.</li>
+        
+        
+        <li>-x</li>
+        
+        
+        <li>	print&nbsp;the&nbsp;commands.</li>
+        
+        
+        <li></li>
+        
+        
+        <li>-asmflags&nbsp;'[pattern=]arg&nbsp;list'</li>
+        
+        
+        <li>	arguments&nbsp;to&nbsp;pass&nbsp;on&nbsp;each&nbsp;go&nbsp;tool&nbsp;asm&nbsp;invocation.</li>
+        
+        
+        <li>-buildmode&nbsp;mode</li>
+        
+        
+        <li>	build&nbsp;mode&nbsp;to&nbsp;use.&nbsp;See&nbsp;'go&nbsp;help&nbsp;buildmode'&nbsp;for&nbsp;more.</li>
+        
+        
+        <li>-compiler&nbsp;name</li>
+        
+        
+        <li>	name&nbsp;of&nbsp;compiler&nbsp;to&nbsp;use,&nbsp;as&nbsp;in&nbsp;runtime.Compiler&nbsp;(gccgo&nbsp;or&nbsp;gc).</li>
+        
+        
+        <li>-gccgoflags&nbsp;'[pattern=]arg&nbsp;list'</li>
+        
+        
+        <li>	arguments&nbsp;to&nbsp;pass&nbsp;on&nbsp;each&nbsp;gccgo&nbsp;compiler/linker&nbsp;invocation.</li>
+        
+        
+        <li>-gcflags&nbsp;'[pattern=]arg&nbsp;list'</li>
+        
+        
+        <li>	arguments&nbsp;to&nbsp;pass&nbsp;on&nbsp;each&nbsp;go&nbsp;tool&nbsp;compile&nbsp;invocation.</li>
+        
+        
+        <li>-installsuffix&nbsp;suffix</li>
+        
+        
+        <li>	a&nbsp;suffix&nbsp;to&nbsp;use&nbsp;in&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;package&nbsp;installation&nbsp;directory,</li>
+        
+        
+        <li>	in&nbsp;order&nbsp;to&nbsp;keep&nbsp;output&nbsp;separate&nbsp;from&nbsp;default&nbsp;builds.</li>
+        
+        
+        <li>	If&nbsp;using&nbsp;the&nbsp;-race&nbsp;flag,&nbsp;the&nbsp;install&nbsp;suffix&nbsp;is&nbsp;automatically&nbsp;set&nbsp;to&nbsp;race</li>
+        
+        
+        <li>	or,&nbsp;if&nbsp;set&nbsp;explicitly,&nbsp;has&nbsp;_race&nbsp;appended&nbsp;to&nbsp;it.&nbsp;Likewise&nbsp;for&nbsp;the&nbsp;-msan</li>
+        
+        
+        <li>	flag.&nbsp;Using&nbsp;a&nbsp;-buildmode&nbsp;option&nbsp;that&nbsp;requires&nbsp;non-default&nbsp;compile&nbsp;flags</li>
+        
+        
+        <li>	has&nbsp;a&nbsp;similar&nbsp;effect.</li>
+        
+        
+        <li>-ldflags&nbsp;'[pattern=]arg&nbsp;list'</li>
+        
+        
+        <li>	arguments&nbsp;to&nbsp;pass&nbsp;on&nbsp;each&nbsp;go&nbsp;tool&nbsp;link&nbsp;invocation.</li>
+        
+        
+        <li>-linkshared</li>
+        
+        
+        <li>	build&nbsp;code&nbsp;that&nbsp;will&nbsp;be&nbsp;linked&nbsp;against&nbsp;shared&nbsp;libraries&nbsp;previously</li>
+        
+        
+        <li>	created&nbsp;with&nbsp;-buildmode=shared.</li>
+        
+        
+        <li>-mod&nbsp;mode</li>
+        
+        
+        <li>	module&nbsp;download&nbsp;mode&nbsp;to&nbsp;use:&nbsp;readonly,&nbsp;vendor,&nbsp;or&nbsp;mod.</li>
+        
+        
+        <li>	By&nbsp;default,&nbsp;if&nbsp;a&nbsp;vendor&nbsp;directory&nbsp;is&nbsp;present&nbsp;and&nbsp;the&nbsp;go&nbsp;version&nbsp;in&nbsp;go.mod</li>
+        
+        
+        <li>	is&nbsp;1.14&nbsp;or&nbsp;higher,&nbsp;the&nbsp;go&nbsp;command&nbsp;acts&nbsp;as&nbsp;if&nbsp;-mod=vendor&nbsp;were&nbsp;set.</li>
+        
+        
+        <li>	Otherwise,&nbsp;the&nbsp;go&nbsp;command&nbsp;acts&nbsp;as&nbsp;if&nbsp;-mod=readonly&nbsp;were&nbsp;set.</li>
+        
+        
+        <li>	See&nbsp;https://golang.org/ref/mod#build-commands&nbsp;for&nbsp;details.</li>
+        
+        
+        <li>-modcacherw</li>
+        
+        
+        <li>	leave&nbsp;newly-created&nbsp;directories&nbsp;in&nbsp;the&nbsp;module&nbsp;cache&nbsp;read-write</li>
+        
+        
+        <li>	instead&nbsp;of&nbsp;making&nbsp;them&nbsp;read-only.</li>
+        
+        
+        <li>-modfile&nbsp;file</li>
+        
+        
+        <li>	in&nbsp;module&nbsp;aware&nbsp;mode,&nbsp;read&nbsp;(and&nbsp;possibly&nbsp;write)&nbsp;an&nbsp;alternate&nbsp;go.mod</li>
+        
+        
+        <li>	file&nbsp;instead&nbsp;of&nbsp;the&nbsp;one&nbsp;in&nbsp;the&nbsp;module&nbsp;root&nbsp;directory.&nbsp;A&nbsp;file&nbsp;named</li>
+        
+        
+        <li>	"go.mod"&nbsp;must&nbsp;still&nbsp;be&nbsp;present&nbsp;in&nbsp;order&nbsp;to&nbsp;determine&nbsp;the&nbsp;module&nbsp;root</li>
+        
+        
+        <li>	directory,&nbsp;but&nbsp;it&nbsp;is&nbsp;not&nbsp;accessed.&nbsp;When&nbsp;-modfile&nbsp;is&nbsp;specified,&nbsp;an</li>
+        
+        
+        <li>	alternate&nbsp;go.sum&nbsp;file&nbsp;is&nbsp;also&nbsp;used:&nbsp;its&nbsp;path&nbsp;is&nbsp;derived&nbsp;from&nbsp;the</li>
+        
+        
+        <li>	-modfile&nbsp;flag&nbsp;by&nbsp;trimming&nbsp;the&nbsp;".mod"&nbsp;extension&nbsp;and&nbsp;appending&nbsp;".sum".</li>
+        
+        
+        <li>-overlay&nbsp;file</li>
+        
+        
+        <li>	read&nbsp;a&nbsp;JSON&nbsp;config&nbsp;file&nbsp;that&nbsp;provides&nbsp;an&nbsp;overlay&nbsp;for&nbsp;build&nbsp;operations.</li>
+        
+        
+        <li>	The&nbsp;file&nbsp;is&nbsp;a&nbsp;JSON&nbsp;struct&nbsp;with&nbsp;a&nbsp;single&nbsp;field,&nbsp;named&nbsp;'Replace',&nbsp;that</li>
+        
+        
+        <li>	maps&nbsp;each&nbsp;disk&nbsp;file&nbsp;path&nbsp;(a&nbsp;string)&nbsp;to&nbsp;its&nbsp;backing&nbsp;file&nbsp;path,&nbsp;so&nbsp;that</li>
+        
+        
+        <li>	a&nbsp;build&nbsp;will&nbsp;run&nbsp;as&nbsp;if&nbsp;the&nbsp;disk&nbsp;file&nbsp;path&nbsp;exists&nbsp;with&nbsp;the&nbsp;contents</li>
+        
+        
+        <li>	given&nbsp;by&nbsp;the&nbsp;backing&nbsp;file&nbsp;paths,&nbsp;or&nbsp;as&nbsp;if&nbsp;the&nbsp;disk&nbsp;file&nbsp;path&nbsp;does&nbsp;not</li>
+        
+        
+        <li>	exist&nbsp;if&nbsp;its&nbsp;backing&nbsp;file&nbsp;path&nbsp;is&nbsp;empty.&nbsp;Support&nbsp;for&nbsp;the&nbsp;-overlay&nbsp;flag</li>
+        
+        
+        <li>	has&nbsp;some&nbsp;limitations:&nbsp;importantly,&nbsp;cgo&nbsp;files&nbsp;included&nbsp;from&nbsp;outside&nbsp;the</li>
+        
+        
+        <li>	include&nbsp;path&nbsp;must&nbsp;be&nbsp;in&nbsp;the&nbsp;same&nbsp;directory&nbsp;as&nbsp;the&nbsp;Go&nbsp;package&nbsp;they&nbsp;are</li>
+        
+        
+        <li>	included&nbsp;from,&nbsp;and&nbsp;overlays&nbsp;will&nbsp;not&nbsp;appear&nbsp;when&nbsp;binaries&nbsp;and&nbsp;tests&nbsp;are</li>
+        
+        
+        <li>	run&nbsp;through&nbsp;go&nbsp;run&nbsp;and&nbsp;go&nbsp;test&nbsp;respectively.</li>
+        
+        
+        <li>-pkgdir&nbsp;dir</li>
+        
+        
+        <li>	install&nbsp;and&nbsp;load&nbsp;all&nbsp;packages&nbsp;from&nbsp;dir&nbsp;instead&nbsp;of&nbsp;the&nbsp;usual&nbsp;locations.</li>
+        
+        
+        <li>	For&nbsp;example,&nbsp;when&nbsp;building&nbsp;with&nbsp;a&nbsp;non-standard&nbsp;configuration,</li>
+        
+        
+        <li>	use&nbsp;-pkgdir&nbsp;to&nbsp;keep&nbsp;generated&nbsp;packages&nbsp;in&nbsp;a&nbsp;separate&nbsp;location.</li>
+        
+        
+        <li>-tags&nbsp;tag,list</li>
+        
+        
+        <li>	a&nbsp;comma-separated&nbsp;list&nbsp;of&nbsp;build&nbsp;tags&nbsp;to&nbsp;consider&nbsp;satisfied&nbsp;during&nbsp;the</li>
+        
+        
+        <li>	build.&nbsp;For&nbsp;more&nbsp;information&nbsp;about&nbsp;build&nbsp;tags,&nbsp;see&nbsp;the&nbsp;description&nbsp;of</li>
+        
+        
+        <li>	build&nbsp;constraints&nbsp;in&nbsp;the&nbsp;documentation&nbsp;for&nbsp;the&nbsp;go/build&nbsp;package.</li>
+        
+        
+        <li>	(Earlier&nbsp;versions&nbsp;of&nbsp;Go&nbsp;used&nbsp;a&nbsp;space-separated&nbsp;list,&nbsp;and&nbsp;that&nbsp;form</li>
+        
+        
+        <li>	is&nbsp;deprecated&nbsp;but&nbsp;still&nbsp;recognized.)</li>
+        
+        
+        <li>-trimpath</li>
+        
+        
+        <li>	remove&nbsp;all&nbsp;file&nbsp;system&nbsp;paths&nbsp;from&nbsp;the&nbsp;resulting&nbsp;executable.</li>
+        
+        
+        <li>	Instead&nbsp;of&nbsp;absolute&nbsp;file&nbsp;system&nbsp;paths,&nbsp;the&nbsp;recorded&nbsp;file&nbsp;names</li>
+        
+        
+        <li>	will&nbsp;begin&nbsp;with&nbsp;either&nbsp;"go"&nbsp;(for&nbsp;the&nbsp;standard&nbsp;library),</li>
+        
+        
+        <li>	or&nbsp;a&nbsp;module&nbsp;path@version&nbsp;(when&nbsp;using&nbsp;modules),</li>
+        
+        
+        <li>	or&nbsp;a&nbsp;plain&nbsp;import&nbsp;path&nbsp;(when&nbsp;using&nbsp;GOPATH).</li>
+        
+        
+        <li>-toolexec&nbsp;'cmd&nbsp;args'</li>
+        
+        
+        <li>	a&nbsp;program&nbsp;to&nbsp;use&nbsp;to&nbsp;invoke&nbsp;toolchain&nbsp;programs&nbsp;like&nbsp;vet&nbsp;and&nbsp;asm.</li>
+        
+        
+        <li>	For&nbsp;example,&nbsp;instead&nbsp;of&nbsp;running&nbsp;asm,&nbsp;the&nbsp;go&nbsp;command&nbsp;will&nbsp;run</li>
+        
+        
+        <li>	'cmd&nbsp;args&nbsp;/path/to/asm&nbsp;<arguments&nbsp;for&nbsp;asm>'.</li>
+        
+        
+        <li>	The&nbsp;TOOLEXEC_IMPORTPATH&nbsp;environment&nbsp;variable&nbsp;will&nbsp;be&nbsp;set,</li>
+        
+        
+        <li>	matching&nbsp;'go&nbsp;list&nbsp;-f&nbsp;{{.ImportPath}}'&nbsp;for&nbsp;the&nbsp;package&nbsp;being&nbsp;built.</li>
+        
+        
+        <li></li>
+          
+      </ul>
+    </div>
+</div>
+
+<h2 id="常用命令">常用命令</h2>
 <h3 id="交叉编译">交叉编译</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 编译Linux 64位可执行的包
 </span><span style="color:#75715e">// CGO_ENABLED的值将影响你的程序编译后的属性：是静态的还是动态链接的，为0则采用纯静态编译
@@ -401,9 +633,58 @@
 </span><span style="color:#75715e">// GOARCH 代表编译的处理器体系结构
 </span><span style="color:#75715e">// -ldflags=&#34;-w -s&#34; 其中-w为去掉调试信息（无法使用gdb调试），-s为去掉符号表，可减少编译后文件体积
 </span><span style="color:#75715e"></span><span style="color:#a6e22e">CGO_ENABLE</span>=<span style="color:#ae81ff">0</span> <span style="color:#a6e22e">GOOS</span>=<span style="color:#a6e22e">linux</span> <span style="color:#a6e22e">GOARCH</span>=<span style="color:#a6e22e">amd64</span> <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">build</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">ldflags</span>=<span style="color:#e6db74">&#34;-w -s&#34;</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">o</span> <span style="color:#a6e22e">main</span> <span style="color:#a6e22e">main</span>.<span style="color:#66d9ef">go</span>
-</code></pre></div><h3 id="检测项目中的变量逃逸">检测项目中的变量逃逸</h3>
+</code></pre></div><h4 id="详解">详解</h4>
+<p>交叉编译的环境变量：</p>
+<ul>
+<li>$GOARCH：目标平台（编译后使用的平台）的处理器架构（386、amd64、arm）</li>
+<li>$GOOS：目标平台（编译后使用的平台）的操作系统（darwin、freebsd、linux、windows）</li>
+<li>CGO_ENABLED=0，不支持CGO，禁用</li>
+</ul>
+<p>各平台的GOOS和GOARCH参考 </p>
+<table>
+<thead>
+<tr>
+<th>OS          </th>
+<th>       ARCH                </th>
+<th>       OS version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>linux       </td>
+<td>       386 / amd64 / arm    </td>
+<td>       &gt;= Linux 2.6</td>
+</tr>
+<tr>
+<td>darwin      </td>
+<td>       386 / amd64          </td>
+<td>      OS X (Snow Leopard +Lion)</td>
+</tr>
+<tr>
+<td>freebsd     </td>
+<td>        386 / amd64          </td>
+<td>      &gt;= FreeBSD 7</td>
+</tr>
+<tr>
+<td>windows     </td>
+<td>        386 / amd64          </td>
+<td>       &gt;= Windows 2000</td>
+</tr>
+</tbody>
+</table>
+<h4 id="例子">例子</h4>
+<p>目标平台64位系统</p>
+<pre tabindex="0"><code>$ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+$ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build
+</code></pre><h3 id="检测项目中的变量逃逸">检测项目中的变量逃逸</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">go</span> <span style="color:#a6e22e">build</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">gcflags</span>=<span style="color:#e6db74">&#34;-m -m&#34;</span> <span style="color:#a6e22e">main</span>.<span style="color:#66d9ef">go</span>
-</code></pre></div></article>
+</code></pre></div><h3 id="其他技巧">其他技巧</h3>
+<ul>
+<li>调试时，<code>-gcflags &quot;-N -l&quot;</code> 禁用参数内联与优化；</li>
+<li>发布时，<code>-ldfalgs &quot;-w -s&quot;</code> 剔除符号表与调试信息，减少文件大小，增加反编译难度；</li>
+<li><code>go build -gcflags -S main.go</code>, 查看编译过程汇编；</li>
+</ul>
+</article>
               </div>
             </div>
           </div>
